@@ -18,7 +18,7 @@ import java.lang.Override;
 public class AccueilActivity_ViewBinding implements Unbinder {
   private AccueilActivity target;
 
-  private View view7f08006a;
+  private View view7f08006d;
 
   @UiThread
   public AccueilActivity_ViewBinding(AccueilActivity target) {
@@ -32,10 +32,11 @@ public class AccueilActivity_ViewBinding implements Unbinder {
     View view;
     target.progressBar = Utils.findRequiredViewAsType(source, R.id.my_progressBar, "field 'progressBar'", ProgressBar.class);
     target.textView = Utils.findRequiredViewAsType(source, R.id.textView, "field 'textView'", TextView.class);
+    target.text_nb_medicament = Utils.findRequiredViewAsType(source, R.id.text_nb_medicament, "field 'text_nb_medicament'", TextView.class);
     target.listPrescription = Utils.findRequiredViewAsType(source, R.id.list_prescription, "field 'listPrescription'", RecyclerView.class);
     view = Utils.findRequiredView(source, R.id.button_list_prescription, "field 'buttonListPrescription' and method 'buttonListPrescriptionClick'");
     target.buttonListPrescription = Utils.castView(view, R.id.button_list_prescription, "field 'buttonListPrescription'", MaterialButton.class);
-    view7f08006a = view;
+    view7f08006d = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -53,10 +54,11 @@ public class AccueilActivity_ViewBinding implements Unbinder {
 
     target.progressBar = null;
     target.textView = null;
+    target.text_nb_medicament = null;
     target.listPrescription = null;
     target.buttonListPrescription = null;
 
-    view7f08006a.setOnClickListener(null);
-    view7f08006a = null;
+    view7f08006d.setOnClickListener(null);
+    view7f08006d = null;
   }
 }

@@ -17,24 +17,9 @@
         android:orientation="vertical"
         >
 
-        <!-- Toolbar -->
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/activity_main_toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:theme="@style/ToolBarStyle"/>
+        <include layout="@layout/toolbar"/>
 
-        <ProgressBar
-            android:id="@+id/my_progressBar"
-            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:indeterminate="false"
-            android:visibility="gone"
-            android:max="100"
-            android:progress="0"
-            />
+        <include layout="@layout/progress_bar"/>
 
         <!-- FrameLayout for our fragments -->
     <!-- <FrameLayout
@@ -93,10 +78,42 @@
                     android:layout_height="wrap_content"
                     android:text="Mes Examens" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/list_rdv_examen"
+                <Button
+                    android:id="@+id/btn_import_Medoc"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dip"
+                    android:layout_marginBottom="10dip"
+                    android:onClick="importMedicament"
+                    android:text="Import MEDOCS" />
+
+                <Button
+                    android:id="@+id/btn_raz"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dip"
+                    android:layout_marginBottom="10dip"
+                    android:onClick="razDb"
+                    android:text="Raz DB" />
+
+                <TextView
+                    android:id="@+id/text_nb_medicament"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal" />
+
+                <Button
+                    android:id="@+id/btn_add_prescription"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dip"
+                    android:layout_marginBottom="10dip"
+                    android:onClick="addPrescription"
+                    android:text="+ Prescription" />
+
             </LinearLayout>
 
 

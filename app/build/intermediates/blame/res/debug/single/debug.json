@@ -12,10 +12,6 @@
         "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\drawable-v21\\icons8_note.png"
     },
     {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_list_duree.xml.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\layout\\activity_list_duree.xml"
-    },
-    {
         "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_outline_create_black_24dp.png.flat",
         "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\drawable-v21\\outline_create_black_24dp.png"
     },
@@ -176,10 +172,6 @@
         "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\drawable-v21\\fatman_24.png"
     },
     {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_list_frequence.xml.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\layout\\activity_list_frequence.xml"
-    },
-    {
         "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\layout_list_item.xml.flat",
         "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\layout\\list_item.xml"
     },
@@ -196,6 +188,10 @@
         "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\drawable-v24\\marker2.png"
     },
     {
+        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\layout_toolbar.xml.flat",
+        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\layout\\toolbar.xml"
+    },
+    {
         "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\menu_menu_activity_main.xml.flat",
         "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\menu\\menu_activity_main.xml"
     },
@@ -206,6 +202,10 @@
     {
         "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_ic_menu_share.xml.flat",
         "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\drawable-v21\\ic_menu_share.xml"
+    },
+    {
+        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\layout_progress_bar.xml.flat",
+        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\layout\\progress_bar.xml"
     },
     {
         "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_outline_save_black_24dp.png.flat",

@@ -34,9 +34,7 @@ public class PrescriptionDao extends AbstractDao<Prescription, Long> {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
         public final static Property MedicamentId = new Property(1, long.class, "medicamentId", false, "MEDICAMENT_ID");
         public final static Property Frequence = new Property(2, String.class, "frequence", false, "FREQUENCE");
-        public final static Property DureeOption = new Property(3, int.class, "dureeOption", false, "DUREE_OPTION");
-        public final static Property FrequenceOption = new Property(4, int.class, "frequenceOption", false, "FREQUENCE_OPTION");
-        public final static Property DateFin = new Property(5, java.util.Date.class, "dateFin", false, "DATE_FIN");
+        public final static Property DateFin = new Property(3, java.util.Date.class, "dateFin", false, "DATE_FIN");
     }
 
     private DaoSession daoSession;
@@ -59,9 +57,7 @@ public class PrescriptionDao extends AbstractDao<Prescription, Long> {
                 "\"_id\" INTEGER PRIMARY KEY ," + // 0: id
                 "\"MEDICAMENT_ID\" INTEGER NOT NULL ," + // 1: medicamentId
                 "\"FREQUENCE\" TEXT," + // 2: frequence
-                "\"DUREE_OPTION\" INTEGER NOT NULL ," + // 3: dureeOption
-                "\"FREQUENCE_OPTION\" INTEGER NOT NULL ," + // 4: frequenceOption
-                "\"DATE_FIN\" INTEGER);"); // 5: dateFin
+                "\"DATE_FIN\" INTEGER);"); // 3: dateFin
     }
 
     /** Drops the underlying database table. */
@@ -84,12 +80,10 @@ public class PrescriptionDao extends AbstractDao<Prescription, Long> {
         if (frequence != null) {
             stmt.bindString(3, frequenceConverter.convertToDatabaseValue(frequence));
         }
-        stmt.bindLong(4, entity.getDureeOption());
-        stmt.bindLong(5, entity.getFrequenceOption());
  
         java.util.Date dateFin = entity.getDateFin();
         if (dateFin != null) {
-            stmt.bindLong(6, dateFin.getTime());
+            stmt.bindLong(4, dateFin.getTime());
         }
     }
 
@@ -107,12 +101,10 @@ public class PrescriptionDao extends AbstractDao<Prescription, Long> {
         if (frequence != null) {
             stmt.bindString(3, frequenceConverter.convertToDatabaseValue(frequence));
         }
-        stmt.bindLong(4, entity.getDureeOption());
-        stmt.bindLong(5, entity.getFrequenceOption());
  
         java.util.Date dateFin = entity.getDateFin();
         if (dateFin != null) {
-            stmt.bindLong(6, dateFin.getTime());
+            stmt.bindLong(4, dateFin.getTime());
         }
     }
 
@@ -133,9 +125,7 @@ public class PrescriptionDao extends AbstractDao<Prescription, Long> {
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
             cursor.getLong(offset + 1), // medicamentId
             cursor.isNull(offset + 2) ? null : frequenceConverter.convertToEntityProperty(cursor.getString(offset + 2)), // frequence
-            cursor.getInt(offset + 3), // dureeOption
-            cursor.getInt(offset + 4), // frequenceOption
-            cursor.isNull(offset + 5) ? null : new java.util.Date(cursor.getLong(offset + 5)) // dateFin
+            cursor.isNull(offset + 3) ? null : new java.util.Date(cursor.getLong(offset + 3)) // dateFin
         );
         return entity;
     }
@@ -145,9 +135,7 @@ public class PrescriptionDao extends AbstractDao<Prescription, Long> {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
         entity.setMedicamentId(cursor.getLong(offset + 1));
         entity.setFrequence(cursor.isNull(offset + 2) ? null : frequenceConverter.convertToEntityProperty(cursor.getString(offset + 2)));
-        entity.setDureeOption(cursor.getInt(offset + 3));
-        entity.setFrequenceOption(cursor.getInt(offset + 4));
-        entity.setDateFin(cursor.isNull(offset + 5) ? null : new java.util.Date(cursor.getLong(offset + 5)));
+        entity.setDateFin(cursor.isNull(offset + 3) ? null : new java.util.Date(cursor.getLong(offset + 3)));
      }
     
     @Override

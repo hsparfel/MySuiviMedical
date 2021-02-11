@@ -31,8 +31,8 @@ public class Prescription implements Comparable<Prescription>  {
     @Convert(converter = FrequenceConverter.class, columnType = String.class)
     private Frequence frequence;
 
-    int dureeOption;
-    int frequenceOption;
+    //int dureeOption;
+    //int frequenceOption;
     Date dateFin;
 
     /** Used to resolve relations */
@@ -44,14 +44,11 @@ public class Prescription implements Comparable<Prescription>  {
     private transient PrescriptionDao myDao;
 
 
-    @Generated(hash = 1275334871)
-    public Prescription(Long id, long medicamentId, Frequence frequence, int dureeOption,
-            int frequenceOption, Date dateFin) {
+    @Generated(hash = 58491371)
+    public Prescription(Long id, long medicamentId, Frequence frequence, Date dateFin) {
         this.id = id;
         this.medicamentId = medicamentId;
         this.frequence = frequence;
-        this.dureeOption = dureeOption;
-        this.frequenceOption = frequenceOption;
         this.dateFin = dateFin;
     }
 
@@ -92,21 +89,7 @@ public class Prescription implements Comparable<Prescription>  {
         this.frequence = frequence;
     }
 
-    public int getDureeOption() {
-        return this.dureeOption;
-    }
 
-    public void setDureeOption(int dureeOption) {
-        this.dureeOption = dureeOption;
-    }
-
-    public int getFrequenceOption() {
-        return this.frequenceOption;
-    }
-
-    public void setFrequenceOption(int frequenceOption) {
-        this.frequenceOption = frequenceOption;
-    }
 
     public Date getDateFin() {
         return this.dateFin;

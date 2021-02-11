@@ -74,15 +74,7 @@ public class AddPrescriptionActivity extends NavDrawerActivity implements BasicU
     @BindView(R.id.layoutMedicament)
     TextInputLayout listMedicament;
 
-    @BindView(R.id.layoutFrequence)
-    TextInputLayout layoutFrequence;
-    @BindView(R.id.textFrequence)
-    TextInputEditText textFrequence;
 
-    @BindView(R.id.layoutDuree)
-    TextInputLayout layoutDuree;
-    @BindView(R.id.textDuree)
-    TextInputEditText textDuree;
 
     List<MedicamentLight> listMedicamentLightBD;
     private List<Rappel> listRappelBD;
@@ -92,13 +84,7 @@ public class AddPrescriptionActivity extends NavDrawerActivity implements BasicU
     @BindView(R.id.textDate)
     TextInputEditText textDate;
 
-
     public Frequence frequence;
-
-  //  @BindView(R.id.fragment_list_frequence)
-   // Fragment fragment_list_frequence;
-    Fragment fragmentListFrequence;
-    Fragment fragmentListDuree;
 
     @BindView(R.id.fabSave)
     FloatingActionButton fabSave;
@@ -107,64 +93,6 @@ public class AddPrescriptionActivity extends NavDrawerActivity implements BasicU
 
     @BindView(R.id.my_progressBar)
     ProgressBar progressBar;
-
-    @BindView(R.id.rbWhenNeeded)
-    RadioButton rbWhenNeeded;
-    @BindView(R.id.rbEveryDay)
-    RadioButton rbEveryDay;
-    @BindView(R.id.rbEveryDayByHour)
-    RadioButton rbEveryDayByHour;
-    @BindView(R.id.rbEveryXDays)
-    RadioButton rbEveryXDays;
-    @BindView(R.id.rbChosenDays)
-    RadioButton rbChosenDays;
-
-
-    @BindView(R.id.rbNoEnding)
-    RadioButton rbNoEnding;
-
-    @BindView(R.id.rbUntilDate)
-    RadioButton rbUntilDate;
-
-    @BindView(R.id.rbDuringDays)
-    RadioButton rbDuringDays;
-
-    @BindView(R.id.chipLundi)
-    Chip chipLundi;
-    @BindView(R.id.chipMardi)
-    Chip chipMardi;
-    @BindView(R.id.chipMercredi)
-    Chip chipMercredi;
-    @BindView(R.id.chipJeudi)
-    Chip chipJeudi;
-    @BindView(R.id.chipVendredi)
-    Chip chipVendredi;
-    @BindView(R.id.chipSamedi)
-    Chip chipSamedi;
-    @BindView(R.id.chipDimanche)
-    Chip chipDimanche;
-    @BindView(R.id.chipGroupJour)
-    ChipGroup chipGroupJour;
-
-    @BindView(R.id.numberPickerFrequence)
-    com.shawnlin.numberpicker.NumberPicker numberPickerFrequence;
-
-    @BindView(R.id.numberPickerDuree)
-    com.shawnlin.numberpicker.NumberPicker numberPickerDuree;
-
-    @BindView(R.id.preFreq)
-    TextView preFreq;
-    @BindView(R.id.preDuree)
-    TextView preDuree;
-    @BindView(R.id.postFreq)
-    TextView postFreq;
-    @BindView(R.id.postDuree)
-    TextView postDuree;
-
-    @BindView(R.id.layoutFrequenceOption)
-    LinearLayout layoutFrequenceOption;
-    @BindView(R.id.layoutDureeOption)
-    LinearLayout layoutDureeOption;
 
     @BindView(R.id.listRappel)
     RecyclerView listRappel;
@@ -180,9 +108,6 @@ public class AddPrescriptionActivity extends NavDrawerActivity implements BasicU
             AddPrescriptionActivity.AsyncTaskRunnerBDRappel runnerBDRappel = new AddPrescriptionActivity.AsyncTaskRunnerBDRappel();
             runnerBDRappel.execute();
         }
-
-
-
     }
 
     @Override
@@ -195,10 +120,6 @@ public class AddPrescriptionActivity extends NavDrawerActivity implements BasicU
         this.configureBottomView();
 
         ButterKnife.bind(this);
-        fragmentListFrequence = (Fragment) this.getSupportFragmentManager().findFragmentById(R.id.fragment_list_frequence);
-        fragmentListDuree = (Fragment) this.getSupportFragmentManager().findFragmentById(R.id.fragment_list_duree);
-        fragmentListFrequence.getView().setBackgroundColor(Color.LTGRAY);
-        fragmentListDuree.getView().setBackgroundColor(Color.LTGRAY);
 
         progressBar.setVisibility(View.VISIBLE);
 
@@ -206,7 +127,7 @@ public class AddPrescriptionActivity extends NavDrawerActivity implements BasicU
         runnerBDMedicament.execute();
         fabAddRappel.hide();
         hideAll(true);
-        updateDisplay();
+
 
         setTitle("+ Prescription");
         listMedicament.setEnabled(false);
@@ -226,11 +147,10 @@ public class AddPrescriptionActivity extends NavDrawerActivity implements BasicU
                 //medicamentSelected = Medicament.findById(Medicament.class,medicamentLight.getId());
                 medicamentSelected = medicamentDao.load(medicamentLight.getId());
                 hideAll(true);
-                updateDisplay();
+
             }
         });
-        numberPickerFrequence.setOnValueChangedListener(onValueChangeListenerFrequence);
-        numberPickerDuree.setOnValueChangedListener(onValueChangeListenerDuree);
+
     }
 
     public void traiterIntent() {
@@ -261,7 +181,7 @@ public class AddPrescriptionActivity extends NavDrawerActivity implements BasicU
 
     public void onRGFrequenceClick(View view){
 
-        if (rbWhenNeeded.isChecked()) {
+      /*  if (rbWhenNeeded.isChecked()) {
             frequence = Frequence.WhenNeeded;
             preFreq.setText("");
             postFreq.setText("");
@@ -273,28 +193,30 @@ public class AddPrescriptionActivity extends NavDrawerActivity implements BasicU
             frequence = Frequence.EveryDayByHour;
             preFreq.setText("toutes les");
             postFreq.setText("heures");
-        } else if (rbEveryXDays.isChecked()) {
+        } else */
+      /*if (rbEveryXDays.isChecked()) {
             frequence = Frequence.EveryXDays;
             preFreq.setText("tous les");
             postFreq.setText("jours");
-        } else if (rbChosenDays.isChecked()) {
+        }*/ /*else if (rbChosenDays.isChecked()) {
             frequence = Frequence.ChosenDays;
             preFreq.setText("");
             preFreq.setText("");
-        }
-        textFrequence.setText(frequence.toString());
-        fragmentListFrequence.getView().setVisibility(View.GONE);
+        }*/
+
+       // fragmentListFrequence.getView().setVisibility(View.GONE);
         //updateDisplay();
     }
 
     public void onRGDureeClick(View view){
         date = null;
         textDate.setText("");
-        if (rbNoEnding.isChecked()) {
+        /*if (rbNoEnding.isChecked()) {
            // duree = Duree.NoEnding;
             preDuree.setText("");
             postDuree.setText("");
-        } else if (rbUntilDate.isChecked()) {
+        } else
+        if (rbUntilDate.isChecked()) {
            // duree = Duree.UntilDate;
             preDuree.setText("");
             postDuree.setText("");
@@ -302,9 +224,9 @@ public class AddPrescriptionActivity extends NavDrawerActivity implements BasicU
           //  duree = Duree.DuringDays;
             preDuree.setText("pendant");
             postDuree.setText("jours");
-        }
+        }*/
         //textDuree.setText(duree.toString());
-        fragmentListDuree.getView().setVisibility(View.GONE);
+      //  fragmentListDuree.getView().setVisibility(View.GONE);
         //updateDisplay();
     }
 
@@ -322,116 +244,22 @@ public class AddPrescriptionActivity extends NavDrawerActivity implements BasicU
         ouvrirActiviteSuivante(AddPrescriptionActivity.this,AddRappelActivity.class,"prescriptionId", prescription.getId(),false);
     }
 
-    @OnClick(R.id.textFrequence)
-    public void textFrequenceClick() {
-        fragmentListFrequence.getView().setVisibility(View.VISIBLE);
-    }
 
-    @OnTextChanged(R.id.textFrequence)
-    public void textFrequenceChanged() {
-        hideAll(true);
-        updateDisplay();
-    }
 
-    @OnClick(R.id.textDuree)
-    public void textDureeClick() {
-        fragmentListDuree.getView().setVisibility(View.VISIBLE);
-    }
-
-    @OnTextChanged(R.id.textDuree)
-    public void textDureeChanged() {
-        hideAll(true);
-        updateDisplay();
-    }
 
 
     private void hideAll(boolean bool){
         //fabAddRappel.hide();
         fabSave.hide();
-        layoutFrequence.setVisibility(View.GONE);
-        fragmentListFrequence.getView().setVisibility(View.GONE);
-        chipGroupJour.setVisibility(View.GONE);
-        layoutFrequenceOption.setVisibility(View.GONE);
-        layoutDuree.setVisibility(View.GONE);
-        fragmentListDuree.getView().setVisibility(View.GONE);
+
+     //   fragmentListDuree.getView().setVisibility(View.GONE);
         layoutDate.setVisibility(View.GONE);
-        layoutDureeOption.setVisibility(View.GONE);
+
 
 
     }
 
-    public void updateDisplay() {
-       // hideAll(true);
-        if (medicamentSelected != null) {
-            layoutFrequence.setVisibility(View.VISIBLE);
-            if (frequence != null) {
-                if (frequence == Frequence.WhenNeeded) {
-                    fabSave.show();
-                } else {
-                    layoutDuree.setVisibility(View.VISIBLE);
-                }
-               /* if (duree != null) {
-                    if (duree == Duree.NoEnding) {
-                        date = DateUtils.ajouterAnnee(ordonnance.getDate(),3);
-                    } else if (duree == Duree.UntilDate) {
-                        layoutDate.setVisibility(View.VISIBLE);
-                    } else if (duree == Duree.DuringDays) {
-                        layoutDureeOption.setVisibility(View.VISIBLE);
 
-                        date = DateUtils.ajouterJour(ordonnance.getDate(),1);
-                    }
-                    if (date != null) {
-                        fabAddRappel.show();
-                        if (adapter != null && adapter.getItemCount() > 0) {
-                            fabSave.show();
-                        }
-                    } else {
-                        fabAddRappel.hide();
-                    }
-
-                }*/
-
-            }
-        }
-       /* if (frequence != null && frequence != Frequence.WhenNeeded && frequence != Frequence.EveryDayByHour) {
-            if (duree != null && duree == Duree.NoEnding) {
-                fabAddRappel.show();
-                layoutDate.setVisibility(View.GONE);
-                layoutDureeOption.setVisibility(View.GONE);
-            } else {
-                fabAddRappel.hide();
-                if (duree == Duree.UntilDate) {
-                    layoutDate.setVisibility(View.VISIBLE);
-                    layoutDureeOption.setVisibility(View.GONE);
-                    if (textDate.getText() != null && !textDate.getText().toString().equalsIgnoreCase("")) {
-                        fabAddRappel.show();
-                    }
-                } else if (duree == Duree.DuringDays) {
-                    layoutDate.setVisibility(View.GONE);
-                    layoutDureeOption.setVisibility(View.VISIBLE);
-                    fabAddRappel.show();
-                } else {
-                    layoutDate.setVisibility(View.GONE);
-                    layoutDureeOption.setVisibility(View.GONE);
-                }
-            }
-        } else {
-            fabAddRappel.hide();
-        }
-        if (frequence == Frequence.EveryDayByHour || frequence == Frequence.EveryXDays) {
-            layoutFrequenceOption.setVisibility(View.VISIBLE);
-        } else {
-            layoutFrequenceOption.setVisibility(View.GONE);
-        }
-        if (frequence == Frequence.ChosenDays) {
-            chipGroupJour.setVisibility(View.VISIBLE);
-        } else {
-            chipGroupJour.setVisibility(View.GONE);
-        }
-        if (adapter != null && adapter.getItemCount() > 0) {
-            fabSave.show();
-        }*/
-    }
 
     @Override
     public void onClickDeleteButton(int position) {
@@ -486,9 +314,9 @@ public class AddPrescriptionActivity extends NavDrawerActivity implements BasicU
         //prescription.setDuree(duree);
         prescription.setFrequence(frequence);
         //prescription.setOrdonnance(ordonnance);
-        if (frequence != null && frequence != Frequence.WhenNeeded) {
+      /*  if (frequence != null && frequence != Frequence.WhenNeeded) {
             prescription.setFrequenceOption(numberPickerFrequence.getValue());
-        }
+        }*/
        /* if (duree != null) {
             prescription.setDureeOption(numberPickerDuree.getValue());
         }*/
@@ -556,7 +384,7 @@ public class AddPrescriptionActivity extends NavDrawerActivity implements BasicU
                 try{
                     date = df.parse(dateString);
                     hideAll(true);
-                    updateDisplay();
+
                 }catch(ParseException e){
                     System.out.println("ERROR");
                 }
@@ -588,7 +416,7 @@ public class AddPrescriptionActivity extends NavDrawerActivity implements BasicU
             configureRecyclerView();
             configureOnClickRecyclerView();
             hideAll(true);
-            updateDisplay();
+
         }
 
         @RequiresApi(api = Build.VERSION_CODES.N)

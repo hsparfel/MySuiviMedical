@@ -20,23 +20,9 @@
         >
 
         <!-- Toolbar -->
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/activity_main_toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:theme="@style/ToolBarStyle"/>
+        <include layout="@layout/toolbar"/>
 
-        <ProgressBar
-            android:id="@+id/my_progressBar"
-            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:indeterminate="false"
-            android:visibility="gone"
-            android:max="100"
-            android:progress="0"
-            />
+        <include layout="@layout/progress_bar"/>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/layoutMedicament"
@@ -58,165 +44,6 @@
                 />
 
         </com.google.android.material.textfield.TextInputLayout>
-
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/layoutFrequence"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:hint="Frequence"
-            android:paddingLeft="40dip"
-            android:paddingRight="40dip"
-            app:startIconDrawable="@drawable/outline_update_black_24dp"
-            >
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/textFrequence"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="none"
-                android:focusable="false"
-                />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.chip.ChipGroup
-            android:id="@+id/chipGroupJour"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            >
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipLundi"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="L"
-                />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipMardi"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="M"
-                />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipMercredi"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="M"
-                />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipJeudi"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="J"
-                />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipVendredi"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="V"
-                />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipSamedi"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="S"
-                />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipDimanche"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="D"
-                />
-
-        </com.google.android.material.chip.ChipGroup>
-
-        <LinearLayout
-            android:id="@+id/layoutFrequenceOption"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/preFreq"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="preFreq" />
-
-            <com.shawnlin.numberpicker.NumberPicker
-                android:id="@+id/numberPickerFrequence"
-                android:layout_width="64dp"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                app:np_width="64dp"
-                app:np_height="180dp"
-                app:np_dividerColor="@color/colorPrimary"
-                app:np_selectedTextColor="@color/colorPrimary"
-                app:np_textColor="@color/colorPrimary"
-                app:np_orientation="vertical"
-                app:np_value="1"
-                app:np_hideWheelUntilFocused="true"
-                app:np_wheelItemCount="1"
-                app:np_min="1"
-                app:np_max="365"/>
-
-           <!--
-           app:np_hideWheelUntilFocused="true"
-
-           <NumberPicker
-                android:id="@+id/numberPickerFrequence"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:orientation="horizontal"/> -->
-
-            <TextView
-                android:id="@+id/postFreq"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="postFreq" />
-        </LinearLayout>
-
-
-
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/layoutDuree"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:hint="Duree"
-            android:paddingLeft="40dip"
-            android:paddingRight="40dip"
-            app:startIconDrawable="@drawable/outline_timelapse_black_24dp"
-            >
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/textDuree"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="none"
-                android:focusable="false"
-                />
-        </com.google.android.material.textfield.TextInputLayout>
-
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/layoutDate"
@@ -240,50 +67,7 @@
                 />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <LinearLayout
-            android:id="@+id/layoutDureeOption"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/preDuree"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="preDuree" />
-
-            <com.shawnlin.numberpicker.NumberPicker
-                android:id="@+id/numberPickerDuree"
-                android:layout_width="180dp"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                app:np_width="180dp"
-                app:np_height="64dp"
-                app:np_dividerColor="@color/colorPrimary"
-                app:np_selectedTextColor="@color/colorPrimary"
-                app:np_textColor="@color/colorPrimary"
-                app:np_orientation="horizontal"
-                app:np_value="1"
-                app:np_min="1"
-                app:np_max="15"
-                app:np_hideWheelUntilFocused="true"
-                app:np_wheelItemCount="1"/>
-       <!--     <NumberPicker
-                android:id="@+id/numberPickerDuree"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal" /> -->
-
-            <TextView
-                android:id="@+id/postDuree"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="postDuree" />
-        </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/listRappel"
@@ -318,24 +102,7 @@
             app:tint="@android:color/white"
             />
 
-
-
-
     </LinearLayout>
-
-    <fragment
-        android:id="@+id/fragment_list_frequence"
-        android:name="com.pouillos.mypilulier.fragments.FragmentListFrequence"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="40dip" />
-
-    <fragment
-        android:id="@+id/fragment_list_duree"
-        android:name="com.pouillos.mypilulier.fragments.FragmentListDuree"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="40dip" />
 
     <include layout="@layout/bottom_navigation"/>
 
