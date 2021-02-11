@@ -11,6 +11,7 @@ import com.pouillos.mypilulier.R;
 import com.pouillos.mypilulier.entities.Prescription;
 import com.pouillos.mypilulier.recycler.holder.RecyclerViewHolderPrescription;
 
+
 import java.util.List;
 
 public class RecyclerAdapterPrescription extends RecyclerView.Adapter<RecyclerViewHolderPrescription> {

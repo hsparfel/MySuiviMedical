@@ -2,6 +2,7 @@ package com.pouillos.mypilulier.activities.add;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -23,7 +24,6 @@ import com.pouillos.mypilulier.activities.NavDrawerActivity;
 import com.pouillos.mypilulier.entities.Dose;
 import com.pouillos.mypilulier.entities.Prescription;
 import com.pouillos.mypilulier.entities.Rappel;
-import com.pouillos.mypilulier.entities.Utilisateur;
 import com.pouillos.mypilulier.enumeration.QuantiteDose;
 import com.pouillos.mypilulier.interfaces.BasicUtils;
 
@@ -38,16 +38,15 @@ import butterknife.OnClick;
 import icepick.Icepick;
 import icepick.State;
 
-public class AddRappelActivity extends NavDrawerActivity implements Serializable, BasicUtils, AdapterView.OnItemClickListener {
-    @State
-    Utilisateur activeUser;
+public class AddRappelActivity extends NavDrawerActivity implements BasicUtils, AdapterView.OnItemClickListener {
+
     @State
     String heure;
-    @State
+
     Dose doseSelected;
-    @State
+
     Prescription prescription;
-    @State
+
     Rappel rappel;
 
     @BindView(R.id.selectionDose)
@@ -77,8 +76,7 @@ public class AddRappelActivity extends NavDrawerActivity implements Serializable
         setContentView(R.layout.activity_add_rappel);
         // 6 - Configure all views
         this.configureToolBar();
-        this.configureDrawerLayout();
-        this.configureNavigationView();
+        this.configureBottomView();
 
         ButterKnife.bind(this);
 
@@ -109,7 +107,8 @@ public class AddRappelActivity extends NavDrawerActivity implements Serializable
         Intent intent = getIntent();
         if (intent.hasExtra("prescriptionId")) {
             Long prescriptionId = intent.getLongExtra("prescriptionId", 0);
-            prescription = Prescription.findById(Prescription.class, prescriptionId);
+            //prescription = Prescription.findById(Prescription.class, prescriptionId);
+            prescription = prescriptionDao.load(prescriptionId);
         }
     }
 
@@ -201,7 +200,22 @@ public class AddRappelActivity extends NavDrawerActivity implements Serializable
             requete += "SELECT d.* FROM DOSE as d LEFT JOIN ASSOCIATION_FORME_DOSE as afd ON afd.DOSE = d.ID ";
             requete += "LEFT JOIN MEDICAMENT as m ON m.FORME_PHARMACEUTIQUE = afd.FORME_PHARMACEUTIQUE ";
             requete += "WHERE m.ID = "+prescription.getMedicament().getId();
-            listDoseBD = Dose.findWithQuery(Dose.class,requete);
+            //listDoseBD = Dose.findWithQuery(Dose.class,requete);
+            //////////
+            Cursor c = daoSession.getDatabase().rawQuery(requete, null);
+            try{
+                if (c.moveToFirst()) {
+                    do {
+                        Dose dose = new Dose();
+                        dose.setId(c.getLong(0));
+                        dose.setName(c.getString(1));
+                        listDoseBD.add(dose);
+                    } while (c.moveToNext());
+                }
+            } finally {
+                c.close();
+            }
+            //////////////
             Collections.sort(listDoseBD);
             publishProgress(100);
             return null;
@@ -246,7 +260,12 @@ public class AddRappelActivity extends NavDrawerActivity implements Serializable
         rappel.setQuantiteDose(qteDouble);
         rappel.setHeure(numberPickerHeure.getDisplayedValues()[numberPickerHeure.getValue()-1]+":"+numberPickerMinute.getDisplayedValues()[numberPickerMinute.getValue()-1]);
         rappel.setPrescription(prescription);
-        rappel.setId(rappel.save());
+        //rappel.setId(rappel.save());
+        if (rappel == null) {
+            rappel.setId(rappelDao.insert(rappel));
+        } else {
+            rappelDao.update(rappel);
+        }
 
     }
 

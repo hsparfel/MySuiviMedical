@@ -66,8 +66,6 @@ public enum QuantiteDose {
     FifteenAndHalf("15,5",15.5),
     FifteenAndThreeQuarters("15,75",15.75);
 
-
-
     private String name;
     private Double number;
 

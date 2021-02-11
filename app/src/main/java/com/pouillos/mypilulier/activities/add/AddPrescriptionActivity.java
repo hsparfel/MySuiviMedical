@@ -36,11 +36,8 @@ import com.pouillos.mypilulier.activities.NavDrawerActivity;
 import com.pouillos.mypilulier.activities.utils.DateUtils;
 import com.pouillos.mypilulier.entities.Medicament;
 import com.pouillos.mypilulier.entities.MedicamentLight;
-import com.pouillos.mypilulier.entities.Ordonnance;
 import com.pouillos.mypilulier.entities.Prescription;
 import com.pouillos.mypilulier.entities.Rappel;
-import com.pouillos.mypilulier.entities.Utilisateur;
-import com.pouillos.mypilulier.enumeration.Duree;
 import com.pouillos.mypilulier.enumeration.Frequence;
 import com.pouillos.mypilulier.fragments.DatePickerFragmentDateJour;
 import com.pouillos.mypilulier.interfaces.BasicUtils;
@@ -63,20 +60,14 @@ import butterknife.OnTextChanged;
 import icepick.Icepick;
 import icepick.State;
 
-public class AddPrescriptionActivity extends NavDrawerActivity implements Serializable, BasicUtils, RecyclerAdapterRappel.Listener {
-    @State
-    Utilisateur activeUser;
+public class AddPrescriptionActivity extends NavDrawerActivity implements BasicUtils, RecyclerAdapterRappel.Listener {
+
     @State
     Date date;
-    @State
-    Medicament medicamentSelected;
-    @State
-    Ordonnance ordonnance;
-    @State
-    Prescription prescription;
 
-    //pr eviter erreur compile ene tattendan de creer le champ
-    //EditText textDate;
+    Medicament medicamentSelected;
+
+    Prescription prescription;
 
     @BindView(R.id.textMedicament)
     AutoCompleteTextView selectedMedicament;
@@ -103,7 +94,6 @@ public class AddPrescriptionActivity extends NavDrawerActivity implements Serial
 
 
     public Frequence frequence;
-    public Duree duree;
 
   //  @BindView(R.id.fragment_list_frequence)
    // Fragment fragment_list_frequence;
@@ -202,8 +192,7 @@ public class AddPrescriptionActivity extends NavDrawerActivity implements Serial
         setContentView(R.layout.activity_add_prescription);
         // 6 - Configure all views
         this.configureToolBar();
-        this.configureDrawerLayout();
-        this.configureNavigationView();
+        this.configureBottomView();
 
         ButterKnife.bind(this);
         fragmentListFrequence = (Fragment) this.getSupportFragmentManager().findFragmentById(R.id.fragment_list_frequence);
@@ -228,12 +217,14 @@ public class AddPrescriptionActivity extends NavDrawerActivity implements Serial
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 String selection = (String) adapterView.getItemAtPosition(position);
-                List<MedicamentLight> listMedicamentLight = MedicamentLight.find(MedicamentLight.class,"denomination = ?", selection);
+                //List<MedicamentLight> listMedicamentLight = MedicamentLight.find(MedicamentLight.class,"denomination = ?", selection);
+                List<MedicamentLight> listMedicamentLight = medicamentLightDao.queryRaw("where denomination = ?",selection);
                 MedicamentLight medicamentLight = null;
                 if (listMedicamentLight.size() > 0) {
                     medicamentLight = listMedicamentLight.get(0);
                 }
-                medicamentSelected = Medicament.findById(Medicament.class,medicamentLight.getId());
+                //medicamentSelected = Medicament.findById(Medicament.class,medicamentLight.getId());
+                medicamentSelected = medicamentDao.load(medicamentLight.getId());
                 hideAll(true);
                 updateDisplay();
             }
@@ -244,10 +235,10 @@ public class AddPrescriptionActivity extends NavDrawerActivity implements Serial
 
     public void traiterIntent() {
         Intent intent = getIntent();
-        if (intent.hasExtra("ordonnanceId")) {
+       /* if (intent.hasExtra("ordonnanceId")) {
             Long ordonnanceId = intent.getLongExtra("ordonnanceId", 0);
             ordonnance = Ordonnance.findById(Ordonnance.class, ordonnanceId);
-        }
+        }*/
     }
 
     com.shawnlin.numberpicker.NumberPicker.OnValueChangeListener onValueChangeListenerFrequence =
@@ -263,7 +254,7 @@ public class AddPrescriptionActivity extends NavDrawerActivity implements Serial
                 @Override
                 public void onValueChange(com.shawnlin.numberpicker.NumberPicker numberPicker, int i, int i1) {
                     Toast.makeText(AddPrescriptionActivity.this,"selected number duree"+numberPicker.getValue(), Toast.LENGTH_SHORT).show();
-                    date = DateUtils.ajouterJour(ordonnance.getDate(),numberPicker.getValue());
+                    //date = DateUtils.ajouterJour(ordonnance.getDate(),numberPicker.getValue());
                 }
             };
 
@@ -300,19 +291,19 @@ public class AddPrescriptionActivity extends NavDrawerActivity implements Serial
         date = null;
         textDate.setText("");
         if (rbNoEnding.isChecked()) {
-            duree = Duree.NoEnding;
+           // duree = Duree.NoEnding;
             preDuree.setText("");
             postDuree.setText("");
         } else if (rbUntilDate.isChecked()) {
-            duree = Duree.UntilDate;
+           // duree = Duree.UntilDate;
             preDuree.setText("");
             postDuree.setText("");
         } else if (rbDuringDays.isChecked()) {
-            duree = Duree.DuringDays;
+          //  duree = Duree.DuringDays;
             preDuree.setText("pendant");
             postDuree.setText("jours");
         }
-        textDuree.setText(duree.toString());
+        //textDuree.setText(duree.toString());
         fragmentListDuree.getView().setVisibility(View.GONE);
         //updateDisplay();
     }
@@ -379,7 +370,7 @@ public class AddPrescriptionActivity extends NavDrawerActivity implements Serial
                 } else {
                     layoutDuree.setVisibility(View.VISIBLE);
                 }
-                if (duree != null) {
+               /* if (duree != null) {
                     if (duree == Duree.NoEnding) {
                         date = DateUtils.ajouterAnnee(ordonnance.getDate(),3);
                     } else if (duree == Duree.UntilDate) {
@@ -398,7 +389,7 @@ public class AddPrescriptionActivity extends NavDrawerActivity implements Serial
                         fabAddRappel.hide();
                     }
 
-                }
+                }*/
 
             }
         }
@@ -458,11 +449,11 @@ public class AddPrescriptionActivity extends NavDrawerActivity implements Serial
 
         protected Void doInBackground(Void...voids) {
             publishProgress(0);
-            activeUser = findActiveUser();
+
             publishProgress(50);
 
-            listMedicamentLightBD = MedicamentLight.listAll(MedicamentLight.class);
-
+            //listMedicamentLightBD = MedicamentLight.listAll(MedicamentLight.class);
+            listMedicamentLightBD = medicamentLightDao.loadAll();
             Collections.sort(listMedicamentLightBD);
             publishProgress(100);
             return null;
@@ -492,19 +483,25 @@ public class AddPrescriptionActivity extends NavDrawerActivity implements Serial
         }
 
         prescription.setMedicament(medicamentSelected);
-        prescription.setDuree(duree);
+        //prescription.setDuree(duree);
         prescription.setFrequence(frequence);
-        prescription.setOrdonnance(ordonnance);
+        //prescription.setOrdonnance(ordonnance);
         if (frequence != null && frequence != Frequence.WhenNeeded) {
             prescription.setFrequenceOption(numberPickerFrequence.getValue());
         }
-        if (duree != null) {
+       /* if (duree != null) {
             prescription.setDureeOption(numberPickerDuree.getValue());
-        }
+        }*/
         prescription.setDateFin(date);
 
 
-        prescription.setId(prescription.save());
+        //prescription.setId(prescription.save());
+        if (prescription == null) {
+            prescription.setId(prescriptionDao.insert(prescription));
+        } else {
+            prescriptionDao.update(prescription);
+        }
+
     }
 
     @Override
@@ -573,7 +570,8 @@ public class AddPrescriptionActivity extends NavDrawerActivity implements Serial
             publishProgress(0);
             //activeUser = findActiveUser();
             publishProgress(50);
-            listRappelBD = Rappel.find(Rappel.class,"prescription = ?", prescription.getId().toString());
+            //listRappelBD = Rappel.find(Rappel.class,"prescription = ?", prescription.getId().toString());
+            listRappelBD = rappelDao.queryRaw("where prescription_id = ?",prescription.getId().toString());
             //listContactBD = Contact.findWithQuery(Contact.class, requete);
             Collections.sort(listRappelBD);
             publishProgress(100);

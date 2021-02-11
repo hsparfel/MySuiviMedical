@@ -3,31 +3,30 @@ package com.pouillos.mypilulier.entities;
 import com.orm.SugarRecord;
 import com.orm.dsl.Table;
 
+import org.greenrobot.greendao.annotation.Entity;
+import org.greenrobot.greendao.annotation.Id;
+
 import java.io.Serializable;
+import org.greenrobot.greendao.annotation.Generated;
 
-@Table(name = "Medicament")
-public class MedicamentLight extends SugarRecord implements Serializable, Comparable<MedicamentLight> {
+@Entity
+public class MedicamentLight implements Comparable<MedicamentLight> {
 
-private Long codeCIS;
-private String denomination;
+    @Id
+    private Long id;
 
-    public MedicamentLight() {
-    }
+    private Long codeCIS;
+    private String denomination;
 
-    public Long getCodeCIS() {
-        return codeCIS;
-    }
-
-    public void setCodeCIS(Long codeCIS) {
+    @Generated(hash = 152413031)
+    public MedicamentLight(Long id, Long codeCIS, String denomination) {
+        this.id = id;
         this.codeCIS = codeCIS;
-    }
-
-    public String getDenomination() {
-        return denomination;
-    }
-
-    public void setDenomination(String denomination) {
         this.denomination = denomination;
+    }
+
+    @Generated(hash = 1801801039)
+    public MedicamentLight() {
     }
 
     @Override
@@ -38,5 +37,29 @@ private String denomination;
     @Override
     public String toString() {
         return denomination;
+    }
+
+    public Long getId() {
+        return this.id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getCodeCIS() {
+        return this.codeCIS;
+    }
+
+    public void setCodeCIS(Long codeCIS) {
+        this.codeCIS = codeCIS;
+    }
+
+    public String getDenomination() {
+        return this.denomination;
+    }
+
+    public void setDenomination(String denomination) {
+        this.denomination = denomination;
     }
 }

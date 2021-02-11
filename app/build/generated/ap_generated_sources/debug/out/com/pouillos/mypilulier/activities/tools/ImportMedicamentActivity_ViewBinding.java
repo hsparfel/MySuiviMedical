@@ -19,7 +19,7 @@ public class ImportMedicamentActivity_ViewBinding implements Unbinder {
 
   private View view7f0800c1;
 
-  private View view7f0800c9;
+  private View view7f0800c3;
 
   @UiThread
   public ImportMedicamentActivity_ViewBinding(ImportMedicamentActivity target) {
@@ -43,7 +43,7 @@ public class ImportMedicamentActivity_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.fabSupprDoublon, "field 'fabSupprDoublon' and method 'fabSupprDoublonClick'");
     target.fabSupprDoublon = Utils.castView(view, R.id.fabSupprDoublon, "field 'fabSupprDoublon'", FloatingActionButton.class);
-    view7f0800c9 = view;
+    view7f0800c3 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -67,7 +67,7 @@ public class ImportMedicamentActivity_ViewBinding implements Unbinder {
 
     view7f0800c1.setOnClickListener(null);
     view7f0800c1 = null;
-    view7f0800c9.setOnClickListener(null);
-    view7f0800c9 = null;
+    view7f0800c3.setOnClickListener(null);
+    view7f0800c3 = null;
   }
 }

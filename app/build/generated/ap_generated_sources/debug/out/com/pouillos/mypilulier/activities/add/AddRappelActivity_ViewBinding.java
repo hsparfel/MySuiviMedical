@@ -19,7 +19,7 @@ import java.lang.Override;
 public class AddRappelActivity_ViewBinding implements Unbinder {
   private AddRappelActivity target;
 
-  private View view7f0800c6;
+  private View view7f0800c2;
 
   @UiThread
   public AddRappelActivity_ViewBinding(AddRappelActivity target) {
@@ -35,7 +35,7 @@ public class AddRappelActivity_ViewBinding implements Unbinder {
     target.listDose = Utils.findRequiredViewAsType(source, R.id.listDose, "field 'listDose'", TextInputLayout.class);
     view = Utils.findRequiredView(source, R.id.fabSave, "field 'fabSave' and method 'fabSaveClick'");
     target.fabSave = Utils.castView(view, R.id.fabSave, "field 'fabSave'", FloatingActionButton.class);
-    view7f0800c6 = view;
+    view7f0800c2 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -63,7 +63,7 @@ public class AddRappelActivity_ViewBinding implements Unbinder {
     target.numberPickerMinute = null;
     target.numberPickerQuantiteDose = null;
 
-    view7f0800c6.setOnClickListener(null);
-    view7f0800c6 = null;
+    view7f0800c2.setOnClickListener(null);
+    view7f0800c2 = null;
   }
 }

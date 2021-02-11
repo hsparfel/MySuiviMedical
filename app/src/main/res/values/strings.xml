@@ -83,6 +83,12 @@
     <string name="take_a_picture">prendre une photo</string>
     <string name="analysis">Analyse</string>
 
+
+    <string name="search_dr">Rch Dr</string>
+    <string name="search_etab">Rch Etablissement</string>
+    <string name="list_dr">List Dr</string>
+    <string name="list_etab">List Etablissement</string>
+
     <!-- TODO: Remove or change this placeholder text -->
 
 </resources>

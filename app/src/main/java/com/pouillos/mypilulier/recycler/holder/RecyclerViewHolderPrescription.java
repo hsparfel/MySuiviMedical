@@ -10,6 +10,7 @@ import com.pouillos.mypilulier.R;
 import com.pouillos.mypilulier.entities.Prescription;
 import com.pouillos.mypilulier.recycler.adapter.RecyclerAdapterPrescription;
 
+
 import java.lang.ref.WeakReference;
 
 import butterknife.BindView;

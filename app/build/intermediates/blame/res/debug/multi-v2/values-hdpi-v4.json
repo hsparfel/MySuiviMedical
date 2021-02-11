@@ -4,7 +4,7 @@
             "outputFile": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-hdpi-v4\\values-hdpi-v4.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\TNH\\.gradle\\caches\\transforms-2\\files-2.1\\ef8a364a6a39421e69c96cf68eeb3e63\\appcompat-1.1.0\\res\\values-hdpi-v4\\values-hdpi-v4.xml",
+                    "source": "C:\\Users\\TNH\\.gradle\\caches\\transforms-2\\files-2.1\\425b9d9e99f7377e7a856576f28d4f49\\appcompat-1.2.0\\res\\values-hdpi-v4\\values-hdpi-v4.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

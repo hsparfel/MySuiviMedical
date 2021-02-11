@@ -17,54 +17,43 @@ import android.widget.AutoCompleteTextView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.textfield.TextInputEditText;
 import com.orm.SugarRecord;
 import com.pouillos.mypilulier.R;
-import com.pouillos.mypilulier.activities.add.AddAnalyseActivity;
-import com.pouillos.mypilulier.activities.add.AddExamenActivity;
-import com.pouillos.mypilulier.activities.add.AddOrdonnanceActivity;
-import com.pouillos.mypilulier.activities.add.AddProfilActivity;
-import com.pouillos.mypilulier.activities.add.AddUserActivity;
-import com.pouillos.mypilulier.activities.afficher.AfficherAnalyseActivity;
-import com.pouillos.mypilulier.activities.afficher.AfficherContactActivity;
-import com.pouillos.mypilulier.activities.afficher.AfficherEtablissementActivity;
-import com.pouillos.mypilulier.activities.afficher.AfficherExamenActivity;
-import com.pouillos.mypilulier.activities.afficher.AfficherGraphiqueActivity;
-import com.pouillos.mypilulier.activities.afficher.AfficherPhotoActivity;
-import com.pouillos.mypilulier.activities.afficher.AfficherProfilActivity;
-import com.pouillos.mypilulier.activities.afficher.AfficherRdvAnalyseActivity;
-import com.pouillos.mypilulier.activities.afficher.AfficherRdvContactActivity;
-import com.pouillos.mypilulier.activities.afficher.AfficherRdvExamenActivity;
-import com.pouillos.mypilulier.activities.photo.MakePhotoActivity;
-import com.pouillos.mypilulier.activities.recherche.ChercherContactActivity;
-import com.pouillos.mypilulier.activities.recherche.ChercherEtablissementActivity;
-import com.pouillos.mypilulier.activities.tools.ImportContactActivity;
-import com.pouillos.mypilulier.activities.tools.ImportEtablissementActivity;
 import com.pouillos.mypilulier.activities.tools.ImportMedicamentActivity;
 import com.pouillos.mypilulier.activities.tools.PriseNotificationBroadcastReceiver;
-import com.pouillos.mypilulier.activities.tools.RdvAnalyseNotificationBroadcastReceiver;
-import com.pouillos.mypilulier.activities.tools.RdvContactNotificationBroadcastReceiver;
-import com.pouillos.mypilulier.activities.tools.RdvExamenNotificationBroadcastReceiver;
 import com.pouillos.mypilulier.activities.utils.DateUtils;
+import com.pouillos.mypilulier.dao.AlarmRdvDao;
+import com.pouillos.mypilulier.dao.AppOpenHelper;
+import com.pouillos.mypilulier.dao.AssociationAlarmRdvDao;
+import com.pouillos.mypilulier.dao.AssociationFormeDoseDao;
+import com.pouillos.mypilulier.dao.DaoMaster;
+import com.pouillos.mypilulier.dao.DaoSession;
+import com.pouillos.mypilulier.dao.DoseDao;
+import com.pouillos.mypilulier.dao.FormePharmaceutiqueDao;
+import com.pouillos.mypilulier.dao.ImportMedicamentDao;
+import com.pouillos.mypilulier.dao.MedicamentDao;
+import com.pouillos.mypilulier.dao.MedicamentLightDao;
+import com.pouillos.mypilulier.dao.PrescriptionDao;
+import com.pouillos.mypilulier.dao.PriseDao;
+import com.pouillos.mypilulier.dao.RappelDao;
 import com.pouillos.mypilulier.entities.AlarmRdv;
 import com.pouillos.mypilulier.entities.AssociationAlarmRdv;
 import com.pouillos.mypilulier.entities.Prise;
-import com.pouillos.mypilulier.entities.Rdv;
-import com.pouillos.mypilulier.entities.RdvAnalyse;
-import com.pouillos.mypilulier.entities.RdvContact;
-import com.pouillos.mypilulier.entities.RdvExamen;
-import com.pouillos.mypilulier.entities.Utilisateur;
-import com.pouillos.mypilulier.enumeration.Echeance;
 import com.pouillos.mypilulier.interfaces.BasicUtils;
+
+import org.greenrobot.greendao.database.Database;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -77,25 +66,44 @@ import java.util.regex.Pattern;
 import icepick.Icepick;
 import icepick.State;
 
-public class NavDrawerActivity extends AppCompatActivity implements BasicUtils, NavigationView.OnNavigationItemSelectedListener {
-    //FOR DESIGN
+public class NavDrawerActivity extends AppCompatActivity implements BasicUtils {
 
     protected Toolbar toolbar;
     protected DrawerLayout drawerLayout;
-    protected NavigationView navigationView;
+    protected BottomNavigationView bottomNavigationView;
 
-    @State
-    protected Utilisateur activeUser;
+    protected DaoSession daoSession;
+
+    protected AlarmRdvDao alarmRdvDao;
+    protected AssociationAlarmRdvDao associationAlarmRdvDao;
+    protected AssociationFormeDoseDao associationFormeDoseDao;
+    protected DoseDao doseDao;
+    protected FormePharmaceutiqueDao formePharmaceutiqueDao;
+    protected ImportMedicamentDao importMedicamentDao;
+    protected MedicamentDao medicamentDao;
+    protected MedicamentLightDao medicamentLightDao;
+    protected PrescriptionDao prescriptionDao;
+    protected PriseDao priseDao;
+    protected RappelDao rappelDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //a redefinit à chq fois
         super.onCreate(savedInstanceState);
+        initialiserDao();
 
-        List<Utilisateur> listUserActif = Utilisateur.find(Utilisateur.class, "actif = ?", "1");
-        if (listUserActif.size() != 0) {
-            activeUser = listUserActif.get(0);
-        }
+        alarmRdvDao = daoSession.getAlarmRdvDao();
+        associationAlarmRdvDao = daoSession.getAssociationAlarmRdvDao();
+        associationFormeDoseDao = daoSession.getAssociationFormeDoseDao();
+        doseDao = daoSession.getDoseDao();
+        formePharmaceutiqueDao = daoSession.getFormePharmaceutiqueDao();
+        importMedicamentDao = daoSession.getImportMedicamentDao();
+        medicamentDao = daoSession.getMedicamentDao();
+        medicamentLightDao = daoSession.getMedicamentLightDao();
+        prescriptionDao = daoSession.getPrescriptionDao();
+        priseDao = daoSession.getPriseDao();
+        rappelDao = daoSession.getRappelDao();
+
     }
 
     @Override
@@ -117,128 +125,43 @@ public class NavDrawerActivity extends AppCompatActivity implements BasicUtils, 
     }
 
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-
-        // 4 - Handle Navigation Item Click
-        int id = item.getItemId();
-
-        switch (id) {
-            case R.id.activity_main_drawer_home:
-                ouvrirActiviteSuivante(NavDrawerActivity.this, AccueilActivity.class,true);
-                break;
-            case R.id.activity_main_drawer_profile:
-                ouvrirActiviteSuivante(NavDrawerActivity.this, AddProfilActivity.class,true);
-                break;
-            case R.id.activity_main_drawer_evolution:
-                ouvrirActiviteSuivante(NavDrawerActivity.this, AfficherGraphiqueActivity.class,true);
-                //ouvrirActiviteSuivante(NavDrawerActivity.this, BarToLineChartActivity.class,true);
-                break;
-            case R.id.activity_main_drawer_account:
-               // ouvrirActiviteSuivante(NavDrawerActivity.this, AddUserActivity.class, getResources().getString(R.string.id_user), activeUser.getId());
-                ouvrirActiviteSuivante(NavDrawerActivity.this, AddUserActivity.class,"userId",activeUser.getId(),true);
-
-                break;
-            case R.id.activity_main_drawer_change_account:
-               // ouvrirActiviteSuivante(NavDrawerActivity.this, AuthentificationActivity.class, getResources().getString(R.string.id_user), activeUser.getId());
-                ouvrirActiviteSuivante(NavDrawerActivity.this, AuthentificationActivity.class,true);
-                break;
-            case R.id.activity_main_drawer_ordonnances:
-                ouvrirActiviteSuivante(NavDrawerActivity.this, AddOrdonnanceActivity.class,true);
-
-                break;
-            /*case R.id.activity_main_drawer_treatments:
-                Toast.makeText(this, "à implementer 2", Toast.LENGTH_LONG).show();
-                break;*/
-
-            case R.id.activity_main_drawer_contact_appointments:
-                ouvrirActiviteSuivante(NavDrawerActivity.this, AfficherRdvContactActivity.class,true);
-                break;
-            case R.id.activity_main_drawer_analysis_appointments:
-                ouvrirActiviteSuivante(NavDrawerActivity.this, AfficherRdvAnalyseActivity.class,true);
-                break;
-            case R.id.activity_main_drawer_exam_appointments:
-                ouvrirActiviteSuivante(NavDrawerActivity.this, AfficherRdvExamenActivity.class,true);
-                break;
-            case R.id.activity_main_drawer_contacts:
-                ouvrirActiviteSuivante(NavDrawerActivity.this, AfficherContactActivity.class,true);
-                break;
-            case R.id.activity_main_drawer_etablissement:
-                ouvrirActiviteSuivante(NavDrawerActivity.this, AfficherEtablissementActivity.class,true);
-                break;
-            case R.id.activity_main_drawer_oldAccueil:
-                ouvrirActiviteSuivante(NavDrawerActivity.this, MainActivity.class,true);
-                break;
-            default:
-                break;
-        }
-
-        this.drawerLayout.closeDrawer(GravityCompat.START);
-
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent myProfilActivity;
+        //3 - Handle actions on menu items
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        Intent myProfilActivity = new Intent(NavDrawerActivity.this, ChercherContactActivity.class);
-        startActivity(myProfilActivity);
-        //3 - Handle actions on menu items
-        switch (item.getItemId()) {
-            /*case R.id.menu_activity_main_params:
-                Toast.makeText(this, "Il n'y a rien à paramétrer ici, passez votre chemin...", Toast.LENGTH_LONG).show();
-                return true;*/
-            case R.id.menu_activity_main_search:
-                //Toast.makeText(this, "Recherche indisponible, demandez plutôt l'avis de Google, c'est mieux et plus rapide.", Toast.LENGTH_LONG).show();
-                myProfilActivity = new Intent(NavDrawerActivity.this, ChercherContactActivity.class);
-                startActivity(myProfilActivity);
-                return true;
-            case R.id.addAnalyse:
-                myProfilActivity = new Intent(NavDrawerActivity.this, AddAnalyseActivity.class);
-                startActivity(myProfilActivity);
-                return true;
-            case R.id.addExamen:
-                myProfilActivity = new Intent(NavDrawerActivity.this, AddExamenActivity.class);
-                startActivity(myProfilActivity);
-                return true;
-            case R.id.listAllAnalyse:
-                myProfilActivity = new Intent(NavDrawerActivity.this, AfficherAnalyseActivity.class);
-                startActivity(myProfilActivity);
-                return true;
-            case R.id.listAllExamen:
-                myProfilActivity = new Intent(NavDrawerActivity.this, AfficherExamenActivity.class);
-                startActivity(myProfilActivity);
-                return true;
-            case R.id.listMyProfil:
-                myProfilActivity = new Intent(NavDrawerActivity.this, AfficherProfilActivity.class);
-                startActivity(myProfilActivity);
-                return true;
-            case R.id.takePicture:
-                myProfilActivity = new Intent(NavDrawerActivity.this, MakePhotoActivity.class);
-                startActivity(myProfilActivity);
-                return true;
-            case R.id.pickPicture:
-                myProfilActivity = new Intent(NavDrawerActivity.this, AfficherPhotoActivity.class);
-                startActivity(myProfilActivity);
-                return true;
-            case R.id.importContact:
-                myProfilActivity = new Intent(NavDrawerActivity.this, ImportContactActivity.class);
-                startActivity(myProfilActivity);
-                return true;
-            case R.id.importEtablissement:
-                myProfilActivity = new Intent(NavDrawerActivity.this, ImportEtablissementActivity.class);
-                startActivity(myProfilActivity);
-                return true;
-            case R.id.importMedicament:
-                myProfilActivity = new Intent(NavDrawerActivity.this, ImportMedicamentActivity.class);
-                startActivity(myProfilActivity);
-                return true;
-            case R.id.rchEtablissement:
-                myProfilActivity = new Intent(NavDrawerActivity.this, ChercherEtablissementActivity.class);
-                startActivity(myProfilActivity);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
+    public void configureBottomView(){
+        this.bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(
+                new BottomNavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                        switch (item.getItemId()) {
+                            case R.id.bottom_navigation_home:
+                                ouvrirActiviteSuivante(NavDrawerActivity.this, AccueilActivity.class, true);
+                                break;
+                            case R.id.bottom_navigation_search_doctor:
+                                //ouvrirActiviteSuivante(NavDrawerActivity.this, ChercherContactActivity.class, true);
+                                break;
+                            case R.id.bottom_navigation_search_etablissement:
+                               // ouvrirActiviteSuivante(NavDrawerActivity.this, ChercherEtablissementActivity.class, true);
+                                break;
+                            case R.id.bottom_navigation_list_doctor:
+                               // ouvrirActiviteSuivante(NavDrawerActivity.this, AfficherMesContactsActivity.class, true);
+                                break;
+                            case R.id.bottom_navigation_list_etablissement:
+                               // ouvrirActiviteSuivante(NavDrawerActivity.this, AfficherMesEtablissementsActivity.class, true);
+                                break;
+                        }
+                        return true;
+                    }
+                });
     }
+
+
+
+
     // ---------------------
     // CONFIGURATION
     // ---------------------
@@ -250,19 +173,7 @@ public class NavDrawerActivity extends AppCompatActivity implements BasicUtils, 
 
     }
 
-    // 2 - Configure Drawer Layout
-    public void configureDrawerLayout() {
-        this.drawerLayout = (DrawerLayout) findViewById(R.id.activity_main_drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawerLayout.addDrawerListener(toggle);
-        toggle.syncState();
-    }
 
-    // 3 - Configure NavigationView
-    public void configureNavigationView() {
-        this.navigationView = (NavigationView) findViewById(R.id.activity_main_nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-    }
 
     public void ouvrirActiviteSuivante(Context context, Class classe, boolean bool) {
         Intent intent = new Intent(context, classe);
@@ -314,14 +225,7 @@ public class NavDrawerActivity extends AppCompatActivity implements BasicUtils, 
         return dateActualisee;
     }
 
-    protected Utilisateur findActiveUser() {
-        Utilisateur user = null;
-        List<Utilisateur> listUserActif = Utilisateur.find(Utilisateur.class, "actif = ?", "1");
-        if (listUserActif.size() !=0){
-            user = listUserActif.get(0);
-        }
-       return user;
-    }
+
 
     protected <T> void buildDropdownMenu(List<T> listObj, Context context, AutoCompleteTextView textView) {
         List<String> listString = new ArrayList<>();
@@ -342,39 +246,7 @@ public class NavDrawerActivity extends AppCompatActivity implements BasicUtils, 
 
 
 
-    protected <T extends SugarRecord> void deleteItem(Context context, T item, Class classe, boolean toConfirm) {
-        if (toConfirm) {
-            new MaterialAlertDialogBuilder(context)
-                    .setTitle(R.string.dialog_delete_title)
-                    .setMessage(R.string.dialog_delete_message)
-                    .setNegativeButton(R.string.dialog_delete_negative, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            Toast.makeText(context, R.string.dialog_delete_negative_toast, Toast.LENGTH_LONG).show();
 
-                        }
-                    })
-                    .setPositiveButton(R.string.dialog_delete_positive, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            Toast.makeText(context, R.string.dialog_delete_positive_toast, Toast.LENGTH_LONG).show();
-                            item.delete();
-                            supprimerNotification(item, context);
-
-                            ouvrirActiviteSuivante(context, classe,true);
-
-                        }
-                    })
-                    .show();
-        } else {
-            item.delete();
-            supprimerNotification(item, context);
-            ouvrirActiviteSuivante(context, classe,true);
-        }
-
-
-
-    }
 
     protected boolean isChecked(ChipGroup chipGroup) {
         boolean bool;
@@ -450,16 +322,7 @@ public class NavDrawerActivity extends AppCompatActivity implements BasicUtils, 
 
 
     protected<T> void activerNotification(T object, Context context) {
-        if (object instanceof RdvContact) {
-           startAlert((RdvContact) object, Echeance.OneHourAfter.toString(), context);
-           startAlert((RdvContact) object, Echeance.OneDayAfter.toString(), context);
-        } else if (object instanceof RdvAnalyse) {
-            startAlert((RdvAnalyse) object, Echeance.OneHourAfter.toString(), context);
-            startAlert((RdvAnalyse) object, Echeance.OneDayAfter.toString(), context);
-        } else if (object instanceof RdvExamen) {
-            startAlert((RdvExamen) object, Echeance.OneHourAfter.toString(), context);
-            startAlert((RdvExamen) object, Echeance.OneDayAfter.toString(), context);
-        } else if (object instanceof Prise) {
+        if (object instanceof Prise) {
            // startAlert((Prise) object, context);
             startAlert((Prise) object,"test recurrence", context);
         }
@@ -480,7 +343,7 @@ public class NavDrawerActivity extends AppCompatActivity implements BasicUtils, 
     }*/
 
     protected<T> void supprimerNotification(T object, Context context) {
-        if (object instanceof RdvContact) {
+        /*if (object instanceof RdvContact) {
             List<AssociationAlarmRdv> listAssociationAlarmRdv = AssociationAlarmRdv.find(AssociationAlarmRdv.class,"rdv_contact = ?", ((RdvContact) object).getId().toString());
             AlarmRdv alarmRdv = new AlarmRdv();
             for (AssociationAlarmRdv current : listAssociationAlarmRdv) {
@@ -513,54 +376,10 @@ public class NavDrawerActivity extends AppCompatActivity implements BasicUtils, 
                     cancelAlert((RdvExamen) object, Echeance.OneDayAfter.toString(),context, alarmRdv.getRequestCode());
                 }
             }
-        }
+        }*/
     }
 
-    /*protected<T> void supprimerNotification(Class classe, Date dateRdv, T object, Context context) {
-        if (classe == RdvContactNotificationBroadcastReceiver.class) {
-            List<AlarmRdv> listAlarmRdv = AlarmRdv.find(AlarmRdv.class,"date_string = ? and detail = ? and echeance = ?",DateUtils.ajouterHeure(dateRdv,-1).toString(),((Contact) object).toStringShort(),Echeance.OneHourAfter.toString());
-            AlarmRdv alarmRdv = new AlarmRdv();
-            if (listAlarmRdv.size()>0) {
-                alarmRdv = listAlarmRdv.get(0);
-            }
-            cancelAlert(classe, DateUtils.ajouterHeure(dateRdv,-1), ((Contact) object).toStringShort(), Echeance.OneHourAfter.toString(),context, alarmRdv.getRequestCode());
 
-            listAlarmRdv = AlarmRdv.find(AlarmRdv.class,"date_string = ? and detail = ? and echeance = ?",DateUtils.ajouterJourArrondi(dateRdv,-1,7).toString(),((Contact) object).toStringShort(),Echeance.OneDayAfter.toString());
-            alarmRdv = new AlarmRdv();
-            if (listAlarmRdv.size()>0) {
-                alarmRdv = listAlarmRdv.get(0);
-            }
-            cancelAlert(classe, DateUtils.ajouterJourArrondi(dateRdv,-1,7), ((Contact) object).toStringShort(), Echeance.OneDayAfter.toString(),context, alarmRdv.getRequestCode());
-        } else if (classe == RdvAnalyseNotificationBroadcastReceiver.class) {
-            List<AlarmRdv> listAlarmRdv = AlarmRdv.find(AlarmRdv.class,"date_string = ? and detail = ? and echeance = ?",DateUtils.ajouterHeure(dateRdv,-1).toString(),((Analyse) object).toString(),Echeance.OneHourAfter.toString());
-            AlarmRdv alarmRdv = new AlarmRdv();
-            if (listAlarmRdv.size()>0) {
-                alarmRdv = listAlarmRdv.get(0);
-            }
-            cancelAlert(classe, DateUtils.ajouterHeure(dateRdv,-1), ((Analyse) object).toString(), Echeance.OneHourAfter.toString(),context, alarmRdv.getRequestCode());
-
-            listAlarmRdv = AlarmRdv.find(AlarmRdv.class,"date_string = ? and detail = ? and echeance = ?",DateUtils.ajouterJourArrondi(dateRdv,-1,7).toString(),((Analyse) object).toString(),Echeance.OneDayAfter.toString());
-            alarmRdv = new AlarmRdv();
-            if (listAlarmRdv.size()>0) {
-                alarmRdv = listAlarmRdv.get(0);
-            }
-            cancelAlert(classe, DateUtils.ajouterJourArrondi(dateRdv,-1,7), ((Analyse) object).toString(), Echeance.OneDayAfter.toString(),context, alarmRdv.getRequestCode());
-        } else if (classe == RdvExamenNotificationBroadcastReceiver.class) {
-            List<AlarmRdv> listAlarmRdv = AlarmRdv.find(AlarmRdv.class,"date_string = ? and detail = ? and echeance = ?",DateUtils.ajouterHeure(dateRdv,-1).toString(),((Examen) object).toString(),Echeance.OneHourAfter.toString());
-            AlarmRdv alarmRdv = new AlarmRdv();
-            if (listAlarmRdv.size()>0) {
-                alarmRdv = listAlarmRdv.get(0);
-            }
-            cancelAlert(classe, DateUtils.ajouterHeure(dateRdv,-1), ((Examen) object).toString(), Echeance.OneHourAfter.toString(),context, alarmRdv.getRequestCode());
-
-            listAlarmRdv = AlarmRdv.find(AlarmRdv.class,"date_string = ? and detail = ? and echeance = ?",DateUtils.ajouterJourArrondi(dateRdv,-1,7).toString(),((Examen) object).toString(),Echeance.OneDayAfter.toString());
-            alarmRdv = new AlarmRdv();
-            if (listAlarmRdv.size()>0) {
-                alarmRdv = listAlarmRdv.get(0);
-            }
-            cancelAlert(classe, DateUtils.ajouterJourArrondi(dateRdv,-1,7), ((Examen) object).toString(), Echeance.OneDayAfter.toString(),context, alarmRdv.getRequestCode());
-        }
-    }*/
 
     protected<T> void startAlert(T object, Context context) {
         //Class classe = object.getClass();
@@ -591,7 +410,8 @@ public class NavDrawerActivity extends AppCompatActivity implements BasicUtils, 
         alarmRdv.setDetail(intent.getStringExtra("detail"));
         //alarmRdv.setEcheance(echeance);
         alarmRdv.setRequestCode(requestCode);
-        alarmRdv.setId(alarmRdv.save());
+       // alarmRdv.setId(alarmRdv.save());
+        alarmRdv.setId(alarmRdvDao.insert(alarmRdv));
 
 
         Toast.makeText(this, "Alarm set : " + prise.getDate().toString(), Toast.LENGTH_LONG).show();
@@ -602,19 +422,7 @@ public class NavDrawerActivity extends AppCompatActivity implements BasicUtils, 
         Intent intent = null;
 
             //Rdv rdv = (Rdv) object;
-            if (object instanceof RdvContact) {
-             //   Rdv rdv = (Rdv) object;
-                intent = new Intent(this, RdvContactNotificationBroadcastReceiver.class);
-                intent.putExtra("detail",((RdvContact) object).getContact().toStringShort());
-            } else if (object instanceof RdvAnalyse) {
-              //  Rdv rdv = (Rdv) object;
-                intent = new Intent(this, RdvAnalyseNotificationBroadcastReceiver.class);
-                intent.putExtra("detail",((RdvAnalyse) object).getAnalyse().getName());
-            } else if (object instanceof RdvExamen) {
-               // Rdv rdv = (Rdv) object;
-                intent = new Intent(this, RdvExamenNotificationBroadcastReceiver.class);
-                intent.putExtra("detail",((RdvExamen) object).getExamen().getName());
-            } else if (object instanceof Prise) {
+        if (object instanceof Prise) {
                // Prise prise = (Prise) object;
                 intent = new Intent(this, PriseNotificationBroadcastReceiver.class);
                 intent.putExtra("detail",((Prise) object).getMedicament().toString());
@@ -628,13 +436,7 @@ public class NavDrawerActivity extends AppCompatActivity implements BasicUtils, 
             PendingIntent pendingIntent = PendingIntent.getBroadcast(context, requestCode, intent, 0);
             AlarmManager alarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
             Date dateAlerte = new Date();
-            if (echeance.equalsIgnoreCase(Echeance.OneHourAfter.toString())){
-                Rdv rdv = (Rdv) object;
-                dateAlerte = DateUtils.ajouterHeure(rdv.getDate(),-1);
-            } else if (echeance.equalsIgnoreCase(Echeance.OneDayAfter.toString())){
-                Rdv rdv = (Rdv) object;
-                dateAlerte = DateUtils.ajouterJourArrondi(rdv.getDate(),-1,7);
-            } else if (echeance.equalsIgnoreCase("test recurrence")){
+            if (echeance.equalsIgnoreCase("test recurrence")){
                 Prise prise = (Prise) object;
                 dateAlerte = prise.getDate();
             }
@@ -648,109 +450,32 @@ public class NavDrawerActivity extends AppCompatActivity implements BasicUtils, 
             alarmRdv.setDetail(intent.getStringExtra("detail"));
             alarmRdv.setEcheance(echeance);
             alarmRdv.setRequestCode(requestCode);
-            alarmRdv.setId(alarmRdv.save());
+            alarmRdv.setId(alarmRdvDao.insert(alarmRdv));
 
             AssociationAlarmRdv associationAlarmRdv = new AssociationAlarmRdv();
             associationAlarmRdv.setAlarmRdv(alarmRdv);
 
-            if (object instanceof RdvContact) {
-                associationAlarmRdv.setRdvContact((RdvContact) object);
-            } else if (object instanceof RdvAnalyse) {
-                associationAlarmRdv.setRdvAnalyse((RdvAnalyse) object);
-            } else if (object instanceof RdvExamen) {
-                associationAlarmRdv.setRdvExamen((RdvExamen) object);
-            }
-            associationAlarmRdv.setId(associationAlarmRdv.save());
+
+            associationAlarmRdv.setId(associationAlarmRdvDao.insert(associationAlarmRdv));
             //Toast.makeText(this, "Alarm set : " + rdv.getDate().toString(), Toast.LENGTH_LONG).show();
         Toast.makeText(this, "Alarm set : OK", Toast.LENGTH_LONG).show();
 
     }
 
-    /*protected void startAlert(Class classe, Date dateRdv, String detail, String echeance, Context context) {
-        Intent intent = new Intent(this, classe);
-        intent.putExtra("detail",detail);
-        intent.putExtra("echeance",echeance);
-        Date dateJour = new Date();
-        Long dateJourLong = dateJour.getTime();
-        int requestCode =dateJourLong.intValue();
-        Log.i("requestCode",""+requestCode);
-
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, requestCode, intent, 0);
-        AlarmManager alarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
-        alarmManager.set(AlarmManager.RTC_WAKEUP, dateRdv.getTime(), pendingIntent);
-        AlarmRdv alarmRdv = new AlarmRdv();
-        alarmRdv.setClasse(classe.getName());
-        alarmRdv.setDate(dateRdv);
-        alarmRdv.setDateString(dateRdv.toString());
-        alarmRdv.setDetail(detail);
-        alarmRdv.setEcheance(echeance);
-        alarmRdv.setRequestCode(requestCode);
-        alarmRdv.setId(alarmRdv.save());
-
-        AssociationAlarmRdv associationAlarmRdv = new AssociationAlarmRdv();
-        associationAlarmRdv.setAlarmRdv(alarmRdv);
-
-        if (classe == RdvContactNotificationBroadcastReceiver.class) {
-            // associationAlarmRdv.setRdvContact();
-        } else if (classe == RdvAnalyseNotificationBroadcastReceiver.class) {
-
-        } else if (classe == RdvExamenNotificationBroadcastReceiver.class) {
-
-        }
 
 
 
-        Toast.makeText(this, "Alarm set : " + dateRdv.toString(), Toast.LENGTH_LONG).show();
-    }*/
 
-    protected<T> void cancelAlert(T object, String echeance, Context context,int requestCode) {
-        Intent intent = null;
-        Rdv rdv = (Rdv) object;
-        if (object instanceof RdvContact) {
-            intent = new Intent(this, RdvContactNotificationBroadcastReceiver.class);
-            intent.putExtra("detail",((RdvContact) object).getContact().toStringShort());
-        } else if (object instanceof RdvAnalyse) {
-            intent = new Intent(this, RdvAnalyseNotificationBroadcastReceiver.class);
-            intent.putExtra("detail",((RdvAnalyse) object).getAnalyse().getName());
-        } else if (object instanceof RdvExamen) {
-            intent = new Intent(this, RdvExamenNotificationBroadcastReceiver.class);
-            intent.putExtra("detail",((RdvExamen) object).getExamen().getName());
-        }
-        intent.putExtra("echeance",echeance);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, requestCode, intent, 0);
-        AlarmManager alarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
-        alarmManager.cancel(pendingIntent);
 
-        List<AlarmRdv> listAlarmRdv = AlarmRdv.find(AlarmRdv.class,"request_code = ?", ""+requestCode);
-        AlarmRdv alarmRdv = new AlarmRdv();
-        if (listAlarmRdv.size()>0) {
-            alarmRdv = listAlarmRdv.get(0);
-            alarmRdv.delete();
-        }
 
-        List<AssociationAlarmRdv> listAssociationAlarmRdv = AssociationAlarmRdv.find(AssociationAlarmRdv.class,"alarm_rdv = ?", alarmRdv.getId().toString());
-        if (listAssociationAlarmRdv.size()>0) {
-            AssociationAlarmRdv associationAlarmRdv = listAssociationAlarmRdv.get(0);
-            associationAlarmRdv.delete();
-        }
-        Toast.makeText(this, "Alarm deleted", Toast.LENGTH_LONG).show();
+    public DaoSession getDaoSession() {
+        return daoSession;
     }
 
-    /*private void cancelAlert(Class classe, Date dateRdv, String detail, String echeance, Context context,int requestCode) {
-        Intent intent = new Intent(this, classe);
-        intent.putExtra("detail",detail);
-        intent.putExtra("echeance",echeance);
-
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, requestCode, intent, 0);
-        AlarmManager alarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
-        alarmManager.cancel(pendingIntent);
-
-        List<AlarmRdv> listAlarmRdv = AlarmRdv.find(AlarmRdv.class,"request_code = ?", ""+requestCode);
-        if (listAlarmRdv.size()>0) {
-            AlarmRdv alarmRdv = listAlarmRdv.get(0);
-            alarmRdv.delete();
-        }
-        Toast.makeText(this, "Alarm deleted", Toast.LENGTH_LONG).show();
-    }*/
-
+    public void initialiserDao() {
+        AppOpenHelper helper = new AppOpenHelper(this, "my_pilulier_db", null);
+        Database db = helper.getWritableDb();
+        DaoMaster daoMaster = new DaoMaster(db);
+        daoSession = daoMaster.newSession();
+    }
 }

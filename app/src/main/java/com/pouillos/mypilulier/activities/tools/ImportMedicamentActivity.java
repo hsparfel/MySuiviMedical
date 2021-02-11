@@ -38,9 +38,9 @@ import butterknife.OnClick;
 import icepick.Icepick;
 import icepick.State;
 
-public class ImportMedicamentActivity extends NavDrawerActivity implements Serializable, BasicUtils {
+public class ImportMedicamentActivity extends NavDrawerActivity implements BasicUtils {
 
-    @State
+
     ImportMedicament importMedicament;
 
     private List<ImportMedicament> listImportMedicamentBD;
@@ -63,8 +63,7 @@ public class ImportMedicamentActivity extends NavDrawerActivity implements Seria
         setContentView(R.layout.activity_import_medicament);
 
         this.configureToolBar();
-        this.configureDrawerLayout();
-        this.configureNavigationView();
+        this.configureBottomView();
 
         ButterKnife.bind(this);
 
@@ -79,7 +78,7 @@ public class ImportMedicamentActivity extends NavDrawerActivity implements Seria
     }
 
     public void afficherNbMedicamentEnregistre() {
-        Long nb = Medicament.count(Medicament.class);
+        Long nb = medicamentDao.count();
         int total = 13023;
         Long pourcentage = nb*100/total;
         nbMedicamentImported.setText(" nb de medicaments importes:" + nb.toString()+"/"+total+" ("+pourcentage+"%)");
@@ -89,7 +88,8 @@ public class ImportMedicamentActivity extends NavDrawerActivity implements Seria
         protected Void doInBackground(Void...voids) {
             publishProgress(0);
             publishProgress(10);
-            listImportMedicamentBD = ImportMedicament.listAll(ImportMedicament.class);
+           // listImportMedicamentBD = ImportMedicament.listAll(ImportMedicament.class);
+            listImportMedicamentBD = importMedicamentDao.loadAll();
             Collections.sort(listImportMedicamentBD);
             publishProgress(100);
             return null;
@@ -125,19 +125,23 @@ public class ImportMedicamentActivity extends NavDrawerActivity implements Seria
             InputStream is = null;
             BufferedReader reader = null;
 
-            List<Medicament> listMedicament = Medicament.listAll(Medicament.class);
+            //List<Medicament> listMedicament = Medicament.listAll(Medicament.class);
+            List<Medicament> listMedicament = medicamentDao.loadAll();
             Map<Long, Medicament> mapMedicamentOfficiel = new HashMap<>();
             for (Medicament medicament : listMedicament) {
                 mapMedicamentOfficiel.put(medicament.getCodeCIS(), medicament);
             }
 
-            List<FormePharmaceutique> listFormePharamaceutique = FormePharmaceutique.listAll(FormePharmaceutique.class);
+            //List<FormePharmaceutique> listFormePharamaceutique = FormePharmaceutique.listAll(FormePharmaceutique.class);
+            List<FormePharmaceutique> listFormePharamaceutique = formePharmaceutiqueDao.loadAll();
             Map<String, FormePharmaceutique> mapFormePharamaceutique = new HashMap<>();
             for (FormePharmaceutique formePharmaceutique : listFormePharamaceutique) {
                 mapFormePharamaceutique.put(formePharmaceutique.getName(), formePharmaceutique);
             }
 
-            List<ImportMedicament> listImportMedicament = ImportMedicament.find(ImportMedicament.class,"import_completed = ?","0");
+            //List<ImportMedicament> listImportMedicament = ImportMedicament.find(ImportMedicament.class,"import_completed = ?","0");
+            List<ImportMedicament> listImportMedicament = importMedicamentDao.queryRaw("where import_completed = ?","0");
+
             //List<ImportMedicament> listImportMedicament = ImportMedicament.listAll(ImportMedicament.class);
 //TODO A REVOIR
             int nbImportEffectue =0;
@@ -230,18 +234,21 @@ public class ImportMedicamentActivity extends NavDrawerActivity implements Seria
                         } else {
                             medicament.setTitulaire(lineSplitted[10]);
                         }
-                        medicament.save();
+                        //medicament.save();
+                        medicamentDao.insert((medicament));
 
                         nbLigneLue++;
                         nbImportEffectue++;
                         current.setNbLigneLue(nbLigneLue);
                         current.setNbImportEffectue(nbImportEffectue);
-                        current.save();
+                        //current.save();
+                        importMedicamentDao.update(current);
                     }
                 } catch (final Exception e) {
                     nbImportIgnore++;
                     current.setNbImportIgnore(nbImportIgnore);
-                    current.save();
+                    //current.save();
+                    importMedicamentDao.update(current);
                     e.printStackTrace();
                 } finally {
                     if (is != null) {
@@ -261,7 +268,8 @@ public class ImportMedicamentActivity extends NavDrawerActivity implements Seria
                 current.setNbImportIgnore(nbImportIgnore);
                 current.setNbImportEffectue(nbImportEffectue);
                 current.setImportCompleted(true);
-                current.save();
+                //current.save();
+                importMedicamentDao.update(current);
                 publishProgress(100);
                 //a voir si ça passe
                 //Toast.makeText(MainActivity.this, "Import de " + current.getPath() + " fini", Toast.LENGTH_LONG).show();
@@ -290,7 +298,7 @@ public class ImportMedicamentActivity extends NavDrawerActivity implements Seria
         // SugarRecord.executeQuery("DELETE FROM IMPORT_MEDICAMENT");
        // SugarRecord.executeQuery("DELETE FROM MEDICAMENT");
        // SugarRecord.executeQuery("update import_medicament set import_completed =0 where id = 48");
-        SugarRecord.executeQuery("update import_medicament set import_completed =0 where id = 71");
+       // SugarRecord.executeQuery("update import_medicament set import_completed =0 where id = 71");
     }
 
 

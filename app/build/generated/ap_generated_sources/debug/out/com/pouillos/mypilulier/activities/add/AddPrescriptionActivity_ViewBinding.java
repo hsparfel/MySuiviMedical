@@ -30,17 +30,17 @@ import java.lang.Override;
 public class AddPrescriptionActivity_ViewBinding implements Unbinder {
   private AddPrescriptionActivity target;
 
-  private View view7f0801e5;
+  private View view7f0801d4;
 
-  private TextWatcher view7f0801e5TextWatcher;
+  private TextWatcher view7f0801d4TextWatcher;
 
-  private View view7f0801df;
+  private View view7f0801d2;
 
-  private TextWatcher view7f0801dfTextWatcher;
+  private TextWatcher view7f0801d2TextWatcher;
 
-  private View view7f0800c6;
+  private View view7f0800c2;
 
-  private View view7f0800ba;
+  private View view7f0800c0;
 
   @UiThread
   public AddPrescriptionActivity_ViewBinding(AddPrescriptionActivity target) {
@@ -57,14 +57,14 @@ public class AddPrescriptionActivity_ViewBinding implements Unbinder {
     target.layoutFrequence = Utils.findRequiredViewAsType(source, R.id.layoutFrequence, "field 'layoutFrequence'", TextInputLayout.class);
     view = Utils.findRequiredView(source, R.id.textFrequence, "field 'textFrequence', method 'textFrequenceClick', and method 'textFrequenceChanged'");
     target.textFrequence = Utils.castView(view, R.id.textFrequence, "field 'textFrequence'", TextInputEditText.class);
-    view7f0801e5 = view;
+    view7f0801d4 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
         target.textFrequenceClick();
       }
     });
-    view7f0801e5TextWatcher = new TextWatcher() {
+    view7f0801d4TextWatcher = new TextWatcher() {
       @Override
       public void onTextChanged(CharSequence p0, int p1, int p2, int p3) {
         target.textFrequenceChanged();
@@ -78,18 +78,18 @@ public class AddPrescriptionActivity_ViewBinding implements Unbinder {
       public void afterTextChanged(Editable p0) {
       }
     };
-    ((TextView) view).addTextChangedListener(view7f0801e5TextWatcher);
+    ((TextView) view).addTextChangedListener(view7f0801d4TextWatcher);
     target.layoutDuree = Utils.findRequiredViewAsType(source, R.id.layoutDuree, "field 'layoutDuree'", TextInputLayout.class);
     view = Utils.findRequiredView(source, R.id.textDuree, "field 'textDuree', method 'textDureeClick', and method 'textDureeChanged'");
     target.textDuree = Utils.castView(view, R.id.textDuree, "field 'textDuree'", TextInputEditText.class);
-    view7f0801df = view;
+    view7f0801d2 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
         target.textDureeClick();
       }
     });
-    view7f0801dfTextWatcher = new TextWatcher() {
+    view7f0801d2TextWatcher = new TextWatcher() {
       @Override
       public void onTextChanged(CharSequence p0, int p1, int p2, int p3) {
         target.textDureeChanged();
@@ -103,12 +103,12 @@ public class AddPrescriptionActivity_ViewBinding implements Unbinder {
       public void afterTextChanged(Editable p0) {
       }
     };
-    ((TextView) view).addTextChangedListener(view7f0801dfTextWatcher);
+    ((TextView) view).addTextChangedListener(view7f0801d2TextWatcher);
     target.layoutDate = Utils.findRequiredViewAsType(source, R.id.layoutDate, "field 'layoutDate'", TextInputLayout.class);
     target.textDate = Utils.findRequiredViewAsType(source, R.id.textDate, "field 'textDate'", TextInputEditText.class);
     view = Utils.findRequiredView(source, R.id.fabSave, "field 'fabSave' and method 'fabSaveClick'");
     target.fabSave = Utils.castView(view, R.id.fabSave, "field 'fabSave'", FloatingActionButton.class);
-    view7f0800c6 = view;
+    view7f0800c2 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -117,7 +117,7 @@ public class AddPrescriptionActivity_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.fabAddRappel, "field 'fabAddRappel' and method 'fabAddRappelClick'");
     target.fabAddRappel = Utils.castView(view, R.id.fabAddRappel, "field 'fabAddRappel'", ExtendedFloatingActionButton.class);
-    view7f0800ba = view;
+    view7f0800c0 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -196,17 +196,17 @@ public class AddPrescriptionActivity_ViewBinding implements Unbinder {
     target.layoutDureeOption = null;
     target.listRappel = null;
 
-    view7f0801e5.setOnClickListener(null);
-    ((TextView) view7f0801e5).removeTextChangedListener(view7f0801e5TextWatcher);
-    view7f0801e5TextWatcher = null;
-    view7f0801e5 = null;
-    view7f0801df.setOnClickListener(null);
-    ((TextView) view7f0801df).removeTextChangedListener(view7f0801dfTextWatcher);
-    view7f0801dfTextWatcher = null;
-    view7f0801df = null;
-    view7f0800c6.setOnClickListener(null);
-    view7f0800c6 = null;
-    view7f0800ba.setOnClickListener(null);
-    view7f0800ba = null;
+    view7f0801d4.setOnClickListener(null);
+    ((TextView) view7f0801d4).removeTextChangedListener(view7f0801d4TextWatcher);
+    view7f0801d4TextWatcher = null;
+    view7f0801d4 = null;
+    view7f0801d2.setOnClickListener(null);
+    ((TextView) view7f0801d2).removeTextChangedListener(view7f0801d2TextWatcher);
+    view7f0801d2TextWatcher = null;
+    view7f0801d2 = null;
+    view7f0800c2.setOnClickListener(null);
+    view7f0800c2 = null;
+    view7f0800c0.setOnClickListener(null);
+    view7f0800c0 = null;
   }
 }

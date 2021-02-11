@@ -103,14 +103,6 @@
 
     </LinearLayout>
 
-<!-- 2 | NavigationView -->
-    <com.google.android.material.navigation.NavigationView
-        android:id="@+id/activity_main_nav_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:fitsSystemWindows="true"
-        app:headerLayout="@layout/activity_accueil_nav_header"
-        app:menu="@menu/activity_accueil_menu_drawer" />
+    <include layout="@layout/bottom_navigation"/>
 
 </androidx.drawerlayout.widget.DrawerLayout>

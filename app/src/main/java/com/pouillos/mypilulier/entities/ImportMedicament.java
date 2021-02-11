@@ -3,13 +3,21 @@ package com.pouillos.mypilulier.entities;
 import com.orm.SugarRecord;
 import com.orm.dsl.NotNull;
 
+import org.greenrobot.greendao.annotation.Entity;
+import org.greenrobot.greendao.annotation.Id;
+
 import java.io.Serializable;
+import org.greenrobot.greendao.annotation.Generated;
 
-public class ImportMedicament extends SugarRecord implements Serializable, Comparable<ImportMedicament> {
+@Entity
+public class ImportMedicament implements Comparable<ImportMedicament> {
 
-    @NotNull
+    @Id
+    private Long id;
+
+
     private String path;
-    @NotNull
+
     private boolean importCompleted;
     private String dateDebut;
     private String dateFin;
@@ -19,73 +27,136 @@ public class ImportMedicament extends SugarRecord implements Serializable, Compa
 
 
 
+    
 
-    public ImportMedicament(String path, boolean importCompleted) {
-        this.path = path;
-        this.importCompleted = importCompleted;
-    }
 
+
+    @Generated(hash = 2024602717)
     public ImportMedicament() {
     }
 
-    public String getPath() {
-        return path;
+
+
+
+
+
+    @Generated(hash = 552367349)
+    public ImportMedicament(Long id, String path, boolean importCompleted,
+            String dateDebut, String dateFin, int nbLigneLue, int nbImportEffectue,
+            int nbImportIgnore) {
+        this.id = id;
+        this.path = path;
+        this.importCompleted = importCompleted;
+        this.dateDebut = dateDebut;
+        this.dateFin = dateFin;
+        this.nbLigneLue = nbLigneLue;
+        this.nbImportEffectue = nbImportEffectue;
+        this.nbImportIgnore = nbImportIgnore;
     }
+
+
+
+
+
+
+    @Override
+    public int compareTo(ImportMedicament o) {
+        return this.getId().compareTo(o.getId());
+    }
+
+
+
+    public Long getId() {
+        return this.id;
+    }
+
+
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+
+
+    public String getPath() {
+        return this.path;
+    }
+
+
 
     public void setPath(String path) {
         this.path = path;
     }
 
-    public boolean isImportCompleted() {
-        return importCompleted;
+
+
+    public boolean getImportCompleted() {
+        return this.importCompleted;
     }
+
+
 
     public void setImportCompleted(boolean importCompleted) {
         this.importCompleted = importCompleted;
     }
 
+
+
     public String getDateDebut() {
-        return dateDebut;
+        return this.dateDebut;
     }
+
+
 
     public void setDateDebut(String dateDebut) {
         this.dateDebut = dateDebut;
     }
 
+
+
     public String getDateFin() {
-        return dateFin;
+        return this.dateFin;
     }
+
+
 
     public void setDateFin(String dateFin) {
         this.dateFin = dateFin;
     }
 
-    public int getNbImportEffectue() {
-        return nbImportEffectue;
-    }
 
-    public void setNbImportEffectue(int nbImportEffectue) {
-        this.nbImportEffectue = nbImportEffectue;
-    }
-
-    public int getNbImportIgnore() {
-        return nbImportIgnore;
-    }
-
-    public void setNbImportIgnore(int nbImportIgnore) {
-        this.nbImportIgnore = nbImportIgnore;
-    }
 
     public int getNbLigneLue() {
-        return nbLigneLue;
+        return this.nbLigneLue;
     }
+
+
 
     public void setNbLigneLue(int nbLigneLue) {
         this.nbLigneLue = nbLigneLue;
     }
 
-    @Override
-    public int compareTo(ImportMedicament o) {
-        return this.getId().compareTo(o.getId());
+
+
+    public int getNbImportEffectue() {
+        return this.nbImportEffectue;
+    }
+
+
+
+    public void setNbImportEffectue(int nbImportEffectue) {
+        this.nbImportEffectue = nbImportEffectue;
+    }
+
+
+
+    public int getNbImportIgnore() {
+        return this.nbImportIgnore;
+    }
+
+
+
+    public void setNbImportIgnore(int nbImportIgnore) {
+        this.nbImportIgnore = nbImportIgnore;
     }
 }
