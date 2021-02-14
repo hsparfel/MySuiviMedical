@@ -1,91 +1,11 @@
 [
     {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_avatar_doctor.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\drawable-v21\\avatar_doctor.png"
+        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\layout_list_item.xml.flat",
+        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\layout\\list_item.xml"
     },
     {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_outline_person_add_black_24dp.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\drawable-v21\\outline_person_add_black_24dp.png"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_icons8_note.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\drawable-v21\\icons8_note.png"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_outline_create_black_24dp.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\drawable-v21\\outline_create_black_24dp.png"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_bebe_24.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\drawable-v21\\bebe_24.png"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\layout_list_item_two_lines.xml.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\layout\\list_item_two_lines.xml"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_icons8_calendrier.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\drawable-v21\\icons8_calendrier.png"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_syringe_vaccine_icon_127255.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\drawable-v21\\syringe_vaccine_icon_127255.png"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_outline_add_a_photo_black_24dp.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\drawable-v21\\outline_add_a_photo_black_24dp.png"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_email.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\drawable-v21\\email.png"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_balance_24.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\drawable-v21\\balance_24.png"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_outline_face_black_24dp.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\drawable-v21\\outline_face_black_24dp.png"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_outline_speed_black_24dp.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\drawable-v21\\outline_speed_black_24dp.png"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_accueil.xml.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\layout\\activity_accueil.xml"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_outline_search_white_18dp.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\drawable-v21\\outline_search_white_18dp.png"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_outline_trending_up_black_24dp.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\drawable-v21\\outline_trending_up_black_24dp.png"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_outline_add_black_24dp.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\drawable-v21\\outline_add_black_24dp.png"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_medicine_medical_pharmacy_health_prescription_pill_drug_icon_140910.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\drawable-v21\\medicine_medical_pharmacy_health_prescription_pill_drug_icon_140910.png"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\layout_recycler_list_item.xml.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\layout\\recycler_list_item.xml"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_outline_update_black_24dp.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\drawable-v21\\outline_update_black_24dp.png"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_hospital.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\drawable-v21\\hospital.png"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_heart.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\drawable-v21\\heart.png"
+        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\xml_filepaths.xml.flat",
+        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\xml\\filepaths.xml"
     },
     {
         "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_add_prescription.xml.flat",
@@ -96,98 +16,6 @@
         "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\drawable-v21\\outline_event_black_24dp.png"
     },
     {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_outline_navigation_black_24dp.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\drawable-v21\\outline_navigation_black_24dp.png"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_woman_icon.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\drawable-v21\\woman_icon.png"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_outline_replay_black_24dp.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\drawable-v21\\outline_replay_black_24dp.png"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_outline_home_black_24dp.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\drawable-v21\\outline_home_black_24dp.png"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_outline_emoji_people_black_48dp.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\drawable-v21\\outline_emoji_people_black_48dp.png"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_ic_menu_camera.xml.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\drawable-v21\\ic_menu_camera.xml"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_outline_phone_black_24dp.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\drawable-v21\\outline_phone_black_24dp.png"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_outline_cake_black_24dp.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\drawable-v21\\outline_cake_black_24dp.png"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_home_pill_notif.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\drawable-v21\\home_pill_notif.png"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_fax.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\drawable-v21\\fax.png"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_outline_timelapse_black_24dp.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\drawable-v21\\outline_timelapse_black_24dp.png"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_outline_import_export_black_24dp.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\drawable-v21\\outline_import_export_black_24dp.png"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_man_icon.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\drawable-v21\\man_icon.png"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_outline_search_black_24dp.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\drawable-v21\\outline_search_black_24dp.png"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi_home_pill.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\mipmap-hdpi\\home_pill.png"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_outline_clear_black_24dp.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\drawable-v21\\outline_clear_black_24dp.png"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_pill_114844.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\drawable-v21\\pill_114844.png"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_metier.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\drawable-v21\\metier.png"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_fatman_24.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\drawable-v21\\fatman_24.png"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\layout_list_item.xml.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\layout\\list_item.xml"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\xml_filepaths.xml.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\xml\\filepaths.xml"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_homme_24.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\drawable-v21\\homme_24.png"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_marker2.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\drawable-v24\\marker2.png"
-    },
-    {
         "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\layout_toolbar.xml.flat",
         "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\layout\\toolbar.xml"
     },
@@ -196,76 +24,16 @@
         "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\menu\\menu_activity_main.xml"
     },
     {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_prescription.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\drawable-v21\\prescription.png"
+        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi_icons8_main_pilule.png.flat",
+        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\mipmap-xhdpi\\icons8_main_pilule.png"
     },
     {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_ic_menu_share.xml.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\drawable-v21\\ic_menu_share.xml"
+        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_outline_home_black_24dp.png.flat",
+        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\drawable-v21\\outline_home_black_24dp.png"
     },
     {
         "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\layout_progress_bar.xml.flat",
         "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\layout\\progress_bar.xml"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_outline_save_black_24dp.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\drawable-v21\\outline_save_black_24dp.png"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_drug_icon.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\drawable-v21\\drug_icon.png"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_book_contact.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\drawable-v21\\book_contact.png"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_pill.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\drawable-v21\\pill.png"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_icons8_garage2.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\drawable-v21\\icons8_garage2.png"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_icons8_medecin_50.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\drawable-v21\\icons8_medecin_50.png"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\layout_bottom_navigation.xml.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\layout\\bottom_navigation.xml"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_comparer_24.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\drawable-v21\\comparer_24.png"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_outline_format_align_center_black_24dp.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\drawable-v21\\outline_format_align_center_black_24dp.png"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_eyedropper_plus.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\drawable-v21\\eyedropper_plus.png"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\layout_custom_marker_view.xml.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\layout\\custom_marker_view.xml"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_outline_place_black_24dp.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\drawable-v21\\outline_place_black_24dp.png"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_outline_today_black_24dp.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\drawable-v21\\outline_today_black_24dp.png"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_big_hospital.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\drawable-v21\\big_hospital.png"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_main.xml.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\layout\\activity_main.xml"
     },
     {
         "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\menu_bottom_navigation_menu.xml.flat",
@@ -276,39 +44,39 @@
         "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\layout\\activity_import_medicament.xml"
     },
     {
+        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_outline_save_black_24dp.png.flat",
+        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\drawable-v21\\outline_save_black_24dp.png"
+    },
+    {
         "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_outline_delete_black_24dp.png.flat",
         "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\drawable-v21\\outline_delete_black_24dp.png"
     },
     {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_add_rappel.xml.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\layout\\activity_add_rappel.xml"
+        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\layout_recycler_list_prise.xml.flat",
+        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\layout\\recycler_list_prise.xml"
     },
     {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_account_convert.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\drawable-v21\\account_convert.png"
+        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_icons8_main_pilule_18.png.flat",
+        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\drawable-v24\\icons8_main_pilule_18.png"
     },
     {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_id_card_icon_124180.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\drawable-v21\\id_card_icon_124180.png"
+        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_accueil.xml.flat",
+        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\layout\\activity_accueil.xml"
     },
     {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_bookeddatecalendarmarkcrosssave_109769.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\drawable-v21\\bookeddatecalendarmarkcrosssave_109769.png"
+        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_outline_import_export_black_24dp.png.flat",
+        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\drawable-v21\\outline_import_export_black_24dp.png"
     },
     {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_outline_local_parking_black_18dp.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\drawable-v21\\outline_local_parking_black_18dp.png"
+        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_outline_search_white_18dp.png.flat",
+        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\drawable-v21\\outline_search_white_18dp.png"
     },
     {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_outline_schedule_black_18dp.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\drawable-v21\\outline_schedule_black_18dp.png"
+        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_medicine_medical_pharmacy_health_prescription_pill_drug_icon_140910.png.flat",
+        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\drawable-v21\\medicine_medical_pharmacy_health_prescription_pill_drug_icon_140910.png"
     },
     {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_accueil_nav_header.xml.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\layout\\activity_accueil_nav_header.xml"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\layout_recycler_list_prescription.xml.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\layout\\recycler_list_prescription.xml"
+        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\res\\merged\\debug\\layout_bottom_navigation.xml.flat",
+        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\src\\main\\res\\layout\\bottom_navigation.xml"
     }
 ]

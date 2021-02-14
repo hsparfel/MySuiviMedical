@@ -1,4 +1,4 @@
-#Thu Feb 11 23:39:36 CET 2021
+#Sun Feb 14 18:02:11 CET 2021
 base.0=C\:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\out\\classes.dex
 path.1=classes.dex
 renamed.1=classes2.dex

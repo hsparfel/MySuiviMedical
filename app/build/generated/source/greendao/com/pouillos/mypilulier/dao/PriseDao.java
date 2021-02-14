@@ -32,10 +32,11 @@ public class PriseDao extends AbstractDao<Prise, Long> {
     public static class Properties {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
         public final static Property Date = new Property(1, java.util.Date.class, "date", false, "DATE");
-        public final static Property Effectue = new Property(2, boolean.class, "effectue", false, "EFFECTUE");
-        public final static Property MedicamentId = new Property(3, long.class, "medicamentId", false, "MEDICAMENT_ID");
-        public final static Property DoseId = new Property(4, long.class, "doseId", false, "DOSE_ID");
-        public final static Property QteDose = new Property(5, Double.class, "qteDose", false, "QTE_DOSE");
+        public final static Property DateString = new Property(2, String.class, "dateString", false, "DATE_STRING");
+        public final static Property Effectue = new Property(3, boolean.class, "effectue", false, "EFFECTUE");
+        public final static Property MedicamentId = new Property(4, long.class, "medicamentId", false, "MEDICAMENT_ID");
+        public final static Property DoseId = new Property(5, long.class, "doseId", false, "DOSE_ID");
+        public final static Property QteDose = new Property(6, float.class, "qteDose", false, "QTE_DOSE");
     }
 
     private DaoSession daoSession;
@@ -56,10 +57,11 @@ public class PriseDao extends AbstractDao<Prise, Long> {
         db.execSQL("CREATE TABLE " + constraint + "\"PRISE\" (" + //
                 "\"_id\" INTEGER PRIMARY KEY ," + // 0: id
                 "\"DATE\" INTEGER," + // 1: date
-                "\"EFFECTUE\" INTEGER NOT NULL ," + // 2: effectue
-                "\"MEDICAMENT_ID\" INTEGER NOT NULL ," + // 3: medicamentId
-                "\"DOSE_ID\" INTEGER NOT NULL ," + // 4: doseId
-                "\"QTE_DOSE\" REAL);"); // 5: qteDose
+                "\"DATE_STRING\" TEXT," + // 2: dateString
+                "\"EFFECTUE\" INTEGER NOT NULL ," + // 3: effectue
+                "\"MEDICAMENT_ID\" INTEGER NOT NULL ," + // 4: medicamentId
+                "\"DOSE_ID\" INTEGER NOT NULL ," + // 5: doseId
+                "\"QTE_DOSE\" REAL NOT NULL );"); // 6: qteDose
     }
 
     /** Drops the underlying database table. */
@@ -81,14 +83,15 @@ public class PriseDao extends AbstractDao<Prise, Long> {
         if (date != null) {
             stmt.bindLong(2, date.getTime());
         }
-        stmt.bindLong(3, entity.getEffectue() ? 1L: 0L);
-        stmt.bindLong(4, entity.getMedicamentId());
-        stmt.bindLong(5, entity.getDoseId());
  
-        Double qteDose = entity.getQteDose();
-        if (qteDose != null) {
-            stmt.bindDouble(6, qteDose);
+        String dateString = entity.getDateString();
+        if (dateString != null) {
+            stmt.bindString(3, dateString);
         }
+        stmt.bindLong(4, entity.getEffectue() ? 1L: 0L);
+        stmt.bindLong(5, entity.getMedicamentId());
+        stmt.bindLong(6, entity.getDoseId());
+        stmt.bindDouble(7, entity.getQteDose());
     }
 
     @Override
@@ -104,14 +107,15 @@ public class PriseDao extends AbstractDao<Prise, Long> {
         if (date != null) {
             stmt.bindLong(2, date.getTime());
         }
-        stmt.bindLong(3, entity.getEffectue() ? 1L: 0L);
-        stmt.bindLong(4, entity.getMedicamentId());
-        stmt.bindLong(5, entity.getDoseId());
  
-        Double qteDose = entity.getQteDose();
-        if (qteDose != null) {
-            stmt.bindDouble(6, qteDose);
+        String dateString = entity.getDateString();
+        if (dateString != null) {
+            stmt.bindString(3, dateString);
         }
+        stmt.bindLong(4, entity.getEffectue() ? 1L: 0L);
+        stmt.bindLong(5, entity.getMedicamentId());
+        stmt.bindLong(6, entity.getDoseId());
+        stmt.bindDouble(7, entity.getQteDose());
     }
 
     @Override
@@ -130,10 +134,11 @@ public class PriseDao extends AbstractDao<Prise, Long> {
         Prise entity = new Prise( //
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
             cursor.isNull(offset + 1) ? null : new java.util.Date(cursor.getLong(offset + 1)), // date
-            cursor.getShort(offset + 2) != 0, // effectue
-            cursor.getLong(offset + 3), // medicamentId
-            cursor.getLong(offset + 4), // doseId
-            cursor.isNull(offset + 5) ? null : cursor.getDouble(offset + 5) // qteDose
+            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // dateString
+            cursor.getShort(offset + 3) != 0, // effectue
+            cursor.getLong(offset + 4), // medicamentId
+            cursor.getLong(offset + 5), // doseId
+            cursor.getFloat(offset + 6) // qteDose
         );
         return entity;
     }
@@ -142,10 +147,11 @@ public class PriseDao extends AbstractDao<Prise, Long> {
     public void readEntity(Cursor cursor, Prise entity, int offset) {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
         entity.setDate(cursor.isNull(offset + 1) ? null : new java.util.Date(cursor.getLong(offset + 1)));
-        entity.setEffectue(cursor.getShort(offset + 2) != 0);
-        entity.setMedicamentId(cursor.getLong(offset + 3));
-        entity.setDoseId(cursor.getLong(offset + 4));
-        entity.setQteDose(cursor.isNull(offset + 5) ? null : cursor.getDouble(offset + 5));
+        entity.setDateString(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
+        entity.setEffectue(cursor.getShort(offset + 3) != 0);
+        entity.setMedicamentId(cursor.getLong(offset + 4));
+        entity.setDoseId(cursor.getLong(offset + 5));
+        entity.setQteDose(cursor.getFloat(offset + 6));
      }
     
     @Override

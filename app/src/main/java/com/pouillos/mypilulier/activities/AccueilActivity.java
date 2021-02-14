@@ -6,6 +6,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,10 +17,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.facebook.stetho.Stetho;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.pouillos.mypilulier.R;
 
 import com.pouillos.mypilulier.activities.add.AddPrescriptionActivity;
-import com.pouillos.mypilulier.activities.tools.ImportMedicamentActivity;
 import com.pouillos.mypilulier.activities.utils.DateUtils;
 import com.pouillos.mypilulier.entities.AssociationFormeDose;
 import com.pouillos.mypilulier.entities.Dose;
@@ -27,17 +28,18 @@ import com.pouillos.mypilulier.entities.ImportMedicament;
 import com.pouillos.mypilulier.entities.FormePharmaceutique;
 import com.pouillos.mypilulier.entities.Medicament;
 import com.pouillos.mypilulier.entities.MedicamentLight;
-import com.pouillos.mypilulier.entities.Prescription;
+import com.pouillos.mypilulier.entities.Prise;
 import com.pouillos.mypilulier.interfaces.BasicUtils;
-import com.pouillos.mypilulier.recycler.adapter.RecyclerAdapterPrescription;
+import com.pouillos.mypilulier.recycler.adapter.RecyclerAdapterPrise;
 import com.pouillos.mypilulier.utils.ItemClickSupport;
+
+import org.greenrobot.greendao.query.QueryBuilder;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -48,7 +50,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import icepick.Icepick;
 
-public class AccueilActivity extends NavDrawerActivity implements BasicUtils, RecyclerAdapterPrescription.Listener {
+public class AccueilActivity extends NavDrawerActivity implements BasicUtils, RecyclerAdapterPrise.Listener {
 
     @BindView(R.id.my_progressBar)
     ProgressBar progressBar;
@@ -59,16 +61,17 @@ public class AccueilActivity extends NavDrawerActivity implements BasicUtils, Re
     @BindView(R.id.text_nb_medicament)
     TextView text_nb_medicament;
 
-    @BindView(R.id.list_prescription)
-    RecyclerView listPrescription;
-    @BindView(R.id.button_list_prescription)
-    MaterialButton buttonListPrescription;
-    private boolean prescriptionDisplay = true;
+    @BindView(R.id.list_prise)
+    RecyclerView listPrise;
+    @BindView(R.id.button_list_prise)
+    MaterialButton buttonListPrise;
 
-    private List<Prescription> listePrescription = new ArrayList<>();
+    @BindView(R.id.btn_import)
+    Button btnImport;
 
-    RecyclerAdapterPrescription adapterPrescription;
+    private List<Prise> listePrise = new ArrayList<>();
 
+    RecyclerAdapterPrise adapterPrise;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +80,6 @@ public class AccueilActivity extends NavDrawerActivity implements BasicUtils, Re
         setContentView(R.layout.activity_accueil);
         Stetho.initializeWithDefaults(this);
 
-        // 6 - Configure all views
         this.configureToolBar();
         this.configureBottomView();
 
@@ -87,15 +89,12 @@ public class AccueilActivity extends NavDrawerActivity implements BasicUtils, Re
 
         textView.setText(DateUtils.ecrireDateLettre(new Date()));
 
-
        AccueilActivity.AsyncTaskRunnerBD runnerBD = new AccueilActivity.AsyncTaskRunnerBD();
        runnerBD.execute();
 
-    }
-
-
-    public void addPrescription(View view) {
-        ouvrirActiviteSuivante(this, AddPrescriptionActivity.class,false);
+       if (medicamentDao.loadAll().size()==0) {
+           btnImport.setVisibility(View.VISIBLE);
+       }
     }
 
     public void razDb(View view) {
@@ -106,7 +105,8 @@ public class AccueilActivity extends NavDrawerActivity implements BasicUtils, Re
        // formePharmaceutiqueDao.deleteAll();
         medicamentDao.deleteAll();*/
      //   associationFormeDoseDao.deleteAll();
-
+        prescriptionDao.deleteAll();
+        priseDao.deleteAll();
     }
 
     public void importMedicament(View view) {
@@ -114,6 +114,14 @@ public class AccueilActivity extends NavDrawerActivity implements BasicUtils, Re
         progressBar.setProgress(0);
         AsyncTaskRunnerMedicament runner = new AsyncTaskRunnerMedicament(this);
         runner.execute();
+    }
+
+    @Override
+    public void onClickPriseButton(int position) {
+        Prise prise = listePrise.get(position);
+        prise.setEffectue(!prise.getEffectue());
+        priseDao.update(prise);
+        configureRecyclerView();
     }
 
     private class AsyncTaskRunnerMedicament extends AsyncTask<Void, Integer, Void> {
@@ -128,34 +136,28 @@ public class AccueilActivity extends NavDrawerActivity implements BasicUtils, Re
             InputStream is = null;
             BufferedReader reader = null;
 
-            //List<Medicament> listMedicament = Medicament.listAll(Medicament.class);
             List<Medicament> listMedicament = medicamentDao.loadAll();
             Map<Long, Medicament> mapMedicamentOfficiel = new HashMap<>();
             for (Medicament medicament : listMedicament) {
                 mapMedicamentOfficiel.put(medicament.getCodeCIS(), medicament);
             }
 
-            //List<FormePharmaceutique> listFormePharamaceutique = FormePharmaceutique.listAll(FormePharmaceutique.class);
             List<FormePharmaceutique> listFormePharamaceutique = formePharmaceutiqueDao.loadAll();
             Map<String, FormePharmaceutique> mapFormePharamaceutique = new HashMap<>();
             for (FormePharmaceutique formePharmaceutique : listFormePharamaceutique) {
                 mapFormePharamaceutique.put(formePharmaceutique.getName(), formePharmaceutique);
             }
 
-            //List<ImportMedicament> listImportMedicament = ImportMedicament.find(ImportMedicament.class,"import_completed = ?","0");
             List<ImportMedicament> listImportMedicament = importMedicamentDao.queryRaw("where import_completed = ?","0");
 
-            //List<ImportMedicament> listImportMedicament = ImportMedicament.listAll(ImportMedicament.class);
-//TODO A REVOIR
             int nbImportEffectue =0;
             int nbImportIgnore = 0;
             int readerCount=0;
             int nbLigneLue=0;
-            //ImportMedicament current = listImportMedicament.get(0);
+
             for (ImportMedicament current : listImportMedicament) {
                 nbImportEffectue =0;
                 nbImportIgnore = 0;
-                //readerCount=0;
                 nbLigneLue=0;
                 if (current.getDateDebut() == null) {
                     current.setDateDebut(DateUtils.ecrireDateHeure(new Date()));
@@ -170,12 +172,6 @@ public class AccueilActivity extends NavDrawerActivity implements BasicUtils, Re
                     nbImportIgnore = current.getNbImportIgnore();
                 }
 
-                //current.setDateFin("");
-                //current.setNbImportEffectue(nbImportEffectue);
-                ///current.setNbImportIgnore(nbImportIgnore);
-                // nbImportEffectue = 0;
-                // nbImportIgnore = 0;
-
                 try {
                     is = getAssets().open(current.getPath());
                     reader = new BufferedReader(new InputStreamReader(is,"iso-8859-1"));
@@ -186,10 +182,7 @@ public class AccueilActivity extends NavDrawerActivity implements BasicUtils, Re
                     int compteur = 0;
                     publishProgress(compteur);
 
-
-
                     while ((line = reader.readLine()) != null) {
-                        //todo revoir cette condition
 
                         if (readerCount<nbLigneLue) {
                             readerCount ++;
@@ -197,9 +190,7 @@ public class AccueilActivity extends NavDrawerActivity implements BasicUtils, Re
                         }
                         readerCount ++;
                         compteur = readerCount*100/readerSize;
-                        //compteur ++;
                         publishProgress(compteur);
-
 
                         final String SEPARATEUR = "£";
                         String lineSplitted[] = line.split(SEPARATEUR);
@@ -209,7 +200,6 @@ public class AccueilActivity extends NavDrawerActivity implements BasicUtils, Re
                         if (!lineSplitted[6].equals("Commercialisée") ) {
                             nbImportIgnore++;
                             current.setNbImportIgnore(nbImportIgnore);
-                            //current.save();
                             importMedicamentDao.update(current);
                             continue;
                         }
@@ -220,7 +210,6 @@ public class AccueilActivity extends NavDrawerActivity implements BasicUtils, Re
                         if (verifMedicament != null){
                             nbImportIgnore++;
                             current.setNbImportIgnore(nbImportIgnore);
-                            //current.save();
                             importMedicamentDao.update(current);
                             continue;
                         }
@@ -245,7 +234,6 @@ public class AccueilActivity extends NavDrawerActivity implements BasicUtils, Re
                         } else {
                             medicament.setTitulaire(lineSplitted[10]);
                         }
-                        //medicament.save();
                         medicament.setId(medicamentDao.insert((medicament)));
                         medicamentLightDao.insert(new MedicamentLight(medicament.getId(),medicament.getCodeCIS(),medicament.getDenomination()));
 
@@ -253,13 +241,11 @@ public class AccueilActivity extends NavDrawerActivity implements BasicUtils, Re
                         nbImportEffectue++;
                         current.setNbLigneLue(nbLigneLue);
                         current.setNbImportEffectue(nbImportEffectue);
-                        //current.save();
                         importMedicamentDao.update(current);
                     }
                 } catch (final Exception e) {
                     nbImportIgnore++;
                     current.setNbImportIgnore(nbImportIgnore);
-                    //current.save();
                     importMedicamentDao.update(current);
                     e.printStackTrace();
                 } finally {
@@ -280,12 +266,9 @@ public class AccueilActivity extends NavDrawerActivity implements BasicUtils, Re
                 current.setNbImportIgnore(nbImportIgnore);
                 current.setNbImportEffectue(nbImportEffectue);
                 current.setImportCompleted(true);
-                //current.save();
                 importMedicamentDao.update(current);
 
                 publishProgress(100);
-                //a voir si ça passe
-                //Toast.makeText(MainActivity.this, "Import de " + current.getPath() + " fini", Toast.LENGTH_LONG).show();
             }
 
             return null;
@@ -306,35 +289,12 @@ public class AccueilActivity extends NavDrawerActivity implements BasicUtils, Re
         }
     }
 
-
     public void remplirImportMedicamentBD() {
         Long count = importMedicamentDao.count();
         if (count == 0) {
             importMedicamentDao.insert(new ImportMedicament(0l,"CIS_bdpm.txt", false,"","",0,0,0));
         }
     }
-
-
-    @Override
-    public void onClickDeleteButton(int position) {
-        Toast.makeText(AccueilActivity.this, "click sur prescription", Toast.LENGTH_LONG).show();
-        Prescription prescription = listePrescription.get(position);
-        //creer la classe
-        //ouvrirActiviteSuivante(this, AfficherPrescriptionActivity.class,"rdvContactId",prescription.getId(),false);
-    }
-
-    @OnClick(R.id.button_list_prescription)
-    public void buttonListPrescriptionClick() {
-        if (!prescriptionDisplay) {
-            listPrescription.setVisibility(View.VISIBLE);
-        } else {
-            listPrescription.setVisibility(View.GONE);
-        }
-        prescriptionDisplay = !prescriptionDisplay;
-    }
-
-
-
 
     private class AsyncTaskRunnerBD extends AsyncTask<Void, Integer, Void> {
 
@@ -344,16 +304,11 @@ public class AccueilActivity extends NavDrawerActivity implements BasicUtils, Re
             //remplir BD avec valeur par defaut
             remplirFormePharmaceutiqueBD();
             publishProgress(10);
-
             remplirDefaultBD();
             publishProgress(20);
-
-
-
             publishProgress(65);
             remplirImportMedicamentBD();
             publishProgress(70);
-
             publishProgress(92);
             publishProgress(100);
             return null;
@@ -361,14 +316,21 @@ public class AccueilActivity extends NavDrawerActivity implements BasicUtils, Re
 
         protected void onPostExecute(Void result) {
             progressBar.setVisibility(View.GONE);
-            Toast.makeText(AccueilActivity.this, R.string.text_DB_created, Toast.LENGTH_LONG).show();
+            //Toast.makeText(AccueilActivity.this, R.string.text_DB_created, Toast.LENGTH_LONG).show();
 
+            listePrise = priseDao.loadAll();
+            List<Prise> currentList = new ArrayList<>();
+            for (Prise prise : listePrise) {
+                if (prise.getDate().equals(findDateJour())) {
+                    currentList.add(prise);
+                }
+            }
+            listePrise = currentList;
+            if (listePrise.size() == 0) {
+                buttonListPrise.setVisibility(View.GONE);
+            }
             configureRecyclerView();
             configureOnClickRecyclerView();
-            if (listePrescription.size() == 0) {
-                buttonListPrescription.setVisibility(View.GONE);
-            }
-
         }
 
         @RequiresApi(api = Build.VERSION_CODES.N)
@@ -376,24 +338,9 @@ public class AccueilActivity extends NavDrawerActivity implements BasicUtils, Re
             progressBar.setProgress(integer[0],true);
         }
     }
-    private void ActualiserListPrescription() {
-        /*List<Ordonnance> listAllOrdonnance = Ordonnance.find(Ordonnance.class,"utilisateur = ? and validated = 1",activeUser.getId().toString());
-        for (Ordonnance currentOrdonnance : listAllOrdonnance) {
-            List<Prescription> listAllPrescription = Prescription.find(Prescription.class,"ordonnance = ?",currentOrdonnance.getId().toString());
-            for (Prescription currentPrescription : listAllPrescription) {
-                if (currentPrescription.getDateFin().after(DateUtils.ajouterJour(new Date(),1))) {
-                    listePrescription.add(currentPrescription);
-                }
-            }
-        }
-
-        Collections.sort(listePrescription);*/
-    }
-
-
 
     private void configureOnClickRecyclerView(){
-        ItemClickSupport.addTo(listPrescription, R.layout.recycler_list_prescription)
+        ItemClickSupport.addTo(listPrise, R.layout.recycler_list_prise)
                 .setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
                     @Override
                     public void onItemClicked(RecyclerView recyclerView, int position, View v) {
@@ -405,10 +352,9 @@ public class AccueilActivity extends NavDrawerActivity implements BasicUtils, Re
             }
 
     public void configureRecyclerView() {
-        adapterPrescription = new RecyclerAdapterPrescription(listePrescription, this);
-        adapterPrescription.displayButtons(false);
-        listPrescription.setAdapter(adapterPrescription);
-        listPrescription.setLayoutManager(new LinearLayoutManager(this));
+        adapterPrise = new RecyclerAdapterPrise(listePrise, this);
+        listPrise.setAdapter(adapterPrise);
+        listPrise.setLayoutManager(new LinearLayoutManager(this));
     }
 
     public void remplirFormePharmaceutiqueBD() {

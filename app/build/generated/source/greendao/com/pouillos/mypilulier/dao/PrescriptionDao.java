@@ -32,9 +32,11 @@ public class PrescriptionDao extends AbstractDao<Prescription, Long> {
      */
     public static class Properties {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
-        public final static Property MedicamentId = new Property(1, long.class, "medicamentId", false, "MEDICAMENT_ID");
-        public final static Property Frequence = new Property(2, String.class, "frequence", false, "FREQUENCE");
-        public final static Property DateFin = new Property(3, java.util.Date.class, "dateFin", false, "DATE_FIN");
+        public final static Property Qte = new Property(1, float.class, "qte", false, "QTE");
+        public final static Property MedicamentId = new Property(2, long.class, "medicamentId", false, "MEDICAMENT_ID");
+        public final static Property Frequence = new Property(3, String.class, "frequence", false, "FREQUENCE");
+        public final static Property DateFin = new Property(4, java.util.Date.class, "dateFin", false, "DATE_FIN");
+        public final static Property DateFinString = new Property(5, String.class, "dateFinString", false, "DATE_FIN_STRING");
     }
 
     private DaoSession daoSession;
@@ -55,9 +57,11 @@ public class PrescriptionDao extends AbstractDao<Prescription, Long> {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "\"PRESCRIPTION\" (" + //
                 "\"_id\" INTEGER PRIMARY KEY ," + // 0: id
-                "\"MEDICAMENT_ID\" INTEGER NOT NULL ," + // 1: medicamentId
-                "\"FREQUENCE\" TEXT," + // 2: frequence
-                "\"DATE_FIN\" INTEGER);"); // 3: dateFin
+                "\"QTE\" REAL NOT NULL ," + // 1: qte
+                "\"MEDICAMENT_ID\" INTEGER NOT NULL ," + // 2: medicamentId
+                "\"FREQUENCE\" TEXT," + // 3: frequence
+                "\"DATE_FIN\" INTEGER," + // 4: dateFin
+                "\"DATE_FIN_STRING\" TEXT);"); // 5: dateFinString
     }
 
     /** Drops the underlying database table. */
@@ -74,16 +78,22 @@ public class PrescriptionDao extends AbstractDao<Prescription, Long> {
         if (id != null) {
             stmt.bindLong(1, id);
         }
-        stmt.bindLong(2, entity.getMedicamentId());
+        stmt.bindDouble(2, entity.getQte());
+        stmt.bindLong(3, entity.getMedicamentId());
  
         Frequence frequence = entity.getFrequence();
         if (frequence != null) {
-            stmt.bindString(3, frequenceConverter.convertToDatabaseValue(frequence));
+            stmt.bindString(4, frequenceConverter.convertToDatabaseValue(frequence));
         }
  
         java.util.Date dateFin = entity.getDateFin();
         if (dateFin != null) {
-            stmt.bindLong(4, dateFin.getTime());
+            stmt.bindLong(5, dateFin.getTime());
+        }
+ 
+        String dateFinString = entity.getDateFinString();
+        if (dateFinString != null) {
+            stmt.bindString(6, dateFinString);
         }
     }
 
@@ -95,16 +105,22 @@ public class PrescriptionDao extends AbstractDao<Prescription, Long> {
         if (id != null) {
             stmt.bindLong(1, id);
         }
-        stmt.bindLong(2, entity.getMedicamentId());
+        stmt.bindDouble(2, entity.getQte());
+        stmt.bindLong(3, entity.getMedicamentId());
  
         Frequence frequence = entity.getFrequence();
         if (frequence != null) {
-            stmt.bindString(3, frequenceConverter.convertToDatabaseValue(frequence));
+            stmt.bindString(4, frequenceConverter.convertToDatabaseValue(frequence));
         }
  
         java.util.Date dateFin = entity.getDateFin();
         if (dateFin != null) {
-            stmt.bindLong(4, dateFin.getTime());
+            stmt.bindLong(5, dateFin.getTime());
+        }
+ 
+        String dateFinString = entity.getDateFinString();
+        if (dateFinString != null) {
+            stmt.bindString(6, dateFinString);
         }
     }
 
@@ -123,9 +139,11 @@ public class PrescriptionDao extends AbstractDao<Prescription, Long> {
     public Prescription readEntity(Cursor cursor, int offset) {
         Prescription entity = new Prescription( //
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
-            cursor.getLong(offset + 1), // medicamentId
-            cursor.isNull(offset + 2) ? null : frequenceConverter.convertToEntityProperty(cursor.getString(offset + 2)), // frequence
-            cursor.isNull(offset + 3) ? null : new java.util.Date(cursor.getLong(offset + 3)) // dateFin
+            cursor.getFloat(offset + 1), // qte
+            cursor.getLong(offset + 2), // medicamentId
+            cursor.isNull(offset + 3) ? null : frequenceConverter.convertToEntityProperty(cursor.getString(offset + 3)), // frequence
+            cursor.isNull(offset + 4) ? null : new java.util.Date(cursor.getLong(offset + 4)), // dateFin
+            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5) // dateFinString
         );
         return entity;
     }
@@ -133,9 +151,11 @@ public class PrescriptionDao extends AbstractDao<Prescription, Long> {
     @Override
     public void readEntity(Cursor cursor, Prescription entity, int offset) {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
-        entity.setMedicamentId(cursor.getLong(offset + 1));
-        entity.setFrequence(cursor.isNull(offset + 2) ? null : frequenceConverter.convertToEntityProperty(cursor.getString(offset + 2)));
-        entity.setDateFin(cursor.isNull(offset + 3) ? null : new java.util.Date(cursor.getLong(offset + 3)));
+        entity.setQte(cursor.getFloat(offset + 1));
+        entity.setMedicamentId(cursor.getLong(offset + 2));
+        entity.setFrequence(cursor.isNull(offset + 3) ? null : frequenceConverter.convertToEntityProperty(cursor.getString(offset + 3)));
+        entity.setDateFin(cursor.isNull(offset + 4) ? null : new java.util.Date(cursor.getLong(offset + 4)));
+        entity.setDateFinString(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
      }
     
     @Override

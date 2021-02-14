@@ -17,9 +17,9 @@ import java.lang.Override;
 public class ImportMedicamentActivity_ViewBinding implements Unbinder {
   private ImportMedicamentActivity target;
 
-  private View view7f0800bc;
+  private View view7f0800aa;
 
-  private View view7f0800be;
+  private View view7f0800ac;
 
   @UiThread
   public ImportMedicamentActivity_ViewBinding(ImportMedicamentActivity target) {
@@ -34,7 +34,7 @@ public class ImportMedicamentActivity_ViewBinding implements Unbinder {
     target.nbMedicamentImported = Utils.findRequiredViewAsType(source, R.id.nbMedicamentImported, "field 'nbMedicamentImported'", TextView.class);
     view = Utils.findRequiredView(source, R.id.fabImport, "field 'fabImport' and method 'fabImportClick'");
     target.fabImport = Utils.castView(view, R.id.fabImport, "field 'fabImport'", FloatingActionButton.class);
-    view7f0800bc = view;
+    view7f0800aa = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -43,7 +43,7 @@ public class ImportMedicamentActivity_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.fabSupprDoublon, "field 'fabSupprDoublon' and method 'fabSupprDoublonClick'");
     target.fabSupprDoublon = Utils.castView(view, R.id.fabSupprDoublon, "field 'fabSupprDoublon'", FloatingActionButton.class);
-    view7f0800be = view;
+    view7f0800ac = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -65,9 +65,9 @@ public class ImportMedicamentActivity_ViewBinding implements Unbinder {
     target.fabSupprDoublon = null;
     target.progressBar = null;
 
-    view7f0800bc.setOnClickListener(null);
-    view7f0800bc = null;
-    view7f0800be.setOnClickListener(null);
-    view7f0800be = null;
+    view7f0800aa.setOnClickListener(null);
+    view7f0800aa = null;
+    view7f0800ac.setOnClickListener(null);
+    view7f0800ac = null;
   }
 }

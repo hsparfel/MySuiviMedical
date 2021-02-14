@@ -1,12 +1,9 @@
 package com.pouillos.mypilulier.activities.add;
 
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -14,37 +11,26 @@ import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.RadioButton;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.chip.Chip;
-import com.google.android.material.chip.ChipGroup;
-import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.pouillos.mypilulier.R;
+import com.pouillos.mypilulier.activities.AccueilActivity;
 import com.pouillos.mypilulier.activities.NavDrawerActivity;
-import com.pouillos.mypilulier.activities.utils.DateUtils;
+import com.pouillos.mypilulier.entities.Dose;
 import com.pouillos.mypilulier.entities.Medicament;
 import com.pouillos.mypilulier.entities.MedicamentLight;
 import com.pouillos.mypilulier.entities.Prescription;
-import com.pouillos.mypilulier.entities.Rappel;
+import com.pouillos.mypilulier.entities.Prise;
 import com.pouillos.mypilulier.enumeration.Frequence;
 import com.pouillos.mypilulier.fragments.DatePickerFragmentDateJour;
 import com.pouillos.mypilulier.interfaces.BasicUtils;
-import com.pouillos.mypilulier.recycler.adapter.RecyclerAdapterRappel;
-import com.pouillos.mypilulier.utils.ItemClickSupport;
 
-import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -56,17 +42,15 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.OnTextChanged;
 import icepick.Icepick;
 import icepick.State;
 
-public class AddPrescriptionActivity extends NavDrawerActivity implements BasicUtils, RecyclerAdapterRappel.Listener {
+public class AddPrescriptionActivity extends NavDrawerActivity implements BasicUtils {
 
     @State
     Date date;
 
     Medicament medicamentSelected;
-
     Prescription prescription;
 
     @BindView(R.id.textMedicament)
@@ -74,48 +58,36 @@ public class AddPrescriptionActivity extends NavDrawerActivity implements BasicU
     @BindView(R.id.layoutMedicament)
     TextInputLayout listMedicament;
 
-
-
     List<MedicamentLight> listMedicamentLightBD;
-    private List<Rappel> listRappelBD;
 
+    @BindView(R.id.layoutQuantite)
+    TextInputLayout layoutQuantite;
+    @BindView(R.id.textQuantite)
+    TextInputEditText textQuantite;
+    @BindView(R.id.layoutDose)
+    TextInputLayout layoutDose;
+    @BindView(R.id.textDose)
+    TextInputEditText textDose;
     @BindView(R.id.layoutDate)
     TextInputLayout layoutDate;
     @BindView(R.id.textDate)
     TextInputEditText textDate;
 
-    public Frequence frequence;
+    private Frequence frequence;
+    private Dose dose;
 
     @BindView(R.id.fabSave)
     FloatingActionButton fabSave;
-    @BindView(R.id.fabAddRappel)
-    ExtendedFloatingActionButton fabAddRappel;
 
     @BindView(R.id.my_progressBar)
     ProgressBar progressBar;
-
-    @BindView(R.id.listRappel)
-    RecyclerView listRappel;
-
-    private RecyclerAdapterRappel adapter;
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        //SharedPreferences preferences=getSharedPreferences("prescription",MODE_PRIVATE);
-        //int prescriptionId = preferences.getInt("registration_id", 0);
-        if (prescription != null) {
-            AddPrescriptionActivity.AsyncTaskRunnerBDRappel runnerBDRappel = new AddPrescriptionActivity.AsyncTaskRunnerBDRappel();
-            runnerBDRappel.execute();
-        }
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Icepick.restoreInstanceState(this, savedInstanceState);
         setContentView(R.layout.activity_add_prescription);
-        // 6 - Configure all views
+
         this.configureToolBar();
         this.configureBottomView();
 
@@ -125,162 +97,53 @@ public class AddPrescriptionActivity extends NavDrawerActivity implements BasicU
 
         AddPrescriptionActivity.AsyncTaskRunnerBDMedicament runnerBDMedicament = new AddPrescriptionActivity.AsyncTaskRunnerBDMedicament();
         runnerBDMedicament.execute();
-        fabAddRappel.hide();
-        hideAll(true);
-
-
+        hideAll();
+        frequence = Frequence.EveryXDays;
         setTitle("+ Prescription");
         listMedicament.setEnabled(false);
-     //   hideAll(true);
-        traiterIntent();
-        //selectedContact.setOnItemClickListener(this);
+        layoutDose.setEnabled(false);
         selectedMedicament.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 String selection = (String) adapterView.getItemAtPosition(position);
-                //List<MedicamentLight> listMedicamentLight = MedicamentLight.find(MedicamentLight.class,"denomination = ?", selection);
                 List<MedicamentLight> listMedicamentLight = medicamentLightDao.queryRaw("where denomination = ?",selection);
                 MedicamentLight medicamentLight = null;
                 if (listMedicamentLight.size() > 0) {
                     medicamentLight = listMedicamentLight.get(0);
                 }
-                //medicamentSelected = Medicament.findById(Medicament.class,medicamentLight.getId());
                 medicamentSelected = medicamentDao.load(medicamentLight.getId());
-                hideAll(true);
-
+                dose = recupDose(medicamentSelected);
+                textDose.setText(dose.getName());
+                showAll();
             }
         });
 
     }
 
-    public void traiterIntent() {
-        Intent intent = getIntent();
-       /* if (intent.hasExtra("ordonnanceId")) {
-            Long ordonnanceId = intent.getLongExtra("ordonnanceId", 0);
-            ordonnance = Ordonnance.findById(Ordonnance.class, ordonnanceId);
-        }*/
-    }
-
-    com.shawnlin.numberpicker.NumberPicker.OnValueChangeListener onValueChangeListenerFrequence =
-            new 	com.shawnlin.numberpicker.NumberPicker.OnValueChangeListener(){
-                @Override
-                public void onValueChange(com.shawnlin.numberpicker.NumberPicker numberPicker, int i, int i1) {
-                    Toast.makeText(AddPrescriptionActivity.this,"selected number freq"+numberPicker.getValue(), Toast.LENGTH_SHORT).show();
-                }
-            };
-
-    com.shawnlin.numberpicker.NumberPicker.OnValueChangeListener onValueChangeListenerDuree =
-            new 	com.shawnlin.numberpicker.NumberPicker.OnValueChangeListener(){
-                @Override
-                public void onValueChange(com.shawnlin.numberpicker.NumberPicker numberPicker, int i, int i1) {
-                    Toast.makeText(AddPrescriptionActivity.this,"selected number duree"+numberPicker.getValue(), Toast.LENGTH_SHORT).show();
-                    //date = DateUtils.ajouterJour(ordonnance.getDate(),numberPicker.getValue());
-                }
-            };
-
-
-    public void onRGFrequenceClick(View view){
-
-      /*  if (rbWhenNeeded.isChecked()) {
-            frequence = Frequence.WhenNeeded;
-            preFreq.setText("");
-            postFreq.setText("");
-        } else if (rbEveryDay.isChecked()) {
-            frequence = Frequence.EveryDay;
-            preFreq.setText("");
-            postFreq.setText("");
-        } else if (rbEveryDayByHour.isChecked()) {
-            frequence = Frequence.EveryDayByHour;
-            preFreq.setText("toutes les");
-            postFreq.setText("heures");
-        } else */
-      /*if (rbEveryXDays.isChecked()) {
-            frequence = Frequence.EveryXDays;
-            preFreq.setText("tous les");
-            postFreq.setText("jours");
-        }*/ /*else if (rbChosenDays.isChecked()) {
-            frequence = Frequence.ChosenDays;
-            preFreq.setText("");
-            preFreq.setText("");
-        }*/
-
-       // fragmentListFrequence.getView().setVisibility(View.GONE);
-        //updateDisplay();
-    }
-
-    public void onRGDureeClick(View view){
-        date = null;
-        textDate.setText("");
-        /*if (rbNoEnding.isChecked()) {
-           // duree = Duree.NoEnding;
-            preDuree.setText("");
-            postDuree.setText("");
-        } else
-        if (rbUntilDate.isChecked()) {
-           // duree = Duree.UntilDate;
-            preDuree.setText("");
-            postDuree.setText("");
-        } else if (rbDuringDays.isChecked()) {
-          //  duree = Duree.DuringDays;
-            preDuree.setText("pendant");
-            postDuree.setText("jours");
-        }*/
-        //textDuree.setText(duree.toString());
-      //  fragmentListDuree.getView().setVisibility(View.GONE);
-        //updateDisplay();
-    }
-
     @OnClick(R.id.fabSave)
     public void fabSaveClick() {
         saveToDb();
-        //revenirActivitePrecedente("prescription","id",prescription.getId());
-        finish();
     }
 
-    @OnClick(R.id.fabAddRappel)
-    public void fabAddRappelClick() {
-        saveToDb();
-        //revenirActivitePrecedente("prescription","id",prescription.getId());
-        ouvrirActiviteSuivante(AddPrescriptionActivity.this,AddRappelActivity.class,"prescriptionId", prescription.getId(),false);
+    private void showAll(){
+        fabSave.show();
+        layoutDate.setVisibility(View.VISIBLE);
+        layoutQuantite.setVisibility(View.VISIBLE);
+        layoutDose.setVisibility(View.VISIBLE);
     }
 
-
-
-
-
-    private void hideAll(boolean bool){
-        //fabAddRappel.hide();
+    private void hideAll(){
         fabSave.hide();
-
-     //   fragmentListDuree.getView().setVisibility(View.GONE);
         layoutDate.setVisibility(View.GONE);
-
-
-
-    }
-
-
-
-    @Override
-    public void onClickDeleteButton(int position) {
-        Rappel rappel = adapter.getRappel(position);
-        Toast.makeText(AddPrescriptionActivity.this, "You are trying to delete user : "+ rappel.getHeure()+" - "+rappel.getQuantiteDose()+ " " + rappel.getDose().getName(), Toast.LENGTH_SHORT).show();
-        rappel.delete();
-
-
-        listRappelBD.remove(position);
-        adapter.notifyItemRemoved(position);
-       // adapter.notifyDataSetChanged();
+        layoutQuantite.setVisibility(View.GONE);
+        layoutDose.setVisibility(View.GONE);
     }
 
     public class AsyncTaskRunnerBDMedicament extends AsyncTask<Void, Integer, Void> {
 
         protected Void doInBackground(Void...voids) {
             publishProgress(0);
-
             publishProgress(50);
-
-            //listMedicamentLightBD = MedicamentLight.listAll(MedicamentLight.class);
             listMedicamentLightBD = medicamentLightDao.loadAll();
             Collections.sort(listMedicamentLightBD);
             publishProgress(100);
@@ -292,10 +155,6 @@ public class AddPrescriptionActivity extends NavDrawerActivity implements BasicU
             progressBar.setVisibility(View.GONE);
             buildDropdownMenu(listMedicamentLightBD, AddPrescriptionActivity.this,selectedMedicament);
             listMedicament.setEnabled(true);
-            if (prescription != null) {
-                AddPrescriptionActivity.AsyncTaskRunnerBDRappel runnerBDRappel = new AddPrescriptionActivity.AsyncTaskRunnerBDRappel();
-                runnerBDRappel.execute();
-            }
         }
 
         @RequiresApi(api = Build.VERSION_CODES.N)
@@ -304,32 +163,59 @@ public class AddPrescriptionActivity extends NavDrawerActivity implements BasicU
         }
     }
 
-    @Override
     public void saveToDb() {
-        if (prescription == null) {
+        if (verifChamps()) {
             prescription = new Prescription();
-        }
-
-        prescription.setMedicament(medicamentSelected);
-        //prescription.setDuree(duree);
-        prescription.setFrequence(frequence);
-        //prescription.setOrdonnance(ordonnance);
-      /*  if (frequence != null && frequence != Frequence.WhenNeeded) {
-            prescription.setFrequenceOption(numberPickerFrequence.getValue());
-        }*/
-       /* if (duree != null) {
-            prescription.setDureeOption(numberPickerDuree.getValue());
-        }*/
-        prescription.setDateFin(date);
-
-
-        //prescription.setId(prescription.save());
-        if (prescription == null) {
+            prescription.setMedicament(medicamentSelected);
+            prescription.setFrequence(frequence);
+            prescription.setDateFin(initDate(date));
+            prescription.setDateFinString(initDate(date).toString());
+            prescription.setQte(Float.parseFloat(textQuantite.getText().toString()));
             prescription.setId(prescriptionDao.insert(prescription));
-        } else {
-            prescriptionDao.update(prescription);
+            remplirDbPrise();
+            ouvrirActiviteSuivante(AddPrescriptionActivity.this, AccueilActivity.class,false);
         }
+    }
 
+    public void remplirDbPrise() {
+            Date dateDebut = initDate(new Date());
+            Date dateFin = initDate(ajouterJour(date,1));
+            for (Date date = dateDebut; !date.equals(dateFin);) {
+                Prise prise = new Prise();
+                prise.setDate(date);
+                prise.setDateString(date.toString());
+                prise.setDose(dose);
+                prise.setEffectue(false);
+                prise.setMedicament(medicamentSelected);
+                prise.setQteDose(Float.parseFloat(textQuantite.getText().toString()));
+                priseDao.insert((prise));
+                //startAlert(prise,this);
+                String shortDenomination = prise.getMedicament().getDenomination().length()>19 ? prise.getMedicament().getDenomination().substring(0,19) : prise.getMedicament().getDenomination();
+                String textNotif = prise.getQteDose()+" "+recupDose(prise.getMedicament()).getName()+" "+shortDenomination;
+               // scheduleNotification(this,prise.getDate().getTime(),"MyPilulier",textNotif);
+                //scheduleNotification(getNotification(textNotif),prise.getDate().getTime()) ;
+                /*WorkRequest work = new PeriodicWorkRequest.Builder(MyWorker.class, 1, TimeUnit.DAYS)
+                        .setInitialDelay(1, TimeUnit.MINUTES)
+                        .build()
+                        ;
+                WorkManager.getInstance(this).enqueue(work);*/
+                notifSchedule(prise,this);
+                //notifSchedule(prescription,this);
+                date = ajouterJour(date,1);
+            }
+    }
+
+    public boolean verifChamps() {
+        boolean bool = true;
+        if (!isFilled(textDate)) {
+            bool = false;
+            textDate.setError("Sélection Obligatoire");
+        }
+        if (!isFilled(textQuantite)) {
+            bool = false;
+            textQuantite.setError("Sélection Obligatoire");
+        }
+        return bool;
     }
 
     @Override
@@ -346,16 +232,13 @@ public class AddPrescriptionActivity extends NavDrawerActivity implements BasicU
         return super.dispatchTouchEvent(ev);
     }
 
-    @Override
     public void showDatePickerDialog(View v) {
         DatePickerFragmentDateJour newFragment = new DatePickerFragmentDateJour();
-        //newFragment.show(getSupportFragmentManager(), "buttonDate");
         newFragment.show(getSupportFragmentManager(), "editTexteDate");
         newFragment.setOnDateClickListener(new DatePickerFragmentDateJour.onDateClickListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
                 datePicker.setMinDate(new Date().getTime());
-               // TextView tv1= (TextView) findViewById(R.id.textDate);
                 String dateJour = ""+datePicker.getDayOfMonth();
                 String dateMois = ""+(datePicker.getMonth()+1);
                 String dateAnnee = ""+datePicker.getYear();
@@ -366,81 +249,20 @@ public class AddPrescriptionActivity extends NavDrawerActivity implements BasicU
                     dateMois = "0"+dateMois;
                 }
                 Calendar c1 = Calendar.getInstance();
-                // set Month
-                // MONTH starts with 0 i.e. ( 0 - Jan)
                 c1.set(Calendar.MONTH, datePicker.getMonth());
-                // set Date
                 c1.set(Calendar.DATE, datePicker.getDayOfMonth());
-                // set Year
                 c1.set(Calendar.YEAR, datePicker.getYear());
-                // creating a date object with specified time.
                 date = c1.getTime();
-
                 String dateString = dateJour+"/"+dateMois+"/"+dateAnnee;
-                //tv1.setText("date: "+dateString);
                 textDate.setText(dateString);
                 textDate.setError(null);
                 DateFormat df = new SimpleDateFormat("dd/MM/yy");
                 try{
                     date = df.parse(dateString);
-                    hideAll(true);
-
                 }catch(ParseException e){
                     System.out.println("ERROR");
                 }
             }
         });
-    }
-
-    public class AsyncTaskRunnerBDRappel extends AsyncTask<Void, Integer, Void> {
-
-        protected Void doInBackground(Void...voids) {
-            publishProgress(0);
-            //activeUser = findActiveUser();
-            publishProgress(50);
-            //listRappelBD = Rappel.find(Rappel.class,"prescription = ?", prescription.getId().toString());
-            listRappelBD = rappelDao.queryRaw("where prescription_id = ?",prescription.getId().toString());
-            //listContactBD = Contact.findWithQuery(Contact.class, requete);
-            Collections.sort(listRappelBD);
-            publishProgress(100);
-            return null;
-        }
-
-        @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
-        protected void onPostExecute(Void result) {
-            progressBar.setVisibility(View.GONE);
-            //buildDropdownMenu(listContactBD, AddOrdonnanceActivity.this,selectedContact);
-            //todo alimenter la listview
-            //this.githubUsers = new ArrayList<>();
-            // 3.2 - Create adapter passing the list of users
-            configureRecyclerView();
-            configureOnClickRecyclerView();
-            hideAll(true);
-
-        }
-
-        @RequiresApi(api = Build.VERSION_CODES.N)
-        protected void onProgressUpdate(Integer... integer) {
-            progressBar.setProgress(integer[0],true);
-        }
-    }
-
-    private void configureOnClickRecyclerView(){
-        ItemClickSupport.addTo(listRappel, R.layout.recycler_list_item)
-                .setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
-                    @Override
-                    public void onItemClicked(RecyclerView recyclerView, int position, View v) {
-                        Log.e("TAG", "Position : "+position);
-                    }
-                });
-    }
-
-    public void configureRecyclerView() {
-        adapter = new RecyclerAdapterRappel(listRappelBD, this);
-        // 3.3 - Attach the adapter to the recyclerview to populate items
-        listRappel.setAdapter(adapter);
-        // 3.4 - Set layout manager to position the items
-        //this.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        listRappel.setLayoutManager(new LinearLayoutManager(this));
     }
 }

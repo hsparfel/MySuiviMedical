@@ -6,11 +6,9 @@ import android.widget.AutoCompleteTextView;
 import android.widget.ProgressBar;
 import androidx.annotation.CallSuper;
 import androidx.annotation.UiThread;
-import androidx.recyclerview.widget.RecyclerView;
 import butterknife.Unbinder;
 import butterknife.internal.DebouncingOnClickListener;
 import butterknife.internal.Utils;
-import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -21,9 +19,7 @@ import java.lang.Override;
 public class AddPrescriptionActivity_ViewBinding implements Unbinder {
   private AddPrescriptionActivity target;
 
-  private View view7f0800bd;
-
-  private View view7f0800bb;
+  private View view7f0800ab;
 
   @UiThread
   public AddPrescriptionActivity_ViewBinding(AddPrescriptionActivity target) {
@@ -37,28 +33,22 @@ public class AddPrescriptionActivity_ViewBinding implements Unbinder {
     View view;
     target.selectedMedicament = Utils.findRequiredViewAsType(source, R.id.textMedicament, "field 'selectedMedicament'", AutoCompleteTextView.class);
     target.listMedicament = Utils.findRequiredViewAsType(source, R.id.layoutMedicament, "field 'listMedicament'", TextInputLayout.class);
+    target.layoutQuantite = Utils.findRequiredViewAsType(source, R.id.layoutQuantite, "field 'layoutQuantite'", TextInputLayout.class);
+    target.textQuantite = Utils.findRequiredViewAsType(source, R.id.textQuantite, "field 'textQuantite'", TextInputEditText.class);
+    target.layoutDose = Utils.findRequiredViewAsType(source, R.id.layoutDose, "field 'layoutDose'", TextInputLayout.class);
+    target.textDose = Utils.findRequiredViewAsType(source, R.id.textDose, "field 'textDose'", TextInputEditText.class);
     target.layoutDate = Utils.findRequiredViewAsType(source, R.id.layoutDate, "field 'layoutDate'", TextInputLayout.class);
     target.textDate = Utils.findRequiredViewAsType(source, R.id.textDate, "field 'textDate'", TextInputEditText.class);
     view = Utils.findRequiredView(source, R.id.fabSave, "field 'fabSave' and method 'fabSaveClick'");
     target.fabSave = Utils.castView(view, R.id.fabSave, "field 'fabSave'", FloatingActionButton.class);
-    view7f0800bd = view;
+    view7f0800ab = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
         target.fabSaveClick();
       }
     });
-    view = Utils.findRequiredView(source, R.id.fabAddRappel, "field 'fabAddRappel' and method 'fabAddRappelClick'");
-    target.fabAddRappel = Utils.castView(view, R.id.fabAddRappel, "field 'fabAddRappel'", ExtendedFloatingActionButton.class);
-    view7f0800bb = view;
-    view.setOnClickListener(new DebouncingOnClickListener() {
-      @Override
-      public void doClick(View p0) {
-        target.fabAddRappelClick();
-      }
-    });
     target.progressBar = Utils.findRequiredViewAsType(source, R.id.my_progressBar, "field 'progressBar'", ProgressBar.class);
-    target.listRappel = Utils.findRequiredViewAsType(source, R.id.listRappel, "field 'listRappel'", RecyclerView.class);
   }
 
   @Override
@@ -70,16 +60,16 @@ public class AddPrescriptionActivity_ViewBinding implements Unbinder {
 
     target.selectedMedicament = null;
     target.listMedicament = null;
+    target.layoutQuantite = null;
+    target.textQuantite = null;
+    target.layoutDose = null;
+    target.textDose = null;
     target.layoutDate = null;
     target.textDate = null;
     target.fabSave = null;
-    target.fabAddRappel = null;
     target.progressBar = null;
-    target.listRappel = null;
 
-    view7f0800bd.setOnClickListener(null);
-    view7f0800bd = null;
-    view7f0800bb.setOnClickListener(null);
-    view7f0800bb = null;
+    view7f0800ab.setOnClickListener(null);
+    view7f0800ab = null;
   }
 }
