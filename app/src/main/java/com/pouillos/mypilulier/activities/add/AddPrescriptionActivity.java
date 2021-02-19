@@ -200,6 +200,7 @@ public class AddPrescriptionActivity extends NavDrawerActivity implements BasicU
                         ;
                 WorkManager.getInstance(this).enqueue(work);*/
                 notifSchedule(prise,this);
+                //scheduleAlarm(prise,this);
                 //notifSchedule(prescription,this);
                 date = ajouterJour(date,1);
             }

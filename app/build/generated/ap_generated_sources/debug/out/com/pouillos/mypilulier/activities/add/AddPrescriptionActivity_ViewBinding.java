@@ -19,7 +19,7 @@ import java.lang.Override;
 public class AddPrescriptionActivity_ViewBinding implements Unbinder {
   private AddPrescriptionActivity target;
 
-  private View view7f0800ab;
+  private View view7f0800ac;
 
   @UiThread
   public AddPrescriptionActivity_ViewBinding(AddPrescriptionActivity target) {
@@ -41,7 +41,7 @@ public class AddPrescriptionActivity_ViewBinding implements Unbinder {
     target.textDate = Utils.findRequiredViewAsType(source, R.id.textDate, "field 'textDate'", TextInputEditText.class);
     view = Utils.findRequiredView(source, R.id.fabSave, "field 'fabSave' and method 'fabSaveClick'");
     target.fabSave = Utils.castView(view, R.id.fabSave, "field 'fabSave'", FloatingActionButton.class);
-    view7f0800ab = view;
+    view7f0800ac = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -69,7 +69,7 @@ public class AddPrescriptionActivity_ViewBinding implements Unbinder {
     target.fabSave = null;
     target.progressBar = null;
 
-    view7f0800ab.setOnClickListener(null);
-    view7f0800ab = null;
+    view7f0800ac.setOnClickListener(null);
+    view7f0800ac = null;
   }
 }

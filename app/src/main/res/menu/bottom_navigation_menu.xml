@@ -10,4 +10,10 @@
         android:icon="@drawable/medicine_medical_pharmacy_health_prescription_pill_drug_icon_140910"
         android:title="+ Prescription"/>
 
+    <item
+        android:id="@+id/bottom_navigation_cancel_alarm"
+        android:enabled="true"
+        android:icon="@drawable/baseline_alarm_off_black_18dp"
+        android:title="RAZ Alarmes"/>
+
 </menu>
