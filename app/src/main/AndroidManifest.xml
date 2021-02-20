@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.pouillos.mypilulier">
+    package="com.pouillos.mysuivimedical">
 
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
     <uses-permission android:name="android.permission.CAMERA"/>
@@ -10,7 +10,7 @@
     <uses-feature android:name="android.hardware.camera" />
 
     <application
-        android:name=".MyApp"
+        android:name="com.pouillos.mysuivimedical.MyApp"
         android:allowBackup="true"
 
         android:icon="@mipmap/icons8_main_pilule"
@@ -22,7 +22,7 @@
 
         <meta-data
             android:name="DATABASE"
-            android:value="my_pilulier.db" />
+            android:value="my_suivi_medical.db" />
         <meta-data
             android:name="VERSION"
 
@@ -33,13 +33,13 @@
             android:value="true" />
         <meta-data
             android:name="DOMAIN_PACKAGE_NAME"
-            android:value="com.pouillos.mypilulier" />
+            android:value="com.pouillos.mysuivimedical" />
 
 
-        <activity android:name=".activities.add.AddPrescriptionActivity"
+        <activity android:name="com.pouillos.mysuivimedical.activities.add.AddPrescriptionActivity"
             android:windowSoftInputMode="stateHidden"/>
 
-        <activity android:name=".activities.AccueilActivity">
+        <activity android:name="com.pouillos.mysuivimedical.activities.AccueilActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -48,7 +48,7 @@
         <!--    <activity android:name=".activities.graphique.BarToLineChartActivity" /> -->
 
 
-        <activity android:name=".activities.tools.ImportMedicamentActivity" />
+        <activity android:name="com.pouillos.mysuivimedical.activities.tools.ImportMedicamentActivity" />
         <!-- <receiver android:name=".activities.tools.MyBroadcastReceiver" ></receiver> -->
         <!-- <receiver android:name = ".activities.tools.MyNotificationBroadcastReceiver" >
             <intent-filter>
@@ -56,13 +56,13 @@
             </intent-filter>
         </receiver> -->
 
-        <receiver android:name= ".activities.tools.Alarm" >
+        <receiver android:name= "com.pouillos.mysuivimedical.activities.tools.Alarm" >
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.QUICKBOOT_POWERON" />
             </intent-filter>
         </receiver>
-        <receiver android:name= ".activities.tools.ReminderBroadcast" >
+        <receiver android:name= "com.pouillos.mysuivimedical.activities.tools.ReminderBroadcast" >
          <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.QUICKBOOT_POWERON" />
@@ -71,7 +71,7 @@
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.pouillos.mypilulier.fileprovider"
+            android:authorities="com.pouillos.mysuivimedical.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
@@ -79,43 +79,43 @@
                 android:resource="@xml/filepaths" />
         </provider>
         <provider
-            android:name=".provider.PriseContentProvider"
-            android:authorities="com.pouillos.mypilulier.provider"
+            android:name="com.pouillos.mysuivimedical.provider.PriseContentProvider"
+            android:authorities="com.pouillos.mysuivimedical.provider"
 
             android:exported="true"
             android:enabled="true"
             android:multiprocess="true"/>
         <provider
-            android:name=".provider.AssociationFormeDoseContentProvider"
-            android:authorities="com.pouillos.mypilulier.provider"
+            android:name="com.pouillos.mysuivimedical.provider.AssociationFormeDoseContentProvider"
+            android:authorities="com.pouillos.mysuivimedical.provider"
 
             android:exported="true"
             android:enabled="true"
             android:multiprocess="true"/>
         <provider
-            android:name=".provider.DoseContentProvider"
-            android:authorities="com.pouillos.mypilulier.provider"
+            android:name="com.pouillos.mysuivimedical.provider.DoseContentProvider"
+            android:authorities="com.pouillos.mysuivimedical.provider"
 
             android:exported="true"
             android:enabled="true"
             android:multiprocess="true"/>
         <provider
-            android:name=".provider.FormePharmaceutiqueContentProvider"
-            android:authorities="com.pouillos.mypilulier.provider"
+            android:name="com.pouillos.mysuivimedical.provider.FormePharmaceutiqueContentProvider"
+            android:authorities="com.pouillos.mysuivimedical.provider"
 
             android:exported="true"
             android:enabled="true"
             android:multiprocess="true"/>
         <provider
-            android:name=".provider.MedicamentContentProvider"
-            android:authorities="com.pouillos.mypilulier.provider"
+            android:name="com.pouillos.mysuivimedical.provider.MedicamentContentProvider"
+            android:authorities="com.pouillos.mysuivimedical.provider"
 
             android:exported="true"
             android:enabled="true"
             android:multiprocess="true"/>
         <provider
-            android:name=".provider.PrescriptionContentProvider"
-            android:authorities="com.pouillos.mypilulier.provider"
+            android:name="com.pouillos.mysuivimedical.provider.PrescriptionContentProvider"
+            android:authorities="com.pouillos.mysuivimedical.provider"
 
             android:exported="true"
             android:enabled="true"

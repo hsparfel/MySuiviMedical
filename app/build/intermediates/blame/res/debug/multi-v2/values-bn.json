@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\TNH\\AndroidStudioProjects\\MyPilulier2021\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-bn\\values-bn.xml",
+            "outputFile": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-bn\\values-bn.xml",
             "map": [
                 {
                     "source": "C:\\Users\\TNH\\.gradle\\caches\\transforms-2\\files-2.1\\3f52e46ad51292a0bdac6e6f55bdbe23\\material-1.3.0\\res\\values-bn\\values-bn.xml",

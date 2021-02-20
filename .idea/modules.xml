@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/MyPilulier2021.iml" filepath="$PROJECT_DIR$/.idea/modules/MyPilulier2021.iml" group="MyPilulier2021" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="MyPilulier2021/app" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/MySuiviMedical.iml" filepath="$PROJECT_DIR$/.idea/modules/MySuiviMedical.iml" group="MySuiviMedical" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="MySuiviMedical/app" />
     </modules>
   </component>
 </project>

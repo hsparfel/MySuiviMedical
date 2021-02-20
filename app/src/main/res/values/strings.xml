@@ -3,7 +3,7 @@
 
     <string name="home">Accueil</string>
 
-    <string name="app_name">My Pilulier</string>
+    <string name="app_name">My Suivi Medical</string>
     <string name="text_date">Date</string>
 
     <!-- Used in NavigationDrawer -->
