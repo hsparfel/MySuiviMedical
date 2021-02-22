@@ -58,4 +58,5 @@ public class MedicamentLight implements Comparable<MedicamentLight> {
     public void setDenomination(String denomination) {
         this.denomination = denomination;
     }
+
 }

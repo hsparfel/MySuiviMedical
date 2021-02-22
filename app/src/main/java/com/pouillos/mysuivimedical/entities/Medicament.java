@@ -191,4 +191,5 @@ public class Medicament implements Comparable<Medicament> {
         this.daoSession = daoSession;
         myDao = daoSession != null ? daoSession.getMedicamentDao() : null;
     }
+
 }

@@ -20,4 +20,13 @@ public enum Frequence {
         return name;
     }
 
+    public static Frequence fromString(String text) {
+        for (Frequence f : Frequence.values()) {
+            if (f.name.equalsIgnoreCase(text)) {
+                return f;
+            }
+        }
+        return null;
+    }
+
 }

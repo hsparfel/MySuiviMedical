@@ -1,9 +1,9 @@
 package com.pouillos.mysuivimedical.entities;
 
 
-import com.pouillos.finddoctor.dao.DaoSession;
-import com.pouillos.finddoctor.dao.DepartementDao;
-import com.pouillos.finddoctor.dao.RegionDao;
+import com.pouillos.mysuivimedical.dao.DaoSession;
+import com.pouillos.mysuivimedical.dao.DepartementDao;
+import com.pouillos.mysuivimedical.dao.RegionDao;
 
 import org.greenrobot.greendao.DaoException;
 import org.greenrobot.greendao.annotation.Entity;
@@ -11,6 +11,9 @@ import org.greenrobot.greendao.annotation.Generated;
 import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.NotNull;
 import org.greenrobot.greendao.annotation.ToOne;
+import com.pouillos.mysuivimedical.dao.DaoSession;
+import com.pouillos.mysuivimedical.dao.RegionDao;
+import com.pouillos.mysuivimedical.dao.DepartementDao;
 
 
 @Entity
@@ -37,9 +40,6 @@ public class Departement implements Comparable<Departement> {
     @Generated(hash = 1230795233)
     private transient DepartementDao myDao;
 
-
-
-
     @Generated(hash = 375594626)
     public Departement(Long id, @NotNull String numero, @NotNull String nom,
             long regionId) {
@@ -55,9 +55,6 @@ public class Departement implements Comparable<Departement> {
 
     @Generated(hash = 2019302108)
     private transient Long region__resolvedKey;
-
-
-
 
     @Override
     public String toString() {
@@ -176,9 +173,5 @@ public class Departement implements Comparable<Departement> {
         this.daoSession = daoSession;
         myDao = daoSession != null ? daoSession.getDepartementDao() : null;
     }
-
-
-
-
 
 }

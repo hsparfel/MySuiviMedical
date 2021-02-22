@@ -4,12 +4,12 @@ import android.content.Context;
 import android.location.Address;
 import android.location.Geocoder;
 
-import com.pouillos.finddoctor.dao.ContactDao;
-import com.pouillos.finddoctor.dao.DaoSession;
-import com.pouillos.finddoctor.dao.DepartementDao;
-import com.pouillos.finddoctor.dao.ProfessionDao;
-import com.pouillos.finddoctor.dao.RegionDao;
-import com.pouillos.finddoctor.dao.SavoirFaireDao;
+import com.pouillos.mysuivimedical.dao.ContactDao;
+import com.pouillos.mysuivimedical.dao.DaoSession;
+import com.pouillos.mysuivimedical.dao.DepartementDao;
+import com.pouillos.mysuivimedical.dao.ProfessionDao;
+import com.pouillos.mysuivimedical.dao.RegionDao;
+import com.pouillos.mysuivimedical.dao.SavoirFaireDao;
 
 import org.greenrobot.greendao.DaoException;
 import org.greenrobot.greendao.annotation.Entity;
@@ -20,6 +20,12 @@ import org.greenrobot.greendao.annotation.ToOne;
 
 import java.io.IOException;
 import java.util.List;
+import com.pouillos.mysuivimedical.dao.DaoSession;
+import com.pouillos.mysuivimedical.dao.RegionDao;
+import com.pouillos.mysuivimedical.dao.DepartementDao;
+import com.pouillos.mysuivimedical.dao.SavoirFaireDao;
+import com.pouillos.mysuivimedical.dao.ProfessionDao;
+import com.pouillos.mysuivimedical.dao.ContactDao;
 
 @Entity
 public class Contact implements Comparable<Contact>{
@@ -76,13 +82,6 @@ public class Contact implements Comparable<Contact>{
     @Generated(hash = 2046468181)
     private transient ContactDao myDao;
 
-
-
-
-
-
-
-
     @Generated(hash = 1103072865)
     public Contact(Long id, @NotNull String idPP, String codeCivilite, String nom,
             String prenom, long professionId, long savoirFaireId, String raisonSocial,
@@ -126,13 +125,6 @@ public class Contact implements Comparable<Contact>{
 
     @Generated(hash = 2019302108)
     private transient Long region__resolvedKey;
-
-
-
-
-
-
-
 
     @Override
     public String toString() {
@@ -515,10 +507,5 @@ public class Contact implements Comparable<Contact>{
         this.daoSession = daoSession;
         myDao = daoSession != null ? daoSession.getContactDao() : null;
     }
-
-
-
-
-
 
 }

@@ -4,11 +4,11 @@ import android.content.Context;
 import android.location.Address;
 import android.location.Geocoder;
 
-import com.pouillos.finddoctor.dao.DaoSession;
-import com.pouillos.finddoctor.dao.DepartementDao;
-import com.pouillos.finddoctor.dao.EtablissementDao;
-import com.pouillos.finddoctor.dao.RegionDao;
-import com.pouillos.finddoctor.dao.TypeEtablissementDao;
+import com.pouillos.mysuivimedical.dao.DaoSession;
+import com.pouillos.mysuivimedical.dao.DepartementDao;
+import com.pouillos.mysuivimedical.dao.EtablissementDao;
+import com.pouillos.mysuivimedical.dao.RegionDao;
+import com.pouillos.mysuivimedical.dao.TypeEtablissementDao;
 
 import org.greenrobot.greendao.DaoException;
 import org.greenrobot.greendao.annotation.Entity;
@@ -20,6 +20,11 @@ import org.greenrobot.greendao.annotation.Transient;
 
 import java.io.IOException;
 import java.util.List;
+import com.pouillos.mysuivimedical.dao.DaoSession;
+import com.pouillos.mysuivimedical.dao.TypeEtablissementDao;
+import com.pouillos.mysuivimedical.dao.RegionDao;
+import com.pouillos.mysuivimedical.dao.DepartementDao;
+import com.pouillos.mysuivimedical.dao.EtablissementDao;
 
 @Entity
 public class Etablissement implements Comparable<Etablissement> {
@@ -68,9 +73,6 @@ public class Etablissement implements Comparable<Etablissement> {
     @Generated(hash = 2067107635)
     private transient EtablissementDao myDao;
 
-
-
-
     @Generated(hash = 15652030)
     public Etablissement(Long id, String numeroFinessET, String raisonSocial, String adresse,
             String cp, String ville, String telephone, String fax, long departementId,
@@ -92,8 +94,6 @@ public class Etablissement implements Comparable<Etablissement> {
         this.isSelected = isSelected;
     }
 
-
-
     @Generated(hash = 1043456960)
     public Etablissement() {
     }
@@ -107,15 +107,10 @@ public class Etablissement implements Comparable<Etablissement> {
     @Generated(hash = 1797044420)
     private transient Long typeEtablissement__resolvedKey;
 
-
-
-
     @Override
     public String toString() {
         return raisonSocial+" - "+ville;
     }
-
-
 
     @Override
     public int compareTo(Etablissement o) {
@@ -125,7 +120,6 @@ public class Etablissement implements Comparable<Etablissement> {
     public void enregisterCoordonnees(Context context) {
         Geocoder coder = new Geocoder(context);
         List<Address> address;
-
         try {
             address = coder.getFromLocationName(adresse+", "+cp+" "+ville+", FRANCE",1);
             if (address.size()>0) {
@@ -139,186 +133,117 @@ public class Etablissement implements Comparable<Etablissement> {
         }
     }
 
-
-
-
-    public double getDistance() {
-        return distance;
-    }
-
-    public void setDistance(double distance) {
-        this.distance = distance;
-    }
-
-
-
     public Long getId() {
         return this.id;
     }
-
-
 
     public void setId(Long id) {
         this.id = id;
     }
 
-
-
     public String getNumeroFinessET() {
         return this.numeroFinessET;
     }
-
-
 
     public void setNumeroFinessET(String numeroFinessET) {
         this.numeroFinessET = numeroFinessET;
     }
 
-
-
     public String getRaisonSocial() {
         return this.raisonSocial;
     }
-
-
 
     public void setRaisonSocial(String raisonSocial) {
         this.raisonSocial = raisonSocial;
     }
 
-
-
     public String getAdresse() {
         return this.adresse;
     }
-
-
 
     public void setAdresse(String adresse) {
         this.adresse = adresse;
     }
 
-
-
     public String getCp() {
         return this.cp;
     }
-
-
 
     public void setCp(String cp) {
         this.cp = cp;
     }
 
-
-
     public String getVille() {
         return this.ville;
     }
-
-
 
     public void setVille(String ville) {
         this.ville = ville;
     }
 
-
-
     public String getTelephone() {
         return this.telephone;
     }
-
-
 
     public void setTelephone(String telephone) {
         this.telephone = telephone;
     }
 
-
-
     public String getFax() {
         return this.fax;
     }
-
-
 
     public void setFax(String fax) {
         this.fax = fax;
     }
 
-
-
     public long getDepartementId() {
         return this.departementId;
     }
-
-
 
     public void setDepartementId(long departementId) {
         this.departementId = departementId;
     }
 
-
-
     public long getRegionId() {
         return this.regionId;
     }
-
-
 
     public void setRegionId(long regionId) {
         this.regionId = regionId;
     }
 
-
-
     public double getLatitude() {
         return this.latitude;
     }
-
-
 
     public void setLatitude(double latitude) {
         this.latitude = latitude;
     }
 
-
-
     public double getLongitude() {
         return this.longitude;
     }
-
-
 
     public void setLongitude(double longitude) {
         this.longitude = longitude;
     }
 
-
-
     public long getTypeEtablissementId() {
         return this.typeEtablissementId;
     }
-
-
 
     public void setTypeEtablissementId(long typeEtablissementId) {
         this.typeEtablissementId = typeEtablissementId;
     }
 
-
-
     public boolean getIsSelected() {
         return this.isSelected;
     }
 
-
-
     public void setIsSelected(boolean isSelected) {
         this.isSelected = isSelected;
     }
-
-
 
     /** To-one relationship, resolved on first access. */
     @Generated(hash = 1052582015)
@@ -339,8 +264,6 @@ public class Etablissement implements Comparable<Etablissement> {
         return departement;
     }
 
-
-
     /** called by internal mechanisms, do not call yourself. */
     @Generated(hash = 695126866)
     public void setDepartement(@NotNull Departement departement) {
@@ -354,8 +277,6 @@ public class Etablissement implements Comparable<Etablissement> {
             departement__resolvedKey = departementId;
         }
     }
-
-
 
     /** To-one relationship, resolved on first access. */
     @Generated(hash = 1627127032)
@@ -376,8 +297,6 @@ public class Etablissement implements Comparable<Etablissement> {
         return region;
     }
 
-
-
     /** called by internal mechanisms, do not call yourself. */
     @Generated(hash = 667718594)
     public void setRegion(@NotNull Region region) {
@@ -391,8 +310,6 @@ public class Etablissement implements Comparable<Etablissement> {
             region__resolvedKey = regionId;
         }
     }
-
-
 
     /** To-one relationship, resolved on first access. */
     @Generated(hash = 1042617487)
@@ -414,8 +331,6 @@ public class Etablissement implements Comparable<Etablissement> {
         return typeEtablissement;
     }
 
-
-
     /** called by internal mechanisms, do not call yourself. */
     @Generated(hash = 1158181216)
     public void setTypeEtablissement(@NotNull TypeEtablissement typeEtablissement) {
@@ -430,8 +345,6 @@ public class Etablissement implements Comparable<Etablissement> {
         }
     }
 
-
-
     /**
      * Convenient call for {@link org.greenrobot.greendao.AbstractDao#delete(Object)}.
      * Entity must attached to an entity context.
@@ -443,8 +356,6 @@ public class Etablissement implements Comparable<Etablissement> {
         }
         myDao.delete(this);
     }
-
-
 
     /**
      * Convenient call for {@link org.greenrobot.greendao.AbstractDao#refresh(Object)}.
@@ -458,8 +369,6 @@ public class Etablissement implements Comparable<Etablissement> {
         myDao.refresh(this);
     }
 
-
-
     /**
      * Convenient call for {@link org.greenrobot.greendao.AbstractDao#update(Object)}.
      * Entity must attached to an entity context.
@@ -472,14 +381,11 @@ public class Etablissement implements Comparable<Etablissement> {
         myDao.update(this);
     }
 
-
-
     /** called by internal mechanisms, do not call yourself. */
     @Generated(hash = 138827958)
     public void __setDaoSession(DaoSession daoSession) {
         this.daoSession = daoSession;
         myDao = daoSession != null ? daoSession.getEtablissementDao() : null;
     }
-
 
 }

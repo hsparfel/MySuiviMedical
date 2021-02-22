@@ -26,20 +26,33 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputEditText;
 import com.pouillos.mysuivimedical.R;
-import com.pouillos.mysuivimedical.activities.add.AddPrescriptionActivity;
 import com.pouillos.mysuivimedical.activities.tools.Alarm;
 import com.pouillos.mysuivimedical.activities.tools.ReminderBroadcast;
 
+import com.pouillos.mysuivimedical.dao.AnalyseDao;
+import com.pouillos.mysuivimedical.dao.AssociationContactLightEtablissementLightDao;
 import com.pouillos.mysuivimedical.dao.AssociationFormeDoseDao;
+import com.pouillos.mysuivimedical.dao.ContactDao;
+import com.pouillos.mysuivimedical.dao.ContactLightDao;
 import com.pouillos.mysuivimedical.dao.DaoMaster;
 import com.pouillos.mysuivimedical.dao.DaoSession;
+import com.pouillos.mysuivimedical.dao.DepartementDao;
 import com.pouillos.mysuivimedical.dao.DoseDao;
+import com.pouillos.mysuivimedical.dao.EtablissementDao;
+import com.pouillos.mysuivimedical.dao.EtablissementLightDao;
+import com.pouillos.mysuivimedical.dao.ExamenDao;
 import com.pouillos.mysuivimedical.dao.FormePharmaceutiqueDao;
-import com.pouillos.mysuivimedical.dao.ImportMedicamentDao;
+
 import com.pouillos.mysuivimedical.dao.MedicamentDao;
 import com.pouillos.mysuivimedical.dao.MedicamentLightDao;
+import com.pouillos.mysuivimedical.dao.PhotoDao;
 import com.pouillos.mysuivimedical.dao.PrescriptionDao;
 import com.pouillos.mysuivimedical.dao.PriseDao;
+import com.pouillos.mysuivimedical.dao.ProfessionDao;
+import com.pouillos.mysuivimedical.dao.ProfilDao;
+import com.pouillos.mysuivimedical.dao.RegionDao;
+import com.pouillos.mysuivimedical.dao.SavoirFaireDao;
+import com.pouillos.mysuivimedical.dao.TypeEtablissementDao;
 import com.pouillos.mysuivimedical.entities.AssociationFormeDose;
 import com.pouillos.mysuivimedical.entities.Dose;
 import com.pouillos.mysuivimedical.entities.Medicament;
@@ -48,6 +61,7 @@ import com.pouillos.mysuivimedical.interfaces.BasicUtils;
 
 import org.greenrobot.greendao.database.Database;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -71,11 +85,24 @@ public class NavDrawerActivity extends AppCompatActivity implements BasicUtils {
     protected AssociationFormeDoseDao associationFormeDoseDao;
     protected DoseDao doseDao;
     protected FormePharmaceutiqueDao formePharmaceutiqueDao;
-    protected ImportMedicamentDao importMedicamentDao;
     protected MedicamentDao medicamentDao;
     protected MedicamentLightDao medicamentLightDao;
     protected PrescriptionDao prescriptionDao;
     protected PriseDao priseDao;
+    protected AnalyseDao analyseDao;
+    protected AssociationContactLightEtablissementLightDao associationContactLightEtablissementLightDao;
+    protected ContactDao contactDao;
+    protected ContactLightDao contactLightDao;
+    protected DepartementDao departementDao;
+    protected EtablissementDao etablissementDao;
+    protected EtablissementLightDao etablissementLightDao;
+    protected ExamenDao examenDao;
+    protected PhotoDao photoDao;
+    protected ProfessionDao professionDao;
+    protected ProfilDao profilDao;
+    protected RegionDao regionDao;
+    protected SavoirFaireDao savoirFaireDao;
+    protected TypeEtablissementDao typeEtablissementDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,11 +112,25 @@ public class NavDrawerActivity extends AppCompatActivity implements BasicUtils {
         associationFormeDoseDao = daoSession.getAssociationFormeDoseDao();
         doseDao = daoSession.getDoseDao();
         formePharmaceutiqueDao = daoSession.getFormePharmaceutiqueDao();
-        importMedicamentDao = daoSession.getImportMedicamentDao();
         medicamentDao = daoSession.getMedicamentDao();
         medicamentLightDao = daoSession.getMedicamentLightDao();
         prescriptionDao = daoSession.getPrescriptionDao();
         priseDao = daoSession.getPriseDao();
+        analyseDao = daoSession.getAnalyseDao();
+        associationContactLightEtablissementLightDao = daoSession.getAssociationContactLightEtablissementLightDao();
+        contactDao = daoSession.getContactDao();
+        contactLightDao = daoSession.getContactLightDao();
+        departementDao = daoSession.getDepartementDao();
+        etablissementDao = daoSession.getEtablissementDao();
+        etablissementLightDao = daoSession.getEtablissementLightDao();
+        examenDao = daoSession.getExamenDao();
+        photoDao = daoSession.getPhotoDao();
+        professionDao = daoSession.getProfessionDao();
+        profilDao = daoSession.getProfilDao();
+        regionDao = daoSession.getRegionDao();
+        savoirFaireDao = daoSession.getSavoirFaireDao();
+        typeEtablissementDao = daoSession.getTypeEtablissementDao();
+
     }
 
     @Override
@@ -121,14 +162,15 @@ public class NavDrawerActivity extends AppCompatActivity implements BasicUtils {
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                         switch (item.getItemId()) {
                             case R.id.bottom_navigation_home:
-                                ouvrirActiviteSuivante(NavDrawerActivity.this, AccueilActivity.class, true);
+                                //ouvrirActiviteSuivante(NavDrawerActivity.this, AccueilActivity.class, true);
+                                rouvrirActiviteAccueil(NavDrawerActivity.this,true);
                                 break;
                             case R.id.bottom_navigation_search_doctor:
-                                ouvrirActiviteSuivante(NavDrawerActivity.this, AddPrescriptionActivity.class, true);
+                                //ouvrirActiviteSuivante(NavDrawerActivity.this, AddPrescriptionActivity.class, true);
                                 break;
                             case R.id.bottom_navigation_cancel_alarm:
                                 //ouvrirActiviteSuivante(NavDrawerActivity.this, AddPrescriptionActivity.class, true);
-                                cancelAlarmDialog();
+                                //cancelAlarmDialog();
                                 break;
                         }
                         return true;
@@ -169,6 +211,15 @@ public class NavDrawerActivity extends AppCompatActivity implements BasicUtils {
 
     public void ouvrirActiviteSuivante(Context context, Class classe, boolean bool) {
         Intent intent = new Intent(context, classe);
+        startActivity(intent);
+        if (bool) {
+            finish();
+        }
+    }
+
+    public void rouvrirActiviteAccueil(Context context, boolean bool) {
+        Intent intent = new Intent(context, AccueilActivity.class);
+        intent.putExtra("isSecondLaunch", true);
         startActivity(intent);
         if (bool) {
             finish();
@@ -312,5 +363,11 @@ public class NavDrawerActivity extends AppCompatActivity implements BasicUtils {
     protected Date findDateJour() {
         Date date = initDate(new Date());
         return date;
+    }
+
+    protected static float floatArrondi(float number, int decimalPlace) {
+        BigDecimal bd = new BigDecimal(number);
+        bd = bd.setScale(decimalPlace, BigDecimal.ROUND_HALF_UP);
+        return bd.floatValue();
     }
 }

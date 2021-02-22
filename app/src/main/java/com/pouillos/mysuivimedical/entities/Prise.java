@@ -41,6 +41,27 @@ public class Prise implements Comparable<Prise>  {
     @Generated(hash = 1272915347)
     private transient PriseDao myDao;
 
+    @Generated(hash = 773588632)
+    public Prise(Long id, Date date, String dateString, boolean effectue,
+            long medicamentId, long doseId, float qteDose) {
+        this.id = id;
+        this.date = date;
+        this.dateString = dateString;
+        this.effectue = effectue;
+        this.medicamentId = medicamentId;
+        this.doseId = doseId;
+        this.qteDose = qteDose;
+    }
+
+    @Generated(hash = 2099907939)
+    public Prise() {
+    }
+
+    @Generated(hash = 191865126)
+    private transient Long medicament__resolvedKey;
+
+    @Generated(hash = 56099619)
+    private transient Long dose__resolvedKey;
 
     @Override
     public String toString() {
@@ -61,214 +82,66 @@ public class Prise implements Comparable<Prise>  {
                 '}';
     }
 
-    @Generated(hash = 773588632)
-    public Prise(Long id, Date date, String dateString, boolean effectue,
-            long medicamentId, long doseId, float qteDose) {
-        this.id = id;
-        this.date = date;
-        this.dateString = dateString;
-        this.effectue = effectue;
-        this.medicamentId = medicamentId;
-        this.doseId = doseId;
-        this.qteDose = qteDose;
-    }
-
-
-
-
-
-
-
-
-    @Generated(hash = 2099907939)
-    public Prise() {
-    }
-
-
-
-
-
-
-
-
-    @Generated(hash = 191865126)
-    private transient Long medicament__resolvedKey;
-
-    @Generated(hash = 56099619)
-    private transient Long dose__resolvedKey;
-
-
-
-
-
-
-
-
     @Override
     public int compareTo(Prise o) {
         return this.getId().compareTo(o.getId());
     }
 
-
-
-
-
-
-
-
     public Long getId() {
         return this.id;
     }
-
-
-
-
-
-
-
 
     public void setId(Long id) {
         this.id = id;
     }
 
-
-
-
-
-
-
-
     public Date getDate() {
         return this.date;
     }
-
-
-
-
-
-
-
 
     public void setDate(Date date) {
         this.date = date;
     }
 
-
-
-
-
-
-
-
     public String getDateString() {
         return this.dateString;
     }
-
-
-
-
-
-
-
 
     public void setDateString(String dateString) {
         this.dateString = dateString;
     }
 
-
-
-
-
-
-
-
     public boolean getEffectue() {
         return this.effectue;
     }
-
-
-
-
-
-
-
 
     public void setEffectue(boolean effectue) {
         this.effectue = effectue;
     }
 
-
-
-
-
-
-
-
     public long getMedicamentId() {
         return this.medicamentId;
     }
-
-
-
-
-
-
-
 
     public void setMedicamentId(long medicamentId) {
         this.medicamentId = medicamentId;
     }
 
-
-
-
-
-
-
-
     public long getDoseId() {
         return this.doseId;
     }
-
-
-
-
-
-
-
 
     public void setDoseId(long doseId) {
         this.doseId = doseId;
     }
 
-
-
-
-
-
-
-
     public float getQteDose() {
         return this.qteDose;
     }
 
-
-
-
-
-
-
-
     public void setQteDose(float qteDose) {
         this.qteDose = qteDose;
     }
-
-
-
-
-
-
-
 
     /** To-one relationship, resolved on first access. */
     @Generated(hash = 1251693302)
@@ -290,13 +163,6 @@ public class Prise implements Comparable<Prise>  {
         return medicament;
     }
 
-
-
-
-
-
-
-
     /** called by internal mechanisms, do not call yourself. */
     @Generated(hash = 1507442270)
     public void setMedicament(@NotNull Medicament medicament) {
@@ -310,13 +176,6 @@ public class Prise implements Comparable<Prise>  {
             medicament__resolvedKey = medicamentId;
         }
     }
-
-
-
-
-
-
-
 
     /** To-one relationship, resolved on first access. */
     @Generated(hash = 2052519379)
@@ -337,13 +196,6 @@ public class Prise implements Comparable<Prise>  {
         return dose;
     }
 
-
-
-
-
-
-
-
     /** called by internal mechanisms, do not call yourself. */
     @Generated(hash = 1867735885)
     public void setDose(@NotNull Dose dose) {
@@ -358,13 +210,6 @@ public class Prise implements Comparable<Prise>  {
         }
     }
 
-
-
-
-
-
-
-
     /**
      * Convenient call for {@link org.greenrobot.greendao.AbstractDao#delete(Object)}.
      * Entity must attached to an entity context.
@@ -376,13 +221,6 @@ public class Prise implements Comparable<Prise>  {
         }
         myDao.delete(this);
     }
-
-
-
-
-
-
-
 
     /**
      * Convenient call for {@link org.greenrobot.greendao.AbstractDao#refresh(Object)}.
@@ -396,13 +234,6 @@ public class Prise implements Comparable<Prise>  {
         myDao.refresh(this);
     }
 
-
-
-
-
-
-
-
     /**
      * Convenient call for {@link org.greenrobot.greendao.AbstractDao#update(Object)}.
      * Entity must attached to an entity context.
@@ -415,34 +246,11 @@ public class Prise implements Comparable<Prise>  {
         myDao.update(this);
     }
 
-
-
-
-
-
-
-
     /** called by internal mechanisms, do not call yourself. */
     @Generated(hash = 1603001220)
     public void __setDaoSession(DaoSession daoSession) {
         this.daoSession = daoSession;
         myDao = daoSession != null ? daoSession.getPriseDao() : null;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }

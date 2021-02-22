@@ -24,7 +24,7 @@ public class Region implements Comparable<Region> {
     public Region() {
     }
 
-        @Override
+    @Override
     public int compareTo(Region o) {
         return this.getId().compareTo(o.getId());
     }
@@ -49,4 +49,5 @@ public class Region implements Comparable<Region> {
     public void setNom(String nom) {
         this.nom = nom;
     }
+
 }

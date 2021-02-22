@@ -28,7 +28,7 @@
 16-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:10:19-57
 17
 18    <application
-18-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:12:5-123:19
+18-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:12:5-79:19
 19        android:name="com.pouillos.mysuivimedical.MyApp"
 19-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:13:9-57
 20        android:allowBackup="true"
@@ -45,193 +45,142 @@
 26-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:18:9-55
 27        android:supportsRtl="true"
 27-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:19:9-35
-28        android:theme="@style/AppTheme" >
-28-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:20:9-40
-29        <meta-data
-29-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:23:9-25:51
-30            android:name="DATABASE"
-30-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:24:13-36
-31            android:value="my_suivi_medical.db" />
-31-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:25:13-48
-32        <meta-data
-32-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:26:9-29:33
-33            android:name="VERSION"
-33-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:27:13-35
-34            android:value="1" />
-34-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:29:13-30
-35        <meta-data
-35-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:31:9-33:36
-36            android:name="QUERY_LOG"
-36-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:32:13-37
-37            android:value="true" />
-37-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:33:13-33
-38        <meta-data
-38-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:34:9-36:59
-39            android:name="DOMAIN_PACKAGE_NAME"
-39-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:35:13-47
-40            android:value="com.pouillos.mysuivimedical" />
-40-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:36:13-56
-41
-42        <activity
-42-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:39:9-40:56
-43            android:name="com.pouillos.mysuivimedical.activities.add.AddPrescriptionActivity"
-43-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:39:19-100
-44            android:windowSoftInputMode="stateHidden" />
-44-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:40:13-54
-45        <activity android:name="com.pouillos.mysuivimedical.activities.AccueilActivity" >
-45-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:42:9-47:20
-45-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:42:19-88
-46            <intent-filter>
-46-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:43:13-46:29
-47                <action android:name="android.intent.action.MAIN" />
-47-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:44:17-69
-47-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:44:25-66
-48
-49                <category android:name="android.intent.category.LAUNCHER" />
-49-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:45:17-77
-49-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:45:27-74
-50            </intent-filter>
-51        </activity>
-52        <!-- <activity android:name=".activities.graphique.BarToLineChartActivity" /> -->
-53
-54        <activity android:name="com.pouillos.mysuivimedical.activities.tools.ImportMedicamentActivity" />
-54-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:51:9-106
-54-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:51:19-103
-55        <!-- <receiver android:name=".activities.tools.MyBroadcastReceiver" ></receiver> -->
-56        <!--
-57        <receiver android:name = ".activities.tools.MyNotificationBroadcastReceiver" >
-58            <intent-filter>
-59                <action android:name = "android.hardware.usb.action.USB_STATE" />
-60            </intent-filter>
-61        </receiver>
-62        -->
-63
-64        <receiver android:name="com.pouillos.mysuivimedical.activities.tools.Alarm" >
-64-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:59:9-64:20
-64-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:59:19-85
-65            <intent-filter>
-65-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:60:13-63:29
-66                <action android:name="android.intent.action.BOOT_COMPLETED" />
-66-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:61:17-79
-66-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:61:25-76
-67                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
-67-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:62:17-82
-67-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:62:25-79
-68            </intent-filter>
-69        </receiver>
-70        <receiver android:name="com.pouillos.mysuivimedical.activities.tools.ReminderBroadcast" >
-70-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:65:9-70:20
-70-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:65:19-97
-71            <intent-filter>
-71-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:60:13-63:29
-72                <action android:name="android.intent.action.BOOT_COMPLETED" />
-72-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:61:17-79
-72-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:61:25-76
-73                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
-73-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:62:17-82
-73-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:62:25-79
-74            </intent-filter>
-75        </receiver>
-76
-77        <provider
-77-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:72:9-80:20
-78            android:name="androidx.core.content.FileProvider"
-78-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:73:13-62
-79            android:authorities="com.pouillos.mysuivimedical.fileprovider"
-79-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:74:13-75
-80            android:exported="false"
-80-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:75:13-37
-81            android:grantUriPermissions="true" >
-81-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:76:13-47
-82            <meta-data
-82-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:77:13-79:53
-83                android:name="android.support.FILE_PROVIDER_PATHS"
-83-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:78:17-67
-84                android:resource="@xml/filepaths" />
-84-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:79:17-50
-85        </provider>
-86        <provider
-86-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:81:9-87:42
-87            android:name="com.pouillos.mysuivimedical.provider.PriseContentProvider"
-87-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:82:13-85
-88            android:authorities="com.pouillos.mysuivimedical.provider"
-88-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:83:13-71
-89            android:enabled="true"
-89-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:86:13-35
-90            android:exported="true"
-90-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:85:13-36
-91            android:multiprocess="true" />
-91-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:87:13-40
-92        <provider
-92-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:88:9-94:42
-93            android:name="com.pouillos.mysuivimedical.provider.AssociationFormeDoseContentProvider"
-93-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:89:13-100
-94            android:authorities="com.pouillos.mysuivimedical.provider"
-94-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:90:13-71
-95            android:enabled="true"
-95-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:93:13-35
-96            android:exported="true"
-96-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:92:13-36
-97            android:multiprocess="true" />
-97-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:94:13-40
-98        <provider
-98-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:95:9-101:42
-99            android:name="com.pouillos.mysuivimedical.provider.DoseContentProvider"
-99-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:96:13-84
-100            android:authorities="com.pouillos.mysuivimedical.provider"
-100-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:97:13-71
-101            android:enabled="true"
-101-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:100:13-35
-102            android:exported="true"
-102-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:99:13-36
-103            android:multiprocess="true" />
-103-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:101:13-40
-104        <provider
-104-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:102:9-108:42
-105            android:name="com.pouillos.mysuivimedical.provider.FormePharmaceutiqueContentProvider"
-105-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:103:13-99
-106            android:authorities="com.pouillos.mysuivimedical.provider"
-106-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:104:13-71
-107            android:enabled="true"
-107-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:107:13-35
-108            android:exported="true"
-108-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:106:13-36
-109            android:multiprocess="true" />
-109-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:108:13-40
-110        <provider
-110-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:109:9-115:42
-111            android:name="com.pouillos.mysuivimedical.provider.MedicamentContentProvider"
-111-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:110:13-90
-112            android:authorities="com.pouillos.mysuivimedical.provider"
-112-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:111:13-71
-113            android:enabled="true"
-113-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:114:13-35
-114            android:exported="true"
-114-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:113:13-36
-115            android:multiprocess="true" />
-115-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:115:13-40
-116        <provider
-116-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:116:9-122:42
-117            android:name="com.pouillos.mysuivimedical.provider.PrescriptionContentProvider"
-117-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:117:13-92
-118            android:authorities="com.pouillos.mysuivimedical.provider"
-118-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:118:13-71
-119            android:enabled="true"
-119-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:121:13-35
-120            android:exported="true"
-120-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:120:13-36
-121            android:multiprocess="true" />
-121-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:122:13-40
-122        <provider
-122-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\TNH\.gradle\caches\transforms-2\files-2.1\e53e565f480f786b632a4e97f8ee4f77\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:25:9-29:43
-123            android:name="androidx.lifecycle.ProcessLifecycleOwnerInitializer"
-123-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\TNH\.gradle\caches\transforms-2\files-2.1\e53e565f480f786b632a4e97f8ee4f77\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:26:13-79
-124            android:authorities="com.pouillos.mysuivimedical.lifecycle-process"
-124-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\TNH\.gradle\caches\transforms-2\files-2.1\e53e565f480f786b632a4e97f8ee4f77\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:27:13-69
-125            android:exported="false"
-125-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\TNH\.gradle\caches\transforms-2\files-2.1\e53e565f480f786b632a4e97f8ee4f77\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:28:13-37
-126            android:multiprocess="true" />
-126-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\TNH\.gradle\caches\transforms-2\files-2.1\e53e565f480f786b632a4e97f8ee4f77\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:29:13-40
-127    </application>
-128
-129</manifest>
+28        android:testOnly="true"
+29        android:theme="@style/AppTheme" >
+29-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:20:9-40
+30        <meta-data
+30-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:23:9-25:51
+31            android:name="DATABASE"
+31-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:24:13-36
+32            android:value="my_suivi_medical.db" />
+32-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:25:13-48
+33        <meta-data
+33-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:26:9-29:33
+34            android:name="VERSION"
+34-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:27:13-35
+35            android:value="1" />
+35-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:29:13-30
+36        <meta-data
+36-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:31:9-33:36
+37            android:name="QUERY_LOG"
+37-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:32:13-37
+38            android:value="true" />
+38-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:33:13-33
+39        <meta-data
+39-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:34:9-36:59
+40            android:name="DOMAIN_PACKAGE_NAME"
+40-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:35:13-47
+41            android:value="com.pouillos.mysuivimedical" />
+41-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:36:13-56
+42
+43        <activity android:name="com.pouillos.mysuivimedical.activities.AccueilActivity" >
+43-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:38:9-43:20
+43-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:38:19-88
+44            <intent-filter>
+44-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:39:13-42:29
+45                <action android:name="android.intent.action.MAIN" />
+45-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:40:17-69
+45-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:40:25-66
+46
+47                <category android:name="android.intent.category.LAUNCHER" />
+47-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:41:17-77
+47-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:41:27-74
+48            </intent-filter>
+49        </activity>
+50        <activity
+50-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:44:9-45:56
+51            android:name="com.pouillos.mysuivimedical.activities.add.AddAnalyseActivity"
+51-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:44:19-68
+52            android:windowSoftInputMode="stateHidden" />
+52-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:45:13-54
+53        <activity
+53-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:46:9-47:56
+54            android:name="com.pouillos.mysuivimedical.activities.add.AddProfilActivity"
+54-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:46:19-67
+55            android:windowSoftInputMode="stateHidden" />
+55-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:47:13-54
+56        <activity
+56-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:48:9-49:56
+57            android:name="com.pouillos.mysuivimedical.activities.add.AddExamenActivity"
+57-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:48:19-67
+58            android:windowSoftInputMode="stateHidden" />
+58-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:49:13-54
+59        <activity
+59-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:50:9-51:56
+60            android:name="com.pouillos.mysuivimedical.activities.afficher.AfficherAnalyseActivity"
+60-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:50:19-78
+61            android:windowSoftInputMode="stateHidden" />
+61-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:51:13-54
+62        <activity
+62-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:52:9-53:56
+63            android:name="com.pouillos.mysuivimedical.activities.afficher.AfficherExamenActivity"
+63-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:52:19-77
+64            android:windowSoftInputMode="stateHidden" />
+64-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:53:13-54
+65        <activity
+65-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:54:9-55:56
+66            android:name="com.pouillos.mysuivimedical.activities.afficher.AfficherGraphiqueActivity"
+66-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:54:19-80
+67            android:windowSoftInputMode="stateHidden" />
+67-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:55:13-54
+68        <activity
+68-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:56:9-57:56
+69            android:name="com.pouillos.mysuivimedical.activities.afficher.AfficherPhotoActivity"
+69-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:56:19-76
+70            android:windowSoftInputMode="stateHidden" />
+70-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:57:13-54
+71        <activity
+71-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:58:9-59:56
+72            android:name="com.pouillos.mysuivimedical.activities.afficher.AfficherProfilActivity"
+72-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:58:19-77
+73            android:windowSoftInputMode="stateHidden" />
+73-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:59:13-54
+74        <!-- <receiver android:name=".activities.tools.MyBroadcastReceiver" ></receiver> -->
+75        <!--
+76        <receiver android:name = ".activities.tools.MyNotificationBroadcastReceiver" >
+77            <intent-filter>
+78                <action android:name = "android.hardware.usb.action.USB_STATE" />
+79            </intent-filter>
+80        </receiver>
+81        -->
+82
+83        <receiver android:name="com.pouillos.mysuivimedical.activities.tools.Alarm" >
+83-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:67:9-72:20
+83-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:67:19-85
+84            <intent-filter>
+84-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:68:13-71:29
+85                <action android:name="android.intent.action.BOOT_COMPLETED" />
+85-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:69:17-79
+85-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:69:25-76
+86                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+86-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:70:17-82
+86-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:70:25-79
+87            </intent-filter>
+88        </receiver>
+89        <receiver android:name="com.pouillos.mysuivimedical.activities.tools.ReminderBroadcast" >
+89-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:73:9-78:20
+89-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:73:19-97
+90            <intent-filter>
+90-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:68:13-71:29
+91                <action android:name="android.intent.action.BOOT_COMPLETED" />
+91-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:69:17-79
+91-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:69:25-76
+92                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+92-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:70:17-82
+92-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:70:25-79
+93            </intent-filter>
+94        </receiver>
+95
+96        <provider
+96-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\TNH\.gradle\caches\transforms-2\files-2.1\e53e565f480f786b632a4e97f8ee4f77\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:25:9-29:43
+97            android:name="androidx.lifecycle.ProcessLifecycleOwnerInitializer"
+97-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\TNH\.gradle\caches\transforms-2\files-2.1\e53e565f480f786b632a4e97f8ee4f77\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:26:13-79
+98            android:authorities="com.pouillos.mysuivimedical.lifecycle-process"
+98-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\TNH\.gradle\caches\transforms-2\files-2.1\e53e565f480f786b632a4e97f8ee4f77\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:27:13-69
+99            android:exported="false"
+99-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\TNH\.gradle\caches\transforms-2\files-2.1\e53e565f480f786b632a4e97f8ee4f77\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:28:13-37
+100            android:multiprocess="true" />
+100-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\TNH\.gradle\caches\transforms-2\files-2.1\e53e565f480f786b632a4e97f8ee4f77\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:29:13-40
+101    </application>
+102
+103</manifest>

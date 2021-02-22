@@ -21,26 +21,52 @@ public class DaoMaster extends AbstractDaoMaster {
 
     /** Creates underlying database table using DAOs. */
     public static void createAllTables(Database db, boolean ifNotExists) {
+        AnalyseDao.createTable(db, ifNotExists);
+        AssociationContactLightEtablissementLightDao.createTable(db, ifNotExists);
         AssociationFormeDoseDao.createTable(db, ifNotExists);
+        ContactDao.createTable(db, ifNotExists);
+        ContactLightDao.createTable(db, ifNotExists);
+        DepartementDao.createTable(db, ifNotExists);
         DoseDao.createTable(db, ifNotExists);
+        EtablissementDao.createTable(db, ifNotExists);
+        EtablissementLightDao.createTable(db, ifNotExists);
+        ExamenDao.createTable(db, ifNotExists);
         FormePharmaceutiqueDao.createTable(db, ifNotExists);
-        ImportMedicamentDao.createTable(db, ifNotExists);
         MedicamentDao.createTable(db, ifNotExists);
         MedicamentLightDao.createTable(db, ifNotExists);
+        PhotoDao.createTable(db, ifNotExists);
         PrescriptionDao.createTable(db, ifNotExists);
         PriseDao.createTable(db, ifNotExists);
+        ProfessionDao.createTable(db, ifNotExists);
+        ProfilDao.createTable(db, ifNotExists);
+        RegionDao.createTable(db, ifNotExists);
+        SavoirFaireDao.createTable(db, ifNotExists);
+        TypeEtablissementDao.createTable(db, ifNotExists);
     }
 
     /** Drops underlying database table using DAOs. */
     public static void dropAllTables(Database db, boolean ifExists) {
+        AnalyseDao.dropTable(db, ifExists);
+        AssociationContactLightEtablissementLightDao.dropTable(db, ifExists);
         AssociationFormeDoseDao.dropTable(db, ifExists);
+        ContactDao.dropTable(db, ifExists);
+        ContactLightDao.dropTable(db, ifExists);
+        DepartementDao.dropTable(db, ifExists);
         DoseDao.dropTable(db, ifExists);
+        EtablissementDao.dropTable(db, ifExists);
+        EtablissementLightDao.dropTable(db, ifExists);
+        ExamenDao.dropTable(db, ifExists);
         FormePharmaceutiqueDao.dropTable(db, ifExists);
-        ImportMedicamentDao.dropTable(db, ifExists);
         MedicamentDao.dropTable(db, ifExists);
         MedicamentLightDao.dropTable(db, ifExists);
+        PhotoDao.dropTable(db, ifExists);
         PrescriptionDao.dropTable(db, ifExists);
         PriseDao.dropTable(db, ifExists);
+        ProfessionDao.dropTable(db, ifExists);
+        ProfilDao.dropTable(db, ifExists);
+        RegionDao.dropTable(db, ifExists);
+        SavoirFaireDao.dropTable(db, ifExists);
+        TypeEtablissementDao.dropTable(db, ifExists);
     }
 
     /**
@@ -59,14 +85,27 @@ public class DaoMaster extends AbstractDaoMaster {
 
     public DaoMaster(Database db) {
         super(db, SCHEMA_VERSION);
+        registerDaoClass(AnalyseDao.class);
+        registerDaoClass(AssociationContactLightEtablissementLightDao.class);
         registerDaoClass(AssociationFormeDoseDao.class);
+        registerDaoClass(ContactDao.class);
+        registerDaoClass(ContactLightDao.class);
+        registerDaoClass(DepartementDao.class);
         registerDaoClass(DoseDao.class);
+        registerDaoClass(EtablissementDao.class);
+        registerDaoClass(EtablissementLightDao.class);
+        registerDaoClass(ExamenDao.class);
         registerDaoClass(FormePharmaceutiqueDao.class);
-        registerDaoClass(ImportMedicamentDao.class);
         registerDaoClass(MedicamentDao.class);
         registerDaoClass(MedicamentLightDao.class);
+        registerDaoClass(PhotoDao.class);
         registerDaoClass(PrescriptionDao.class);
         registerDaoClass(PriseDao.class);
+        registerDaoClass(ProfessionDao.class);
+        registerDaoClass(ProfilDao.class);
+        registerDaoClass(RegionDao.class);
+        registerDaoClass(SavoirFaireDao.class);
+        registerDaoClass(TypeEtablissementDao.class);
     }
 
     public DaoSession newSession() {

@@ -35,20 +35,28 @@
             android:name="DOMAIN_PACKAGE_NAME"
             android:value="com.pouillos.mysuivimedical" />
 
-
-        <activity android:name="com.pouillos.mysuivimedical.activities.add.AddPrescriptionActivity"
-            android:windowSoftInputMode="stateHidden"/>
-
         <activity android:name="com.pouillos.mysuivimedical.activities.AccueilActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!--    <activity android:name=".activities.graphique.BarToLineChartActivity" /> -->
-
-
-        <activity android:name="com.pouillos.mysuivimedical.activities.tools.ImportMedicamentActivity" />
+        <activity android:name=".activities.add.AddAnalyseActivity"
+            android:windowSoftInputMode="stateHidden"/>
+        <activity android:name=".activities.add.AddProfilActivity"
+            android:windowSoftInputMode="stateHidden"/>
+        <activity android:name=".activities.add.AddExamenActivity"
+            android:windowSoftInputMode="stateHidden"/>
+        <activity android:name=".activities.afficher.AfficherAnalyseActivity"
+            android:windowSoftInputMode="stateHidden"/>
+        <activity android:name=".activities.afficher.AfficherExamenActivity"
+            android:windowSoftInputMode="stateHidden"/>
+        <activity android:name=".activities.afficher.AfficherGraphiqueActivity"
+            android:windowSoftInputMode="stateHidden"/>
+        <activity android:name=".activities.afficher.AfficherPhotoActivity"
+            android:windowSoftInputMode="stateHidden"/>
+        <activity android:name=".activities.afficher.AfficherProfilActivity"
+            android:windowSoftInputMode="stateHidden"/>
         <!-- <receiver android:name=".activities.tools.MyBroadcastReceiver" ></receiver> -->
         <!-- <receiver android:name = ".activities.tools.MyNotificationBroadcastReceiver" >
             <intent-filter>
@@ -68,58 +76,6 @@
                 <action android:name="android.intent.action.QUICKBOOT_POWERON" />
             </intent-filter>
         </receiver>
-
-        <provider
-            android:name="androidx.core.content.FileProvider"
-            android:authorities="com.pouillos.mysuivimedical.fileprovider"
-            android:exported="false"
-            android:grantUriPermissions="true">
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/filepaths" />
-        </provider>
-        <provider
-            android:name="com.pouillos.mysuivimedical.provider.PriseContentProvider"
-            android:authorities="com.pouillos.mysuivimedical.provider"
-
-            android:exported="true"
-            android:enabled="true"
-            android:multiprocess="true"/>
-        <provider
-            android:name="com.pouillos.mysuivimedical.provider.AssociationFormeDoseContentProvider"
-            android:authorities="com.pouillos.mysuivimedical.provider"
-
-            android:exported="true"
-            android:enabled="true"
-            android:multiprocess="true"/>
-        <provider
-            android:name="com.pouillos.mysuivimedical.provider.DoseContentProvider"
-            android:authorities="com.pouillos.mysuivimedical.provider"
-
-            android:exported="true"
-            android:enabled="true"
-            android:multiprocess="true"/>
-        <provider
-            android:name="com.pouillos.mysuivimedical.provider.FormePharmaceutiqueContentProvider"
-            android:authorities="com.pouillos.mysuivimedical.provider"
-
-            android:exported="true"
-            android:enabled="true"
-            android:multiprocess="true"/>
-        <provider
-            android:name="com.pouillos.mysuivimedical.provider.MedicamentContentProvider"
-            android:authorities="com.pouillos.mysuivimedical.provider"
-
-            android:exported="true"
-            android:enabled="true"
-            android:multiprocess="true"/>
-        <provider
-            android:name="com.pouillos.mysuivimedical.provider.PrescriptionContentProvider"
-            android:authorities="com.pouillos.mysuivimedical.provider"
-
-            android:exported="true"
-            android:enabled="true"
-            android:multiprocess="true"/>
     </application>
 
 </manifest>

@@ -49,4 +49,5 @@ public class TypeEtablissement implements  Comparable<TypeEtablissement> {
     public void setName(String name) {
         this.name = name;
     }
+
 }

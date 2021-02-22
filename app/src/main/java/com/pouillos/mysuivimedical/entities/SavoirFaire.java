@@ -49,4 +49,5 @@ public class SavoirFaire implements Comparable<SavoirFaire> {
     public void setName(String name) {
         this.name = name;
     }
+
 }

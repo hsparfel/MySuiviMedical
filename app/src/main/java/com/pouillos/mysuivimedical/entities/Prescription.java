@@ -42,8 +42,6 @@ public class Prescription implements Comparable<Prescription>  {
     @Generated(hash = 43991223)
     private transient PrescriptionDao myDao;
 
-
-
     @Generated(hash = 396349864)
     public Prescription(Long id, float qte, long medicamentId, Frequence frequence,
             Date dateFin, String dateFinString) {
@@ -55,97 +53,65 @@ public class Prescription implements Comparable<Prescription>  {
         this.dateFinString = dateFinString;
     }
 
-
-
     @Generated(hash = 235982998)
     public Prescription() {
     }
 
-
-
     @Generated(hash = 191865126)
     private transient Long medicament__resolvedKey;
-
-
 
     @Override
     public int compareTo(Prescription o) {
         return this.getId().compareTo(o.getId());
     }
 
-
-
     public Long getId() {
         return this.id;
     }
-
-
 
     public void setId(Long id) {
         this.id = id;
     }
 
-
-
     public float getQte() {
         return this.qte;
     }
-
-
 
     public void setQte(float qte) {
         this.qte = qte;
     }
 
-
-
     public long getMedicamentId() {
         return this.medicamentId;
     }
-
-
 
     public void setMedicamentId(long medicamentId) {
         this.medicamentId = medicamentId;
     }
 
-
-
     public Frequence getFrequence() {
         return this.frequence;
     }
-
-
 
     public void setFrequence(Frequence frequence) {
         this.frequence = frequence;
     }
 
-
-
     public Date getDateFin() {
         return this.dateFin;
     }
-
-
 
     public void setDateFin(Date dateFin) {
         this.dateFin = dateFin;
     }
 
-
-
     public String getDateFinString() {
         return this.dateFinString;
     }
 
-
-
     public void setDateFinString(String dateFinString) {
         this.dateFinString = dateFinString;
     }
-
-
 
     /** To-one relationship, resolved on first access. */
     @Generated(hash = 1251693302)
@@ -166,8 +132,6 @@ public class Prescription implements Comparable<Prescription>  {
         return medicament;
     }
 
-
-
     /** called by internal mechanisms, do not call yourself. */
     @Generated(hash = 1507442270)
     public void setMedicament(@NotNull Medicament medicament) {
@@ -182,8 +146,6 @@ public class Prescription implements Comparable<Prescription>  {
         }
     }
 
-
-
     /**
      * Convenient call for {@link org.greenrobot.greendao.AbstractDao#delete(Object)}.
      * Entity must attached to an entity context.
@@ -195,8 +157,6 @@ public class Prescription implements Comparable<Prescription>  {
         }
         myDao.delete(this);
     }
-
-
 
     /**
      * Convenient call for {@link org.greenrobot.greendao.AbstractDao#refresh(Object)}.
@@ -210,8 +170,6 @@ public class Prescription implements Comparable<Prescription>  {
         myDao.refresh(this);
     }
 
-
-
     /**
      * Convenient call for {@link org.greenrobot.greendao.AbstractDao#update(Object)}.
      * Entity must attached to an entity context.
@@ -224,16 +182,12 @@ public class Prescription implements Comparable<Prescription>  {
         myDao.update(this);
     }
 
-
-
     /** called by internal mechanisms, do not call yourself. */
     @Generated(hash = 524467190)
     public void __setDaoSession(DaoSession daoSession) {
         this.daoSession = daoSession;
         myDao = daoSession != null ? daoSession.getPrescriptionDao() : null;
     }
-
-
 
     public static class FrequenceConverter implements PropertyConverter<Frequence, String> {
         @Override

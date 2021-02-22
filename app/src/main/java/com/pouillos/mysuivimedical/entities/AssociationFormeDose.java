@@ -34,7 +34,6 @@ public class AssociationFormeDose implements Comparable<AssociationFormeDose>{
     @Generated(hash = 772950794)
     private transient AssociationFormeDoseDao myDao;
 
-
     @Generated(hash = 1394952581)
     public AssociationFormeDose(Long id, long formePharmaceutiqueId, long doseId) {
         this.id = id;
@@ -52,7 +51,6 @@ public class AssociationFormeDose implements Comparable<AssociationFormeDose>{
     @Generated(hash = 56099619)
     private transient Long dose__resolvedKey;
 
-
     @Override
     public int compareTo(AssociationFormeDose o) {
         return this.getId().compareTo(o.getId());
@@ -61,7 +59,6 @@ public class AssociationFormeDose implements Comparable<AssociationFormeDose>{
     public boolean isExistante() {
         boolean bool=false;
         /*List<AssociationFormeDose> list = AssociationFormeDose.find(AssociationFormeDose.class,"formePharmaceutique = ? and dose = ?", this.formePharmaceutique.getId().toString(), this.dose.getId().toString());
-
         if (list.size() > 0) {
             bool = true;
         }*/
@@ -198,4 +195,5 @@ public class AssociationFormeDose implements Comparable<AssociationFormeDose>{
         this.daoSession = daoSession;
         myDao = daoSession != null ? daoSession.getAssociationFormeDoseDao() : null;
     }
+
 }

@@ -1,10 +1,10 @@
 package com.pouillos.mysuivimedical.entities;
 
 
-import com.pouillos.finddoctor.dao.AssociationContactLightEtablissementLightDao;
-import com.pouillos.finddoctor.dao.ContactLightDao;
-import com.pouillos.finddoctor.dao.DaoSession;
-import com.pouillos.finddoctor.dao.EtablissementLightDao;
+import com.pouillos.mysuivimedical.dao.AssociationContactLightEtablissementLightDao;
+import com.pouillos.mysuivimedical.dao.ContactLightDao;
+import com.pouillos.mysuivimedical.dao.DaoSession;
+import com.pouillos.mysuivimedical.dao.EtablissementLightDao;
 
 import org.greenrobot.greendao.DaoException;
 import org.greenrobot.greendao.annotation.Entity;
@@ -12,6 +12,10 @@ import org.greenrobot.greendao.annotation.Generated;
 import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.NotNull;
 import org.greenrobot.greendao.annotation.ToOne;
+import com.pouillos.mysuivimedical.dao.DaoSession;
+import com.pouillos.mysuivimedical.dao.EtablissementLightDao;
+import com.pouillos.mysuivimedical.dao.ContactLightDao;
+import com.pouillos.mysuivimedical.dao.AssociationContactLightEtablissementLightDao;
 
 
 @Entity
@@ -191,4 +195,5 @@ public class AssociationContactLightEtablissementLight implements Comparable<Ass
         this.daoSession = daoSession;
         myDao = daoSession != null ? daoSession.getAssociationContactLightEtablissementLightDao() : null;
     }
+
 }

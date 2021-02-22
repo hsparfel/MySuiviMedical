@@ -49,4 +49,5 @@ public class Profession implements Comparable<Profession> {
     public void setName(String name) {
         this.name = name;
     }
+
 }
