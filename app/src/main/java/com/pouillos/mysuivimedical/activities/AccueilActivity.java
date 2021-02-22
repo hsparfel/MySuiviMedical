@@ -26,11 +26,17 @@ import com.pouillos.mysuivimedical.R;
 import com.pouillos.mysuivimedical.activities.add.AddAnalyseActivity;
 import com.pouillos.mysuivimedical.activities.add.AddExamenActivity;
 import com.pouillos.mysuivimedical.activities.add.AddProfilActivity;
+import com.pouillos.mysuivimedical.activities.add.AddRdvAnalyseActivity;
+import com.pouillos.mysuivimedical.activities.add.AddRdvContactActivity;
+import com.pouillos.mysuivimedical.activities.add.AddRdvExamenActivity;
 import com.pouillos.mysuivimedical.activities.afficher.AfficherAnalyseActivity;
 import com.pouillos.mysuivimedical.activities.afficher.AfficherExamenActivity;
 import com.pouillos.mysuivimedical.activities.afficher.AfficherGraphiqueActivity;
 import com.pouillos.mysuivimedical.activities.afficher.AfficherPhotoActivity;
 import com.pouillos.mysuivimedical.activities.afficher.AfficherProfilActivity;
+import com.pouillos.mysuivimedical.activities.afficher.AfficherRdvAnalyseActivity;
+import com.pouillos.mysuivimedical.activities.afficher.AfficherRdvContactActivity;
+import com.pouillos.mysuivimedical.activities.afficher.AfficherRdvExamenActivity;
 import com.pouillos.mysuivimedical.activities.utils.DateUtils;
 import com.pouillos.mysuivimedical.entities.Analyse;
 import com.pouillos.mysuivimedical.entities.AssociationContactLightEtablissementLight;
@@ -159,7 +165,29 @@ public class AccueilActivity extends NavDrawerActivity implements BasicUtils {
         }
     }
 
+    public void addRdvAnalyse(View view) {
+        ouvrirActiviteSuivante(this, AddRdvAnalyseActivity.class,false);
+    }
 
+    public void afficherRdvAnalyse(View view) {
+        ouvrirActiviteSuivante(this, AfficherRdvAnalyseActivity.class,false);
+    }
+
+    public void addRdvExamen(View view) {
+        ouvrirActiviteSuivante(this, AddRdvExamenActivity.class,false);
+    }
+
+    public void afficherRdvExamen(View view) {
+        ouvrirActiviteSuivante(this, AfficherRdvExamenActivity.class,false);
+    }
+
+    public void addRdvContact(View view) {
+        ouvrirActiviteSuivante(this, AddRdvContactActivity.class,false);
+    }
+
+    public void afficherRdvContact(View view) {
+        ouvrirActiviteSuivante(this, AfficherRdvContactActivity.class,false);
+    }
 
     public void addAnalyse(View view) {
         ouvrirActiviteSuivante(this,AddAnalyseActivity.class,false);
@@ -228,6 +256,7 @@ public class AccueilActivity extends NavDrawerActivity implements BasicUtils {
         synchroDatas(true);
         simpleProgressBar.setVisibility(View.GONE);
         Snackbar.make(textView,"MAJ OK",Snackbar.LENGTH_LONG);
+        textView.setText("MAJ OVER");
     }
 
     public void SynchroApps() {
@@ -266,6 +295,7 @@ public class AccueilActivity extends NavDrawerActivity implements BasicUtils {
     }
 
     public void synchroDatas(boolean bool) {
+        Log.i("synchroDatas: ","start");
         //false = simple & true = forcé
         if (bool) {
             //synchro forcé
@@ -297,6 +327,7 @@ public class AccueilActivity extends NavDrawerActivity implements BasicUtils {
             synchroMyPilulier06Prescription(bool);
             synchroMyPilulier07Prise(bool);
         }
+        Log.i("synchroDatas: ","end");
     }
 
     public void synchroFindDoctor01Region(boolean bool) {

@@ -19,7 +19,7 @@ import java.lang.Override;
 public class AddProfilActivity_ViewBinding implements Unbinder {
   private AddProfilActivity target;
 
-  private View view7f0800c7;
+  private View view7f0800c8;
 
   @UiThread
   public AddProfilActivity_ViewBinding(AddProfilActivity target) {
@@ -33,7 +33,7 @@ public class AddProfilActivity_ViewBinding implements Unbinder {
     View view;
     view = Utils.findRequiredView(source, R.id.floating_action_button, "field 'fab' and method 'fabClick'");
     target.fab = Utils.castView(view, R.id.floating_action_button, "field 'fab'", FloatingActionButton.class);
-    view7f0800c7 = view;
+    view7f0800c8 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -73,7 +73,7 @@ public class AddProfilActivity_ViewBinding implements Unbinder {
     target.sliderPoids = null;
     target.progressBar = null;
 
-    view7f0800c7.setOnClickListener(null);
-    view7f0800c7 = null;
+    view7f0800c8.setOnClickListener(null);
+    view7f0800c8 = null;
   }
 }

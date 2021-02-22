@@ -26,9 +26,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputEditText;
 import com.pouillos.mysuivimedical.R;
-import com.pouillos.mysuivimedical.activities.tools.Alarm;
-import com.pouillos.mysuivimedical.activities.tools.ReminderBroadcast;
 
+import com.pouillos.mysuivimedical.activities.utils.DateUtils;
 import com.pouillos.mysuivimedical.dao.AnalyseDao;
 import com.pouillos.mysuivimedical.dao.AssociationContactLightEtablissementLightDao;
 import com.pouillos.mysuivimedical.dao.AssociationFormeDoseDao;
@@ -50,6 +49,9 @@ import com.pouillos.mysuivimedical.dao.PrescriptionDao;
 import com.pouillos.mysuivimedical.dao.PriseDao;
 import com.pouillos.mysuivimedical.dao.ProfessionDao;
 import com.pouillos.mysuivimedical.dao.ProfilDao;
+import com.pouillos.mysuivimedical.dao.RdvAnalyseDao;
+import com.pouillos.mysuivimedical.dao.RdvContactDao;
+import com.pouillos.mysuivimedical.dao.RdvExamenDao;
 import com.pouillos.mysuivimedical.dao.RegionDao;
 import com.pouillos.mysuivimedical.dao.SavoirFaireDao;
 import com.pouillos.mysuivimedical.dao.TypeEtablissementDao;
@@ -103,6 +105,9 @@ public class NavDrawerActivity extends AppCompatActivity implements BasicUtils {
     protected RegionDao regionDao;
     protected SavoirFaireDao savoirFaireDao;
     protected TypeEtablissementDao typeEtablissementDao;
+    protected RdvExamenDao rdvExamenDao;
+    protected RdvAnalyseDao rdvAnalyseDao;
+    protected RdvContactDao rdvContactDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -130,7 +135,9 @@ public class NavDrawerActivity extends AppCompatActivity implements BasicUtils {
         regionDao = daoSession.getRegionDao();
         savoirFaireDao = daoSession.getSavoirFaireDao();
         typeEtablissementDao = daoSession.getTypeEtablissementDao();
-
+        rdvAnalyseDao = daoSession.getRdvAnalyseDao();
+        rdvExamenDao = daoSession.getRdvExamenDao();
+        rdvContactDao = daoSession.getRdvContactDao();
     }
 
     @Override
@@ -217,6 +224,27 @@ public class NavDrawerActivity extends AppCompatActivity implements BasicUtils {
         }
     }
 
+    public void ouvrirActiviteSuivante(Context context, Class classe, String nomExtra, Long objetIdExtra, boolean bool) {
+        Intent intent = new Intent(context, classe);
+        intent.putExtra(nomExtra, objetIdExtra);
+        startActivity(intent);
+        if (bool) {
+            finish();
+        }
+    }
+
+    public void ouvrirActiviteSuivante(Context context, Class classe, String nomExtra, String objetExtra, String nomExtra2, Long objetIdExtra2, boolean bool) {
+        Intent intent = new Intent(context, classe);
+        intent.putExtra(nomExtra, objetExtra);
+        intent.putExtra(nomExtra2, objetIdExtra2);
+        startActivity(intent);
+        if (bool) {
+            finish();
+        }
+    }
+
+
+
     public void rouvrirActiviteAccueil(Context context, boolean bool) {
         Intent intent = new Intent(context, AccueilActivity.class);
         intent.putExtra("isSecondLaunch", true);
@@ -249,9 +277,28 @@ public class NavDrawerActivity extends AppCompatActivity implements BasicUtils {
         return super.getMainExecutor();
     }
 
+    protected Date ActualiserDate(Date date, String time){
+        Date dateActualisee = date;
+        int nbHour = Integer.parseInt(time.substring(0,2));
+        int nbMinute = Integer.parseInt(time.substring(3));
+        dateActualisee = DateUtils.ajouterHeure(dateActualisee,nbHour);
+        dateActualisee = DateUtils.ajouterMinute(dateActualisee,nbMinute);
+        return dateActualisee;
+    }
+
     protected boolean isFilled(TextInputEditText textInputEditText){
         boolean bool;
         if (textInputEditText.length()>0) {
+            bool = true;
+        } else {
+            bool = false;
+        }
+        return bool;
+    }
+
+    protected boolean isFilled(Object object){
+        boolean bool;
+        if (object!=null) {
             bool = true;
         } else {
             bool = false;

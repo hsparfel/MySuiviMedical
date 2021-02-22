@@ -58,6 +58,15 @@
             android:name="com.pouillos.mysuivimedical.activities.add.AddExamenActivity"
             android:windowSoftInputMode="stateHidden" />
         <activity
+            android:name="com.pouillos.mysuivimedical.activities.add.AddRdvAnalyseActivity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.pouillos.mysuivimedical.activities.add.AddRdvContactActivity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.pouillos.mysuivimedical.activities.add.AddRdvExamenActivity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
             android:name="com.pouillos.mysuivimedical.activities.afficher.AfficherAnalyseActivity"
             android:windowSoftInputMode="stateHidden" />
         <activity
@@ -71,6 +80,15 @@
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name="com.pouillos.mysuivimedical.activities.afficher.AfficherProfilActivity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.pouillos.mysuivimedical.activities.afficher.AfficherRdvAnalyseActivity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.pouillos.mysuivimedical.activities.afficher.AfficherRdvContactActivity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.pouillos.mysuivimedical.activities.afficher.AfficherRdvExamenActivity"
             android:windowSoftInputMode="stateHidden" />
         <!-- <receiver android:name=".activities.tools.MyBroadcastReceiver" ></receiver> -->
         <!--
