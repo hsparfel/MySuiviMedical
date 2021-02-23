@@ -161,8 +161,9 @@ public class AccueilActivity extends NavDrawerActivity implements BasicUtils {
         if (!intent.hasExtra("isSecondLaunch")) {
             simpleProgressBar.setVisibility(View.VISIBLE);
             SynchroApps();
-            simpleProgressBar.setVisibility(View.GONE);
+            //simpleProgressBar.setVisibility(View.GONE);
         }
+        simpleProgressBar.setVisibility(View.GONE);
     }
 
     public void addRdvAnalyse(View view) {

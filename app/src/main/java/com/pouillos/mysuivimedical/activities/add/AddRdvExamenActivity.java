@@ -10,30 +10,24 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 
+import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.pouillos.mysuivimedical.R;
-import com.pouillos.mysuivimedical.activities.AccueilActivity;
 import com.pouillos.mysuivimedical.activities.NavDrawerActivity;
 import com.pouillos.mysuivimedical.entities.Examen;
 import com.pouillos.mysuivimedical.entities.RdvExamen;
 
-import com.pouillos.mysuivimedical.fragments.DatePickerFragmentDateJour;
 import com.pouillos.mysuivimedical.interfaces.BasicUtils;
 
 import java.io.Serializable;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
@@ -43,7 +37,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import icepick.Icepick;
-import icepick.State;
 
 public class AddRdvExamenActivity extends NavDrawerActivity implements Serializable, BasicUtils, AdapterView.OnItemClickListener {
 
@@ -84,12 +77,11 @@ public class AddRdvExamenActivity extends NavDrawerActivity implements Serializa
         super.onCreate(savedInstanceState);
         Icepick.restoreInstanceState(this, savedInstanceState);
         setContentView(R.layout.activity_add_rdv_examen);
-        // 6 - Configure all views
+
         this.configureToolBar();
         this.configureBottomView();
 
         ButterKnife.bind(this);
-
 
         progressBar.setVisibility(View.VISIBLE);
 
@@ -103,6 +95,35 @@ public class AddRdvExamenActivity extends NavDrawerActivity implements Serializa
 
         layoutDate.setEnabled(false);
         layoutHeure.setEnabled(false);
+
+        materialDatePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener() {
+            @Override
+            public void onPositiveButtonClick(Object selection) {
+                textDate.setText(materialDatePicker.getHeaderText());
+                date = new Date();
+                date.setTime((Long) selection);
+                layoutHeure.setEnabled(true);
+            }
+        });
+
+        materialTimePicker.addOnPositiveButtonClickListener(dialog -> {
+            int newHour = materialTimePicker.getHour();
+            int newMinute = materialTimePicker.getMinute();
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(date);
+            calendar.set(Calendar.HOUR_OF_DAY, newHour);
+            calendar.set(Calendar.MINUTE, newMinute);
+            date = calendar.getTime();
+            textHeure.setText(ecrireHeure(newHour,newMinute));
+        });
+    }
+
+    public void showTimePicker(View view) {
+        materialTimePicker.show(getSupportFragmentManager(),"TIME_PICKER");
+    }
+
+    public void showDatePicker(View view) {
+        materialDatePicker.show(getSupportFragmentManager(),"DATE_PICKER");
     }
 
     @Override
@@ -221,7 +242,7 @@ public class AddRdvExamenActivity extends NavDrawerActivity implements Serializa
     }
 
 
-    public void showTimePickerDialog(View v) {
+    /*public void showTimePickerDialog(View v) {
         final Calendar cldr = Calendar.getInstance();
         int hour = 8;
         int minutes = 0;
@@ -298,6 +319,6 @@ public class AddRdvExamenActivity extends NavDrawerActivity implements Serializa
                 }
             }
         });
-    }
+    }*/
 
 }

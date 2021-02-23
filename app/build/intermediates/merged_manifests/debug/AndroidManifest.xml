@@ -98,19 +98,6 @@
         </receiver>
         -->
 
-        <receiver android:name="com.pouillos.mysuivimedical.activities.tools.Alarm" >
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
-            </intent-filter>
-        </receiver>
-        <receiver android:name="com.pouillos.mysuivimedical.activities.tools.ReminderBroadcast" >
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
-            </intent-filter>
-        </receiver>
-
         <provider
             android:name="androidx.lifecycle.ProcessLifecycleOwnerInitializer"
             android:authorities="com.pouillos.mysuivimedical.lifecycle-process"

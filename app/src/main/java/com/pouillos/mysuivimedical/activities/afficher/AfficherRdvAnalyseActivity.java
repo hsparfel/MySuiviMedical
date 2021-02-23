@@ -13,15 +13,14 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.widget.Toolbar;
 
+import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -33,13 +32,8 @@ import com.pouillos.mysuivimedical.activities.utils.DateUtils;
 import com.pouillos.mysuivimedical.entities.RdvAnalyse;
 
 import com.pouillos.mysuivimedical.enumeration.TypePhoto;
-import com.pouillos.mysuivimedical.fragments.DatePickerFragmentDateJour;
 import com.pouillos.mysuivimedical.interfaces.BasicUtils;
 
-import java.io.Serializable;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
@@ -127,8 +121,36 @@ public class AfficherRdvAnalyseActivity extends NavDrawerActivity implements Bas
         setTitle("Mes Rdv Analyses");
         traiterIntent();
         selectedRdv.setOnItemClickListener(this);
+
+        materialDatePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener() {
+            @Override
+            public void onPositiveButtonClick(Object selection) {
+                textDate.setText(materialDatePicker.getHeaderText());
+                date = new Date();
+                date.setTime((Long) selection);
+                layoutHeure.setEnabled(true);
+            }
+        });
+
+        materialTimePicker.addOnPositiveButtonClickListener(dialog -> {
+            int newHour = materialTimePicker.getHour();
+            int newMinute = materialTimePicker.getMinute();
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(date);
+            calendar.set(Calendar.HOUR_OF_DAY, newHour);
+            calendar.set(Calendar.MINUTE, newMinute);
+            date = calendar.getTime();
+            textHeure.setText(ecrireHeure(newHour,newMinute));
+        });
     }
 
+    public void showTimePicker(View view) {
+        materialTimePicker.show(getSupportFragmentManager(),"TIME_PICKER");
+    }
+
+    public void showDatePicker(View view) {
+        materialDatePicker.show(getSupportFragmentManager(),"DATE_PICKER");
+    }
 
     public void traiterIntent() {
         Intent intent = getIntent();
@@ -322,7 +344,7 @@ public class AfficherRdvAnalyseActivity extends NavDrawerActivity implements Bas
     }
 
 
-    public void showTimePickerDialog(View v) {
+    /*public void showTimePickerDialog(View v) {
         final Calendar cldr = Calendar.getInstance();
         int hour = 8;
         int minutes = 0;
@@ -394,6 +416,6 @@ public class AfficherRdvAnalyseActivity extends NavDrawerActivity implements Bas
                 }
             }
         });
-    }
+    }*/
 }
 

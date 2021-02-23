@@ -2478,6 +2478,9 @@ layout number_picker_material
 layout progress_bar
 layout recycler_list_prescription
 layout recycler_list_prise
+layout recycler_list_rdv_analyse
+layout recycler_list_rdv_contact
+layout recycler_list_rdv_examen
 layout select_dialog_item_material
 layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material

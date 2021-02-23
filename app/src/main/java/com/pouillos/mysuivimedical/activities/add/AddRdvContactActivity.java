@@ -7,27 +7,21 @@ import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.pouillos.mysuivimedical.R;
-import com.pouillos.mysuivimedical.activities.AccueilActivity;
 import com.pouillos.mysuivimedical.activities.NavDrawerActivity;
 import com.pouillos.mysuivimedical.entities.Contact;
 import com.pouillos.mysuivimedical.entities.RdvContact;
 
-import com.pouillos.mysuivimedical.fragments.DatePickerFragmentDateJour;
 import com.pouillos.mysuivimedical.interfaces.BasicUtils;
 
 import java.io.Serializable;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -73,13 +67,11 @@ public class AddRdvContactActivity extends NavDrawerActivity implements Serializ
         super.onCreate(savedInstanceState);
         Icepick.restoreInstanceState(this, savedInstanceState);
         setContentView(R.layout.activity_add_rdv_contact);
-        // 6 - Configure all views
+
         this.configureToolBar();
         this.configureBottomView();
 
         ButterKnife.bind(this);
-
-
 
         traiterIntent();
         displayFabs();
@@ -87,8 +79,36 @@ public class AddRdvContactActivity extends NavDrawerActivity implements Serializ
         setTitle(getString(R.string.my_meeting));
 
         layoutHeure.setEnabled(false);
+
+        materialDatePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener() {
+            @Override
+            public void onPositiveButtonClick(Object selection) {
+                textDate.setText(materialDatePicker.getHeaderText());
+                date = new Date();
+                date.setTime((Long) selection);
+                layoutHeure.setEnabled(true);
+            }
+        });
+
+        materialTimePicker.addOnPositiveButtonClickListener(dialog -> {
+            int newHour = materialTimePicker.getHour();
+            int newMinute = materialTimePicker.getMinute();
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(date);
+            calendar.set(Calendar.HOUR_OF_DAY, newHour);
+            calendar.set(Calendar.MINUTE, newMinute);
+            date = calendar.getTime();
+            textHeure.setText(ecrireHeure(newHour,newMinute));
+        });
     }
 
+    public void showTimePicker(View view) {
+        materialTimePicker.show(getSupportFragmentManager(),"TIME_PICKER");
+    }
+
+    public void showDatePicker(View view) {
+        materialDatePicker.show(getSupportFragmentManager(),"DATE_PICKER");
+    }
 
     public void displayFabs() {
             fabSave.show();
@@ -185,7 +205,7 @@ public class AddRdvContactActivity extends NavDrawerActivity implements Serializ
     }
 
 
-    public void showTimePickerDialog(View v) {
+    /*public void showTimePickerDialog(View v) {
         final Calendar cldr = Calendar.getInstance();
         int hour = 8;
         int minutes = 0;
@@ -262,6 +282,6 @@ public class AddRdvContactActivity extends NavDrawerActivity implements Serializ
                 }
             }
         });
-    }
+    }*/
 
 }

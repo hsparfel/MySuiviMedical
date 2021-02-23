@@ -32,7 +32,8 @@ public class RdvExamenDao extends AbstractDao<RdvExamen, Long> {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
         public final static Property Detail = new Property(1, String.class, "detail", false, "DETAIL");
         public final static Property Date = new Property(2, java.util.Date.class, "date", false, "DATE");
-        public final static Property ExamenId = new Property(3, long.class, "examenId", false, "EXAMEN_ID");
+        public final static Property DateString = new Property(3, String.class, "dateString", false, "DATE_STRING");
+        public final static Property ExamenId = new Property(4, long.class, "examenId", false, "EXAMEN_ID");
     }
 
     private DaoSession daoSession;
@@ -54,7 +55,8 @@ public class RdvExamenDao extends AbstractDao<RdvExamen, Long> {
                 "\"_id\" INTEGER PRIMARY KEY ," + // 0: id
                 "\"DETAIL\" TEXT," + // 1: detail
                 "\"DATE\" INTEGER," + // 2: date
-                "\"EXAMEN_ID\" INTEGER NOT NULL );"); // 3: examenId
+                "\"DATE_STRING\" TEXT," + // 3: dateString
+                "\"EXAMEN_ID\" INTEGER NOT NULL );"); // 4: examenId
     }
 
     /** Drops the underlying database table. */
@@ -81,7 +83,12 @@ public class RdvExamenDao extends AbstractDao<RdvExamen, Long> {
         if (date != null) {
             stmt.bindLong(3, date.getTime());
         }
-        stmt.bindLong(4, entity.getExamenId());
+ 
+        String dateString = entity.getDateString();
+        if (dateString != null) {
+            stmt.bindString(4, dateString);
+        }
+        stmt.bindLong(5, entity.getExamenId());
     }
 
     @Override
@@ -102,7 +109,12 @@ public class RdvExamenDao extends AbstractDao<RdvExamen, Long> {
         if (date != null) {
             stmt.bindLong(3, date.getTime());
         }
-        stmt.bindLong(4, entity.getExamenId());
+ 
+        String dateString = entity.getDateString();
+        if (dateString != null) {
+            stmt.bindString(4, dateString);
+        }
+        stmt.bindLong(5, entity.getExamenId());
     }
 
     @Override
@@ -122,7 +134,8 @@ public class RdvExamenDao extends AbstractDao<RdvExamen, Long> {
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
             cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // detail
             cursor.isNull(offset + 2) ? null : new java.util.Date(cursor.getLong(offset + 2)), // date
-            cursor.getLong(offset + 3) // examenId
+            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // dateString
+            cursor.getLong(offset + 4) // examenId
         );
         return entity;
     }
@@ -132,7 +145,8 @@ public class RdvExamenDao extends AbstractDao<RdvExamen, Long> {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
         entity.setDetail(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
         entity.setDate(cursor.isNull(offset + 2) ? null : new java.util.Date(cursor.getLong(offset + 2)));
-        entity.setExamenId(cursor.getLong(offset + 3));
+        entity.setDateString(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
+        entity.setExamenId(cursor.getLong(offset + 4));
      }
     
     @Override

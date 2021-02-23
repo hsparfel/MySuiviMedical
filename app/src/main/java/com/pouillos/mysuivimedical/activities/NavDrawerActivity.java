@@ -12,8 +12,10 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -23,8 +25,14 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.datepicker.CalendarConstraints;
+import com.google.android.material.datepicker.DateValidatorPointBackward;
+import com.google.android.material.datepicker.DateValidatorPointForward;
+import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.timepicker.MaterialTimePicker;
+import com.google.android.material.timepicker.TimeFormat;
 import com.pouillos.mysuivimedical.R;
 
 import com.pouillos.mysuivimedical.activities.utils.DateUtils;
@@ -71,7 +79,9 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.concurrent.Executor;
 
+import butterknife.BindView;
 import icepick.Icepick;
+
 
 public class NavDrawerActivity extends AppCompatActivity implements BasicUtils {
 
@@ -109,11 +119,15 @@ public class NavDrawerActivity extends AppCompatActivity implements BasicUtils {
     protected RdvAnalyseDao rdvAnalyseDao;
     protected RdvContactDao rdvContactDao;
 
+    protected MaterialDatePicker materialDatePicker;
+    protected MaterialTimePicker materialTimePicker;
+    protected Long today;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initialiserDao();
-        createNotificationChannel();
+        //createNotificationChannel();
         associationFormeDoseDao = daoSession.getAssociationFormeDoseDao();
         doseDao = daoSession.getDoseDao();
         formePharmaceutiqueDao = daoSession.getFormePharmaceutiqueDao();
@@ -138,6 +152,36 @@ public class NavDrawerActivity extends AppCompatActivity implements BasicUtils {
         rdvAnalyseDao = daoSession.getRdvAnalyseDao();
         rdvExamenDao = daoSession.getRdvExamenDao();
         rdvContactDao = daoSession.getRdvContactDao();
+
+        createMaterialDatePicker(false);
+        createMaterialTimePicker();
+    }
+
+
+    public void createMaterialDatePicker(boolean chooseConstraint) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.clear();
+        today = materialDatePicker.todayInUtcMilliseconds();
+        CalendarConstraints.Builder constraintBuilder = new CalendarConstraints.Builder();
+        if (!chooseConstraint) {
+            constraintBuilder.setValidator(DateValidatorPointForward.now());
+        } else {
+            constraintBuilder.setValidator(DateValidatorPointBackward.now());
+        }
+        MaterialDatePicker.Builder builder = MaterialDatePicker.Builder.datePicker();
+        builder.setTitleText("Choisir une Date");
+        builder.setSelection(today);
+        builder.setCalendarConstraints(constraintBuilder.build());
+        materialDatePicker = builder.build();
+    }
+
+    public void createMaterialTimePicker() {
+        MaterialTimePicker.Builder builder = new MaterialTimePicker.Builder();
+        builder.setTitleText("Choisir une Heure")
+                .setTimeFormat(TimeFormat.CLOCK_24H)
+                .setHour(12)
+                .setMinute(00);
+        materialTimePicker = builder.build();
     }
 
     @Override
@@ -185,31 +229,8 @@ public class NavDrawerActivity extends AppCompatActivity implements BasicUtils {
                 });
     }
 
-    public void cancelAlarmDialog() {
-        new MaterialAlertDialogBuilder(this)
-                .setTitle("Annuler Alarmes")
-                .setMessage("Suppression de toutes les alarmes")
-                .setPositiveButton("OUI", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        razAlarmes();
-                    }
-                })
-                .setNegativeButton("NON", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        Toast.makeText(NavDrawerActivity.this, "RAZ Annulé", Toast.LENGTH_LONG).show();
-                    }
-                })
-                .show();
-    }
 
-    public void razAlarmes() {
-        List<Prise> listPrise = priseDao.loadAll();
-        for (Prise prise : listPrise) {
-            cancelAlarm(prise,this);
-        }
-    }
+
 
     public void configureToolBar() {
         this.toolbar = (Toolbar) findViewById(R.id.activity_main_toolbar);
@@ -362,50 +383,12 @@ public class NavDrawerActivity extends AppCompatActivity implements BasicUtils {
         }
     }
 
-    protected void scheduleAlarm(Prise prise, Context context) {
-        AlarmManager alarmManager=(AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        Intent intent= new Intent(context, Alarm.class);
-        int requestId = ((Long) prise.getDate().getTime()).intValue()+prise.getId().intValue();
-        PendingIntent pendingIntent=PendingIntent.getBroadcast(context,requestId,intent,0);
-        alarmManager.setExact(AlarmManager.RTC_WAKEUP,prise.getDate().getTime(),pendingIntent);
-        //alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,timeInMillis,AlarmManager.INTERVAL_DAY,pendingIntent);
-        //Toast.makeText(this,"Your Alarm is Set",Toast.LENGTH_LONG).show();
-    }
-
-    protected void cancelAlarm(Prise prise, Context context) {
-        AlarmManager alarmManager=(AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        Intent intent= new Intent(context, Alarm.class);
-        int requestId = ((Long) prise.getDate().getTime()).intValue()+prise.getId().intValue();
-        PendingIntent pendingIntent=PendingIntent.getBroadcast(context,requestId,intent,0);
-        alarmManager.cancel(pendingIntent);
-        //Toast.makeText(this,"Your Alarm is Cancel",Toast.LENGTH_LONG).show();
-
-    }
 
 
-    protected void notifSchedule(Prise prise, Context context) {
-        Intent intent = new Intent(context, ReminderBroadcast.class);
-        //int requestId = ((Long) new Date().getTime()).intValue();
-        int requestId = ((Long) prise.getDate().getTime()).intValue()+prise.getId().intValue();
-        String string = "";
-        if (BasicUtils.isInteger(prise.getQteDose())) {
-            string += Math.round(prise.getQteDose());
-        } else {
-            string += prise.getQteDose();
-        }
-        string +=" "+prise.getDose().getName() + " - ";
-        if (prise.getMedicament().getDenomination().length()>17) {
-            string += prise.getMedicament().getDenomination().substring(0,16)+"...";
-        } else {
-            string += prise.getMedicament().getDenomination();
-        }
-        intent.putExtra("content",string);
-        intent.putExtra("requestId",requestId);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, requestId, intent, 0);
 
-        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-        alarmManager.set(AlarmManager.RTC_WAKEUP, prise.getDate().getTime(),pendingIntent);
-    }
+
+
+
 
     protected Date findDateJour() {
         Date date = initDate(new Date());
@@ -416,5 +399,20 @@ public class NavDrawerActivity extends AppCompatActivity implements BasicUtils {
         BigDecimal bd = new BigDecimal(number);
         bd = bd.setScale(decimalPlace, BigDecimal.ROUND_HALF_UP);
         return bd.floatValue();
+    }
+
+    protected String ecrireHeure(int heure,int minute) {
+        String hour = "";
+        String min = "";
+        if (heure<10){
+            hour+="0";
+        }
+        if (minute<10){
+            min+="0";
+        }
+        hour+=heure;
+        min+=minute;
+
+        return hour + ":" + min;
     }
 }

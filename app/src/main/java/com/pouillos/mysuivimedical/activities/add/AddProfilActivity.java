@@ -5,30 +5,25 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.DatePicker;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
+import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.slider.Slider;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.pouillos.mysuivimedical.R;
-import com.pouillos.mysuivimedical.activities.AccueilActivity;
 import com.pouillos.mysuivimedical.activities.NavDrawerActivity;
 import com.pouillos.mysuivimedical.activities.utils.DateUtils;
 import com.pouillos.mysuivimedical.entities.Profil;
-import com.pouillos.mysuivimedical.fragments.DatePickerFragmentDateJour;
 import com.pouillos.mysuivimedical.interfaces.BasicUtils;
 
 import java.io.Serializable;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -90,6 +85,9 @@ public class AddProfilActivity extends NavDrawerActivity implements Serializable
 
         progressBar.setVisibility(View.VISIBLE);
 
+        //inversion de la contrainte du datepicker
+        createMaterialDatePicker(true);
+
         AddProfilActivity.AsyncTaskRunnerBD runnerBD = new AddProfilActivity.AsyncTaskRunnerBD();
         runnerBD.execute();
 
@@ -117,11 +115,25 @@ public class AddProfilActivity extends NavDrawerActivity implements Serializable
             @Override
             public void onFocusChange(View view, boolean hasFocus) {
                 if (hasFocus) {
-                    showDatePickerDialog(view);
+                    showDatePicker(view);
                     textDate.clearFocus();
                 }
             }
         });
+
+        materialDatePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener() {
+            @Override
+            public void onPositiveButtonClick(Object selection) {
+                textDate.setText(materialDatePicker.getHeaderText());
+                dateProfil = new Date();
+                dateProfil.setTime((Long) selection);
+                //layoutHeure.setEnabled(true);
+            }
+        });
+    }
+
+    public void showDatePicker(View view) {
+        materialDatePicker.show(getSupportFragmentManager(),"DATE_PICKER");
     }
 
     public class AsyncTaskRunnerBD extends AsyncTask<Void, Integer, Void> {
@@ -175,7 +187,7 @@ public class AddProfilActivity extends NavDrawerActivity implements Serializable
     }
 
 
-    public void showDatePickerDialog(View v) {
+    /*public void showDatePickerDialog(View v) {
         DatePickerFragmentDateJour newFragment = new DatePickerFragmentDateJour();
         newFragment.show(getSupportFragmentManager(), "buttonDate");
         newFragment.setOnDateClickListener(new DatePickerFragmentDateJour.onDateClickListener() {
@@ -202,7 +214,7 @@ public class AddProfilActivity extends NavDrawerActivity implements Serializable
                 }
             }
         });
-    }
+    }*/
 
     @OnClick(R.id.floating_action_button)
     public void fabClick() {

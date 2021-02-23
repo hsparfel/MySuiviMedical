@@ -28,7 +28,7 @@
 16-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:10:19-57
 17
 18    <application
-18-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:12:5-91:19
+18-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:12:5-79:19
 19        android:name="com.pouillos.mysuivimedical.MyApp"
 19-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:13:9-57
 20        android:allowBackup="true"
@@ -180,43 +180,16 @@
 98        </receiver>
 99        -->
 100
-101        <receiver android:name="com.pouillos.mysuivimedical.activities.tools.Alarm" >
-101-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:79:9-84:20
-101-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:79:19-85
-102            <intent-filter>
-102-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:80:13-83:29
-103                <action android:name="android.intent.action.BOOT_COMPLETED" />
-103-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:81:17-79
-103-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:81:25-76
-104                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
-104-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:82:17-82
-104-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:82:25-79
-105            </intent-filter>
-106        </receiver>
-107        <receiver android:name="com.pouillos.mysuivimedical.activities.tools.ReminderBroadcast" >
-107-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:85:9-90:20
-107-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:85:19-97
-108            <intent-filter>
-108-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:80:13-83:29
-109                <action android:name="android.intent.action.BOOT_COMPLETED" />
-109-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:81:17-79
-109-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:81:25-76
-110                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
-110-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:82:17-82
-110-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:82:25-79
-111            </intent-filter>
-112        </receiver>
-113
-114        <provider
-114-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\TNH\.gradle\caches\transforms-2\files-2.1\e53e565f480f786b632a4e97f8ee4f77\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:25:9-29:43
-115            android:name="androidx.lifecycle.ProcessLifecycleOwnerInitializer"
-115-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\TNH\.gradle\caches\transforms-2\files-2.1\e53e565f480f786b632a4e97f8ee4f77\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:26:13-79
-116            android:authorities="com.pouillos.mysuivimedical.lifecycle-process"
-116-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\TNH\.gradle\caches\transforms-2\files-2.1\e53e565f480f786b632a4e97f8ee4f77\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:27:13-69
-117            android:exported="false"
-117-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\TNH\.gradle\caches\transforms-2\files-2.1\e53e565f480f786b632a4e97f8ee4f77\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:28:13-37
-118            android:multiprocess="true" />
-118-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\TNH\.gradle\caches\transforms-2\files-2.1\e53e565f480f786b632a4e97f8ee4f77\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:29:13-40
-119    </application>
-120
-121</manifest>
+101        <provider
+101-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\TNH\.gradle\caches\transforms-2\files-2.1\e53e565f480f786b632a4e97f8ee4f77\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:25:9-29:43
+102            android:name="androidx.lifecycle.ProcessLifecycleOwnerInitializer"
+102-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\TNH\.gradle\caches\transforms-2\files-2.1\e53e565f480f786b632a4e97f8ee4f77\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:26:13-79
+103            android:authorities="com.pouillos.mysuivimedical.lifecycle-process"
+103-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\TNH\.gradle\caches\transforms-2\files-2.1\e53e565f480f786b632a4e97f8ee4f77\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:27:13-69
+104            android:exported="false"
+104-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\TNH\.gradle\caches\transforms-2\files-2.1\e53e565f480f786b632a4e97f8ee4f77\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:28:13-37
+105            android:multiprocess="true" />
+105-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\TNH\.gradle\caches\transforms-2\files-2.1\e53e565f480f786b632a4e97f8ee4f77\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:29:13-40
+106    </application>
+107
+108</manifest>

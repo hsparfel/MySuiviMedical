@@ -10,30 +10,28 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 
+import com.google.android.material.datepicker.CalendarConstraints;
+import com.google.android.material.datepicker.DateValidatorPointForward;
+import com.google.android.material.datepicker.MaterialDatePicker;
+import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.android.material.timepicker.MaterialTimePicker;
+import com.google.android.material.timepicker.TimeFormat;
 import com.pouillos.mysuivimedical.R;
-import com.pouillos.mysuivimedical.activities.AccueilActivity;
 import com.pouillos.mysuivimedical.activities.NavDrawerActivity;
 import com.pouillos.mysuivimedical.entities.Analyse;
 import com.pouillos.mysuivimedical.entities.RdvAnalyse;
 
-import com.pouillos.mysuivimedical.fragments.DatePickerFragmentDateJour;
 import com.pouillos.mysuivimedical.interfaces.BasicUtils;
 
-import java.io.Serializable;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
@@ -43,7 +41,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import icepick.Icepick;
-import icepick.State;
 
 public class AddRdvAnalyseActivity extends NavDrawerActivity implements BasicUtils, AdapterView.OnItemClickListener {
 
@@ -84,12 +81,11 @@ public class AddRdvAnalyseActivity extends NavDrawerActivity implements BasicUti
         super.onCreate(savedInstanceState);
         Icepick.restoreInstanceState(this, savedInstanceState);
         setContentView(R.layout.activity_add_rdv_analyse);
-        // 6 - Configure all views
+
         this.configureToolBar();
         this.configureBottomView();
 
         ButterKnife.bind(this);
-
 
         progressBar.setVisibility(View.VISIBLE);
 
@@ -103,13 +99,41 @@ public class AddRdvAnalyseActivity extends NavDrawerActivity implements BasicUti
 
         layoutDate.setEnabled(false);
         layoutHeure.setEnabled(false);
+
+        materialDatePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener() {
+            @Override
+            public void onPositiveButtonClick(Object selection) {
+                textDate.setText(materialDatePicker.getHeaderText());
+                date = new Date();
+                date.setTime((Long) selection);
+                layoutHeure.setEnabled(true);
+            }
+        });
+
+        materialTimePicker.addOnPositiveButtonClickListener(dialog -> {
+            int newHour = materialTimePicker.getHour();
+            int newMinute = materialTimePicker.getMinute();
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(date);
+            calendar.set(Calendar.HOUR_OF_DAY, newHour);
+            calendar.set(Calendar.MINUTE, newMinute);
+            date = calendar.getTime();
+            textHeure.setText(ecrireHeure(newHour,newMinute));
+        });
+    }
+
+    public void showTimePicker(View view) {
+        materialTimePicker.show(getSupportFragmentManager(),"TIME_PICKER");
+    }
+
+    public void showDatePicker(View view) {
+        materialDatePicker.show(getSupportFragmentManager(),"DATE_PICKER");
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         analyseSelected = listAnalyseBD.get(position);
         layoutDate.setEnabled(true);
-
     }
 
     public class AsyncTaskRunnerBD extends AsyncTask<Void, Integer, Void> {
@@ -139,11 +163,9 @@ public class AddRdvAnalyseActivity extends NavDrawerActivity implements BasicUti
         }
     }
 
-
     public void displayFabs() {
             fabSave.show();
     }
-
 
     public boolean isExistant() {
         boolean bool;
@@ -155,7 +177,6 @@ public class AddRdvAnalyseActivity extends NavDrawerActivity implements BasicUti
         }
         return bool;
     }
-
 
     public boolean checkFields(){
         boolean bool;
@@ -174,8 +195,6 @@ public class AddRdvAnalyseActivity extends NavDrawerActivity implements BasicUti
         return bool;
     }
 
-
-
     @OnClick(R.id.fabSave)
     public void fabSaveClick() {
         if (checkFields()) {
@@ -192,18 +211,14 @@ public class AddRdvAnalyseActivity extends NavDrawerActivity implements BasicUti
 
     }
 
-
     public void saveToDb() {
         RdvAnalyse rdvAnalyse = new RdvAnalyse();
         rdvAnalyse.setDetail(textNote.getText().toString());
         rdvAnalyse.setAnalyse(analyseSelected);
         rdvAnalyse.setDate(date);
-        //rdvAnalyse.save();
+        rdvAnalyse.setDateString(date.toString());
         rdvAnalyseDao.insert(rdvAnalyse);
         Toast.makeText(AddRdvAnalyseActivity.this, "Rdv Enregistré", Toast.LENGTH_LONG).show();
-        //enregistrer la/les notification(s)
-        //activerNotification(rdvAnalyse,AddRdvAnalyseActivity.this);
-
     }
 
     @Override
@@ -219,85 +234,4 @@ public class AddRdvAnalyseActivity extends NavDrawerActivity implements BasicUti
         }
         return super.dispatchTouchEvent(ev);
     }
-
-
-    public void showTimePickerDialog(View v) {
-        final Calendar cldr = Calendar.getInstance();
-        int hour = 8;
-        int minutes = 0;
-        // time picker dialog
-        picker = new TimePickerDialog(AddRdvAnalyseActivity.this,
-                new TimePickerDialog.OnTimeSetListener() {
-                    @Override
-                    public void onTimeSet(TimePicker tp, int sHour, int sMinute) {
-                        String hour = "";
-                        String minute = "";
-                        if (sHour<10){
-                            hour+="0";
-                        }
-                        if (sMinute<10){
-                            minute+="0";
-                        }
-                        hour+=sHour;
-                        minute+=sMinute;
-
-                        textHeure.setText(hour + ":" + minute);
-                        Calendar calendar = Calendar.getInstance();
-                        calendar.setTime(date);
-                        calendar.add(Calendar.HOUR_OF_DAY, sHour);
-                        calendar.add(Calendar.MINUTE, sMinute);
-                        date = calendar.getTime();
-                    }
-                }, hour, minutes, true);
-        picker.show();
-    }
-
-
-    public void showDatePickerDialog(View v) {
-        DatePickerFragmentDateJour newFragment = new DatePickerFragmentDateJour();
-        //newFragment.show(getSupportFragmentManager(), "buttonDate");
-        newFragment.show(getSupportFragmentManager(), "editTexteDate");
-        newFragment.setOnDateClickListener(new DatePickerFragmentDateJour.onDateClickListener() {
-            @Override
-            public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
-                datePicker.setMinDate(new Date().getTime());
-               // TextView tv1= (TextView) findViewById(R.id.textDate);
-                String dateJour = ""+datePicker.getDayOfMonth();
-                String dateMois = ""+(datePicker.getMonth()+1);
-                String dateAnnee = ""+datePicker.getYear();
-                if (datePicker.getDayOfMonth()<10) {
-                    dateJour = "0"+dateJour;
-                }
-                if (datePicker.getMonth()+1<10) {
-                    dateMois = "0"+dateMois;
-                }
-                Calendar c1 = Calendar.getInstance();
-                // set Month
-                // MONTH starts with 0 i.e. ( 0 - Jan)
-                c1.set(Calendar.MONTH, datePicker.getMonth());
-                // set Date
-                c1.set(Calendar.DATE, datePicker.getDayOfMonth());
-                // set Year
-                c1.set(Calendar.YEAR, datePicker.getYear());
-                // creating a date object with specified time.
-                date = c1.getTime();
-
-                String dateString = dateJour+"/"+dateMois+"/"+dateAnnee;
-                //tv1.setText("date: "+dateString);
-                textDate.setText(dateString);
-                textDate.setError(null);
-                DateFormat df = new SimpleDateFormat("dd/MM/yy");
-                try{
-                    date = df.parse(dateString);
-                    if (textHeure != null && !textHeure.getText().toString().equalsIgnoreCase("")) {
-                        date = ActualiserDate(date, textHeure.getText().toString());
-                    }
-                    layoutHeure.setEnabled(true);
-                }catch(ParseException e){
-                    System.out.println("ERROR");
-                }
-            }
-        });
-    }
-
 }

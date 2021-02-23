@@ -21,6 +21,7 @@ public class RdvContact implements Comparable<RdvContact> {
 
     protected String detail;
     protected Date date;
+    protected String dateString;
 
     private long contactId;
     @ToOne(joinProperty = "contactId")
@@ -34,11 +35,13 @@ public class RdvContact implements Comparable<RdvContact> {
     @Generated(hash = 846953431)
     private transient RdvContactDao myDao;
 
-    @Generated(hash = 750826235)
-    public RdvContact(Long id, String detail, Date date, long contactId) {
+    @Generated(hash = 393278371)
+    public RdvContact(Long id, String detail, Date date, String dateString,
+            long contactId) {
         this.id = id;
         this.detail = detail;
         this.date = date;
+        this.dateString = dateString;
         this.contactId = contactId;
     }
 
@@ -49,9 +52,13 @@ public class RdvContact implements Comparable<RdvContact> {
     @Generated(hash = 321829790)
     private transient Long contact__resolvedKey;
 
-    @Override
     public int compareTo(RdvContact o) {
         return this.getDate().compareTo(o.getDate());
+    }
+
+    @Override
+    public String toString() {
+        return contact + " -" + DateUtils.ecrireDateHeure(date);
     }
 
     public Long getId() {
@@ -76,6 +83,14 @@ public class RdvContact implements Comparable<RdvContact> {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public String getDateString() {
+        return this.dateString;
+    }
+
+    public void setDateString(String dateString) {
+        this.dateString = dateString;
     }
 
     public long getContactId() {
@@ -160,10 +175,5 @@ public class RdvContact implements Comparable<RdvContact> {
     public void __setDaoSession(DaoSession daoSession) {
         this.daoSession = daoSession;
         myDao = daoSession != null ? daoSession.getRdvContactDao() : null;
-    }
-
-    @Override
-    public String toString() {
-        return contact + " -" + DateUtils.ecrireDateHeure(date);
     }
 }
