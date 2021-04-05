@@ -153,64 +153,54 @@
 81-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:64:19-77
 82            android:windowSoftInputMode="stateHidden" />
 82-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:65:13-54
-83        <activity
-83-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:66:9-67:56
-84            android:name="com.pouillos.mysuivimedical.activities.afficher.AfficherRdvAnalyseActivity"
-84-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:66:19-81
-85            android:windowSoftInputMode="stateHidden" />
-85-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:67:13-54
-86        <activity
-86-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:68:9-69:56
-87            android:name="com.pouillos.mysuivimedical.activities.afficher.AfficherRdvContactActivity"
-87-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:68:19-81
-88            android:windowSoftInputMode="stateHidden" />
-88-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:69:13-54
-89        <activity
-89-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:70:9-71:56
-90            android:name="com.pouillos.mysuivimedical.activities.afficher.AfficherRdvExamenActivity"
-90-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:70:19-80
-91            android:windowSoftInputMode="stateHidden" />
-91-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:71:13-54
-92        <activity
-92-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:72:9-73:56
-93            android:name="com.pouillos.mysuivimedical.activities.afficher.AfficherRdvActivity"
-93-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:72:19-74
-94            android:windowSoftInputMode="stateHidden" />
-94-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:73:13-54
-95        <activity
-95-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:74:9-75:56
-96            android:name="com.pouillos.mysuivimedical.activities.photo.MakePhotoActivity"
-96-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:74:19-69
-97            android:windowSoftInputMode="stateHidden" />
-97-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:75:13-54
-98
-99        <provider
-99-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:77:9-85:20
-100            android:name="androidx.core.content.FileProvider"
-100-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:78:13-62
-101            android:authorities="com.pouillos.mysuivimedical.fileprovider"
-101-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:79:13-75
-102            android:exported="false"
-102-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:80:13-37
-103            android:grantUriPermissions="true" >
-103-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:81:13-47
-104            <meta-data
-104-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:82:13-84:53
-105                android:name="android.support.FILE_PROVIDER_PATHS"
-105-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:83:17-67
-106                android:resource="@xml/filepaths" />
-106-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:84:17-50
-107        </provider>
-108        <provider
-108-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\TNH\.gradle\caches\transforms-2\files-2.1\e53e565f480f786b632a4e97f8ee4f77\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:25:9-29:43
-109            android:name="androidx.lifecycle.ProcessLifecycleOwnerInitializer"
-109-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\TNH\.gradle\caches\transforms-2\files-2.1\e53e565f480f786b632a4e97f8ee4f77\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:26:13-79
-110            android:authorities="com.pouillos.mysuivimedical.lifecycle-process"
-110-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\TNH\.gradle\caches\transforms-2\files-2.1\e53e565f480f786b632a4e97f8ee4f77\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:27:13-69
-111            android:exported="false"
-111-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\TNH\.gradle\caches\transforms-2\files-2.1\e53e565f480f786b632a4e97f8ee4f77\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:28:13-37
-112            android:multiprocess="true" />
-112-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\TNH\.gradle\caches\transforms-2\files-2.1\e53e565f480f786b632a4e97f8ee4f77\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:29:13-40
-113    </application>
-114
-115</manifest>
+83        <!--
+84        <activity android:name=".activities.afficher.AfficherRdvAnalyseActivity"
+85            android:windowSoftInputMode="stateHidden"/>
+86        <activity android:name=".activities.afficher.AfficherRdvContactActivity"
+87            android:windowSoftInputMode="stateHidden"/>
+88        <activity android:name=".activities.afficher.AfficherRdvExamenActivity"
+89            android:windowSoftInputMode="stateHidden"/>
+90        -->
+91        <activity
+91-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:72:9-73:56
+92            android:name="com.pouillos.mysuivimedical.activities.afficher.AfficherRdvActivity"
+92-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:72:19-74
+93            android:windowSoftInputMode="stateHidden" />
+93-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:73:13-54
+94        <activity
+94-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:74:9-75:56
+95            android:name="com.pouillos.mysuivimedical.activities.photo.MakePhotoActivity"
+95-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:74:19-69
+96            android:windowSoftInputMode="stateHidden" />
+96-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:75:13-54
+97
+98        <provider
+98-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:77:9-85:20
+99            android:name="androidx.core.content.FileProvider"
+99-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:78:13-62
+100            android:authorities="com.pouillos.mysuivimedical.fileprovider"
+100-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:79:13-75
+101            android:exported="false"
+101-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:80:13-37
+102            android:grantUriPermissions="true" >
+102-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:81:13-47
+103            <meta-data
+103-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:82:13-84:53
+104                android:name="android.support.FILE_PROVIDER_PATHS"
+104-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:83:17-67
+105                android:resource="@xml/filepaths" />
+105-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:84:17-50
+106        </provider>
+107        <provider
+107-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\TNH\.gradle\caches\transforms-2\files-2.1\e53e565f480f786b632a4e97f8ee4f77\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:25:9-29:43
+108            android:name="androidx.lifecycle.ProcessLifecycleOwnerInitializer"
+108-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\TNH\.gradle\caches\transforms-2\files-2.1\e53e565f480f786b632a4e97f8ee4f77\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:26:13-79
+109            android:authorities="com.pouillos.mysuivimedical.lifecycle-process"
+109-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\TNH\.gradle\caches\transforms-2\files-2.1\e53e565f480f786b632a4e97f8ee4f77\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:27:13-69
+110            android:exported="false"
+110-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\TNH\.gradle\caches\transforms-2\files-2.1\e53e565f480f786b632a4e97f8ee4f77\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:28:13-37
+111            android:multiprocess="true" />
+111-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\TNH\.gradle\caches\transforms-2\files-2.1\e53e565f480f786b632a4e97f8ee4f77\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:29:13-40
+112    </application>
+113
+114</manifest>

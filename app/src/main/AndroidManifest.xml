@@ -63,12 +63,7 @@
             android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".activities.afficher.AfficherProfilActivity"
             android:windowSoftInputMode="stateHidden"/>
-        <activity android:name=".activities.afficher.AfficherRdvAnalyseActivity"
-            android:windowSoftInputMode="stateHidden"/>
-        <activity android:name=".activities.afficher.AfficherRdvContactActivity"
-            android:windowSoftInputMode="stateHidden"/>
-        <activity android:name=".activities.afficher.AfficherRdvExamenActivity"
-            android:windowSoftInputMode="stateHidden"/>
+
         <activity android:name=".activities.afficher.AfficherRdvActivity"
             android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".activities.photo.MakePhotoActivity"

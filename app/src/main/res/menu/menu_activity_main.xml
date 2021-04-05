@@ -1,23 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
 xmlns:app="http://schemas.android.com/apk/res-auto">
-<item
-    android:icon="@drawable/outline_search_white_18dp"
-    app:showAsAction="ifRoom"
-    android:title="Rechercher">
-</item>
-    <item
-        android:title="@string/add_analyse"        />
-    <item
-        android:title="@string/add_exam"        />
-    <item
+
+
+    <item android:id="@+id/listAllAnalyse"
         android:title="@string/list_all_analysis"        />
-    <item
+    <item android:id="@+id/listAllExamen"
         android:title="@string/list_all_exam"/>
-    <item
-        android:title="@string/list_my_profil"        />
-    <item
-        android:title="@string/take_a_picture"        />
-    <item
-        android:title="afficher photo"        />
+    <item android:id="@+id/majDatas"
+        android:title="@string/maj_datas"/>
+
 </menu>

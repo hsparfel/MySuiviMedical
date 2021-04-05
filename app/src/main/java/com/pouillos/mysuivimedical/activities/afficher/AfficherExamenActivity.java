@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -98,6 +99,9 @@ public class AfficherExamenActivity extends NavDrawerActivity implements BasicUt
         setTitle("Examens");
 
         selectedExamen.setOnItemClickListener(this);
+
+        Menu bottomNavigationViewMenu = bottomNavigationView.getMenu();
+        bottomNavigationViewMenu.findItem(R.id.bottom_navigation_home).setChecked(false);
     }
 
     public class AsyncTaskRunner extends AsyncTask<Void, Integer, Void> {

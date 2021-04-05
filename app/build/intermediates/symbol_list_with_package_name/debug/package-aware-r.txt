@@ -2073,6 +2073,8 @@ id leftToRight
 id line1
 id line3
 id linear
+id listAllAnalyse
+id listAllExamen
 id listAnalyse
 id listContact
 id listExamen
@@ -2081,6 +2083,7 @@ id listMode
 id listProfil
 id listRdv
 id list_item
+id majDatas
 id masked
 id material_clock_display
 id material_clock_face
@@ -2584,6 +2587,7 @@ string item_view_role_description
 string list_all_analysis
 string list_all_exam
 string list_my_profil
+string maj_datas
 string material_clock_display_divider
 string material_clock_toggle_content_description
 string material_hour_selection

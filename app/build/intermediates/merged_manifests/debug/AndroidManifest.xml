@@ -80,15 +80,14 @@
         <activity
             android:name="com.pouillos.mysuivimedical.activities.afficher.AfficherProfilActivity"
             android:windowSoftInputMode="stateHidden" />
-        <activity
-            android:name="com.pouillos.mysuivimedical.activities.afficher.AfficherRdvAnalyseActivity"
-            android:windowSoftInputMode="stateHidden" />
-        <activity
-            android:name="com.pouillos.mysuivimedical.activities.afficher.AfficherRdvContactActivity"
-            android:windowSoftInputMode="stateHidden" />
-        <activity
-            android:name="com.pouillos.mysuivimedical.activities.afficher.AfficherRdvExamenActivity"
-            android:windowSoftInputMode="stateHidden" />
+        <!--
+        <activity android:name=".activities.afficher.AfficherRdvAnalyseActivity"
+            android:windowSoftInputMode="stateHidden"/>
+        <activity android:name=".activities.afficher.AfficherRdvContactActivity"
+            android:windowSoftInputMode="stateHidden"/>
+        <activity android:name=".activities.afficher.AfficherRdvExamenActivity"
+            android:windowSoftInputMode="stateHidden"/>
+        -->
         <activity
             android:name="com.pouillos.mysuivimedical.activities.afficher.AfficherRdvActivity"
             android:windowSoftInputMode="stateHidden" />

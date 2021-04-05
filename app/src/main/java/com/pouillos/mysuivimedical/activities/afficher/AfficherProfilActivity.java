@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -103,6 +104,9 @@ public class AfficherProfilActivity extends NavDrawerActivity implements BasicUt
         setTitle("Mes Profils");
 
         selectedProfil.setOnItemClickListener(this);
+
+        Menu bottomNavigationViewMenu = bottomNavigationView.getMenu();
+        bottomNavigationViewMenu.findItem(R.id.bottom_navigation_profil).setChecked(true);
     }
 
     public class AsyncTaskRunner extends AsyncTask<Void, Integer, Void> {

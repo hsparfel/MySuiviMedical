@@ -8,6 +8,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -103,6 +104,9 @@ public class AfficherPhotoActivity  extends NavDrawerActivity implements BasicUt
 
         fabShare.hide();
         fabDelete.hide();
+
+        Menu bottomNavigationViewMenu = bottomNavigationView.getMenu();
+        bottomNavigationViewMenu.findItem(R.id.bottom_navigation_photo).setChecked(true);
     }
 
     @OnClick(R.id.fabShare)

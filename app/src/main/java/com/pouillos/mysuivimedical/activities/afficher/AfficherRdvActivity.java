@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -175,6 +176,9 @@ public class AfficherRdvActivity extends NavDrawerActivity implements BasicUtils
             date = calendar.getTime();
             textHeure.setText(ecrireHeure(newHour,newMinute));
         });
+
+        Menu bottomNavigationViewMenu = bottomNavigationView.getMenu();
+        bottomNavigationViewMenu.findItem(R.id.bottom_navigation_rdv).setChecked(true);
     }
 
 

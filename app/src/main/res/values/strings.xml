@@ -11,8 +11,8 @@
 
     <string name="add_exam">+ Examen</string>
     <string name="add_analyse">+ Analyse</string>
-    <string name="list_all_exam">lister Examens</string>
-    <string name="list_all_analysis">lister Analyses</string>
+    <string name="list_all_exam">Lister Examens</string>
+    <string name="list_all_analysis">Lister Analyses</string>
     <string name="list_my_profil">lister Profils</string>
     <string name="take_a_picture">prendre une photo</string>
 
@@ -95,5 +95,6 @@
     <string name="add_meeting_exam">+Rdv Examen</string>
     <string name="add_meeting_contact">+Rdv Contact</string>
     <string name="analysis">Analyse</string>
+    <string name="maj_datas">Maj Datas</string>
 
 </resources>
