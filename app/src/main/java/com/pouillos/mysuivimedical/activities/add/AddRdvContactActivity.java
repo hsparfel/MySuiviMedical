@@ -3,26 +3,37 @@ package com.pouillos.mysuivimedical.activities.add;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
-import android.widget.Toast;
+import android.widget.ProgressBar;
+
+
+import androidx.annotation.RequiresApi;
 
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.pouillos.mysuivimedical.R;
 import com.pouillos.mysuivimedical.activities.NavDrawerActivity;
 import com.pouillos.mysuivimedical.entities.Contact;
+import com.pouillos.mysuivimedical.entities.Contact;
+import com.pouillos.mysuivimedical.entities.RdvContact;
 import com.pouillos.mysuivimedical.entities.RdvContact;
 
 import com.pouillos.mysuivimedical.interfaces.BasicUtils;
 
 import java.io.Serializable;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -32,20 +43,19 @@ import butterknife.OnClick;
 import icepick.Icepick;
 import icepick.State;
 
-public class AddRdvContactActivity extends NavDrawerActivity implements Serializable, BasicUtils {
+public class AddRdvContactActivity extends NavDrawerActivity implements BasicUtils, AdapterView.OnItemClickListener {
 
-    Contact contact;
-    @State
-    Date date = new Date();
+    Date date;
 
-    RdvContact rdvContactToCreate;
+    Contact contactSelected;
 
     TimePickerDialog picker;
 
-    @BindView(R.id.layoutContact)
-    TextInputLayout layoutContact;
-    @BindView(R.id.textContact)
-    TextInputEditText textContact;
+    @BindView(R.id.selectionContact)
+    AutoCompleteTextView selectedContact;
+    @BindView(R.id.listContact)
+    TextInputLayout listContact;
+
     @BindView(R.id.layoutDate)
     TextInputLayout layoutDate;
     @BindView(R.id.textDate)
@@ -59,8 +69,13 @@ public class AddRdvContactActivity extends NavDrawerActivity implements Serializ
     @BindView(R.id.textNote)
     TextInputEditText textNote;
 
+    private List<Contact> listContactBD;
+
     @BindView(R.id.fabSave)
     FloatingActionButton fabSave;
+
+    @BindView(R.id.my_progressBar)
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,11 +88,17 @@ public class AddRdvContactActivity extends NavDrawerActivity implements Serializ
 
         ButterKnife.bind(this);
 
-        traiterIntent();
-        displayFabs();
-        layoutContact.setEnabled(false);
-        setTitle(getString(R.string.my_meeting));
+        progressBar.setVisibility(View.VISIBLE);
 
+        AddRdvContactActivity.AsyncTaskRunnerBD runnerBD = new AddRdvContactActivity.AsyncTaskRunnerBD();
+        runnerBD.execute();
+
+        selectedContact.setOnItemClickListener(this);
+        displayFabs();
+
+        setTitle(getString(R.string.add_meeting_contact));
+
+        layoutDate.setEnabled(false);
         layoutHeure.setEnabled(false);
 
         materialDatePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener() {
@@ -110,22 +131,53 @@ public class AddRdvContactActivity extends NavDrawerActivity implements Serializ
         materialDatePicker.show(getSupportFragmentManager(),"DATE_PICKER");
     }
 
-    public void displayFabs() {
-            fabSave.show();
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        contactSelected = listContactBD.get(position);
+        layoutDate.setEnabled(true);
     }
 
+    public class AsyncTaskRunnerBD extends AsyncTask<Void, Integer, Void> {
+
+        protected Void doInBackground(Void...voids) {
+            publishProgress(0);
+
+            publishProgress(10);
+
+            //listContactBD = Contact.listAll(Contact.class);
+            listContactBD = contactDao.loadAll();
+            Collections.sort(listContactBD);
+
+            publishProgress(100);
+            return null;
+        }
+
+        @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
+        protected void onPostExecute(Void result) {
+            progressBar.setVisibility(View.GONE);
+            buildDropdownMenu(listContactBD, AddRdvContactActivity.this,selectedContact);
+        }
+
+        @RequiresApi(api = Build.VERSION_CODES.N)
+        protected void onProgressUpdate(Integer... integer) {
+            progressBar.setProgress(integer[0],true);
+        }
+    }
+
+    public void displayFabs() {
+        fabSave.show();
+    }
 
     public boolean isExistant() {
         boolean bool;
         bool = false;
-        //List<RdvContact> listRdvContact = RdvContact.find(RdvContact.class,"utilisateur = ? and contact = ? and date = ?",""+activeUser.getId(),""+contact.getId(),""+date.getTime());
-        List<RdvContact> listRdvContact = rdvContactDao.queryRaw("where contact_Id = ? and date = ?",""+contact.getId(),""+date.getTime());
-        if (listRdvContact.size() != 0) {
+        //List<RdvContact> listRdv = RdvContact.find(RdvContact.class,"utilisateur = ? and contact = ? and date = ?",""+activeUser.getId(),""+contactSelected.getId(),""+date.getTime());
+        List<RdvContact> listRdv = rdvContactDao.queryRaw("where contact_Id = ? and date = ?",""+contactSelected.getId(),""+date.getTime());
+        if (listRdv.size() != 0) {
             bool = true;
         }
         return bool;
     }
-
 
     public boolean checkFields(){
         boolean bool;
@@ -144,50 +196,29 @@ public class AddRdvContactActivity extends NavDrawerActivity implements Serializ
         return bool;
     }
 
-
-    public void traiterIntent() {
-        Intent intent = getIntent();
-        if (intent.hasExtra("contactId")) {
-            Long contactId = intent.getLongExtra("contactId", 0);
-            //contact = Contact.findById(Contact.class, contactId);
-            contact = contactDao.load(contactId);
-            textContact.setText(contact.toString());
-            rdvContactToCreate = new RdvContact();
-            rdvContactToCreate.setContact(contact);
-        }
-    }
-
     @OnClick(R.id.fabSave)
     public void fabSaveClick() {
         if (checkFields()) {
             if (!isExistant()) {
                 saveToDb();
-               // ouvrirActiviteSuivante(AddRdvContactActivity.this, AccueilActivity.class,true);
                 rouvrirActiviteAccueil(this,true);
             } else {
-                Toast.makeText(AddRdvContactActivity.this, "Rdv déjà existant", Toast.LENGTH_LONG).show();
+                Snackbar.make(fabSave, "Rdv déjà existant", Snackbar.LENGTH_LONG).show();
             }
         } else {
-            Toast.makeText(AddRdvContactActivity.this, "Saisie non valide", Toast.LENGTH_LONG).show();
+            Snackbar.make(fabSave, "Saisie non valide", Snackbar.LENGTH_LONG).show();
         }
 
     }
 
-
     public void saveToDb() {
         RdvContact rdvContact = new RdvContact();
         rdvContact.setDetail(textNote.getText().toString());
-        rdvContact.setContact(contact);
-
+        rdvContact.setContact(contactSelected);
         rdvContact.setDate(date);
-        rdvContact.setId(rdvContactDao.insert(rdvContact));
-
-
-        Toast.makeText(AddRdvContactActivity.this, "Rdv Enregistré", Toast.LENGTH_LONG).show();
-        //enregistrer la/les notification(s)
-       // activerNotification(RdvContactNotificationBroadcastReceiver.class, rdvContact.getDate(), rdvContact.getContact(), AddRdvContactActivity.this);
-        //activerNotification(rdvContact, AddRdvContactActivity.this);
-
+        rdvContact.setDateString(date.toString());
+        rdvContactDao.insert(rdvContact);
+        Snackbar.make(fabSave, "Rdv Enregistré", Snackbar.LENGTH_LONG).show();
     }
 
     @Override
@@ -203,85 +234,4 @@ public class AddRdvContactActivity extends NavDrawerActivity implements Serializ
         }
         return super.dispatchTouchEvent(ev);
     }
-
-
-    /*public void showTimePickerDialog(View v) {
-        final Calendar cldr = Calendar.getInstance();
-        int hour = 8;
-        int minutes = 0;
-        // time picker dialog
-        picker = new TimePickerDialog(AddRdvContactActivity.this,
-                new TimePickerDialog.OnTimeSetListener() {
-                    @Override
-                    public void onTimeSet(TimePicker tp, int sHour, int sMinute) {
-                        String hour = "";
-                        String minute = "";
-                        if (sHour<10){
-                            hour+="0";
-                        }
-                        if (sMinute<10){
-                            minute+="0";
-                        }
-                        hour+=sHour;
-                        minute+=sMinute;
-
-                        textHeure.setText(hour + ":" + minute);
-                        Calendar calendar = Calendar.getInstance();
-                        calendar.setTime(date);
-                        calendar.add(Calendar.HOUR_OF_DAY, sHour);
-                        calendar.add(Calendar.MINUTE, sMinute);
-                        date = calendar.getTime();
-                    }
-                }, hour, minutes, true);
-        picker.show();
-    }
-
-
-    public void showDatePickerDialog(View v) {
-        DatePickerFragmentDateJour newFragment = new DatePickerFragmentDateJour();
-        //newFragment.show(getSupportFragmentManager(), "buttonDate");
-        newFragment.show(getSupportFragmentManager(), "editTexteDate");
-        newFragment.setOnDateClickListener(new DatePickerFragmentDateJour.onDateClickListener() {
-            @Override
-            public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
-                datePicker.setMinDate(new Date().getTime());
-               // TextView tv1= (TextView) findViewById(R.id.textDate);
-                String dateJour = ""+datePicker.getDayOfMonth();
-                String dateMois = ""+(datePicker.getMonth()+1);
-                String dateAnnee = ""+datePicker.getYear();
-                if (datePicker.getDayOfMonth()<10) {
-                    dateJour = "0"+dateJour;
-                }
-                if (datePicker.getMonth()+1<10) {
-                    dateMois = "0"+dateMois;
-                }
-                Calendar c1 = Calendar.getInstance();
-                // set Month
-                // MONTH starts with 0 i.e. ( 0 - Jan)
-                c1.set(Calendar.MONTH, datePicker.getMonth());
-                // set Date
-                c1.set(Calendar.DATE, datePicker.getDayOfMonth());
-                // set Year
-                c1.set(Calendar.YEAR, datePicker.getYear());
-                // creating a date object with specified time.
-                date = c1.getTime();
-
-                String dateString = dateJour+"/"+dateMois+"/"+dateAnnee;
-                //tv1.setText("date: "+dateString);
-                textDate.setText(dateString);
-                textDate.setError(null);
-                DateFormat df = new SimpleDateFormat("dd/MM/yy");
-                try{
-                    date = df.parse(dateString);
-                    if (textHeure != null && !textHeure.getText().toString().equalsIgnoreCase("")) {
-                        date = ActualiserDate(date, textHeure.getText().toString());
-                    }
-                    layoutHeure.setEnabled(true);
-                }catch(ParseException e){
-                    System.out.println("ERROR");
-                }
-            }
-        });
-    }*/
-
 }

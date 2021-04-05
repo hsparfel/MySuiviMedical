@@ -9,11 +9,12 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.Toast;
+
 
 import androidx.annotation.RequiresApi;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.pouillos.mysuivimedical.R;
@@ -57,7 +58,7 @@ public class AddExamenActivity extends NavDrawerActivity implements BasicUtils {
         super.onCreate(savedInstanceState);
         Icepick.restoreInstanceState(this, savedInstanceState);
         setContentView(R.layout.activity_add_examen);
-        // 6 - Configure all views
+
         this.configureToolBar();
         this.configureBottomView();
 
@@ -129,10 +130,10 @@ public class AddExamenActivity extends NavDrawerActivity implements BasicUtils {
                // ouvrirActiviteSuivante(AddExamenActivity.this, AccueilActivity.class,true);
                 rouvrirActiviteAccueil(this,true);
             } else {
-                Toast.makeText(AddExamenActivity.this, "Examen déjà existant", Toast.LENGTH_LONG).show();
+                Snackbar.make(fabSave, "Examen déjà existant", Snackbar.LENGTH_LONG).show();
             }
         } else {
-            Toast.makeText(AddExamenActivity.this, "Saisie non valide", Toast.LENGTH_LONG).show();
+            Snackbar.make(fabSave, "Saisie non valide", Snackbar.LENGTH_LONG).show();
         }
     }
 
@@ -140,7 +141,7 @@ public class AddExamenActivity extends NavDrawerActivity implements BasicUtils {
         Examen examen = new Examen();
         examen.setName(textName.getText().toString());
         examenDao.insert(examen);
-        Toast.makeText(AddExamenActivity.this, "Examen Enregistrée", Toast.LENGTH_LONG).show();
+        Snackbar.make(fabSave, "Examen Enregistrée", Snackbar.LENGTH_LONG).show();
     }
 
     @Override

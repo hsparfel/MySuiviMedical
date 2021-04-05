@@ -151,6 +151,21 @@ public class Contact implements Comparable<Contact>{
         return affichage;
     }
 
+    public String getName() {
+        String affichage = "";
+        if (codeCivilite != null) {
+            affichage += codeCivilite + " ";
+        }
+        if (nom != null) {
+            affichage += nom + " ";
+        }
+        if (prenom != null) {
+            affichage += prenom;
+        }
+
+        return affichage;
+    }
+
     @Override
     public int compareTo(Contact o) {
         return this.nom.compareTo(o.nom);

@@ -12,12 +12,13 @@ import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.Toast;
+
 
 import androidx.annotation.RequiresApi;
 
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.pouillos.mysuivimedical.R;
@@ -167,14 +168,12 @@ public class AddRdvExamenActivity extends NavDrawerActivity implements Serializa
     public boolean isExistant() {
         boolean bool;
         bool = false;
-        //List<RdvExamen> listRdv = RdvExamen.find(RdvExamen.class,"utilisateur = ? and examen = ? and date = ?",""+activeUser.getId(),""+examenSelected.getId(),""+date.getTime());
         List<RdvExamen> listRdv = rdvExamenDao.queryRaw("where examen_Id = ? and date = ?", ""+examenSelected.getId(),""+date.getTime());
         if (listRdv.size() != 0) {
             bool = true;
         }
         return bool;
     }
-
 
     public boolean checkFields(){
         boolean bool;
@@ -193,20 +192,17 @@ public class AddRdvExamenActivity extends NavDrawerActivity implements Serializa
         return bool;
     }
 
-
-
     @OnClick(R.id.fabSave)
     public void fabSaveClick() {
         if (checkFields()) {
             if (!isExistant()) {
                 saveToDb();
-                //ouvrirActiviteSuivante(AddRdvExamenActivity.this, AccueilActivity.class,true);
                 rouvrirActiviteAccueil(this,true);
             } else {
-                Toast.makeText(AddRdvExamenActivity.this, "Rdv déjà existant", Toast.LENGTH_LONG).show();
+                Snackbar.make(fabSave, "Rdv déjà existant", Snackbar.LENGTH_LONG).show();
             }
         } else {
-            Toast.makeText(AddRdvExamenActivity.this, "Saisie non valide", Toast.LENGTH_LONG).show();
+            Snackbar.make(fabSave, "Saisie non valide", Snackbar.LENGTH_LONG).show();
         }
 
     }
@@ -216,15 +212,10 @@ public class AddRdvExamenActivity extends NavDrawerActivity implements Serializa
         RdvExamen rdvExamen = new RdvExamen();
         rdvExamen.setDetail(textNote.getText().toString());
         rdvExamen.setExamen(examenSelected);
-
         rdvExamen.setDate(date);
-        //rdvExamen.save();
+        rdvExamen.setDateString(date.toString());
         rdvExamenDao.insert(rdvExamen);
-        Toast.makeText(AddRdvExamenActivity.this, "Rdv Enregistré", Toast.LENGTH_LONG).show();
-
-        //enregistrer la/les notification(s)
-        //activerNotification(rdvExamen,AddRdvExamenActivity.this);
-
+        Snackbar.make(fabSave, "Rdv Enregistré", Snackbar.LENGTH_LONG).show();
     }
 
     @Override
@@ -240,85 +231,4 @@ public class AddRdvExamenActivity extends NavDrawerActivity implements Serializa
         }
         return super.dispatchTouchEvent(ev);
     }
-
-
-    /*public void showTimePickerDialog(View v) {
-        final Calendar cldr = Calendar.getInstance();
-        int hour = 8;
-        int minutes = 0;
-        // time picker dialog
-        picker = new TimePickerDialog(AddRdvExamenActivity.this,
-                new TimePickerDialog.OnTimeSetListener() {
-                    @Override
-                    public void onTimeSet(TimePicker tp, int sHour, int sMinute) {
-                        String hour = "";
-                        String minute = "";
-                        if (sHour<10){
-                            hour+="0";
-                        }
-                        if (sMinute<10){
-                            minute+="0";
-                        }
-                        hour+=sHour;
-                        minute+=sMinute;
-
-                        textHeure.setText(hour + ":" + minute);
-                        Calendar calendar = Calendar.getInstance();
-                        calendar.setTime(date);
-                        calendar.add(Calendar.HOUR_OF_DAY, sHour);
-                        calendar.add(Calendar.MINUTE, sMinute);
-                        date = calendar.getTime();
-                    }
-                }, hour, minutes, true);
-        picker.show();
-    }
-
-
-    public void showDatePickerDialog(View v) {
-        DatePickerFragmentDateJour newFragment = new DatePickerFragmentDateJour();
-        //newFragment.show(getSupportFragmentManager(), "buttonDate");
-        newFragment.show(getSupportFragmentManager(), "editTexteDate");
-        newFragment.setOnDateClickListener(new DatePickerFragmentDateJour.onDateClickListener() {
-            @Override
-            public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
-                datePicker.setMinDate(new Date().getTime());
-               // TextView tv1= (TextView) findViewById(R.id.textDate);
-                String dateJour = ""+datePicker.getDayOfMonth();
-                String dateMois = ""+(datePicker.getMonth()+1);
-                String dateAnnee = ""+datePicker.getYear();
-                if (datePicker.getDayOfMonth()<10) {
-                    dateJour = "0"+dateJour;
-                }
-                if (datePicker.getMonth()+1<10) {
-                    dateMois = "0"+dateMois;
-                }
-                Calendar c1 = Calendar.getInstance();
-                // set Month
-                // MONTH starts with 0 i.e. ( 0 - Jan)
-                c1.set(Calendar.MONTH, datePicker.getMonth());
-                // set Date
-                c1.set(Calendar.DATE, datePicker.getDayOfMonth());
-                // set Year
-                c1.set(Calendar.YEAR, datePicker.getYear());
-                // creating a date object with specified time.
-                date = c1.getTime();
-
-                String dateString = dateJour+"/"+dateMois+"/"+dateAnnee;
-                //tv1.setText("date: "+dateString);
-                textDate.setText(dateString);
-                textDate.setError(null);
-                DateFormat df = new SimpleDateFormat("dd/MM/yy");
-                try{
-                    date = df.parse(dateString);
-                    if (textHeure != null && !textHeure.getText().toString().equalsIgnoreCase("")) {
-                        date = ActualiserDate(date, textHeure.getText().toString());
-                    }
-                    layoutHeure.setEnabled(true);
-                }catch(ParseException e){
-                    System.out.println("ERROR");
-                }
-            }
-        });
-    }*/
-
 }

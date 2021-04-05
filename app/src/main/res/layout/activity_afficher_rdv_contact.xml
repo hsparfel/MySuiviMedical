@@ -120,8 +120,8 @@
             android:layout_gravity="center_horizontal"
             android:hint="@string/text_contact"
             app:errorEnabled="true"
-            android:paddingLeft="40dip"
-            android:paddingRight="40dip"
+            android:paddingLeft="20dip"
+            android:paddingRight="20dip"
             app:startIconDrawable="@drawable/avatar_doctor">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/textContact"
@@ -194,6 +194,18 @@
                         />
                 </com.google.android.material.textfield.TextInputLayout>
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabAdd"
+            style="@style/Widget.MaterialComponents.FloatingActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:layout_margin="10dip"
+
+            app:srcCompat="@drawable/outline_add_black_24dp"
+            app:backgroundTint="@color/colorPrimary"
+            app:tint="@android:color/white"
+            />
 
 
     </LinearLayout>

@@ -4,16 +4,23 @@
         android:enabled="true"
         android:icon="@drawable/outline_home_black_24dp"
         android:title="@string/home"/>
-    <item
-        android:id="@+id/bottom_navigation_search_doctor"
-        android:enabled="true"
-        android:icon="@drawable/medicine_medical_pharmacy_health_prescription_pill_drug_icon_140910"
-        android:title="+ Prescription"/>
 
     <item
-        android:id="@+id/bottom_navigation_cancel_alarm"
+        android:id="@+id/bottom_navigation_rdv"
         android:enabled="true"
-        android:icon="@drawable/baseline_alarm_off_black_18dp"
-        android:title="RAZ Alarmes"/>
+        android:icon="@drawable/outline_event_black_24dp"
+        android:title="RDV"/>
+
+    <item
+        android:id="@+id/bottom_navigation_photo"
+        android:enabled="true"
+        android:icon="@drawable/ic_menu_camera"
+        android:title="Photos"/>
+
+    <item
+        android:id="@+id/bottom_navigation_profil"
+        android:enabled="true"
+        android:icon="@drawable/icons8_parametres_administrateur_homme_50"
+        android:title="Profils"/>
 
 </menu>

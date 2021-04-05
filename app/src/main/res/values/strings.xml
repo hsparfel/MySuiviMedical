@@ -93,7 +93,7 @@
     <string name="my_exams">Mes Examens</string>
     <string name="add_meeting_analysis">+Rdv Analyse</string>
     <string name="add_meeting_exam">+Rdv Examen</string>
-
+    <string name="add_meeting_contact">+Rdv Contact</string>
     <string name="analysis">Analyse</string>
 
 </resources>

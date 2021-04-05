@@ -1741,7 +1741,9 @@ drawable ic_mtrl_checked_circle
 drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
+drawable icons8_graphique_24
 drawable icons8_main_pilule_18
+drawable icons8_parametres_administrateur_homme_50
 drawable id_card_icon_124180
 drawable man_icon
 drawable marker2
@@ -1904,9 +1906,10 @@ id beginning
 id blocking
 id bottom
 id bottom_navigation
-id bottom_navigation_cancel_alarm
 id bottom_navigation_home
-id bottom_navigation_search_doctor
+id bottom_navigation_photo
+id bottom_navigation_profil
+id bottom_navigation_rdv
 id bounce
 id buttonDelete
 id buttonPanel
@@ -1926,6 +1929,7 @@ id chip1
 id chip2
 id chip3
 id chipAnalyse
+id chipContact
 id chipExamen
 id chipGroupType
 id chipImc
@@ -1997,6 +2001,7 @@ id fabCancel
 id fabCancelPhoto
 id fabDelete
 id fabEdit
+id fabGraph
 id fabImport
 id fabPhoto
 id fabSave
@@ -2062,12 +2067,14 @@ id layoutNote
 id layoutPoids
 id layoutQuantite
 id layoutTaille
+id layoutTypeRdv
 id left
 id leftToRight
 id line1
 id line3
 id linear
 id listAnalyse
+id listContact
 id listExamen
 id listItem
 id listMode
@@ -2204,6 +2211,7 @@ id selectedTextAlignCenter
 id selectedTextAlignLeft
 id selectedTextAlignRight
 id selectionAnalyse
+id selectionContact
 id selectionExamen
 id selection_type
 id shortcut
@@ -2278,6 +2286,7 @@ id textSpacerNoTitle
 id textStart
 id textTaille
 id textTop
+id textTypeRdv
 id textView
 id text_input_end_icon
 id text_input_error_icon
@@ -2393,6 +2402,7 @@ layout activity_afficher_examen
 layout activity_afficher_graphique
 layout activity_afficher_photo
 layout activity_afficher_profil
+layout activity_afficher_rdv
 layout activity_afficher_rdv_analyse
 layout activity_afficher_rdv_contact
 layout activity_afficher_rdv_examen
@@ -2502,6 +2512,7 @@ layout text_view_without_line_height
 layout toolbar
 menu bottom_navigation_menu
 menu menu_activity_main
+mipmap icons8_liste_traitement_96
 mipmap icons8_main_pilule
 plurals mtrl_badge_content_description
 string abc_action_bar_home_description
@@ -2534,6 +2545,7 @@ string abc_toolbar_collapse_description
 string add_analyse
 string add_exam
 string add_meeting_analysis
+string add_meeting_contact
 string add_meeting_exam
 string analysis
 string app_name

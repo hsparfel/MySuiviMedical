@@ -20,15 +20,15 @@ import java.lang.Override;
 public class AfficherRdvContactActivity_ViewBinding implements Unbinder {
   private AfficherRdvContactActivity target;
 
-  private View view7f0800b6;
-
-  private View view7f0800b7;
-
-  private View view7f0800ba;
-
-  private View view7f0800b4;
+  private View view7f0800b8;
 
   private View view7f0800b9;
+
+  private View view7f0800bd;
+
+  private View view7f0800b6;
+
+  private View view7f0800bc;
 
   @UiThread
   public AfficherRdvContactActivity_ViewBinding(AfficherRdvContactActivity target) {
@@ -53,7 +53,7 @@ public class AfficherRdvContactActivity_ViewBinding implements Unbinder {
     target.textNote = Utils.findRequiredViewAsType(source, R.id.textNote, "field 'textNote'", TextInputEditText.class);
     view = Utils.findRequiredView(source, R.id.fabDelete, "field 'fabDelete' and method 'fabDeleteClick'");
     target.fabDelete = Utils.castView(view, R.id.fabDelete, "field 'fabDelete'", FloatingActionButton.class);
-    view7f0800b6 = view;
+    view7f0800b8 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -62,7 +62,7 @@ public class AfficherRdvContactActivity_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.fabEdit, "field 'fabEdit' and method 'fabEditClick'");
     target.fabEdit = Utils.castView(view, R.id.fabEdit, "field 'fabEdit'", FloatingActionButton.class);
-    view7f0800b7 = view;
+    view7f0800b9 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -71,7 +71,7 @@ public class AfficherRdvContactActivity_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.fabSave, "field 'fabSave' and method 'fabSaveClick'");
     target.fabSave = Utils.castView(view, R.id.fabSave, "field 'fabSave'", FloatingActionButton.class);
-    view7f0800ba = view;
+    view7f0800bd = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -80,7 +80,7 @@ public class AfficherRdvContactActivity_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.fabCancel, "field 'fabCancel' and method 'fabCancelClick'");
     target.fabCancel = Utils.castView(view, R.id.fabCancel, "field 'fabCancel'", FloatingActionButton.class);
-    view7f0800b4 = view;
+    view7f0800b6 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -89,7 +89,7 @@ public class AfficherRdvContactActivity_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.fabPhoto, "field 'fabPhoto' and method 'fabPhotoClick'");
     target.fabPhoto = Utils.castView(view, R.id.fabPhoto, "field 'fabPhoto'", FloatingActionButton.class);
-    view7f0800b9 = view;
+    view7f0800bc = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -125,15 +125,15 @@ public class AfficherRdvContactActivity_ViewBinding implements Unbinder {
     target.toolbar = null;
     target.progressBar = null;
 
-    view7f0800b6.setOnClickListener(null);
-    view7f0800b6 = null;
-    view7f0800b7.setOnClickListener(null);
-    view7f0800b7 = null;
-    view7f0800ba.setOnClickListener(null);
-    view7f0800ba = null;
-    view7f0800b4.setOnClickListener(null);
-    view7f0800b4 = null;
+    view7f0800b8.setOnClickListener(null);
+    view7f0800b8 = null;
     view7f0800b9.setOnClickListener(null);
     view7f0800b9 = null;
+    view7f0800bd.setOnClickListener(null);
+    view7f0800bd = null;
+    view7f0800b6.setOnClickListener(null);
+    view7f0800b6 = null;
+    view7f0800bc.setOnClickListener(null);
+    view7f0800bc = null;
   }
 }

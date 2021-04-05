@@ -9,21 +9,18 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.pouillos.mysuivimedical.R;
-import com.pouillos.mysuivimedical.activities.AccueilActivity;
 import com.pouillos.mysuivimedical.activities.NavDrawerActivity;
 import com.pouillos.mysuivimedical.entities.Analyse;
-
 import com.pouillos.mysuivimedical.interfaces.BasicUtils;
 
-import java.io.Serializable;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -57,7 +54,7 @@ public class AddAnalyseActivity extends NavDrawerActivity implements BasicUtils 
         super.onCreate(savedInstanceState);
         Icepick.restoreInstanceState(this, savedInstanceState);
         setContentView(R.layout.activity_add_analyse);
-        // 6 - Configure all views
+
         this.configureToolBar();
         this.configureBottomView();
 
@@ -127,13 +124,12 @@ public class AddAnalyseActivity extends NavDrawerActivity implements BasicUtils 
         if (checkFields()) {
             if (!isExistant()) {
                 saveToDb();
-                //ouvrirActiviteSuivante(AddAnalyseActivity.this, AccueilActivity.class,true);
                 rouvrirActiviteAccueil(this,true);
             } else {
-                Toast.makeText(AddAnalyseActivity.this, "Analyse déjà existant", Toast.LENGTH_LONG).show();
+                Snackbar.make(fabSave, "Analyse déjà existant", Snackbar.LENGTH_LONG).show();
             }
         } else {
-            Toast.makeText(AddAnalyseActivity.this, "Saisie non valide", Toast.LENGTH_LONG).show();
+            Snackbar.make(fabSave, "Saisie non valide", Snackbar.LENGTH_LONG).show();
         }
     }
 
@@ -141,7 +137,7 @@ public class AddAnalyseActivity extends NavDrawerActivity implements BasicUtils 
         Analyse analyse = new Analyse();
         analyse.setName(textName.getText().toString());
         analyseDao.insert(analyse);
-        Toast.makeText(AddAnalyseActivity.this, "Analyse Enregistrée", Toast.LENGTH_LONG).show();
+        Snackbar.make(fabSave, "Analyse Enregistrée", Snackbar.LENGTH_LONG).show();
     }
 
     @Override

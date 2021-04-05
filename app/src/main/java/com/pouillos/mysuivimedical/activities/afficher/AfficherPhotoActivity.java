@@ -16,7 +16,6 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.core.content.FileProvider;
@@ -24,18 +23,18 @@ import androidx.core.content.FileProvider;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 import com.ortiz.touchview.TouchImageView;
 import com.pouillos.mysuivimedical.R;
 import com.pouillos.mysuivimedical.activities.NavDrawerActivity;
-import com.pouillos.mysuivimedical.entities.Analyse;
-import com.pouillos.mysuivimedical.entities.Photo;
-import com.pouillos.mysuivimedical.enumeration.TypePhoto;
+import com.pouillos.mysuivimedical.entities.PhotoAnalyse;
+import com.pouillos.mysuivimedical.entities.PhotoExamen;
+import com.pouillos.mysuivimedical.entities.PhotoOrdonnance;
 import com.pouillos.mysuivimedical.interfaces.BasicUtils;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
-import java.io.Serializable;
 import java.util.List;
 
 import butterknife.BindView;
@@ -45,7 +44,6 @@ import icepick.Icepick;
 import icepick.State;
 
 public class AfficherPhotoActivity  extends NavDrawerActivity implements BasicUtils, AdapterView.OnItemClickListener {
-//todo chercher pourquoi la photo es enregistre à 90° et que je suis oblige de rotate à l'affichage et la prise
 
     List<?> listItemBD;
     ArrayAdapter adapter;
@@ -82,7 +80,10 @@ public class AfficherPhotoActivity  extends NavDrawerActivity implements BasicUt
     @BindView(R.id.imageView)
     TouchImageView imageView;
 
-    Photo photoSelected;
+    PhotoAnalyse photoAnalyseSelected;
+    PhotoExamen photoExamenSelected;
+    PhotoOrdonnance photoOrdonnanceSelected;
+
     @State
     File file;
 
@@ -91,13 +92,11 @@ public class AfficherPhotoActivity  extends NavDrawerActivity implements BasicUt
         super.onCreate(savedInstanceState);
         Icepick.restoreInstanceState(this, savedInstanceState);
         setContentView(R.layout.activity_afficher_photo);
-        // 6 - Configure all views
+
         this.configureToolBar();
         this.configureBottomView();
 
         ButterKnife.bind(this);
-
-      //  progressBar.setVisibility(View.GONE);
 
         selectedItem.setOnItemClickListener(this);
         setTitle("Mes Photos");
@@ -108,18 +107,17 @@ public class AfficherPhotoActivity  extends NavDrawerActivity implements BasicUt
 
     @OnClick(R.id.fabShare)
     public void fabShareClick() {
-        Toast.makeText(AfficherPhotoActivity.this, "a faire1", Toast.LENGTH_LONG).show();
         shareIt();
     }
 
     private void shareIt() {
-//sharing implementation here
+
         Intent sharingIntent = new Intent(Intent.ACTION_SEND);
 
         try {
             Uri fileUri = FileProvider.getUriForFile(
                     AfficherPhotoActivity.this,
-                    "com.pouillos.monpilulier.fileprovider",
+                    "com.pouillos.mysuivimedical.fileprovider",
                     file);
             if (fileUri != null) {
                 // Grant temporary read permission to the content URI
@@ -143,20 +141,30 @@ public class AfficherPhotoActivity  extends NavDrawerActivity implements BasicUt
 
         sharingIntent.setType("image/jpg");
         String shareBody = "MySuiviMedical - "+selectedItem.getText();
-        sharingIntent.putExtra(Intent.EXTRA_SUBJECT, "Subject Here");
+
+
+
+
+
+        sharingIntent.putExtra(Intent.EXTRA_SUBJECT, "MySuiviMedical - "+selectedItem.getText());
         sharingIntent.putExtra(Intent.EXTRA_TEXT, shareBody);
-        Uri photoURI = FileProvider.getUriForFile(AfficherPhotoActivity.this, "com.pouillos.monpilulier.fileprovider", file);
+        Uri photoURI = FileProvider.getUriForFile(AfficherPhotoActivity.this, "com.pouillos.mysuivimedical.fileprovider", file);
 
         sharingIntent.putExtra(Intent.EXTRA_STREAM, photoURI);
         startActivity(Intent.createChooser(sharingIntent, "Share via"));
-
-
-
     }
 
     @OnClick(R.id.fabDelete)
     public void fabDeleteClick() {
-        photoDao.delete(photoSelected);
+        if (chipAnalyse.isChecked()) {
+            photoAnalyseDao.delete(photoAnalyseSelected);
+        } else if (chipExamen.isChecked()) {
+            photoExamenDao.delete(photoExamenSelected);
+        } else if (chipOrdonnance.isChecked()) {
+            photoOrdonnanceDao.delete(photoOrdonnanceSelected);
+        }
+        //photoDao.delete(photoSelected);
+        ouvrirActiviteSuivante(this,AfficherPhotoActivity.class,true);
     }
 
 
@@ -169,6 +177,10 @@ public class AfficherPhotoActivity  extends NavDrawerActivity implements BasicUt
         chipOrdonnance.setEnabled(false);
         chipAnalyse.setEnabled(true);
         chipExamen.setEnabled(true);
+        imageView.setVisibility(View.INVISIBLE);
+        fabShare.hide();
+        fabDelete.hide();
+        selectedItem.setText("");
         AfficherPhotoActivity.AsyncTaskRunnerBD runnerBD = new AfficherPhotoActivity.AsyncTaskRunnerBD();
         runnerBD.execute();
     }
@@ -182,6 +194,10 @@ public class AfficherPhotoActivity  extends NavDrawerActivity implements BasicUt
         chipOrdonnance.setEnabled(true);
         chipAnalyse.setEnabled(false);
         chipExamen.setEnabled(true);
+        imageView.setVisibility(View.INVISIBLE);
+        fabShare.hide();
+        fabDelete.hide();
+        selectedItem.setText("");
         AfficherPhotoActivity.AsyncTaskRunnerBD runnerBD = new AfficherPhotoActivity.AsyncTaskRunnerBD();
         runnerBD.execute();
     }
@@ -195,25 +211,55 @@ public class AfficherPhotoActivity  extends NavDrawerActivity implements BasicUt
         chipOrdonnance.setEnabled(true);
         chipAnalyse.setEnabled(true);
         chipExamen.setEnabled(false);
+        imageView.setVisibility(View.INVISIBLE);
+        fabShare.hide();
+        fabDelete.hide();
+        selectedItem.setText("");
         AfficherPhotoActivity.AsyncTaskRunnerBD runnerBD = new AfficherPhotoActivity.AsyncTaskRunnerBD();
         runnerBD.execute();
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-       // Toast.makeText(AfficherPhotoActivity.this, "a faire", Toast.LENGTH_LONG).show();
-        imageView.setImageBitmap(null);
+        //imageView.setImageBitmap(null);
         imageView.setVisibility(View.VISIBLE);
-        photoSelected = (Photo) listItemBD.get(position);
-        fabShare.hide();
-        fabDelete.hide();
-        afficherPhoto(photoSelected);
+        if (chipAnalyse.isChecked()) {
+            photoAnalyseSelected = (PhotoAnalyse) listItemBD.get(position);
+            fabShare.hide();
+            fabDelete.hide();
+            afficherPhoto(photoAnalyseSelected);
+        } else if (chipExamen.isChecked()) {
+            photoExamenSelected = (PhotoExamen) listItemBD.get(position);
+            fabShare.hide();
+            fabDelete.hide();
+            afficherPhoto(photoExamenSelected);
+        } else if (chipOrdonnance.isChecked()) {
+            photoOrdonnanceSelected = (PhotoOrdonnance) listItemBD.get(position);
+            fabShare.hide();
+            fabDelete.hide();
+            afficherPhoto(photoOrdonnanceSelected);
+        }
+
+
+
+       // photoSelected = (Photo) listItemBD.get(position);
+      //  fabShare.hide();
+      //  fabDelete.hide();
+      //  afficherPhoto(photoSelected);
 
     }
 
-    private void afficherPhoto(Photo photo) {
-
-        String filename = photo.getPath();
+    private void afficherPhoto(Object object) {
+        imageView.setVisibility(View.VISIBLE);
+        String filename = "";
+        if (chipAnalyse.isChecked()) {
+            filename = ((PhotoAnalyse) object).getPath();
+        } else if (chipExamen.isChecked()) {
+            filename = ((PhotoExamen) object).getPath();
+        } else if (chipOrdonnance.isChecked()) {
+            filename = ((PhotoOrdonnance) object).getPath();
+        }
+        //String filename = photo.getPath();
         //String imagePath = getExternalFilesDir() + "/" + filename;
         //String imagePath = Environment
              //   .getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)+"/MonPilulierApp"+filename;
@@ -226,7 +272,7 @@ public class AfficherPhotoActivity  extends NavDrawerActivity implements BasicUt
             fabShare.show();
             fabDelete.show();
         } else {
-            Toast.makeText(AfficherPhotoActivity.this, "fichier image introuvable", Toast.LENGTH_LONG).show();
+            Snackbar.make(fabDelete, "fichier image introuvable", Snackbar.LENGTH_LONG).show();
             fabDelete.show();
         }
     }
@@ -249,30 +295,24 @@ public class AfficherPhotoActivity  extends NavDrawerActivity implements BasicUt
 
         protected Void doInBackground(Void...voids) {
             publishProgress(0);
+
             publishProgress(50);
             String requete = "";
-            requete += "SELECT p.* FROM PHOTO AS p LEFT JOIN ";
-            if (booleanOrdonnance) {
-                requete += "RDV_CONTACT AS item ON item.ID = p.ITEM_ID ";
-            } else if (booleanAnalyse) {
-                requete += "RDV_ANALYSE AS item ON item.ID = p.ITEM_ID ";
-            }else if (booleanExamen) {
-                requete += "RDV_EXAMEN AS item ON item.ID = p.ITEM_ID ";
-            }
-            requete += " AND p.TYPE LIKE ";
+
             if (booleanOrdonnance) {
 
-                //todo
-                // requete += "\"Contact\"";
-                requete += "\""+ TypePhoto.Ordonnance.toString() +"\"";
+                listItemBD = photoOrdonnanceDao.loadAll();
+              //  requete += "\""+ TypePhoto.Ordonnance.toString() +"\"";
             } else if (booleanAnalyse) {
                 //requete += "\""+ "Analyses" +"\"";
                 //requete += "\""+ TypePhoto.RdvAnalyse +"\"";
-               requete += "\""+ TypePhoto.Analyse.toString() +"\"";
+              // requete += "\""+ TypePhoto.Analyse.toString() +"\"";
+                listItemBD = photoAnalyseDao.loadAll();
             } else if (booleanExamen) {
-                requete += "\""+ TypePhoto.Examen.toString() +"\"";
+                //requete += "\""+ TypePhoto.Examen.toString() +"\"";
+                listItemBD = photoExamenDao.loadAll();
             }
-            listItemBD = photoDao.queryRaw(requete);
+            //listItemBD = photoDao.queryRaw(requete);
 
 
             publishProgress(100);
@@ -283,14 +323,11 @@ public class AfficherPhotoActivity  extends NavDrawerActivity implements BasicUt
         protected void onPostExecute(Void result) {
             progressBar.setVisibility(View.GONE);
             if (listItemBD.size() == 0) {
-                Toast.makeText(AfficherPhotoActivity.this, R.string.text_no_matching, Toast.LENGTH_LONG).show();
-                //textRechercheIntervenant.setVisibility(View.GONE);
+                Snackbar.make(fabDelete, R.string.text_no_matching, Snackbar.LENGTH_LONG).show();
                 listItem.setVisibility(View.GONE);
-
             } else {
                 listItem.setVisibility(View.VISIBLE);
             }
-
             buildDropdownMenu(listItemBD, AfficherPhotoActivity.this,selectedItem);
         }
 

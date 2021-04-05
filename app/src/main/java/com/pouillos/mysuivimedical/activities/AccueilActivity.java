@@ -1,28 +1,17 @@
 package com.pouillos.mysuivimedical.activities;
 
-import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import androidx.annotation.RequiresApi;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.facebook.stetho.Stetho;
-import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.pouillos.mysuivimedical.R;
-
 import com.pouillos.mysuivimedical.activities.add.AddAnalyseActivity;
 import com.pouillos.mysuivimedical.activities.add.AddExamenActivity;
 import com.pouillos.mysuivimedical.activities.add.AddProfilActivity;
@@ -34,6 +23,7 @@ import com.pouillos.mysuivimedical.activities.afficher.AfficherExamenActivity;
 import com.pouillos.mysuivimedical.activities.afficher.AfficherGraphiqueActivity;
 import com.pouillos.mysuivimedical.activities.afficher.AfficherPhotoActivity;
 import com.pouillos.mysuivimedical.activities.afficher.AfficherProfilActivity;
+import com.pouillos.mysuivimedical.activities.afficher.AfficherRdvActivity;
 import com.pouillos.mysuivimedical.activities.afficher.AfficherRdvAnalyseActivity;
 import com.pouillos.mysuivimedical.activities.afficher.AfficherRdvContactActivity;
 import com.pouillos.mysuivimedical.activities.afficher.AfficherRdvExamenActivity;
@@ -59,18 +49,10 @@ import com.pouillos.mysuivimedical.entities.SavoirFaire;
 import com.pouillos.mysuivimedical.entities.TypeEtablissement;
 import com.pouillos.mysuivimedical.enumeration.Frequence;
 import com.pouillos.mysuivimedical.interfaces.BasicUtils;
-import com.pouillos.mysuivimedical.recycler.adapter.RecyclerAdapterPrise;
-import com.pouillos.mysuivimedical.utils.ItemClickSupport;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -190,6 +172,10 @@ public class AccueilActivity extends NavDrawerActivity implements BasicUtils {
         ouvrirActiviteSuivante(this, AfficherRdvContactActivity.class,false);
     }
 
+    public void afficherRdv(View view) {
+        ouvrirActiviteSuivante(this, AfficherRdvActivity.class,false);
+    }
+
     public void addAnalyse(View view) {
         ouvrirActiviteSuivante(this,AddAnalyseActivity.class,false);
     }
@@ -301,22 +287,39 @@ public class AccueilActivity extends NavDrawerActivity implements BasicUtils {
         if (bool) {
             //synchro forcé
             synchroFindDoctor01Region(bool);
+            Log.i("synchroDatas: ","region ok");
             synchroFindDoctor02Departement(bool);
+            Log.i("synchroDatas: ","departement ok");
             synchroFindDoctor03SavoirFaire(bool);
+            Log.i("synchroDatas: ","savoir faire ok");
             synchroFindDoctor04Profession(bool);
+            Log.i("synchroDatas: ","profession ok");
             synchroFindDoctor05TypeEtablissement(bool);
+            Log.i("synchroDatas: ","type etablissement ok");
             synchroFindDoctor06Contact(bool);
+            Log.i("synchroDatas: ","contact ok");
             synchroFindDoctor07ContactLight(bool);
+            Log.i("synchroDatas: ","contact light ok");
             synchroFindDoctor08Etablissement(bool);
+            Log.i("synchroDatas: ","etablissement ok");
             synchroFindDoctor09EtablissementLight(bool);
+            Log.i("synchroDatas: ","etab light ok");
             synchroFindDoctor10AssociationContactLightEtablissementLight(bool);
+            Log.i("synchroDatas: ","assoc contact light etab light");
             synchroMyPilulier01FormePharmaceutique(bool);
+            Log.i("synchroDatas: ","forma pharma ok");
             synchroMyPilulier02Dose(bool);
+            Log.i("synchroDatas: ","dose ok");
             synchroMyPilulier03AssociationFormeDose(bool);
+            Log.i("synchroDatas: ","assoc forme dose ok");
             synchroMyPilulier04Medicament(bool);
+            Log.i("synchroDatas: ","medoc ok");
             synchroMyPilulier05MedicamentLight(bool);
+            Log.i("synchroDatas: ","medoc light ok");
             synchroMyPilulier06Prescription(bool);
+            Log.i("synchroDatas: ","prescription ok");
             synchroMyPilulier07Prise(bool);
+            Log.i("synchroDatas: ","prise ok");
 
         } else {
             //synchro simple

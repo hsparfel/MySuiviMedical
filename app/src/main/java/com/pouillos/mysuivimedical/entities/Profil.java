@@ -21,20 +21,24 @@ public class Profil implements Comparable<Profil> {
     private int taille;
     private float imc;
     private Date date;
+    private String dateString;
 
 
-    @Generated(hash = 904262500)
-    public Profil(Long id, float poids, int taille, float imc, Date date) {
+
+    @Generated(hash = 1229466953)
+    public Profil(Long id, float poids, int taille, float imc, Date date, String dateString) {
         this.id = id;
         this.poids = poids;
         this.taille = taille;
         this.imc = imc;
         this.date = date;
+        this.dateString = dateString;
     }
 
     @Generated(hash = 655688928)
     public Profil() {
     }
+
 
 
     public Float getImcArrondi() {
@@ -103,6 +107,14 @@ public class Profil implements Comparable<Profil> {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public String getDateString() {
+        return this.dateString;
+    }
+
+    public void setDateString(String dateString) {
+        this.dateString = dateString;
     }
 
 }

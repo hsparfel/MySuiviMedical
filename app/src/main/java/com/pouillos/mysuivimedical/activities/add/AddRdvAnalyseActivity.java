@@ -12,7 +12,7 @@ import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.Toast;
+
 
 import androidx.annotation.RequiresApi;
 
@@ -21,6 +21,7 @@ import com.google.android.material.datepicker.DateValidatorPointForward;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.android.material.timepicker.MaterialTimePicker;
@@ -200,13 +201,12 @@ public class AddRdvAnalyseActivity extends NavDrawerActivity implements BasicUti
         if (checkFields()) {
             if (!isExistant()) {
                 saveToDb();
-                //ouvrirActiviteSuivante(AddRdvAnalyseActivity.this, AccueilActivity.class,true);
                 rouvrirActiviteAccueil(this,true);
             } else {
-                Toast.makeText(AddRdvAnalyseActivity.this, "Rdv déjà existant", Toast.LENGTH_LONG).show();
+                Snackbar.make(fabSave, "Rdv déjà existant", Snackbar.LENGTH_LONG).show();
             }
         } else {
-            Toast.makeText(AddRdvAnalyseActivity.this, "Saisie non valide", Toast.LENGTH_LONG).show();
+            Snackbar.make(fabSave, "Saisie non valide", Snackbar.LENGTH_LONG).show();
         }
 
     }
@@ -218,7 +218,7 @@ public class AddRdvAnalyseActivity extends NavDrawerActivity implements BasicUti
         rdvAnalyse.setDate(date);
         rdvAnalyse.setDateString(date.toString());
         rdvAnalyseDao.insert(rdvAnalyse);
-        Toast.makeText(AddRdvAnalyseActivity.this, "Rdv Enregistré", Toast.LENGTH_LONG).show();
+        Snackbar.make(fabSave, "Rdv Enregistré", Snackbar.LENGTH_LONG).show();
     }
 
     @Override

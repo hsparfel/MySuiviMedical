@@ -58,7 +58,7 @@ public class RdvContact implements Comparable<RdvContact> {
 
     @Override
     public String toString() {
-        return contact + " -" + DateUtils.ecrireDateHeure(date);
+        return this.getContact().getName() + " - " + DateUtils.ecrireDateHeure(date);
     }
 
     public Long getId() {

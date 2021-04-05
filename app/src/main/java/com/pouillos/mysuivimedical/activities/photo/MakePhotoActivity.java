@@ -13,13 +13,18 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.view.Surface;
 import android.widget.FrameLayout;
-import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.pouillos.mysuivimedical.R;
-import com.pouillos.mysuivimedical.activities.AccueilActivity;
 import com.pouillos.mysuivimedical.activities.NavDrawerActivity;
-import com.pouillos.mysuivimedical.entities.Photo;
+import com.pouillos.mysuivimedical.entities.PhotoAnalyse;
+import com.pouillos.mysuivimedical.entities.PhotoExamen;
+import com.pouillos.mysuivimedical.entities.PhotoOrdonnance;
+import com.pouillos.mysuivimedical.entities.RdvAnalyse;
+import com.pouillos.mysuivimedical.entities.RdvContact;
+import com.pouillos.mysuivimedical.entities.RdvExamen;
+import com.pouillos.mysuivimedical.enumeration.TypePhoto;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -32,10 +37,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import icepick.Icepick;
-import icepick.State;
 
 public class MakePhotoActivity extends NavDrawerActivity {
-//todo verifer car photo rognee entre preview et celle enreistre
+
     @BindView(R.id.fabTakePhoto)
 FloatingActionButton fabTakePhoto;
     @BindView(R.id.fabSavePhoto)
@@ -45,7 +49,10 @@ FloatingActionButton fabTakePhoto;
     @BindView(R.id.preview_layout)
     FrameLayout previewFL;
 
-    Photo myPhoto;
+    //Photo myPhoto;
+    PhotoAnalyse myPhotoAnalyse;
+    PhotoExamen myPhotoExamen;
+    PhotoOrdonnance myPhotoOrdonnance;
 
     String type;
     Long itemId;
@@ -60,7 +67,7 @@ FloatingActionButton fabTakePhoto;
 
         // 6 - Configure all views
         this.configureToolBar();
-        this.configureBottomView();
+        //this.configureBottomView();
 
         ButterKnife.bind(this);
 
@@ -121,15 +128,22 @@ FloatingActionButton fabTakePhoto;
 
     @OnClick(R.id.fabCancelPhoto)
     public void fabCancelPhotoClick() {
-       photoDao.delete(myPhoto);
+        if (type.equalsIgnoreCase(TypePhoto.Analyse.toString())) {
+            photoAnalyseDao.delete(myPhotoAnalyse);
+        } else if (type.equalsIgnoreCase(TypePhoto.Examen.toString())) {
+            photoExamenDao.delete(myPhotoExamen);
+        } else if (type.equalsIgnoreCase(TypePhoto.Ordonnance.toString())) {
+            photoOrdonnanceDao.delete(myPhotoOrdonnance);
+        }
+       //photoDao.delete(myPhoto);
         recreate();
     }
 
     @OnClick(R.id.fabSavePhoto)
     public void fabSavePhotoClick() {
-        Toast.makeText(MakePhotoActivity.this, "Photo Enregistrée",
-                Toast.LENGTH_LONG).show();
-        ouvrirActiviteSuivante(MakePhotoActivity.this, AccueilActivity.class,true);
+        Snackbar.make(fabSavePhoto, "Photo Enregistrée", Snackbar.LENGTH_LONG).show();
+        rouvrirActiviteAccueil(this,true);
+        //ouvrirActiviteSuivante(this);
     }
 
     @OnClick(R.id.fabTakePhoto)
@@ -139,8 +153,7 @@ FloatingActionButton fabTakePhoto;
             public void onPictureTaken(byte[] data, Camera camera) {
                 File pictureFileDir = getDir();
                 if (!pictureFileDir.exists() && !pictureFileDir.mkdirs()) {
-                    Toast.makeText(MakePhotoActivity.this, "Can't create directory to save image.",
-                            Toast.LENGTH_LONG).show();
+                    Snackbar.make(fabSavePhoto, "Can't create directory to save image.", Snackbar.LENGTH_LONG).show();
                     return;
                 }
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyymmddhhmmss");
@@ -152,15 +165,10 @@ FloatingActionButton fabTakePhoto;
                 int angleToRotate = getRoatationAngle(MakePhotoActivity.this, Camera.CameraInfo.CAMERA_FACING_FRONT);
                 // Solve image inverting problem
                 //angleToRotate = angleToRotate+180;
-                Bitmap orignalImage = BitmapFactory.decodeByteArray(data, 0, data.length);
-               Bitmap bitmapImage = rotate(orignalImage, angleToRotate);
+                Bitmap originalImage = BitmapFactory.decodeByteArray(data, 0, data.length);
+               Bitmap bitmapImage = rotate(originalImage, angleToRotate);
                 try {
-                    /*FileOutputStream fos = new FileOutputStream(pictureFile);
-                    fos.write(data);
-                    fos.close();*/
-
                     FileOutputStream fOut = new FileOutputStream(pictureFile);
-                    //orignalImage.compress(Bitmap.CompressFormat.JPEG, 100, fOut);
                     bitmapImage.compress(Bitmap.CompressFormat.JPEG, 100, fOut);
                     fOut.flush();
                     fOut.close();
@@ -170,12 +178,35 @@ FloatingActionButton fabTakePhoto;
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                myPhoto = new Photo();
-                myPhoto.setDate(dateNew);
-                myPhoto.setPath(filename);
-                myPhoto.setType(type);
-                myPhoto.setItemId(itemId);
-                myPhoto.setId(photoDao.insert(myPhoto));
+
+                if (type.equalsIgnoreCase(TypePhoto.Analyse.toString())) {
+                    myPhotoAnalyse = new PhotoAnalyse();
+                    RdvAnalyse rdvAnalyse = rdvAnalyseDao.load(itemId);
+                    myPhotoAnalyse.setDate(rdvAnalyse.getDate());
+                    myPhotoAnalyse.setDateString(rdvAnalyse.getDateString());
+                    myPhotoAnalyse.setPath(filename);
+                    myPhotoAnalyse.setAnalyseId(rdvAnalyse.getAnalyseId());
+                    myPhotoAnalyse.setRdvAnalyseId(itemId);
+                    myPhotoAnalyse.setId(photoAnalyseDao.insert(myPhotoAnalyse));
+                } else if (type.equalsIgnoreCase(TypePhoto.Examen.toString())) {
+                    myPhotoExamen = new PhotoExamen();
+                    RdvExamen rdvExamen = rdvExamenDao.load(itemId);
+                    myPhotoExamen.setDate(rdvExamen.getDate());
+                    myPhotoExamen.setDateString(rdvExamen.getDateString());
+                    myPhotoExamen.setPath(filename);
+                    myPhotoExamen.setExamenId(rdvExamen.getExamenId());
+                    myPhotoExamen.setRdvExamenId(itemId);
+                    myPhotoExamen.setId(photoExamenDao.insert(myPhotoExamen));
+                } else if (type.equalsIgnoreCase(TypePhoto.Ordonnance.toString())) {
+                    myPhotoOrdonnance = new PhotoOrdonnance();
+                    RdvContact rdvContact = rdvContactDao.load(itemId);
+                    myPhotoOrdonnance.setDate(rdvContact.getDate());
+                    myPhotoOrdonnance.setDateString(rdvContact.getDateString());
+                    myPhotoOrdonnance.setPath(filename);
+                    myPhotoOrdonnance.setContactId(rdvContact.getContactId());
+                    myPhotoOrdonnance.setRdvContactId(itemId);
+                    myPhotoOrdonnance.setId(photoOrdonnanceDao.insert(myPhotoOrdonnance));
+                }
                 }
             });
         fabSavePhoto.show();
@@ -186,7 +217,7 @@ FloatingActionButton fabTakePhoto;
     private File getDir() {
         File sdDir = Environment
                 .getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
-        return new File(sdDir, "MonPilulierApp");
+        return new File(sdDir, "MySuiviMedicalApp");
     }
 
     public static int getRoatationAngle(Activity mContext, int cameraId) {

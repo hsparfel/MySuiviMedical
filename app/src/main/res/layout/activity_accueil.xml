@@ -60,13 +60,6 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                <Button
-                    style="@style/Widget.MaterialComponents.Button.TextButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:onClick="addAnalyse"
-                    android:text="+ analyse"
-                    />
 
                 <Button
                     style="@style/Widget.MaterialComponents.Button.TextButton"
@@ -81,14 +74,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
-
-                <Button
-                    style="@style/Widget.MaterialComponents.Button.TextButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:onClick="addExamen"
-                    android:text="+ examen"
-                    />
 
                 <Button
                     style="@style/Widget.MaterialComponents.Button.TextButton"
@@ -165,13 +150,6 @@
                         style="@style/Widget.MaterialComponents.Button.TextButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:onClick="addRdvAnalyse"
-                        android:text="+ rdvAnalyse"
-                        />
-                    <Button
-                        style="@style/Widget.MaterialComponents.Button.TextButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
                         android:onClick="afficherRdvAnalyse"
                         android:text="Afficher RdvAnalyse"
                         />
@@ -181,13 +159,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
-                    <Button
-                        style="@style/Widget.MaterialComponents.Button.TextButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:onClick="addRdvExamen"
-                        android:text="+ rdvExamen"
-                        />
                     <Button
                         style="@style/Widget.MaterialComponents.Button.TextButton"
                         android:layout_width="wrap_content"
@@ -205,15 +176,21 @@
                         style="@style/Widget.MaterialComponents.Button.TextButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:onClick="addRdvContact"
-                        android:text="+ rdvContact"
+                        android:onClick="afficherRdvContact"
+                        android:text="Afficher RdvContact"
                         />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
                     <Button
                         style="@style/Widget.MaterialComponents.Button.TextButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:onClick="afficherRdvContact"
-                        android:text="Afficher RdvContact"
+                        android:onClick="afficherRdv"
+                        android:text="Afficher Rdv"
                         />
                 </LinearLayout>
 

@@ -15,13 +15,14 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.Toast;
+
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.pouillos.mysuivimedical.R;
@@ -183,11 +184,10 @@ public class AfficherRdvExamenActivity extends NavDrawerActivity implements Basi
         protected void onPostExecute(Void result) {
             progressBar.setVisibility(View.GONE);
             if (listRdvBD.size() == 0) {
-                Toast.makeText(AfficherRdvExamenActivity.this, R.string.text_no_matching, Toast.LENGTH_LONG).show();
+                Snackbar.make(fabSave, R.string.text_no_matching, Snackbar.LENGTH_LONG).show();
                 listRdv.setVisibility(View.GONE);
             } else {
                 buildDropdownMenu(listRdvBD, AfficherRdvExamenActivity.this,selectedRdv);
-
             }
         }
         @RequiresApi(api = Build.VERSION_CODES.N)
@@ -203,20 +203,17 @@ public class AfficherRdvExamenActivity extends NavDrawerActivity implements Basi
 
     @OnClick(R.id.fabSave)
     public void fabSaveClick() {
-        //deleteItem(AfficherRdvExamenActivity.this, rdvExamenSelected, AfficherRdvExamenActivity.class,false);
-        rdvExamenDao.delete(rdvExamenSelected);
+        //rdvExamenDao.delete(rdvExamenSelected);
         rdvExamenSelected.setDate(date);
+        rdvExamenSelected.setDateString(date.toString());
         if (textNote.getText() != null && !textNote.getText().toString().equalsIgnoreCase(rdvExamenSelected.getDetail())) {
             rdvExamenSelected.setDetail(textNote.getText().toString());
         }
-        //rdvExamenSelected.save();
         rdvExamenDao.update(rdvExamenSelected);
-        //enregistrer la/les notification(s)
-        //activerNotification(rdvExamenSelected,AfficherRdvExamenActivity.this);
         enableFields(false);
         displayAllFields(false);
         displayFabs();
-        Toast.makeText(AfficherRdvExamenActivity.this, R.string.modification_saved, Toast.LENGTH_LONG).show();
+        Snackbar.make(fabSave, R.string.modification_saved, Snackbar.LENGTH_LONG).show();
     }
 
     @OnClick(R.id.fabCancel)
@@ -245,8 +242,8 @@ public class AfficherRdvExamenActivity extends NavDrawerActivity implements Basi
 
     @OnClick(R.id.fabDelete)
     public void fabDeleteClick() {
-        //deleteItem(AfficherRdvExamenActivity.this, rdvExamenSelected, AfficherRdvExamenActivity.class,true);
         rdvExamenDao.delete(rdvExamenSelected);
+        ouvrirActiviteSuivante(this,AfficherRdvExamenActivity.class,true);
     }
 
     @OnClick(R.id.fabPhoto)

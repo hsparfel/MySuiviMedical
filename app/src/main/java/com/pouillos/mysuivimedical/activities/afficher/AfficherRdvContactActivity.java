@@ -15,13 +15,14 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.Toast;
+
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.pouillos.mysuivimedical.R;
@@ -186,29 +187,10 @@ public class AfficherRdvContactActivity extends NavDrawerActivity implements Bas
         protected void onPostExecute(Void result) {
             progressBar.setVisibility(View.GONE);
             if (listRdvContactBD.size() == 0) {
-                Toast.makeText(AfficherRdvContactActivity.this, "Aucune correspondance, modifier puis appliquer filtre", Toast.LENGTH_LONG).show();
+                Snackbar.make(fabSave, "Aucune correspondance", Snackbar.LENGTH_LONG).show();
                 listRdv.setVisibility(View.GONE);
             } else {
                 buildDropdownMenu(listRdvContactBD, AfficherRdvContactActivity.this,selectedRdv);
-
-                //traiterIntent();
-
-
-            /*    List<String> listRdvString = new ArrayList<>();
-                String[] listDeroulanteRdv = new String[listRdvBD.size()];
-                for (Rdv rdv : listRdvBD) {
-                    String rdvString = DateUtils.ecrireDateHeure(rdv.getDate()) + " - ";
-                    if (!rdv.getContact().getCodeCivilite().equalsIgnoreCase("")) {
-                        rdvString += rdv.getContact().getCodeCivilite() + " ";
-                    }
-                    rdvString += rdv.getContact().getNom();
-                    listRdvString.add(rdvString);
-                }
-                listRdvString.toArray(listDeroulanteRdv);
-                adapter = new ArrayAdapter(AfficherRdvActivity.this, R.layout.list_item, listDeroulanteRdv);
-                selectedRdv.setAdapter(adapter);*/
-
-
             }
         }
         @RequiresApi(api = Build.VERSION_CODES.N)
@@ -227,19 +209,16 @@ public class AfficherRdvContactActivity extends NavDrawerActivity implements Bas
         //deleteItem(AfficherRdvContactActivity.this, rdvContactSelected, AfficherRdvContactActivity.class,false);
         rdvContactDao.delete(rdvContactSelected);
         rdvContactSelected.setDate(date);
+        rdvContactSelected.setDateString(date.toString());
             if (textNote.getText() != null && !textNote.getText().toString().equalsIgnoreCase(rdvContactSelected.getDetail())) {
                 rdvContactSelected.setDetail(textNote.getText().toString());
             }
 
-            //rdvContactSelected.save();
             rdvContactDao.update(rdvContactSelected);
-        //enregistrer la/les notification(s)
-        //activerNotification(rdvContactSelected, AfficherRdvContactActivity.this);
-
             enableFields(false);
             displayAllFields(false);
             displayFabs();
-            Toast.makeText(AfficherRdvContactActivity.this, R.string.modification_saved, Toast.LENGTH_LONG).show();
+            Snackbar.make(fabSave, R.string.modification_saved, Snackbar.LENGTH_LONG).show();
     }
 
     @OnClick(R.id.fabCancel)
@@ -296,25 +275,6 @@ public class AfficherRdvContactActivity extends NavDrawerActivity implements Bas
         displayFabs();
         fillAllFields();
         displayAllFields(false);
-
-
-        /*String item = parent.getItemAtPosition(position).toString();
-
-        Date date = new Date();
-        String dateRdv = selectedRdv.getText().toString().substring(0, 16);
-        DateFormat df = new SimpleDateFormat("dd/MM/yy HH:mm");
-        try{
-            date = df.parse(dateRdv);
-        }catch(ParseException e){
-            System.out.println("ERROR");
-        }
-        rdvSelected = Rdv.find(Rdv.class, "date = ?", "" + date.getTime()).get(0);
-
-*/
-       // Toast.makeText(AfficherRdvActivity.this, "Selected Item is: \t" + DateUtils.ecrireDateHeure(rdvSelected.getDate()) + " - "+ rdvSelected.getContact(), Toast.LENGTH_LONG).show();
-        //lancer l'activite avec xtra
-        //ouvrirActiviteSuivante(AddRdvActivity.class,"rdvId",rdvSelected.getId());
-        //ouvrirActiviteSuivante(AfficherRdvActivity.this, AddRdvActivity.class,"rdvId",rdvSelected.getId());
     }
 
     private void clearAllFields() {
@@ -323,9 +283,6 @@ public class AfficherRdvContactActivity extends NavDrawerActivity implements Bas
         textHeure.setText(null);
         textNote.setText(null);
     }
-
-
-
 
     public void displayFabs() {
         fabSave.hide();
@@ -387,82 +344,5 @@ public class AfficherRdvContactActivity extends NavDrawerActivity implements Bas
         }
         return super.dispatchTouchEvent(ev);
     }
-
-
-    /*public void showTimePickerDialog(View v) {
-        final Calendar cldr = Calendar.getInstance();
-        int hour = 8;
-        int minutes = 0;
-        // time picker dialog
-        picker = new TimePickerDialog(AfficherRdvContactActivity.this,
-                new TimePickerDialog.OnTimeSetListener() {
-                    @Override
-                    public void onTimeSet(TimePicker tp, int sHour, int sMinute) {
-                        String hour = "";
-                        String minute = "";
-                        if (sHour<10){
-                            hour+="0";
-                        }
-                        if (sMinute<10){
-                            minute+="0";
-                        }
-                        hour+=sHour;
-                        minute+=sMinute;
-
-                        textHeure.setText(hour + ":" + minute);
-                        Calendar calendar = Calendar.getInstance();
-                        calendar.setTime(date);
-                        calendar.add(Calendar.HOUR_OF_DAY, sHour);
-                        calendar.add(Calendar.MINUTE, sMinute);
-                        date = calendar.getTime();
-                    }
-                }, hour, minutes, true);
-        picker.show();
-    }
-
-
-    public void showDatePickerDialog(View v) {
-        DatePickerFragmentDateJour newFragment = new DatePickerFragmentDateJour();
-        //newFragment.show(getSupportFragmentManager(), "buttonDate");
-        newFragment.show(getSupportFragmentManager(), "editTexteDate");
-        newFragment.setOnDateClickListener(new DatePickerFragmentDateJour.onDateClickListener() {
-            @Override
-            public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
-                datePicker.setMinDate(new Date().getTime());
-                // TextView tv1= (TextView) findViewById(R.id.textDate);
-                String dateJour = ""+datePicker.getDayOfMonth();
-                String dateMois = ""+(datePicker.getMonth()+1);
-                String dateAnnee = ""+datePicker.getYear();
-                if (datePicker.getDayOfMonth()<10) {
-                    dateJour = "0"+dateJour;
-                }
-                if (datePicker.getMonth()+1<10) {
-                    dateMois = "0"+dateMois;
-                }
-                Calendar c1 = Calendar.getInstance();
-                // set Month
-                // MONTH starts with 0 i.e. ( 0 - Jan)
-                c1.set(Calendar.MONTH, datePicker.getMonth());
-                // set Date
-                c1.set(Calendar.DATE, datePicker.getDayOfMonth());
-                // set Year
-                c1.set(Calendar.YEAR, datePicker.getYear());
-                // creating a date object with specified time.
-                date = c1.getTime();
-
-                String dateString = dateJour+"/"+dateMois+"/"+dateAnnee;
-                //tv1.setText("date: "+dateString);
-                textDate.setText(dateString);
-                textDate.setError(null);
-                DateFormat df = new SimpleDateFormat("dd/MM/yy");
-                try{
-                    date = df.parse(dateString);
-                }catch(ParseException e){
-                    System.out.println("ERROR");
-                }
-            }
-        });
-    }*/
-
 }
 

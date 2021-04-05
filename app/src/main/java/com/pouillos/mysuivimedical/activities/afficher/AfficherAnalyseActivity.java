@@ -13,12 +13,13 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.Toast;
+
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.pouillos.mysuivimedical.R;
@@ -114,7 +115,7 @@ public class AfficherAnalyseActivity extends NavDrawerActivity implements BasicU
         protected void onPostExecute(Void result) {
             progressBar.setVisibility(View.GONE);
             if (listAnalyseBD.size() == 0) {
-                Toast.makeText(AfficherAnalyseActivity.this, R.string.text_no_matching, Toast.LENGTH_LONG).show();
+                Snackbar.make(fabSave, R.string.text_no_matching, Snackbar.LENGTH_LONG).show();
                 listAnalyse.setVisibility(View.GONE);
             } else {
                 buildDropdownMenu(listAnalyseBD, AfficherAnalyseActivity.this,selectedAnalyse);
@@ -141,7 +142,7 @@ public class AfficherAnalyseActivity extends NavDrawerActivity implements BasicU
         enableFields(false);
         displayAllFields(false);
         displayFabs();
-        Toast.makeText(AfficherAnalyseActivity.this, R.string.modification_saved, Toast.LENGTH_LONG).show();
+        Snackbar.make(fabSave, R.string.modification_saved, Snackbar.LENGTH_LONG).show();
     }
 
     @OnClick(R.id.fabCancel)
@@ -170,6 +171,7 @@ public class AfficherAnalyseActivity extends NavDrawerActivity implements BasicU
     @OnClick(R.id.fabDelete)
     public void fabDeleteClick() {
         analyseDao.delete(analyseSelected);
+        ouvrirActiviteSuivante(this,AfficherAnalyseActivity.class,true);
     }
 
     private void resizeAllFields(boolean bool) {

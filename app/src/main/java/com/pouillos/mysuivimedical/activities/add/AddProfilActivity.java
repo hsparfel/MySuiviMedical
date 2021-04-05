@@ -6,7 +6,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -15,6 +14,7 @@ import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClic
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.slider.Slider;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.pouillos.mysuivimedical.R;
@@ -77,7 +77,7 @@ public class AddProfilActivity extends NavDrawerActivity implements Serializable
         super.onCreate(savedInstanceState);
         Icepick.restoreInstanceState(this, savedInstanceState);
         setContentView(R.layout.activity_add_profil);
-        // 6 - Configure all views
+
         this.configureToolBar();
         this.configureBottomView();
 
@@ -127,7 +127,6 @@ public class AddProfilActivity extends NavDrawerActivity implements Serializable
                 textDate.setText(materialDatePicker.getHeaderText());
                 dateProfil = new Date();
                 dateProfil.setTime((Long) selection);
-                //layoutHeure.setEnabled(true);
             }
         });
     }
@@ -142,7 +141,7 @@ public class AddProfilActivity extends NavDrawerActivity implements Serializable
             publishProgress(0);
             publishProgress(50);
             listProfil = profilDao.loadAll();
-            Collections.sort(listProfil,Collections.reverseOrder());
+            Collections.sort(listProfil);
             publishProgress(100);
             return null;
         }
@@ -159,7 +158,8 @@ public class AddProfilActivity extends NavDrawerActivity implements Serializable
             Long temp = dateParDefaut.getTime()/1000;
             dateParDefaut.setTime(temp*1000);
             profilToCreate.setDate(dateParDefaut);
-            new DateUtils();
+            profilToCreate.setDateString(dateParDefaut.toString());
+            //new DateUtils();
             String dateString = DateUtils.ecrireDate(profilToCreate.getDate());
             textDate.setText(dateString);
             profilToCreate.setPoids(sliderPoids.getValue());
@@ -186,82 +186,46 @@ public class AddProfilActivity extends NavDrawerActivity implements Serializable
         }
     }
 
-
-    /*public void showDatePickerDialog(View v) {
-        DatePickerFragmentDateJour newFragment = new DatePickerFragmentDateJour();
-        newFragment.show(getSupportFragmentManager(), "buttonDate");
-        newFragment.setOnDateClickListener(new DatePickerFragmentDateJour.onDateClickListener() {
-            @Override
-            public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
-                datePicker.setMaxDate(new Date().getTime());
-                String dateJour = ""+datePicker.getDayOfMonth();
-                String dateMois = ""+(datePicker.getMonth()+1);
-                String dateAnnee = ""+datePicker.getYear();
-                if (datePicker.getDayOfMonth()<10) {
-                    dateJour = "0"+dateJour;
-                }
-                if (datePicker.getMonth()+1<10) {
-                    dateMois = "0"+dateMois;
-                }
-                String dateString = dateJour+"/"+dateMois+"/"+dateAnnee;
-                textDate.setText(dateString);
-                DateFormat df = new SimpleDateFormat("dd/MM/yy");
-                try{
-                    dateProfil = df.parse(dateString);
-                    profilToCreate.setDate(dateProfil);
-                }catch(ParseException e){
-                    System.out.println("ERROR");
-                }
-            }
-        });
-    }*/
-
     @OnClick(R.id.floating_action_button)
     public void fabClick() {
-        if (isExistant(profilToCreate)) {
+        if (isExistant()) {
             new MaterialAlertDialogBuilder(AddProfilActivity.this)
                     .setTitle(R.string.dialog_overwrite_title)
                     .setMessage(R.string.dialog_overwrite_message)
                     .setNegativeButton(R.string.dialog_overwrite_negative, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
-                            Toast.makeText(AddProfilActivity.this, R.string.dialog_overwrite_negative_toast, Toast.LENGTH_LONG).show();
+                            Snackbar.make(fab, R.string.dialog_overwrite_negative_toast, Snackbar.LENGTH_LONG).show();
                         }
                     })
                     .setPositiveButton(R.string.dialog_overwrite_positive, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
-                            Toast.makeText(AddProfilActivity.this, R.string.dialog_overwrite_positive_toast, Toast.LENGTH_LONG).show();
                             profilToCreate.setId(listProfilExistant.get(0).getId());
+                            profilToCreate.setDate(dateProfil);
+                            profilToCreate.setDateString(dateProfil.toString());
                             profilDao.update(profilToCreate);
-                            Toast.makeText(AddProfilActivity.this, R.string.modification_saved, Toast.LENGTH_LONG).show();
-
-                           // ouvrirActiviteSuivante(AddProfilActivity.this, AccueilActivity.class,true);
+                            Snackbar.make(fab, R.string.dialog_overwrite_positive_toast, Snackbar.LENGTH_LONG).show();
                             rouvrirActiviteAccueil(AddProfilActivity.this,true);
                         }
                     })
                     .show();
         } else {
-           // profilToCreate.setId(null);
+            profilToCreate.setDate(dateProfil);
+            profilToCreate.setDateString(dateProfil.toString());
             profilDao.insert(profilToCreate);
-            Toast.makeText(AddProfilActivity.this, R.string.modification_saved, Toast.LENGTH_LONG).show();
-           // ouvrirActiviteSuivante(AddProfilActivity.this, AccueilActivity.class,true);
+            Snackbar.make(fab, R.string.modification_saved, Snackbar.LENGTH_LONG).show();
             rouvrirActiviteAccueil(this,true);
         }
-        //profilToCreate.save();
-        //ouvrirActiviteSuivante(AddProfilActivity.this, AccueilActivity.class);
     }
 
-    public boolean isExistant(Profil profil) {
-        listProfilExistant = profilDao.queryRaw("where DATE = ?",""+profilToCreate.getDate().getTime());
+    public boolean isExistant() {
+        listProfilExistant = profilDao.queryRaw("where DATE = ?",""+dateProfil.getTime());
         if (listProfilExistant.size()>0) {
             return true;
         } else {
             return false;
         }
     }
-
-
-
 }
 

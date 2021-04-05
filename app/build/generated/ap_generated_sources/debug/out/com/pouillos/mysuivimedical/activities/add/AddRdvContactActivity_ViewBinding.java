@@ -2,6 +2,8 @@
 package com.pouillos.mysuivimedical.activities.add;
 
 import android.view.View;
+import android.widget.AutoCompleteTextView;
+import android.widget.ProgressBar;
 import androidx.annotation.CallSuper;
 import androidx.annotation.UiThread;
 import butterknife.Unbinder;
@@ -17,7 +19,7 @@ import java.lang.Override;
 public class AddRdvContactActivity_ViewBinding implements Unbinder {
   private AddRdvContactActivity target;
 
-  private View view7f0800ba;
+  private View view7f0800bd;
 
   @UiThread
   public AddRdvContactActivity_ViewBinding(AddRdvContactActivity target) {
@@ -29,8 +31,8 @@ public class AddRdvContactActivity_ViewBinding implements Unbinder {
     this.target = target;
 
     View view;
-    target.layoutContact = Utils.findRequiredViewAsType(source, R.id.layoutContact, "field 'layoutContact'", TextInputLayout.class);
-    target.textContact = Utils.findRequiredViewAsType(source, R.id.textContact, "field 'textContact'", TextInputEditText.class);
+    target.selectedContact = Utils.findRequiredViewAsType(source, R.id.selectionContact, "field 'selectedContact'", AutoCompleteTextView.class);
+    target.listContact = Utils.findRequiredViewAsType(source, R.id.listContact, "field 'listContact'", TextInputLayout.class);
     target.layoutDate = Utils.findRequiredViewAsType(source, R.id.layoutDate, "field 'layoutDate'", TextInputLayout.class);
     target.textDate = Utils.findRequiredViewAsType(source, R.id.textDate, "field 'textDate'", TextInputEditText.class);
     target.layoutHeure = Utils.findRequiredViewAsType(source, R.id.layoutHeure, "field 'layoutHeure'", TextInputLayout.class);
@@ -39,13 +41,14 @@ public class AddRdvContactActivity_ViewBinding implements Unbinder {
     target.textNote = Utils.findRequiredViewAsType(source, R.id.textNote, "field 'textNote'", TextInputEditText.class);
     view = Utils.findRequiredView(source, R.id.fabSave, "field 'fabSave' and method 'fabSaveClick'");
     target.fabSave = Utils.castView(view, R.id.fabSave, "field 'fabSave'", FloatingActionButton.class);
-    view7f0800ba = view;
+    view7f0800bd = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
         target.fabSaveClick();
       }
     });
+    target.progressBar = Utils.findRequiredViewAsType(source, R.id.my_progressBar, "field 'progressBar'", ProgressBar.class);
   }
 
   @Override
@@ -55,8 +58,8 @@ public class AddRdvContactActivity_ViewBinding implements Unbinder {
     if (target == null) throw new IllegalStateException("Bindings already cleared.");
     this.target = null;
 
-    target.layoutContact = null;
-    target.textContact = null;
+    target.selectedContact = null;
+    target.listContact = null;
     target.layoutDate = null;
     target.textDate = null;
     target.layoutHeure = null;
@@ -64,8 +67,9 @@ public class AddRdvContactActivity_ViewBinding implements Unbinder {
     target.layoutNote = null;
     target.textNote = null;
     target.fabSave = null;
+    target.progressBar = null;
 
-    view7f0800ba.setOnClickListener(null);
-    view7f0800ba = null;
+    view7f0800bd.setOnClickListener(null);
+    view7f0800bd = null;
   }
 }

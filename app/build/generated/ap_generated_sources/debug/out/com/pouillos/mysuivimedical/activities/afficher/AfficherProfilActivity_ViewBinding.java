@@ -20,7 +20,11 @@ import java.lang.Override;
 public class AfficherProfilActivity_ViewBinding implements Unbinder {
   private AfficherProfilActivity target;
 
-  private View view7f0800b6;
+  private View view7f0800b8;
+
+  private View view7f0800b5;
+
+  private View view7f0800ba;
 
   @UiThread
   public AfficherProfilActivity_ViewBinding(AfficherProfilActivity target) {
@@ -42,11 +46,29 @@ public class AfficherProfilActivity_ViewBinding implements Unbinder {
     target.textPoids = Utils.findRequiredViewAsType(source, R.id.textPoids, "field 'textPoids'", TextInputEditText.class);
     view = Utils.findRequiredView(source, R.id.fabDelete, "field 'fabDelete' and method 'fabDeleteClick'");
     target.fabDelete = Utils.castView(view, R.id.fabDelete, "field 'fabDelete'", FloatingActionButton.class);
-    view7f0800b6 = view;
+    view7f0800b8 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
         target.fabDeleteClick();
+      }
+    });
+    view = Utils.findRequiredView(source, R.id.fabAdd, "field 'fabAdd' and method 'fabAddClick'");
+    target.fabAdd = Utils.castView(view, R.id.fabAdd, "field 'fabAdd'", FloatingActionButton.class);
+    view7f0800b5 = view;
+    view.setOnClickListener(new DebouncingOnClickListener() {
+      @Override
+      public void doClick(View p0) {
+        target.fabAddClick();
+      }
+    });
+    view = Utils.findRequiredView(source, R.id.fabGraph, "field 'fabGraph' and method 'fabGraphClick'");
+    target.fabGraph = Utils.castView(view, R.id.fabGraph, "field 'fabGraph'", FloatingActionButton.class);
+    view7f0800ba = view;
+    view.setOnClickListener(new DebouncingOnClickListener() {
+      @Override
+      public void doClick(View p0) {
+        target.fabGraphClick();
       }
     });
     target.toolbar = Utils.findRequiredViewAsType(source, R.id.activity_main_toolbar, "field 'toolbar'", Toolbar.class);
@@ -69,10 +91,16 @@ public class AfficherProfilActivity_ViewBinding implements Unbinder {
     target.layoutPoids = null;
     target.textPoids = null;
     target.fabDelete = null;
+    target.fabAdd = null;
+    target.fabGraph = null;
     target.toolbar = null;
     target.progressBar = null;
 
-    view7f0800b6.setOnClickListener(null);
-    view7f0800b6 = null;
+    view7f0800b8.setOnClickListener(null);
+    view7f0800b8 = null;
+    view7f0800b5.setOnClickListener(null);
+    view7f0800b5 = null;
+    view7f0800ba.setOnClickListener(null);
+    view7f0800ba = null;
   }
 }

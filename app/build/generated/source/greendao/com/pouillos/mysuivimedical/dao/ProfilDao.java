@@ -29,6 +29,7 @@ public class ProfilDao extends AbstractDao<Profil, Long> {
         public final static Property Taille = new Property(2, int.class, "taille", false, "TAILLE");
         public final static Property Imc = new Property(3, float.class, "imc", false, "IMC");
         public final static Property Date = new Property(4, java.util.Date.class, "date", false, "DATE");
+        public final static Property DateString = new Property(5, String.class, "dateString", false, "DATE_STRING");
     }
 
 
@@ -48,7 +49,8 @@ public class ProfilDao extends AbstractDao<Profil, Long> {
                 "\"POIDS\" REAL NOT NULL ," + // 1: poids
                 "\"TAILLE\" INTEGER NOT NULL ," + // 2: taille
                 "\"IMC\" REAL NOT NULL ," + // 3: imc
-                "\"DATE\" INTEGER);"); // 4: date
+                "\"DATE\" INTEGER," + // 4: date
+                "\"DATE_STRING\" TEXT);"); // 5: dateString
     }
 
     /** Drops the underlying database table. */
@@ -73,6 +75,11 @@ public class ProfilDao extends AbstractDao<Profil, Long> {
         if (date != null) {
             stmt.bindLong(5, date.getTime());
         }
+ 
+        String dateString = entity.getDateString();
+        if (dateString != null) {
+            stmt.bindString(6, dateString);
+        }
     }
 
     @Override
@@ -91,6 +98,11 @@ public class ProfilDao extends AbstractDao<Profil, Long> {
         if (date != null) {
             stmt.bindLong(5, date.getTime());
         }
+ 
+        String dateString = entity.getDateString();
+        if (dateString != null) {
+            stmt.bindString(6, dateString);
+        }
     }
 
     @Override
@@ -105,7 +117,8 @@ public class ProfilDao extends AbstractDao<Profil, Long> {
             cursor.getFloat(offset + 1), // poids
             cursor.getInt(offset + 2), // taille
             cursor.getFloat(offset + 3), // imc
-            cursor.isNull(offset + 4) ? null : new java.util.Date(cursor.getLong(offset + 4)) // date
+            cursor.isNull(offset + 4) ? null : new java.util.Date(cursor.getLong(offset + 4)), // date
+            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5) // dateString
         );
         return entity;
     }
@@ -117,6 +130,7 @@ public class ProfilDao extends AbstractDao<Profil, Long> {
         entity.setTaille(cursor.getInt(offset + 2));
         entity.setImc(cursor.getFloat(offset + 3));
         entity.setDate(cursor.isNull(offset + 4) ? null : new java.util.Date(cursor.getLong(offset + 4)));
+        entity.setDateString(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
      }
     
     @Override

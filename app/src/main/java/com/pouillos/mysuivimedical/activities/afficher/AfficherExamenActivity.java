@@ -13,12 +13,13 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.Toast;
+
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.pouillos.mysuivimedical.R;
@@ -114,11 +115,10 @@ public class AfficherExamenActivity extends NavDrawerActivity implements BasicUt
         protected void onPostExecute(Void result) {
             progressBar.setVisibility(View.GONE);
             if (listExamenBD.size() == 0) {
-                Toast.makeText(AfficherExamenActivity.this, R.string.text_no_matching, Toast.LENGTH_LONG).show();
+                Snackbar.make(fabSave, R.string.text_no_matching, Snackbar.LENGTH_LONG).show();
                 listExamen.setVisibility(View.GONE);
             } else {
                 buildDropdownMenu(listExamenBD, AfficherExamenActivity.this,selectedExamen);
-
             }
         }
         @RequiresApi(api = Build.VERSION_CODES.N)
@@ -140,7 +140,7 @@ public class AfficherExamenActivity extends NavDrawerActivity implements BasicUt
         enableFields(false);
         displayAllFields(false);
         displayFabs();
-        Toast.makeText(AfficherExamenActivity.this, R.string.modification_saved, Toast.LENGTH_LONG).show();
+        Snackbar.make(fabSave, R.string.modification_saved, Snackbar.LENGTH_LONG).show();
     }
 
     @OnClick(R.id.fabCancel)
@@ -169,6 +169,7 @@ public class AfficherExamenActivity extends NavDrawerActivity implements BasicUt
     @OnClick(R.id.fabDelete)
     public void fabDeleteClick() {
         examenDao.delete(examenSelected);
+        ouvrirActiviteSuivante(this,AfficherExamenActivity.class,true);
     }
 
     private void resizeAllFields(boolean bool) {

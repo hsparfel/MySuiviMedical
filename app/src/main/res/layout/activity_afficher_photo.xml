@@ -81,10 +81,14 @@
 
         <com.ortiz.touchview.TouchImageView
             android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="9"
-            android:visibility="visible" />
+            android:layout_width="340dip"
+            android:layout_height="340dip"
+            android:adjustViewBounds="true"
+            android:maxWidth="340dip"
+            android:maxHeight="340dip"
+            android:scaleType="fitCenter"
+            android:visibility="visible"
+            />
 
     <LinearLayout
         android:layout_width="match_parent"

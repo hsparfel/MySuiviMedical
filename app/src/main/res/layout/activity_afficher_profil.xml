@@ -106,9 +106,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:hint="@string/text_poids"
-            android:paddingLeft="40dip"
-            android:paddingRight="40dip"
-            app:startIconDrawable="@drawable/outline_format_align_center_black_24dp"
+            android:paddingLeft="80dip"
+            android:paddingRight="80dip"
+            app:startIconDrawable="@drawable/balance_24"
             >
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/textPoids"
@@ -116,6 +116,32 @@
                 android:layout_height="wrap_content"
                 />
         </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabAdd"
+            style="@style/Widget.MaterialComponents.FloatingActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:layout_margin="10dip"
+
+            app:srcCompat="@drawable/outline_add_black_24dp"
+            app:backgroundTint="@color/colorPrimary"
+            app:tint="@android:color/white"
+            />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabGraph"
+            style="@style/Widget.MaterialComponents.FloatingActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:layout_margin="10dip"
+
+            app:srcCompat="@drawable/icons8_graphique_24"
+            app:backgroundTint="@color/colorPrimary"
+            app:tint="@android:color/white"
+            />
 
     </LinearLayout>
 

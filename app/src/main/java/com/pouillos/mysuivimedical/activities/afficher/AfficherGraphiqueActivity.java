@@ -25,6 +25,7 @@ import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.MPPointF;
 import com.google.android.material.chip.Chip;
+import com.google.android.material.snackbar.Snackbar;
 import com.pouillos.mysuivimedical.R;
 import com.pouillos.mysuivimedical.activities.NavDrawerActivity;
 import com.pouillos.mysuivimedical.activities.graphique.DayAxisValueFormatter;
@@ -88,7 +89,7 @@ public class AfficherGraphiqueActivity extends NavDrawerActivity implements Basi
         super.onCreate(savedInstanceState);
         Icepick.restoreInstanceState(this, savedInstanceState);
         setContentView(R.layout.activity_afficher_graphique);
-// 6 - Configure all views
+
         this.configureToolBar();
         this.configureBottomView();
 
@@ -145,31 +146,33 @@ public class AfficherGraphiqueActivity extends NavDrawerActivity implements Basi
             publishProgress(20);
             listProfil = profilDao.loadAll();
             Collections.sort(listProfil,Collections.reverseOrder());
-            dateDebut = listProfil.get(0).getDate();
-            dateFin = listProfil.get(listProfil.size()-1).getDate();
-            deltaAnnee = dateFin.getYear()-dateDebut.getYear();
+            if (listProfil.size()>0) {
+                dateDebut = listProfil.get(0).getDate();
+                dateFin = listProfil.get(listProfil.size() - 1).getDate();
+                deltaAnnee = dateFin.getYear() - dateDebut.getYear();
 
-            tailleMax = listProfil.get(0).getTaille();
-            tailleMin = listProfil.get(0).getTaille();
-            poidsMax = listProfil.get(0).getPoids();
-            poidsMin = listProfil.get(0).getPoids();
-            imcMax = listProfil.get(0).getImc();
-            imcMin = listProfil.get(0).getImc();
-            for (Profil currentProfil : listProfil) {
-                if (currentProfil.getTaille() > tailleMax) {
-                    tailleMax = currentProfil.getTaille();
-                } else if (currentProfil.getTaille() < tailleMin) {
-                    tailleMin = currentProfil.getTaille();
-                }
-                if (currentProfil.getPoids() > poidsMax) {
-                    poidsMax = currentProfil.getPoids();
-                } else if (currentProfil.getPoids() < poidsMin) {
-                    poidsMin = currentProfil.getPoids();
-                }
-                if (currentProfil.getImc() > imcMax) {
-                    imcMax = currentProfil.getImc();
-                } else if (currentProfil.getImc() < imcMin) {
-                    imcMin = currentProfil.getImc();
+                tailleMax = listProfil.get(0).getTaille();
+                tailleMin = listProfil.get(0).getTaille();
+                poidsMax = listProfil.get(0).getPoids();
+                poidsMin = listProfil.get(0).getPoids();
+                imcMax = listProfil.get(0).getImc();
+                imcMin = listProfil.get(0).getImc();
+                for (Profil currentProfil : listProfil) {
+                    if (currentProfil.getTaille() > tailleMax) {
+                        tailleMax = currentProfil.getTaille();
+                    } else if (currentProfil.getTaille() < tailleMin) {
+                        tailleMin = currentProfil.getTaille();
+                    }
+                    if (currentProfil.getPoids() > poidsMax) {
+                        poidsMax = currentProfil.getPoids();
+                    } else if (currentProfil.getPoids() < poidsMin) {
+                        poidsMin = currentProfil.getPoids();
+                    }
+                    if (currentProfil.getImc() > imcMax) {
+                        imcMax = currentProfil.getImc();
+                    } else if (currentProfil.getImc() < imcMin) {
+                        imcMin = currentProfil.getImc();
+                    }
                 }
             }
 
@@ -180,6 +183,12 @@ public class AfficherGraphiqueActivity extends NavDrawerActivity implements Basi
         @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
         protected void onPostExecute(Void result) {
             progressBar.setVisibility(View.GONE);
+            if (listProfil.size()==0) {
+                Snackbar.make(chipImc, R.string.text_no_matching, Snackbar.LENGTH_LONG).show();
+                chipImc.setVisibility(View.INVISIBLE);
+                chipPoids.setVisibility(View.INVISIBLE);
+                chipTaille.setVisibility(View.INVISIBLE);
+            }
 
         }
 

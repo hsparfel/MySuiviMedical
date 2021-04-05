@@ -59,7 +59,7 @@ public class RdvExamen implements Comparable<RdvExamen> {
 
     @Override
     public String toString() {
-        return examen + " -" + DateUtils.ecrireDateHeure(date);
+        return this.getExamen().getName() + " - " + DateUtils.ecrireDateHeure(date);
     }
 
     public Long getId() {

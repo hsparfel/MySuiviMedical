@@ -1,22 +1,16 @@
 package com.pouillos.mysuivimedical.activities;
 
 
-import android.app.AlarmManager;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
-import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,12 +23,13 @@ import com.google.android.material.datepicker.CalendarConstraints;
 import com.google.android.material.datepicker.DateValidatorPointBackward;
 import com.google.android.material.datepicker.DateValidatorPointForward;
 import com.google.android.material.datepicker.MaterialDatePicker;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.timepicker.MaterialTimePicker;
 import com.google.android.material.timepicker.TimeFormat;
 import com.pouillos.mysuivimedical.R;
-
+import com.pouillos.mysuivimedical.activities.afficher.AfficherPhotoActivity;
+import com.pouillos.mysuivimedical.activities.afficher.AfficherProfilActivity;
+import com.pouillos.mysuivimedical.activities.afficher.AfficherRdvActivity;
 import com.pouillos.mysuivimedical.activities.utils.DateUtils;
 import com.pouillos.mysuivimedical.dao.AnalyseDao;
 import com.pouillos.mysuivimedical.dao.AssociationContactLightEtablissementLightDao;
@@ -49,10 +44,12 @@ import com.pouillos.mysuivimedical.dao.EtablissementDao;
 import com.pouillos.mysuivimedical.dao.EtablissementLightDao;
 import com.pouillos.mysuivimedical.dao.ExamenDao;
 import com.pouillos.mysuivimedical.dao.FormePharmaceutiqueDao;
-
 import com.pouillos.mysuivimedical.dao.MedicamentDao;
 import com.pouillos.mysuivimedical.dao.MedicamentLightDao;
-import com.pouillos.mysuivimedical.dao.PhotoDao;
+import com.pouillos.mysuivimedical.dao.PhotoAnalyseDao;
+
+import com.pouillos.mysuivimedical.dao.PhotoExamenDao;
+import com.pouillos.mysuivimedical.dao.PhotoOrdonnanceDao;
 import com.pouillos.mysuivimedical.dao.PrescriptionDao;
 import com.pouillos.mysuivimedical.dao.PriseDao;
 import com.pouillos.mysuivimedical.dao.ProfessionDao;
@@ -66,7 +63,6 @@ import com.pouillos.mysuivimedical.dao.TypeEtablissementDao;
 import com.pouillos.mysuivimedical.entities.AssociationFormeDose;
 import com.pouillos.mysuivimedical.entities.Dose;
 import com.pouillos.mysuivimedical.entities.Medicament;
-import com.pouillos.mysuivimedical.entities.Prise;
 import com.pouillos.mysuivimedical.interfaces.BasicUtils;
 
 import org.greenrobot.greendao.database.Database;
@@ -79,7 +75,6 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.concurrent.Executor;
 
-import butterknife.BindView;
 import icepick.Icepick;
 
 
@@ -109,7 +104,9 @@ public class NavDrawerActivity extends AppCompatActivity implements BasicUtils {
     protected EtablissementDao etablissementDao;
     protected EtablissementLightDao etablissementLightDao;
     protected ExamenDao examenDao;
-    protected PhotoDao photoDao;
+    protected PhotoAnalyseDao photoAnalyseDao;
+    protected PhotoExamenDao photoExamenDao;
+    protected PhotoOrdonnanceDao photoOrdonnanceDao;
     protected ProfessionDao professionDao;
     protected ProfilDao profilDao;
     protected RegionDao regionDao;
@@ -143,7 +140,9 @@ public class NavDrawerActivity extends AppCompatActivity implements BasicUtils {
         etablissementDao = daoSession.getEtablissementDao();
         etablissementLightDao = daoSession.getEtablissementLightDao();
         examenDao = daoSession.getExamenDao();
-        photoDao = daoSession.getPhotoDao();
+        photoAnalyseDao = daoSession.getPhotoAnalyseDao();
+        photoExamenDao = daoSession.getPhotoExamenDao();
+        photoOrdonnanceDao = daoSession.getPhotoOrdonnanceDao();
         professionDao = daoSession.getProfessionDao();
         profilDao = daoSession.getProfilDao();
         regionDao = daoSession.getRegionDao();
@@ -192,11 +191,11 @@ public class NavDrawerActivity extends AppCompatActivity implements BasicUtils {
 
     @Override
     public void onBackPressed() {
-        if (this.drawerLayout.isDrawerOpen(GravityCompat.START)) {
+      /*  if (this.drawerLayout.isDrawerOpen(GravityCompat.START)) {
             this.drawerLayout.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
-        }
+        }*/
     }
 
     @Override
@@ -216,11 +215,16 @@ public class NavDrawerActivity extends AppCompatActivity implements BasicUtils {
                                 //ouvrirActiviteSuivante(NavDrawerActivity.this, AccueilActivity.class, true);
                                 rouvrirActiviteAccueil(NavDrawerActivity.this,true);
                                 break;
-                            case R.id.bottom_navigation_search_doctor:
-                                //ouvrirActiviteSuivante(NavDrawerActivity.this, AddPrescriptionActivity.class, true);
+                            case R.id.bottom_navigation_rdv:
+                                ouvrirActiviteSuivante(NavDrawerActivity.this, AfficherRdvActivity.class, true);
+                                //cancelAlarmDialog();
                                 break;
-                            case R.id.bottom_navigation_cancel_alarm:
-                                //ouvrirActiviteSuivante(NavDrawerActivity.this, AddPrescriptionActivity.class, true);
+                            case R.id.bottom_navigation_photo:
+                                ouvrirActiviteSuivante(NavDrawerActivity.this, AfficherPhotoActivity.class, true);
+                                //cancelAlarmDialog();
+                                break;
+                            case R.id.bottom_navigation_profil:
+                                ouvrirActiviteSuivante(NavDrawerActivity.this, AfficherProfilActivity.class, true);
                                 //cancelAlarmDialog();
                                 break;
                         }

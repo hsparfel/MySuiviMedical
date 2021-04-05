@@ -12,16 +12,19 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.Toast;
+
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.pouillos.mysuivimedical.R;
 import com.pouillos.mysuivimedical.activities.NavDrawerActivity;
+import com.pouillos.mysuivimedical.activities.add.AddAnalyseActivity;
+import com.pouillos.mysuivimedical.activities.add.AddProfilActivity;
 import com.pouillos.mysuivimedical.activities.utils.DateUtils;
 import com.pouillos.mysuivimedical.entities.Profil;
 import com.pouillos.mysuivimedical.interfaces.BasicUtils;
@@ -66,6 +69,10 @@ public class AfficherProfilActivity extends NavDrawerActivity implements BasicUt
 
     @BindView(R.id.fabDelete)
     FloatingActionButton fabDelete;
+    @BindView(R.id.fabAdd)
+    FloatingActionButton fabAdd;
+    @BindView(R.id.fabGraph)
+    FloatingActionButton fabGraph;
 
     @BindView(R.id.activity_main_toolbar)
     Toolbar toolbar;
@@ -79,7 +86,7 @@ public class AfficherProfilActivity extends NavDrawerActivity implements BasicUt
         super.onCreate(savedInstanceState);
         Icepick.restoreInstanceState(this, savedInstanceState);
         setContentView(R.layout.activity_afficher_profil);
-        // 6 - Configure all views
+
         this.configureToolBar();
         this.configureBottomView();
 
@@ -113,7 +120,7 @@ public class AfficherProfilActivity extends NavDrawerActivity implements BasicUt
         protected void onPostExecute(Void result) {
             progressBar.setVisibility(View.GONE);
             if (listProfilBD.size() == 0) {
-                Toast.makeText(AfficherProfilActivity.this, "Aucune correspondance, modifier puis appliquer filtre", Toast.LENGTH_LONG).show();
+                Snackbar.make(fabDelete, "Aucune correspondance", Snackbar.LENGTH_LONG).show();
                 listProfil.setVisibility(View.GONE);
             } else {
                 buildDropdownMenu(listProfilBD, AfficherProfilActivity.this,selectedProfil);
@@ -128,6 +135,7 @@ public class AfficherProfilActivity extends NavDrawerActivity implements BasicUt
     @OnClick(R.id.fabDelete)
     public void fabDeleteClick() {
         profilDao.delete(profilSelected);
+        ouvrirActiviteSuivante(this,AfficherProfilActivity.class,true);
     }
 
     @Override
@@ -189,6 +197,16 @@ public class AfficherProfilActivity extends NavDrawerActivity implements BasicUt
                 ((InputMethodManager)this.getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow((this.getWindow().getDecorView().getApplicationWindowToken()), 0);
         }
         return super.dispatchTouchEvent(ev);
+    }
+
+    @OnClick(R.id.fabAdd)
+    public void fabAddClick() {
+        ouvrirActiviteSuivante(AfficherProfilActivity.this, AddProfilActivity.class,true);
+    }
+
+    @OnClick(R.id.fabGraph)
+    public void fabGraphClick() {
+        ouvrirActiviteSuivante(AfficherProfilActivity.this, AfficherGraphiqueActivity.class,true);
     }
 }
 
