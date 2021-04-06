@@ -8,6 +8,10 @@ import java.util.Map;
 
 public class DateUtils {
 
+
+
+
+
     public static String ecrireDateLettre(Date date) {
         Map<Integer, String> mapJours = new HashMap<>();
         mapJours.put(1,"Dimanche");

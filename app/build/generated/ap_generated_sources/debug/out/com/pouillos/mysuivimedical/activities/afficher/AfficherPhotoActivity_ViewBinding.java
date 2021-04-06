@@ -21,7 +21,7 @@ import java.lang.Override;
 public class AfficherPhotoActivity_ViewBinding implements Unbinder {
   private AfficherPhotoActivity target;
 
-  private View view7f0800bf;
+  private View view7f0800be;
 
   private View view7f0800b8;
 
@@ -45,7 +45,7 @@ public class AfficherPhotoActivity_ViewBinding implements Unbinder {
     target.listItem = Utils.findRequiredViewAsType(source, R.id.listItem, "field 'listItem'", TextInputLayout.class);
     view = Utils.findRequiredView(source, R.id.fabShare, "field 'fabShare' and method 'fabShareClick'");
     target.fabShare = Utils.castView(view, R.id.fabShare, "field 'fabShare'", FloatingActionButton.class);
-    view7f0800bf = view;
+    view7f0800be = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -111,8 +111,8 @@ public class AfficherPhotoActivity_ViewBinding implements Unbinder {
     target.progressBar = null;
     target.imageView = null;
 
-    view7f0800bf.setOnClickListener(null);
-    view7f0800bf = null;
+    view7f0800be.setOnClickListener(null);
+    view7f0800be = null;
     view7f0800b8.setOnClickListener(null);
     view7f0800b8 = null;
     view7f080076.setOnClickListener(null);

@@ -194,6 +194,42 @@
                         />
                 </LinearLayout>-->
 
+
+                <TextView
+                    android:id="@+id/futursRdvContact"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dip"
+                    android:gravity="center_horizontal"
+                    android:text="Rdv à venir" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/list_recycler_rdv_contact"
+                    android:layout_width="match_parent"
+                    android:layout_height="85dip" />
+
+                <TextView
+                    android:id="@+id/futursRdvExamen"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dip"
+                    android:gravity="center_horizontal"
+                    android:text="Examens à venir" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/list_recycler_rdv_examen"
+                    android:layout_width="match_parent"
+                    android:layout_height="85dip" />
+
+                <TextView
+                    android:id="@+id/futursRdvAnalyse"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dip"
+                    android:gravity="center_horizontal"
+                    android:text="Analyses à venir" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/list_recycler_rdv_analyse"
+                    android:layout_width="match_parent"
+                    android:layout_height="85dip" />
             </LinearLayout>
 
 

@@ -6,20 +6,30 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.facebook.stetho.Stetho;
 import com.pouillos.mysuivimedical.R;
 import com.pouillos.mysuivimedical.activities.utils.DateUtils;
 import com.pouillos.mysuivimedical.entities.Analyse;
 import com.pouillos.mysuivimedical.entities.Examen;
+import com.pouillos.mysuivimedical.entities.RdvAnalyse;
+import com.pouillos.mysuivimedical.entities.RdvContact;
+import com.pouillos.mysuivimedical.entities.RdvExamen;
 import com.pouillos.mysuivimedical.interfaces.BasicUtils;
+import com.pouillos.mysuivimedical.recycler.adapter.RecyclerAdapterRdvAnalyse;
+import com.pouillos.mysuivimedical.recycler.adapter.RecyclerAdapterRdvContact;
+import com.pouillos.mysuivimedical.recycler.adapter.RecyclerAdapterRdvExamen;
 
 import java.util.Date;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import icepick.Icepick;
 
-public class AccueilActivity extends NavDrawerActivity implements BasicUtils {
+public class AccueilActivity extends NavDrawerActivity implements BasicUtils, RecyclerAdapterRdvContact.Listener, RecyclerAdapterRdvExamen.Listener, RecyclerAdapterRdvAnalyse.Listener {
 
     @BindView(R.id.my_progressBar)
     ProgressBar progressBar;
@@ -29,6 +39,25 @@ public class AccueilActivity extends NavDrawerActivity implements BasicUtils {
 
     @BindView(R.id.textView)
     TextView textView;
+
+    @BindView(R.id.list_recycler_rdv_contact)
+    RecyclerView listRecyclerRdvContact;
+    @BindView(R.id.list_recycler_rdv_examen)
+    RecyclerView listRecyclerRdvExamen;
+    @BindView(R.id.list_recycler_rdv_analyse)
+    RecyclerView listRecyclerRdvAnalyse;
+    @BindView(R.id.futursRdvContact)
+    TextView futursRdvContact;
+    @BindView(R.id.futursRdvExamen)
+    TextView futursRdvExamen;
+    @BindView(R.id.futursRdvAnalyse)
+    TextView futursRdvAnalyse;
+    private RecyclerAdapterRdvContact adapterRdvContact;
+    private RecyclerAdapterRdvExamen adapterRdvExamen;
+    private RecyclerAdapterRdvAnalyse adapterRdvAnalyse;
+    List<RdvContact> listRdvContact;
+    List<RdvExamen> listRdvExamen;
+    List<RdvAnalyse> listRdvAnalyse;
 
     //String uriFindDoctor = "content://com.pouillos.finddoctor.provider/";
 
@@ -51,6 +80,29 @@ public class AccueilActivity extends NavDrawerActivity implements BasicUtils {
         traiterIntent();
 
         remplirDB();
+
+        configureRecyclerView();
+    }
+
+    public void configureRecyclerView() {
+        Date date = DateUtils.razHeure(new Date());
+        listRdvContact = rdvContactDao.queryRaw("where date >= ?", "" + date.getTime());
+        listRdvExamen = rdvExamenDao.queryRaw("where date >= ?", "" + date.getTime());
+        listRdvAnalyse = rdvAnalyseDao.queryRaw("where date >= ?", "" + date.getTime());
+
+
+
+
+        //adapterSerie = new RecyclerAdapterSerie(listSaison, this);
+        adapterRdvContact = new RecyclerAdapterRdvContact(listRdvContact, this);
+        adapterRdvExamen = new RecyclerAdapterRdvExamen(listRdvExamen, this);
+        adapterRdvAnalyse = new RecyclerAdapterRdvAnalyse(listRdvAnalyse, this);
+        listRecyclerRdvContact.setAdapter(adapterRdvContact);
+        listRecyclerRdvContact.setLayoutManager(new LinearLayoutManager(this));
+        listRecyclerRdvExamen.setAdapter(adapterRdvExamen);
+        listRecyclerRdvExamen.setLayoutManager(new LinearLayoutManager(this));
+        listRecyclerRdvAnalyse.setAdapter(adapterRdvAnalyse);
+        listRecyclerRdvAnalyse.setLayoutManager(new LinearLayoutManager(this));
     }
 
     /*public void testProgressBar(View view) {
@@ -205,9 +257,18 @@ public class AccueilActivity extends NavDrawerActivity implements BasicUtils {
     }
 
 
+    @Override
+    public void onClickRdvAnalyseButton(int position) {
 
+    }
 
+    @Override
+    public void onClickRdvContactButton(int position) {
 
+    }
 
+    @Override
+    public void onClickRdvExamenButton(int position) {
 
+    }
 }

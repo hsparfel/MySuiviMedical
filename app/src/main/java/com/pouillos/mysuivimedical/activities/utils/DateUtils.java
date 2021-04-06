@@ -8,6 +8,12 @@ import java.util.Map;
 
 public class DateUtils {
 
+    public static Date razHeure(Date date) {
+        date.setHours(0);
+        date.setMinutes(0);
+        date.setSeconds(0);
+        return date;
+    }
 
     public static String ecrireDateLettre(Date date) {
         Map<Integer, String> mapJours = new HashMap<>();
@@ -165,4 +171,6 @@ public class DateUtils {
         Date dateCalculee = calendar.getTime();
         return dateCalculee;
     }
+
+
 }

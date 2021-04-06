@@ -6,6 +6,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import androidx.annotation.CallSuper;
 import androidx.annotation.UiThread;
+import androidx.recyclerview.widget.RecyclerView;
 import butterknife.Unbinder;
 import butterknife.internal.Utils;
 import com.pouillos.mysuivimedical.R;
@@ -27,6 +28,12 @@ public class AccueilActivity_ViewBinding implements Unbinder {
     target.progressBar = Utils.findRequiredViewAsType(source, R.id.my_progressBar, "field 'progressBar'", ProgressBar.class);
     target.simpleProgressBar = Utils.findRequiredViewAsType(source, R.id.simpleProgressBar, "field 'simpleProgressBar'", ProgressBar.class);
     target.textView = Utils.findRequiredViewAsType(source, R.id.textView, "field 'textView'", TextView.class);
+    target.listRecyclerRdvContact = Utils.findRequiredViewAsType(source, R.id.list_recycler_rdv_contact, "field 'listRecyclerRdvContact'", RecyclerView.class);
+    target.listRecyclerRdvExamen = Utils.findRequiredViewAsType(source, R.id.list_recycler_rdv_examen, "field 'listRecyclerRdvExamen'", RecyclerView.class);
+    target.listRecyclerRdvAnalyse = Utils.findRequiredViewAsType(source, R.id.list_recycler_rdv_analyse, "field 'listRecyclerRdvAnalyse'", RecyclerView.class);
+    target.futursRdvContact = Utils.findRequiredViewAsType(source, R.id.futursRdvContact, "field 'futursRdvContact'", TextView.class);
+    target.futursRdvExamen = Utils.findRequiredViewAsType(source, R.id.futursRdvExamen, "field 'futursRdvExamen'", TextView.class);
+    target.futursRdvAnalyse = Utils.findRequiredViewAsType(source, R.id.futursRdvAnalyse, "field 'futursRdvAnalyse'", TextView.class);
   }
 
   @Override
@@ -39,5 +46,11 @@ public class AccueilActivity_ViewBinding implements Unbinder {
     target.progressBar = null;
     target.simpleProgressBar = null;
     target.textView = null;
+    target.listRecyclerRdvContact = null;
+    target.listRecyclerRdvExamen = null;
+    target.listRecyclerRdvAnalyse = null;
+    target.futursRdvContact = null;
+    target.futursRdvExamen = null;
+    target.futursRdvAnalyse = null;
   }
 }

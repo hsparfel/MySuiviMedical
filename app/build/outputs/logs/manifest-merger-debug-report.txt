@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:2:1-88:12
-INJECTED from C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:2:1-88:12
-INJECTED from C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:2:1-88:12
-INJECTED from C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:2:1-88:12
+ADDED from C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:2:1-83:12
+INJECTED from C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:2:1-83:12
+INJECTED from C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:2:1-83:12
+INJECTED from C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:2:1-83:12
 MERGED from [androidx.navigation:navigation-fragment:2.3.3] C:\Users\TNH\.gradle\caches\transforms-2\files-2.1\bf4befb897dcbcec3c0fb6c4c03d5acf\navigation-fragment-2.3.3\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.navigation:navigation-ui:2.3.3] C:\Users\TNH\.gradle\caches\transforms-2\files-2.1\b4d95f3038f6e4c8e1e42606ac7fdfbe\navigation-ui-2.3.3\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.lifecycle:lifecycle-extensions:2.2.0] C:\Users\TNH\.gradle\caches\transforms-2\files-2.1\2efb915fa30632221fad9f91ffd43923\lifecycle-extensions-2.2.0\AndroidManifest.xml:17:1-27:12
@@ -58,20 +58,20 @@ MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\User
 MERGED from [androidx.print:print:1.0.0] C:\Users\TNH\.gradle\caches\transforms-2\files-2.1\ae2017c2c155cda06242fee728d8b09a\print-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\TNH\.gradle\caches\transforms-2\files-2.1\58fa24f70920c648b29840b27b76d18c\interpolator-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.annotation:annotation-experimental:1.0.0] C:\Users\TNH\.gradle\caches\transforms-2\files-2.1\ca473674b33b10660b7405d6fc6d897d\jetified-annotation-experimental-1.0.0\AndroidManifest.xml:17:1-24:12
-INJECTED from C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:2:1-88:12
-INJECTED from C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:2:1-88:12
-INJECTED from C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:2:1-88:12
+INJECTED from C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:2:1-83:12
+INJECTED from C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:2:1-83:12
+INJECTED from C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:2:1-83:12
 	package
 		ADDED from C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:3:5-42
 		INJECTED from C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml
 		INJECTED from C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml
 	android:versionName
 		INJECTED from C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:2:1-88:12
+		ADDED from C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:2:1-83:12
 		INJECTED from C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml
 	android:versionCode
 		INJECTED from C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:2:1-88:12
+		ADDED from C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:2:1-83:12
 		INJECTED from C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:2:11-69
@@ -96,7 +96,7 @@ ADDED from C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\Androi
 	android:name
 		ADDED from C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:10:19-57
 application
-ADDED from C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:12:5-86:19
+ADDED from C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:12:5-81:19
 MERGED from [androidx.lifecycle:lifecycle-extensions:2.2.0] C:\Users\TNH\.gradle\caches\transforms-2\files-2.1\2efb915fa30632221fad9f91ffd43923\lifecycle-extensions-2.2.0\AndroidManifest.xml:24:5-25:19
 MERGED from [androidx.lifecycle:lifecycle-extensions:2.2.0] C:\Users\TNH\.gradle\caches\transforms-2\files-2.1\2efb915fa30632221fad9f91ffd43923\lifecycle-extensions-2.2.0\AndroidManifest.xml:24:5-25:19
 MERGED from [com.google.android.material:material:1.3.0] C:\Users\TNH\.gradle\caches\transforms-2\files-2.1\3f52e46ad51292a0bdac6e6f55bdbe23\material-1.3.0\AndroidManifest.xml:22:5-20
@@ -234,33 +234,33 @@ ADDED from C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\Androi
 	android:name
 		ADDED from C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:64:19-77
 activity#com.pouillos.mysuivimedical.activities.afficher.AfficherRdvActivity
-ADDED from C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:72:9-73:56
+ADDED from C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:67:9-68:56
 	android:windowSoftInputMode
-		ADDED from C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:73:13-54
+		ADDED from C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:68:13-54
 	android:name
-		ADDED from C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:72:19-74
+		ADDED from C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:67:19-74
 activity#com.pouillos.mysuivimedical.activities.photo.MakePhotoActivity
-ADDED from C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:74:9-75:56
+ADDED from C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:69:9-70:56
 	android:windowSoftInputMode
-		ADDED from C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:75:13-54
+		ADDED from C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:70:13-54
 	android:name
-		ADDED from C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:74:19-69
+		ADDED from C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:69:19-69
 provider#androidx.core.content.FileProvider
-ADDED from C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:77:9-85:20
+ADDED from C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:72:9-80:20
 	android:grantUriPermissions
-		ADDED from C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:81:13-47
+		ADDED from C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:76:13-47
 	android:authorities
-		ADDED from C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:79:13-75
+		ADDED from C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:74:13-75
 	android:exported
-		ADDED from C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:80:13-37
+		ADDED from C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:75:13-37
 	android:name
-		ADDED from C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:78:13-62
+		ADDED from C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:73:13-62
 meta-data#android.support.FILE_PROVIDER_PATHS
-ADDED from C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:82:13-84:53
+ADDED from C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:77:13-79:53
 	android:resource
-		ADDED from C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:84:17-50
+		ADDED from C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:79:17-50
 	android:name
-		ADDED from C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:83:17-67
+		ADDED from C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:78:17-67
 uses-sdk
 INJECTED from C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml

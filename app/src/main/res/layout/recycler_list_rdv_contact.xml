@@ -12,7 +12,7 @@
     <ImageView
         android:layout_width="20dip"
         android:layout_height="30dip"
-        app:srcCompat="@drawable/outline_schedule_black_18dp" />
+        app:srcCompat="@drawable/avatar_doctor" />
 
     <TextView
         android:id="@+id/detail"

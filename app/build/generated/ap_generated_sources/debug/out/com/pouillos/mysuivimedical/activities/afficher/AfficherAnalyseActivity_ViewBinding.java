@@ -24,7 +24,7 @@ public class AfficherAnalyseActivity_ViewBinding implements Unbinder {
 
   private View view7f0800b9;
 
-  private View view7f0800bd;
+  private View view7f0800bc;
 
   private View view7f0800b6;
 
@@ -64,7 +64,7 @@ public class AfficherAnalyseActivity_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.fabSave, "field 'fabSave' and method 'fabSaveClick'");
     target.fabSave = Utils.castView(view, R.id.fabSave, "field 'fabSave'", FloatingActionButton.class);
-    view7f0800bd = view;
+    view7f0800bc = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -116,8 +116,8 @@ public class AfficherAnalyseActivity_ViewBinding implements Unbinder {
     view7f0800b8 = null;
     view7f0800b9.setOnClickListener(null);
     view7f0800b9 = null;
-    view7f0800bd.setOnClickListener(null);
-    view7f0800bd = null;
+    view7f0800bc.setOnClickListener(null);
+    view7f0800bc = null;
     view7f0800b6.setOnClickListener(null);
     view7f0800b6 = null;
     view7f0800b5.setOnClickListener(null);
