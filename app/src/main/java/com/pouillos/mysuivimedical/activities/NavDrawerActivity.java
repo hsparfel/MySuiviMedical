@@ -33,14 +33,11 @@ import com.pouillos.mysuivimedical.activities.afficher.AfficherPhotoActivity;
 import com.pouillos.mysuivimedical.activities.afficher.AfficherProfilActivity;
 import com.pouillos.mysuivimedical.activities.afficher.AfficherRdvActivity;
 import com.pouillos.mysuivimedical.dao.AnalyseDao;
-import com.pouillos.mysuivimedical.dao.AssociationContactLightEtablissementLightDao;
 import com.pouillos.mysuivimedical.dao.ContactDao;
-import com.pouillos.mysuivimedical.dao.ContactLightDao;
 import com.pouillos.mysuivimedical.dao.DaoMaster;
 import com.pouillos.mysuivimedical.dao.DaoSession;
 import com.pouillos.mysuivimedical.dao.DepartementDao;
-import com.pouillos.mysuivimedical.dao.EtablissementDao;
-import com.pouillos.mysuivimedical.dao.EtablissementLightDao;
+
 import com.pouillos.mysuivimedical.dao.ExamenDao;
 
 import com.pouillos.mysuivimedical.dao.PhotoAnalyseDao;
@@ -55,17 +52,11 @@ import com.pouillos.mysuivimedical.dao.RdvContactDao;
 import com.pouillos.mysuivimedical.dao.RdvExamenDao;
 import com.pouillos.mysuivimedical.dao.RegionDao;
 import com.pouillos.mysuivimedical.dao.SavoirFaireDao;
-import com.pouillos.mysuivimedical.dao.TypeEtablissementDao;
-import com.pouillos.mysuivimedical.entities.AssociationContactLightEtablissementLight;
 import com.pouillos.mysuivimedical.entities.Contact;
-import com.pouillos.mysuivimedical.entities.ContactLight;
 import com.pouillos.mysuivimedical.entities.Departement;
-import com.pouillos.mysuivimedical.entities.Etablissement;
-import com.pouillos.mysuivimedical.entities.EtablissementLight;
 import com.pouillos.mysuivimedical.entities.Profession;
 import com.pouillos.mysuivimedical.entities.Region;
 import com.pouillos.mysuivimedical.entities.SavoirFaire;
-import com.pouillos.mysuivimedical.entities.TypeEtablissement;
 import com.pouillos.mysuivimedical.interfaces.BasicUtils;
 
 import org.greenrobot.greendao.database.Database;
@@ -93,12 +84,8 @@ public class NavDrawerActivity extends AppCompatActivity implements BasicUtils {
     protected DaoSession daoSession;
 
     protected AnalyseDao analyseDao;
-    protected AssociationContactLightEtablissementLightDao associationContactLightEtablissementLightDao;
     protected ContactDao contactDao;
-    protected ContactLightDao contactLightDao;
     protected DepartementDao departementDao;
-    protected EtablissementDao etablissementDao;
-    protected EtablissementLightDao etablissementLightDao;
     protected ExamenDao examenDao;
     protected PhotoAnalyseDao photoAnalyseDao;
     protected PhotoExamenDao photoExamenDao;
@@ -107,7 +94,7 @@ public class NavDrawerActivity extends AppCompatActivity implements BasicUtils {
     protected ProfilDao profilDao;
     protected RegionDao regionDao;
     protected SavoirFaireDao savoirFaireDao;
-    protected TypeEtablissementDao typeEtablissementDao;
+
     protected RdvExamenDao rdvExamenDao;
     protected RdvAnalyseDao rdvAnalyseDao;
     protected RdvContactDao rdvContactDao;
@@ -118,25 +105,18 @@ public class NavDrawerActivity extends AppCompatActivity implements BasicUtils {
 
     String uriFindDoctorRegion = "content://com.pouillos.finddoctor.provider.region/";
     String uriFindDoctorContact = "content://com.pouillos.finddoctor.provider.contact/";
-    String uriFindDoctorContactLight = "content://com.pouillos.finddoctor.provider.contactlight/";
-    String uriFindDoctorEtablissement = "content://com.pouillos.finddoctor.provider.etablissement/";
-    String uriFindDoctorEtablissementLight = "content://com.pouillos.finddoctor.provider.etablissementlight/";
+
     String uriFindDoctorDepartement = "content://com.pouillos.finddoctor.provider.departement/";
     String uriFindDoctorSavoirFaire = "content://com.pouillos.finddoctor.provider.savoirfaire/";
     String uriFindDoctorProfession = "content://com.pouillos.finddoctor.provider.profession/";
-    String uriFindDoctorTypeEtablissement = "content://com.pouillos.finddoctor.provider.typeetablissement/";
-    String uriFindDoctorAssociation = "content://com.pouillos.finddoctor.provider.association/";
+
 
     Uri CONTENT_URI_FINDDOCTOR_CONTACT = Uri.parse(uriFindDoctorContact+"Contact");
-    Uri CONTENT_URI_FINDDOCTOR_CONTACT_LIGHT = Uri.parse(uriFindDoctorContactLight+"ContactLight");
-    Uri CONTENT_URI_FINDDOCTOR_ETABLISSEMENT = Uri.parse(uriFindDoctorEtablissement+"Etablissement");
-    Uri CONTENT_URI_FINDDOCTOR_ETABLISSEMENT_LIGHT = Uri.parse(uriFindDoctorEtablissementLight+"EtablissementLight");
+
     Uri CONTENT_URI_FINDDOCTOR_DEPARTEMENT = Uri.parse(uriFindDoctorDepartement+"Departement");
     Uri CONTENT_URI_FINDDOCTOR_REGION = Uri.parse(uriFindDoctorRegion+Region.class.getSimpleName());
     Uri CONTENT_URI_FINDDOCTOR_SAVOIR_FAIRE = Uri.parse(uriFindDoctorSavoirFaire+"SavoirFaire");
     Uri CONTENT_URI_FINDDOCTOR_PROFESSION = Uri.parse(uriFindDoctorProfession+"Profession");
-    Uri CONTENT_URI_FINDDOCTOR_TYPE_ETABLISSEMENT = Uri.parse(uriFindDoctorTypeEtablissement+"TypeEtablissement");
-    Uri CONTENT_URI_FINDDOCTOR_ASSOCIATION = Uri.parse(uriFindDoctorAssociation+"AssociationContactLightEtablissementLight");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -144,12 +124,9 @@ public class NavDrawerActivity extends AppCompatActivity implements BasicUtils {
         initialiserDao();
 
         analyseDao = daoSession.getAnalyseDao();
-        associationContactLightEtablissementLightDao = daoSession.getAssociationContactLightEtablissementLightDao();
         contactDao = daoSession.getContactDao();
-        contactLightDao = daoSession.getContactLightDao();
         departementDao = daoSession.getDepartementDao();
-        etablissementDao = daoSession.getEtablissementDao();
-        etablissementLightDao = daoSession.getEtablissementLightDao();
+
         examenDao = daoSession.getExamenDao();
         photoAnalyseDao = daoSession.getPhotoAnalyseDao();
         photoExamenDao = daoSession.getPhotoExamenDao();
@@ -158,7 +135,7 @@ public class NavDrawerActivity extends AppCompatActivity implements BasicUtils {
         profilDao = daoSession.getProfilDao();
         regionDao = daoSession.getRegionDao();
         savoirFaireDao = daoSession.getSavoirFaireDao();
-        typeEtablissementDao = daoSession.getTypeEtablissementDao();
+
         rdvAnalyseDao = daoSession.getRdvAnalyseDao();
         rdvExamenDao = daoSession.getRdvExamenDao();
         rdvContactDao = daoSession.getRdvContactDao();
@@ -420,32 +397,17 @@ public class NavDrawerActivity extends AppCompatActivity implements BasicUtils {
             Log.i("synchroDatas: ","savoir faire ok");
             synchroFindDoctor04Profession(bool);
             Log.i("synchroDatas: ","profession ok");
-            synchroFindDoctor05TypeEtablissement(bool);
-            Log.i("synchroDatas: ","type etablissement ok");
+
             synchroFindDoctor06Contact(bool);
             Log.i("synchroDatas: ","contact ok");
-            synchroFindDoctor07ContactLight(bool);
-            Log.i("synchroDatas: ","contact light ok");
-            synchroFindDoctor08Etablissement(bool);
-            Log.i("synchroDatas: ","etablissement ok");
-            synchroFindDoctor09EtablissementLight(bool);
-            Log.i("synchroDatas: ","etab light ok");
-            synchroFindDoctor10AssociationContactLightEtablissementLight(bool);
-            Log.i("synchroDatas: ","assoc contact light etab light");
+
 
 
         } else {
             //synchro simple
             synchroFindDoctor06Contact(bool);
             Log.i("synchroDatas: ","contact ok");
-            synchroFindDoctor07ContactLight(bool);
-            Log.i("synchroDatas: ","contact light ok");
-            synchroFindDoctor08Etablissement(bool);
-            Log.i("synchroDatas: ","etablissement ok");
-            synchroFindDoctor09EtablissementLight(bool);
-            Log.i("synchroDatas: ","etab light ok");
-            synchroFindDoctor10AssociationContactLightEtablissementLight(bool);
-            Log.i("synchroDatas: ","assoc contact light etab light");
+
         }
         Log.i("synchroDatas: ","end");
     }
@@ -514,21 +476,7 @@ public class NavDrawerActivity extends AppCompatActivity implements BasicUtils {
         }
     }
 
-    public void synchroFindDoctor05TypeEtablissement(boolean bool) {
-        List<TypeEtablissement> listTypeEtablissementSynchronized = recupererTypeEtablissementFromFindDoctor();
-        if (bool) {
-            typeEtablissementDao.deleteAll();
-            for (TypeEtablissement current : listTypeEtablissementSynchronized) {
-                typeEtablissementDao.insert(current);
-            }
-        } else {
-            for (TypeEtablissement current : listTypeEtablissementSynchronized) {
-                if (typeEtablissementDao.load(current.getId()) == null) {
-                    typeEtablissementDao.insert(current);
-                }
-            }
-        }
-    }
+
 
     public void synchroFindDoctor06Contact(boolean bool) {
         List<Contact> listContactSynchronized = recupererContactFromFindDoctor();
@@ -546,69 +494,13 @@ public class NavDrawerActivity extends AppCompatActivity implements BasicUtils {
         }
     }
 
-    public void synchroFindDoctor07ContactLight(boolean bool) {
-        List<ContactLight> listContactLightSynchronized = recupererContactLightFromFindDoctor();
-        if (bool) {
-            contactLightDao.deleteAll();
-            for (ContactLight current : listContactLightSynchronized) {
-                contactLightDao.insert(current);
-            }
-        } else {
-            for (ContactLight current : listContactLightSynchronized) {
-                if (contactLightDao.load(current.getId()) == null) {
-                    contactLightDao.insert(current);
-                }
-            }
-        }
-    }
 
-    public void synchroFindDoctor08Etablissement(boolean bool) {
-        List<Etablissement> listEtablissementSynchronized = recupererEtablissementFromFindDoctor();
-        if (bool) {
-            etablissementDao.deleteAll();
-            for (Etablissement current : listEtablissementSynchronized) {
-                etablissementDao.insert(current);
-            }
-        } else {
-            for (Etablissement current : listEtablissementSynchronized) {
-                if (etablissementDao.load(current.getId()) == null) {
-                    etablissementDao.insert(current);
-                }
-            }
-        }
-    }
 
-    public void synchroFindDoctor09EtablissementLight(boolean bool) {
-        List<EtablissementLight> listEtablissementLightSynchronized = recupererEtablissementLightFromFindDoctor();
-        if (bool) {
-            etablissementLightDao.deleteAll();
-            for (EtablissementLight current : listEtablissementLightSynchronized) {
-                etablissementLightDao.insert(current);
-            }
-        } else {
-            for (EtablissementLight current : listEtablissementLightSynchronized) {
-                if (etablissementLightDao.load(current.getId()) == null) {
-                    etablissementLightDao.insert(current);
-                }
-            }
-        }
-    }
 
-    public void synchroFindDoctor10AssociationContactLightEtablissementLight(boolean bool) {
-        List<AssociationContactLightEtablissementLight> listAssociationContactLightEtablissementLightSynchronized = recupererAssociationContactLightEtablissementLightFromFindDoctor();
-        if (bool) {
-            associationContactLightEtablissementLightDao.deleteAll();
-            for (AssociationContactLightEtablissementLight current : listAssociationContactLightEtablissementLightSynchronized) {
-                associationContactLightEtablissementLightDao.insert(current);
-            }
-        } else {
-            for (AssociationContactLightEtablissementLight current : listAssociationContactLightEtablissementLightSynchronized) {
-                if (associationContactLightEtablissementLightDao.load(current.getId()) == null) {
-                    associationContactLightEtablissementLightDao.insert(current);
-                }
-            }
-        }
-    }
+
+
+
+
 
     public List<Contact> recupererContactFromFindDoctor() {
         Cursor cursor = getContentResolver().query(CONTENT_URI_FINDDOCTOR_CONTACT, null, "selected", null, null);
@@ -641,73 +533,11 @@ public class NavDrawerActivity extends AppCompatActivity implements BasicUtils {
         return myList;
     }
 
-    public List<ContactLight> recupererContactLightFromFindDoctor() {
-        Cursor cursor = getContentResolver().query(CONTENT_URI_FINDDOCTOR_CONTACT_LIGHT, null, "selected", null, null);
-        List<ContactLight> myList = new ArrayList<>();
-        while(cursor.moveToNext()) {
-            ContactLight currentContactLight = new ContactLight();
-            currentContactLight.setId(cursor.getLong(cursor.getColumnIndex("_id")));
-            currentContactLight.setIdPP(cursor.getString(cursor.getColumnIndex("idPP")));
-            currentContactLight.setCodeCivilite(cursor.getString(cursor.getColumnIndex("codeCivilite")));
-            currentContactLight.setNom(cursor.getString(cursor.getColumnIndex("nom")));
-            currentContactLight.setPrenom(cursor.getString(cursor.getColumnIndex("prenom")));
-            currentContactLight.setRaisonSocial(cursor.getString(cursor.getColumnIndex("raisonSocial")));
-            currentContactLight.setComplement(cursor.getString(cursor.getColumnIndex("complement")));
-            currentContactLight.setAdresse(cursor.getString(cursor.getColumnIndex("adresse")));
-            currentContactLight.setCp(cursor.getString(cursor.getColumnIndex("cp")));
-            currentContactLight.setVille(cursor.getString(cursor.getColumnIndex("ville")));
-            currentContactLight.setTelephone(cursor.getString(cursor.getColumnIndex("telephone")));
-            currentContactLight.setFax(cursor.getString(cursor.getColumnIndex("fax")));
-            currentContactLight.setEmail(cursor.getString(cursor.getColumnIndex("email")));
-            myList.add(currentContactLight);
-        }
-        cursor.close();
-        return myList;
-    }
 
-    public List<Etablissement> recupererEtablissementFromFindDoctor() {
-        Cursor cursor = getContentResolver().query(CONTENT_URI_FINDDOCTOR_ETABLISSEMENT, null, "selected", null, null);
-        List<Etablissement> myList = new ArrayList<>();
-        while(cursor.moveToNext()) {
-            Etablissement currentEtablissement = new Etablissement();
-            currentEtablissement.setId(cursor.getLong(cursor.getColumnIndex("_id")));
-            currentEtablissement.setNumeroFinessET(cursor.getString(cursor.getColumnIndex("numeroFinessET")));
-            currentEtablissement.setRaisonSocial(cursor.getString(cursor.getColumnIndex("raisonSocial")));
-            currentEtablissement.setAdresse(cursor.getString(cursor.getColumnIndex("adresse")));
-            currentEtablissement.setCp(cursor.getString(cursor.getColumnIndex("cp")));
-            currentEtablissement.setVille(cursor.getString(cursor.getColumnIndex("ville")));
-            currentEtablissement.setTelephone(cursor.getString(cursor.getColumnIndex("telephone")));
-            currentEtablissement.setFax(cursor.getString(cursor.getColumnIndex("fax")));
-            currentEtablissement.setDepartementId(cursor.getLong(cursor.getColumnIndex("departementId")));
-            currentEtablissement.setRegionId(cursor.getLong(cursor.getColumnIndex("regionId")));
-            currentEtablissement.setLatitude(cursor.getDouble(cursor.getColumnIndex("latitude")));
-            currentEtablissement.setLongitude(cursor.getDouble(cursor.getColumnIndex("longitude")));
-            currentEtablissement.setTypeEtablissementId(cursor.getLong(cursor.getColumnIndex("typeEtablissementId")));
-            currentEtablissement.setIsSelected(cursor.getInt(cursor.getColumnIndex("isSelected"))==1);
-            myList.add(currentEtablissement);
-        }
-        cursor.close();
-        return myList;
-    }
 
-    public List<EtablissementLight> recupererEtablissementLightFromFindDoctor() {
-        Cursor cursor = getContentResolver().query(CONTENT_URI_FINDDOCTOR_ETABLISSEMENT_LIGHT, null, "selected", null, null);
-        List<EtablissementLight> myList = new ArrayList<>();
-        while(cursor.moveToNext()) {
-            EtablissementLight currentEtablissementLight = new EtablissementLight();
-            currentEtablissementLight.setId(cursor.getLong(cursor.getColumnIndex("_id")));
-            currentEtablissementLight.setNumeroFinessET(cursor.getString(cursor.getColumnIndex("numeroFinessET")));
-            currentEtablissementLight.setRaisonSocial(cursor.getString(cursor.getColumnIndex("raisonSocial")));
-            currentEtablissementLight.setAdresse(cursor.getString(cursor.getColumnIndex("adresse")));
-            currentEtablissementLight.setCp(cursor.getString(cursor.getColumnIndex("cp")));
-            currentEtablissementLight.setVille(cursor.getString(cursor.getColumnIndex("ville")));
-            currentEtablissementLight.setTelephone(cursor.getString(cursor.getColumnIndex("telephone")));
-            currentEtablissementLight.setFax(cursor.getString(cursor.getColumnIndex("fax")));
-            myList.add(currentEtablissementLight);
-        }
-        cursor.close();
-        return myList;
-    }
+
+
+
 
     public List<Departement> recupererDepartementFromFindDoctor() {
         Cursor cursor = getContentResolver().query(CONTENT_URI_FINDDOCTOR_DEPARTEMENT, null, null, null, null);
@@ -763,30 +593,7 @@ public class NavDrawerActivity extends AppCompatActivity implements BasicUtils {
         return myList;
     }
 
-    public List<TypeEtablissement> recupererTypeEtablissementFromFindDoctor() {
-        Cursor cursor = getContentResolver().query(CONTENT_URI_FINDDOCTOR_TYPE_ETABLISSEMENT, null, null, null, null);
-        List<TypeEtablissement> myList = new ArrayList<>();
-        while(cursor.moveToNext()) {
-            TypeEtablissement currentTypeEtablissement = new TypeEtablissement();
-            currentTypeEtablissement.setId(cursor.getLong(cursor.getColumnIndex("_id")));
-            currentTypeEtablissement.setName(cursor.getString(cursor.getColumnIndex("name")));
-            myList.add(currentTypeEtablissement);
-        }
-        cursor.close();
-        return myList;
-    }
 
-    public List<AssociationContactLightEtablissementLight> recupererAssociationContactLightEtablissementLightFromFindDoctor() {
-        Cursor cursor = getContentResolver().query(CONTENT_URI_FINDDOCTOR_ASSOCIATION, null, "selected", null, null);
-        List<AssociationContactLightEtablissementLight> myList = new ArrayList<>();
-        while(cursor.moveToNext()) {
-            AssociationContactLightEtablissementLight currentAssociationContactLightEtablissementLight = new AssociationContactLightEtablissementLight();
-            currentAssociationContactLightEtablissementLight.setId(cursor.getLong(cursor.getColumnIndex("_id")));
-            currentAssociationContactLightEtablissementLight.setContactLightId(cursor.getLong(cursor.getColumnIndex("contactLightId")));
-            currentAssociationContactLightEtablissementLight.setEtablissementLightId(cursor.getLong(cursor.getColumnIndex("etablissementLightId")));
-            myList.add(currentAssociationContactLightEtablissementLight);
-        }
-        cursor.close();
-        return myList;
-    }
+
+
 }

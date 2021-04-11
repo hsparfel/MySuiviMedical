@@ -1,11 +1,7 @@
-1618175310544
+1618177278028
 C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\java\com\pouillos\mysuivimedical\entities\Analyse.java
-C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\java\com\pouillos\mysuivimedical\entities\AssociationContactLightEtablissementLight.java
 C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\java\com\pouillos\mysuivimedical\entities\Contact.java
-C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\java\com\pouillos\mysuivimedical\entities\ContactLight.java
 C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\java\com\pouillos\mysuivimedical\entities\Departement.java
-C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\java\com\pouillos\mysuivimedical\entities\Etablissement.java
-C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\java\com\pouillos\mysuivimedical\entities\EtablissementLight.java
 C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\java\com\pouillos\mysuivimedical\entities\Examen.java
 C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\java\com\pouillos\mysuivimedical\entities\PhotoAnalyse.java
 C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\java\com\pouillos\mysuivimedical\entities\PhotoExamen.java
@@ -17,4 +13,3 @@ C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\java\com\pouillos
 C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\java\com\pouillos\mysuivimedical\entities\RdvExamen.java
 C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\java\com\pouillos\mysuivimedical\entities\Region.java
 C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\java\com\pouillos\mysuivimedical\entities\SavoirFaire.java
-C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\java\com\pouillos\mysuivimedical\entities\TypeEtablissement.java

@@ -22,12 +22,8 @@ public class DaoMaster extends AbstractDaoMaster {
     /** Creates underlying database table using DAOs. */
     public static void createAllTables(Database db, boolean ifNotExists) {
         AnalyseDao.createTable(db, ifNotExists);
-        AssociationContactLightEtablissementLightDao.createTable(db, ifNotExists);
         ContactDao.createTable(db, ifNotExists);
-        ContactLightDao.createTable(db, ifNotExists);
         DepartementDao.createTable(db, ifNotExists);
-        EtablissementDao.createTable(db, ifNotExists);
-        EtablissementLightDao.createTable(db, ifNotExists);
         ExamenDao.createTable(db, ifNotExists);
         PhotoAnalyseDao.createTable(db, ifNotExists);
         PhotoExamenDao.createTable(db, ifNotExists);
@@ -39,18 +35,13 @@ public class DaoMaster extends AbstractDaoMaster {
         RdvExamenDao.createTable(db, ifNotExists);
         RegionDao.createTable(db, ifNotExists);
         SavoirFaireDao.createTable(db, ifNotExists);
-        TypeEtablissementDao.createTable(db, ifNotExists);
     }
 
     /** Drops underlying database table using DAOs. */
     public static void dropAllTables(Database db, boolean ifExists) {
         AnalyseDao.dropTable(db, ifExists);
-        AssociationContactLightEtablissementLightDao.dropTable(db, ifExists);
         ContactDao.dropTable(db, ifExists);
-        ContactLightDao.dropTable(db, ifExists);
         DepartementDao.dropTable(db, ifExists);
-        EtablissementDao.dropTable(db, ifExists);
-        EtablissementLightDao.dropTable(db, ifExists);
         ExamenDao.dropTable(db, ifExists);
         PhotoAnalyseDao.dropTable(db, ifExists);
         PhotoExamenDao.dropTable(db, ifExists);
@@ -62,7 +53,6 @@ public class DaoMaster extends AbstractDaoMaster {
         RdvExamenDao.dropTable(db, ifExists);
         RegionDao.dropTable(db, ifExists);
         SavoirFaireDao.dropTable(db, ifExists);
-        TypeEtablissementDao.dropTable(db, ifExists);
     }
 
     /**
@@ -82,12 +72,8 @@ public class DaoMaster extends AbstractDaoMaster {
     public DaoMaster(Database db) {
         super(db, SCHEMA_VERSION);
         registerDaoClass(AnalyseDao.class);
-        registerDaoClass(AssociationContactLightEtablissementLightDao.class);
         registerDaoClass(ContactDao.class);
-        registerDaoClass(ContactLightDao.class);
         registerDaoClass(DepartementDao.class);
-        registerDaoClass(EtablissementDao.class);
-        registerDaoClass(EtablissementLightDao.class);
         registerDaoClass(ExamenDao.class);
         registerDaoClass(PhotoAnalyseDao.class);
         registerDaoClass(PhotoExamenDao.class);
@@ -99,7 +85,6 @@ public class DaoMaster extends AbstractDaoMaster {
         registerDaoClass(RdvExamenDao.class);
         registerDaoClass(RegionDao.class);
         registerDaoClass(SavoirFaireDao.class);
-        registerDaoClass(TypeEtablissementDao.class);
     }
 
     public DaoSession newSession() {

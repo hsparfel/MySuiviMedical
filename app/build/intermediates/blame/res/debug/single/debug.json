@@ -1,9 +1,5 @@
 [
     {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\build\\intermediates\\res\\merged\\debug\\xml_filepaths.xml.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\src\\main\\res\\xml\\filepaths.xml"
-    },
-    {
         "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_afficher_photo.xml.flat",
         "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\src\\main\\res\\layout\\activity_afficher_photo.xml"
     },
