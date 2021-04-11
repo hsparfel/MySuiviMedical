@@ -16,11 +16,11 @@ import java.lang.Override;
 public class MakePhotoActivity_ViewBinding implements Unbinder {
   private MakePhotoActivity target;
 
-  private View view7f0800be;
+  private View view7f0800bd;
 
-  private View view7f0800bc;
+  private View view7f0800bb;
 
-  private View view7f0800b6;
+  private View view7f0800b5;
 
   @UiThread
   public MakePhotoActivity_ViewBinding(MakePhotoActivity target) {
@@ -34,7 +34,7 @@ public class MakePhotoActivity_ViewBinding implements Unbinder {
     View view;
     view = Utils.findRequiredView(source, R.id.fabTakePhoto, "field 'fabTakePhoto' and method 'fabTakePhotoClick'");
     target.fabTakePhoto = Utils.castView(view, R.id.fabTakePhoto, "field 'fabTakePhoto'", FloatingActionButton.class);
-    view7f0800be = view;
+    view7f0800bd = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -43,7 +43,7 @@ public class MakePhotoActivity_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.fabSavePhoto, "field 'fabSavePhoto' and method 'fabSavePhotoClick'");
     target.fabSavePhoto = Utils.castView(view, R.id.fabSavePhoto, "field 'fabSavePhoto'", FloatingActionButton.class);
-    view7f0800bc = view;
+    view7f0800bb = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -52,7 +52,7 @@ public class MakePhotoActivity_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.fabCancelPhoto, "field 'fabCancelPhoto' and method 'fabCancelPhotoClick'");
     target.fabCancelPhoto = Utils.castView(view, R.id.fabCancelPhoto, "field 'fabCancelPhoto'", FloatingActionButton.class);
-    view7f0800b6 = view;
+    view7f0800b5 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -74,11 +74,11 @@ public class MakePhotoActivity_ViewBinding implements Unbinder {
     target.fabCancelPhoto = null;
     target.previewFL = null;
 
-    view7f0800be.setOnClickListener(null);
-    view7f0800be = null;
-    view7f0800bc.setOnClickListener(null);
-    view7f0800bc = null;
-    view7f0800b6.setOnClickListener(null);
-    view7f0800b6 = null;
+    view7f0800bd.setOnClickListener(null);
+    view7f0800bd = null;
+    view7f0800bb.setOnClickListener(null);
+    view7f0800bb = null;
+    view7f0800b5.setOnClickListener(null);
+    view7f0800b5 = null;
   }
 }

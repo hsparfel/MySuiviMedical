@@ -18,7 +18,7 @@ import java.lang.Override;
 public class AddAnalyseActivity_ViewBinding implements Unbinder {
   private AddAnalyseActivity target;
 
-  private View view7f0800bb;
+  private View view7f0800ba;
 
   @UiThread
   public AddAnalyseActivity_ViewBinding(AddAnalyseActivity target) {
@@ -34,7 +34,7 @@ public class AddAnalyseActivity_ViewBinding implements Unbinder {
     target.textName = Utils.findRequiredViewAsType(source, R.id.textName, "field 'textName'", TextInputEditText.class);
     view = Utils.findRequiredView(source, R.id.fabSave, "field 'fabSave' and method 'fabSaveClick'");
     target.fabSave = Utils.castView(view, R.id.fabSave, "field 'fabSave'", FloatingActionButton.class);
-    view7f0800bb = view;
+    view7f0800ba = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -56,7 +56,7 @@ public class AddAnalyseActivity_ViewBinding implements Unbinder {
     target.fabSave = null;
     target.progressBar = null;
 
-    view7f0800bb.setOnClickListener(null);
-    view7f0800bb = null;
+    view7f0800ba.setOnClickListener(null);
+    view7f0800ba = null;
   }
 }

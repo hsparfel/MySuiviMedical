@@ -89,15 +89,6 @@
             android:windowSoftInputMode="stateHidden" />
 
         <provider
-            android:name="androidx.core.content.FileProvider"
-            android:authorities="com.pouillos.mysuivimedical.fileprovider"
-            android:exported="false"
-            android:grantUriPermissions="true" >
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/filepaths" />
-        </provider>
-        <provider
             android:name="androidx.lifecycle.ProcessLifecycleOwnerInitializer"
             android:authorities="com.pouillos.mysuivimedical.lifecycle-process"
             android:exported="false"

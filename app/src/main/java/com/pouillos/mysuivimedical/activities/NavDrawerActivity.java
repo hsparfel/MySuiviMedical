@@ -1,25 +1,20 @@
 package com.pouillos.mysuivimedical.activities;
 
 
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -37,28 +32,22 @@ import com.pouillos.mysuivimedical.activities.afficher.AfficherExamenActivity;
 import com.pouillos.mysuivimedical.activities.afficher.AfficherPhotoActivity;
 import com.pouillos.mysuivimedical.activities.afficher.AfficherProfilActivity;
 import com.pouillos.mysuivimedical.activities.afficher.AfficherRdvActivity;
-import com.pouillos.mysuivimedical.activities.utils.DateUtils;
 import com.pouillos.mysuivimedical.dao.AnalyseDao;
 import com.pouillos.mysuivimedical.dao.AssociationContactLightEtablissementLightDao;
-import com.pouillos.mysuivimedical.dao.AssociationFormeDoseDao;
 import com.pouillos.mysuivimedical.dao.ContactDao;
 import com.pouillos.mysuivimedical.dao.ContactLightDao;
 import com.pouillos.mysuivimedical.dao.DaoMaster;
 import com.pouillos.mysuivimedical.dao.DaoSession;
 import com.pouillos.mysuivimedical.dao.DepartementDao;
-import com.pouillos.mysuivimedical.dao.DoseDao;
 import com.pouillos.mysuivimedical.dao.EtablissementDao;
 import com.pouillos.mysuivimedical.dao.EtablissementLightDao;
 import com.pouillos.mysuivimedical.dao.ExamenDao;
-import com.pouillos.mysuivimedical.dao.FormePharmaceutiqueDao;
-import com.pouillos.mysuivimedical.dao.MedicamentDao;
-import com.pouillos.mysuivimedical.dao.MedicamentLightDao;
+
 import com.pouillos.mysuivimedical.dao.PhotoAnalyseDao;
 
 import com.pouillos.mysuivimedical.dao.PhotoExamenDao;
 import com.pouillos.mysuivimedical.dao.PhotoOrdonnanceDao;
-import com.pouillos.mysuivimedical.dao.PrescriptionDao;
-import com.pouillos.mysuivimedical.dao.PriseDao;
+
 import com.pouillos.mysuivimedical.dao.ProfessionDao;
 import com.pouillos.mysuivimedical.dao.ProfilDao;
 import com.pouillos.mysuivimedical.dao.RdvAnalyseDao;
@@ -68,23 +57,15 @@ import com.pouillos.mysuivimedical.dao.RegionDao;
 import com.pouillos.mysuivimedical.dao.SavoirFaireDao;
 import com.pouillos.mysuivimedical.dao.TypeEtablissementDao;
 import com.pouillos.mysuivimedical.entities.AssociationContactLightEtablissementLight;
-import com.pouillos.mysuivimedical.entities.AssociationFormeDose;
 import com.pouillos.mysuivimedical.entities.Contact;
 import com.pouillos.mysuivimedical.entities.ContactLight;
 import com.pouillos.mysuivimedical.entities.Departement;
-import com.pouillos.mysuivimedical.entities.Dose;
 import com.pouillos.mysuivimedical.entities.Etablissement;
 import com.pouillos.mysuivimedical.entities.EtablissementLight;
-import com.pouillos.mysuivimedical.entities.FormePharmaceutique;
-import com.pouillos.mysuivimedical.entities.Medicament;
-import com.pouillos.mysuivimedical.entities.MedicamentLight;
-import com.pouillos.mysuivimedical.entities.Prescription;
-import com.pouillos.mysuivimedical.entities.Prise;
 import com.pouillos.mysuivimedical.entities.Profession;
 import com.pouillos.mysuivimedical.entities.Region;
 import com.pouillos.mysuivimedical.entities.SavoirFaire;
 import com.pouillos.mysuivimedical.entities.TypeEtablissement;
-import com.pouillos.mysuivimedical.enumeration.Frequence;
 import com.pouillos.mysuivimedical.interfaces.BasicUtils;
 
 import org.greenrobot.greendao.database.Database;
@@ -111,13 +92,6 @@ public class NavDrawerActivity extends AppCompatActivity implements BasicUtils {
 
     protected DaoSession daoSession;
 
-    protected AssociationFormeDoseDao associationFormeDoseDao;
-    protected DoseDao doseDao;
-    protected FormePharmaceutiqueDao formePharmaceutiqueDao;
-    protected MedicamentDao medicamentDao;
-    protected MedicamentLightDao medicamentLightDao;
-    protected PrescriptionDao prescriptionDao;
-    protected PriseDao priseDao;
     protected AnalyseDao analyseDao;
     protected AssociationContactLightEtablissementLightDao associationContactLightEtablissementLightDao;
     protected ContactDao contactDao;
@@ -153,22 +127,6 @@ public class NavDrawerActivity extends AppCompatActivity implements BasicUtils {
     String uriFindDoctorTypeEtablissement = "content://com.pouillos.finddoctor.provider.typeetablissement/";
     String uriFindDoctorAssociation = "content://com.pouillos.finddoctor.provider.association/";
 
-    String uriMyPilulierMedicament = "content://com.pouillos.mypilulier.provider.medicament/";
-    String uriMyPilulierMedicamentLight = "content://com.pouillos.mypilulier.provider.medicamentlight/";
-    String uriMyPilulierFormePharmaceutique = "content://com.pouillos.mypilulier.provider.formepharmaceutique/";
-    String uriMyPilulierPrescription = "content://com.pouillos.mypilulier.provider.prescription/";
-    String uriMyPilulierPrise = "content://com.pouillos.mypilulier.provider.prise/";
-    String uriMyPilulierDose = "content://com.pouillos.mypilulier.provider.dose/";
-    String uriMyPilulierAssociation = "content://com.pouillos.mypilulier.provider.association/";
-
-    Uri CONTENT_URI_MYPILULIER_MEDICAMENT = Uri.parse(uriMyPilulierMedicament+"Medicament");
-    Uri CONTENT_URI_MYPILULIER_MEDICAMENT_LIGHT = Uri.parse(uriMyPilulierMedicamentLight+"MedicamentLight");
-    Uri CONTENT_URI_MYPILULIER_FORME_PHARMACEUTIQUE = Uri.parse(uriMyPilulierFormePharmaceutique+"FormePharmaceutique");
-    Uri CONTENT_URI_MYPILULIER_PRESCRIPTION = Uri.parse(uriMyPilulierPrescription+"Prescription");
-    Uri CONTENT_URI_MYPILULIER_PRISE = Uri.parse(uriMyPilulierPrise+"Prise");
-    Uri CONTENT_URI_MYPILULIER_ASSOCIATION = Uri.parse(uriMyPilulierAssociation+"AssociationFormeDose");
-    Uri CONTENT_URI_MYPILULIER_DOSE = Uri.parse(uriMyPilulierDose+"Dose");
-
     Uri CONTENT_URI_FINDDOCTOR_CONTACT = Uri.parse(uriFindDoctorContact+"Contact");
     Uri CONTENT_URI_FINDDOCTOR_CONTACT_LIGHT = Uri.parse(uriFindDoctorContactLight+"ContactLight");
     Uri CONTENT_URI_FINDDOCTOR_ETABLISSEMENT = Uri.parse(uriFindDoctorEtablissement+"Etablissement");
@@ -184,14 +142,7 @@ public class NavDrawerActivity extends AppCompatActivity implements BasicUtils {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initialiserDao();
-        //createNotificationChannel();
-        associationFormeDoseDao = daoSession.getAssociationFormeDoseDao();
-        doseDao = daoSession.getDoseDao();
-        formePharmaceutiqueDao = daoSession.getFormePharmaceutiqueDao();
-        medicamentDao = daoSession.getMedicamentDao();
-        medicamentLightDao = daoSession.getMedicamentLightDao();
-        prescriptionDao = daoSession.getPrescriptionDao();
-        priseDao = daoSession.getPriseDao();
+
         analyseDao = daoSession.getAnalyseDao();
         associationContactLightEtablissementLightDao = daoSession.getAssociationContactLightEtablissementLightDao();
         contactDao = daoSession.getContactDao();
@@ -386,14 +337,7 @@ public class NavDrawerActivity extends AppCompatActivity implements BasicUtils {
         return super.getMainExecutor();
     }
 
-    /*protected Date ActualiserDate(Date date, String time){
-        Date dateActualisee = date;
-        int nbHour = Integer.parseInt(time.substring(0,2));
-        int nbMinute = Integer.parseInt(time.substring(3));
-        dateActualisee = DateUtils.ajouterHeure(dateActualisee,nbHour);
-        dateActualisee = DateUtils.ajouterMinute(dateActualisee,nbMinute);
-        return dateActualisee;
-    }*/
+
 
     protected boolean isFilled(TextInputEditText textInputEditText){
         boolean bool;
@@ -429,12 +373,7 @@ public class NavDrawerActivity extends AppCompatActivity implements BasicUtils {
         daoSession = daoMaster.newSession();
     }
 
-    /*public Dose recupDose(Medicament medoc) {
-        long formeId = medoc.getFormePharmaceutiqueId();
-        AssociationFormeDose assocFormeDose = associationFormeDoseDao.queryRaw("where forme_pharmaceutique_id = ?",""+formeId).get(0);
-        Dose dose = doseDao.load(assocFormeDose.getDoseId());
-        return dose;
-    }*/
+
 
     public Date initDate(Date date) {
         GregorianCalendar calendar = new java.util.GregorianCalendar();
@@ -446,35 +385,6 @@ public class NavDrawerActivity extends AppCompatActivity implements BasicUtils {
         date = calendar.getTime();
         return date;
     }
-
-    // ATTENTION pr test on ajoute 1 minute seulement.
-    /*public Date ajouterJour(Date date, int i) {
-        GregorianCalendar calendar = new java.util.GregorianCalendar();
-        calendar.setTime(date);
-        calendar.add(Calendar.DATE, 1);
-        //calendar.add(Calendar.MINUTE,1);
-        date = calendar.getTime();
-        return date;
-    }*/
-
-    /*protected void createNotificationChannel(){
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            CharSequence name = "MyPilulierNotificationChannel";
-            String descripton = "Channel for notification of MyPilulier";
-            int importance = NotificationManager.IMPORTANCE_HIGH;
-
-            NotificationChannel channel = new NotificationChannel("notifyPrise", name, importance);
-            channel.setDescription(descripton);
-
-            NotificationManager notificationManager = getSystemService(NotificationManager.class);
-            notificationManager.createNotificationChannel(channel);
-        }
-    }*/
-
-    /*protected Date findDateJour() {
-        Date date = initDate(new Date());
-        return date;
-    }*/
 
     protected static float floatArrondi(float number, int decimalPlace) {
         BigDecimal bd = new BigDecimal(number);
@@ -522,30 +432,20 @@ public class NavDrawerActivity extends AppCompatActivity implements BasicUtils {
             Log.i("synchroDatas: ","etab light ok");
             synchroFindDoctor10AssociationContactLightEtablissementLight(bool);
             Log.i("synchroDatas: ","assoc contact light etab light");
-            synchroMyPilulier01FormePharmaceutique(bool);
-            Log.i("synchroDatas: ","forma pharma ok");
-            synchroMyPilulier02Dose(bool);
-            Log.i("synchroDatas: ","dose ok");
-            synchroMyPilulier03AssociationFormeDose(bool);
-            Log.i("synchroDatas: ","assoc forme dose ok");
-            synchroMyPilulier04Medicament(bool);
-            Log.i("synchroDatas: ","medoc ok");
-            synchroMyPilulier05MedicamentLight(bool);
-            Log.i("synchroDatas: ","medoc light ok");
-            synchroMyPilulier06Prescription(bool);
-            Log.i("synchroDatas: ","prescription ok");
-            synchroMyPilulier07Prise(bool);
-            Log.i("synchroDatas: ","prise ok");
+
 
         } else {
             //synchro simple
             synchroFindDoctor06Contact(bool);
+            Log.i("synchroDatas: ","contact ok");
             synchroFindDoctor07ContactLight(bool);
+            Log.i("synchroDatas: ","contact light ok");
             synchroFindDoctor08Etablissement(bool);
+            Log.i("synchroDatas: ","etablissement ok");
             synchroFindDoctor09EtablissementLight(bool);
+            Log.i("synchroDatas: ","etab light ok");
             synchroFindDoctor10AssociationContactLightEtablissementLight(bool);
-            synchroMyPilulier06Prescription(bool);
-            synchroMyPilulier07Prise(bool);
+            Log.i("synchroDatas: ","assoc contact light etab light");
         }
         Log.i("synchroDatas: ","end");
     }
@@ -705,118 +605,6 @@ public class NavDrawerActivity extends AppCompatActivity implements BasicUtils {
             for (AssociationContactLightEtablissementLight current : listAssociationContactLightEtablissementLightSynchronized) {
                 if (associationContactLightEtablissementLightDao.load(current.getId()) == null) {
                     associationContactLightEtablissementLightDao.insert(current);
-                }
-            }
-        }
-    }
-
-    public void synchroMyPilulier01FormePharmaceutique(boolean bool) {
-        List<FormePharmaceutique> listFormePharmaceutiqueSynchronized = recupererFormePharmaceutiqueFromMyPilulier();
-        if (bool) {
-            formePharmaceutiqueDao.deleteAll();
-            for (FormePharmaceutique current : listFormePharmaceutiqueSynchronized) {
-                formePharmaceutiqueDao.insert(current);
-            }
-        } else {
-            for (FormePharmaceutique current : listFormePharmaceutiqueSynchronized) {
-                if (formePharmaceutiqueDao.load(current.getId()) == null) {
-                    formePharmaceutiqueDao.insert(current);
-                }
-            }
-        }
-    }
-
-    public void synchroMyPilulier02Dose(boolean bool) {
-        List<Dose> listDoseSynchronized = recupererDoseFromMyPilulier();
-        if (bool) {
-            doseDao.deleteAll();
-            for (Dose current : listDoseSynchronized) {
-                doseDao.insert(current);
-            }
-        } else {
-            for (Dose current : listDoseSynchronized) {
-                if (doseDao.load(current.getId()) == null) {
-                    doseDao.insert(current);
-                }
-            }
-        }
-    }
-
-    public void synchroMyPilulier03AssociationFormeDose(boolean bool) {
-        List<AssociationFormeDose> listAssociationFormeDoseSynchronized = recupererAssociationFormeDoseFromMyPilulier();
-        if (bool) {
-            associationFormeDoseDao.deleteAll();
-            for (AssociationFormeDose current : listAssociationFormeDoseSynchronized) {
-                associationFormeDoseDao.insert(current);
-            }
-        } else {
-            for (AssociationFormeDose current : listAssociationFormeDoseSynchronized) {
-                if (associationFormeDoseDao.load(current.getId()) == null) {
-                    associationFormeDoseDao.insert(current);
-                }
-            }
-        }
-    }
-
-    public void synchroMyPilulier04Medicament(boolean bool) {
-        List<Medicament> listMedicamentSynchronized = recupererMedicamentFromMyPilulier();
-        if (bool) {
-            medicamentDao.deleteAll();
-            for (Medicament current : listMedicamentSynchronized) {
-                medicamentDao.insert(current);
-            }
-        } else {
-            for (Medicament current : listMedicamentSynchronized) {
-                if (medicamentDao.load(current.getId()) == null) {
-                    medicamentDao.insert(current);
-                }
-            }
-        }
-    }
-
-    public void synchroMyPilulier05MedicamentLight(boolean bool) {
-        List<MedicamentLight> listMedicamentLightSynchronized = recupererMedicamentLightFromMyPilulier();
-        if (bool) {
-            medicamentLightDao.deleteAll();
-            for (MedicamentLight current : listMedicamentLightSynchronized) {
-                medicamentLightDao.insert(current);
-            }
-        } else {
-            for (MedicamentLight current : listMedicamentLightSynchronized) {
-                if (medicamentLightDao.load(current.getId()) == null) {
-                    medicamentLightDao.insert(current);
-                }
-            }
-        }
-    }
-
-    public void synchroMyPilulier06Prescription(boolean bool) {
-        List<Prescription> listPrescriptionSynchronized = recupererPrescriptionFromMyPilulier();
-        if (bool) {
-            prescriptionDao.deleteAll();
-            for (Prescription current : listPrescriptionSynchronized) {
-                prescriptionDao.insert(current);
-            }
-        } else {
-            for (Prescription current : listPrescriptionSynchronized) {
-                if (prescriptionDao.load(current.getId()) == null) {
-                    prescriptionDao.insert(current);
-                }
-            }
-        }
-    }
-
-    public void synchroMyPilulier07Prise(boolean bool) {
-        List<Prise> listPriseSynchronized = recupererPriseFromMyPilulier();
-        if (bool) {
-            priseDao.deleteAll();
-            for (Prise current : listPriseSynchronized) {
-                priseDao.insert(current);
-            }
-        } else {
-            for (Prise current : listPriseSynchronized) {
-                if (priseDao.load(current.getId()) == null) {
-                    priseDao.insert(current);
                 }
             }
         }
@@ -997,116 +785,6 @@ public class NavDrawerActivity extends AppCompatActivity implements BasicUtils {
             currentAssociationContactLightEtablissementLight.setContactLightId(cursor.getLong(cursor.getColumnIndex("contactLightId")));
             currentAssociationContactLightEtablissementLight.setEtablissementLightId(cursor.getLong(cursor.getColumnIndex("etablissementLightId")));
             myList.add(currentAssociationContactLightEtablissementLight);
-        }
-        cursor.close();
-        return myList;
-    }
-
-    public List<FormePharmaceutique> recupererFormePharmaceutiqueFromMyPilulier() {
-        Cursor cursor = getContentResolver().query(CONTENT_URI_MYPILULIER_FORME_PHARMACEUTIQUE, null, null, null, null);
-        List<FormePharmaceutique> myList = new ArrayList<>();
-        while(cursor.moveToNext()) {
-            FormePharmaceutique currentFormePharmaceutique = new FormePharmaceutique();
-            currentFormePharmaceutique.setId(cursor.getLong(cursor.getColumnIndex("_id")));
-            currentFormePharmaceutique.setName(cursor.getString(cursor.getColumnIndex("name")));
-            myList.add(currentFormePharmaceutique);
-        }
-        cursor.close();
-        return myList;
-    }
-
-    public List<Dose> recupererDoseFromMyPilulier() {
-        Cursor cursor = getContentResolver().query(CONTENT_URI_MYPILULIER_DOSE, null, null, null, null);
-        List<Dose> myList = new ArrayList<>();
-        while(cursor.moveToNext()) {
-            Dose currentDose = new Dose();
-            currentDose.setId(cursor.getLong(cursor.getColumnIndex("_id")));
-            currentDose.setName(cursor.getString(cursor.getColumnIndex("name")));
-            myList.add(currentDose);
-        }
-        cursor.close();
-        return myList;
-    }
-
-    public List<AssociationFormeDose> recupererAssociationFormeDoseFromMyPilulier() {
-        Cursor cursor = getContentResolver().query(CONTENT_URI_MYPILULIER_ASSOCIATION, null, null, null, null);
-        List<AssociationFormeDose> myList = new ArrayList<>();
-        while(cursor.moveToNext()) {
-            AssociationFormeDose currentAssociationFormeDose = new AssociationFormeDose();
-            currentAssociationFormeDose.setId(cursor.getLong(cursor.getColumnIndex("_id")));
-            currentAssociationFormeDose.setFormePharmaceutiqueId(cursor.getLong(cursor.getColumnIndex("formePharmaceutiqueId")));
-            currentAssociationFormeDose.setDoseId(cursor.getLong(cursor.getColumnIndex("doseId")));
-            myList.add(currentAssociationFormeDose);
-        }
-        cursor.close();
-        return myList;
-    }
-
-    public List<Medicament> recupererMedicamentFromMyPilulier() {
-        Cursor cursor = getContentResolver().query(CONTENT_URI_MYPILULIER_MEDICAMENT, null, null, null, null);
-        List<Medicament> myList = new ArrayList<>();
-        while(cursor.moveToNext()) {
-            Medicament currentMedicament = new Medicament();
-            currentMedicament.setId(cursor.getLong(cursor.getColumnIndex("_id")));
-            currentMedicament.setCodeCIS(cursor.getLong(cursor.getColumnIndex("codeCIS")));
-            currentMedicament.setDenomination(cursor.getString(cursor.getColumnIndex("denomination")));
-            currentMedicament.setDenominationShort(cursor.getString(cursor.getColumnIndex("denominationShort")));
-            currentMedicament.setFormePharmaceutiqueId(cursor.getLong(cursor.getColumnIndex("formePharmaceutiqueId")));
-            currentMedicament.setTitulaire(cursor.getString(cursor.getColumnIndex("titulaire")));
-            myList.add(currentMedicament);
-        }
-        cursor.close();
-        return myList;
-    }
-
-    public List<MedicamentLight> recupererMedicamentLightFromMyPilulier() {
-        Cursor cursor = getContentResolver().query(CONTENT_URI_MYPILULIER_MEDICAMENT_LIGHT, null, null, null, null);
-        List<MedicamentLight> myList = new ArrayList<>();
-        while(cursor.moveToNext()) {
-            MedicamentLight currentMedicamentLight = new MedicamentLight();
-            currentMedicamentLight.setId(cursor.getLong(cursor.getColumnIndex("_id")));
-            currentMedicamentLight.setCodeCIS(cursor.getLong(cursor.getColumnIndex("codeCIS")));
-            currentMedicamentLight.setDenomination(cursor.getString(cursor.getColumnIndex("denomination")));
-            myList.add(currentMedicamentLight);
-        }
-        cursor.close();
-        return myList;
-    }
-
-    public List<Prescription> recupererPrescriptionFromMyPilulier() {
-        Cursor cursor = getContentResolver().query(CONTENT_URI_MYPILULIER_PRESCRIPTION, null, null, null, null);
-        List<Prescription> myList = new ArrayList<>();
-        while(cursor.moveToNext()) {
-            Prescription currentPrescription = new Prescription();
-            currentPrescription.setId(cursor.getLong(cursor.getColumnIndex("_id")));
-            currentPrescription.setQte(cursor.getFloat(cursor.getColumnIndex("qte")));
-            currentPrescription.setMedicamentId(cursor.getLong(cursor.getColumnIndex("medicamentId")));
-            currentPrescription.setFrequence(Frequence.fromString(cursor.getString(cursor.getColumnIndex("frequence"))));
-            Date date = new Date();
-            date.setTime(cursor.getLong(cursor.getColumnIndex("dateFin")));
-            currentPrescription.setDateFin(date);
-            currentPrescription.setDateFinString(cursor.getString(cursor.getColumnIndex("dateFinString")));
-            myList.add(currentPrescription);
-        }
-        cursor.close();
-        return myList;
-    }
-
-    public List<Prise> recupererPriseFromMyPilulier() {
-        Cursor cursor = getContentResolver().query(CONTENT_URI_MYPILULIER_PRISE, null, null, null, null);
-        List<Prise> myList = new ArrayList<>();
-        while(cursor.moveToNext()) {
-            Prise currentPrise = new Prise();
-            currentPrise.setId(cursor.getLong(cursor.getColumnIndex("_id")));
-            Date date = new Date();
-            date.setTime(cursor.getLong(cursor.getColumnIndex("date")));
-            currentPrise.setDate(date);
-            currentPrise.setDateString(cursor.getString(cursor.getColumnIndex("dateString")));
-            currentPrise.setEffectue(cursor.getInt(cursor.getColumnIndex("effectue"))==1);
-            currentPrise.setMedicamentId(cursor.getLong(cursor.getColumnIndex("medicamentId")));
-            currentPrise.setDoseId(cursor.getLong(cursor.getColumnIndex("doseId")));
-            currentPrise.setQteDose(cursor.getFloat(cursor.getColumnIndex("qteDose")));
-            myList.add(currentPrise);
         }
         cursor.close();
         return myList;

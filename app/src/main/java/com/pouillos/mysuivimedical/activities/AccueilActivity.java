@@ -2,6 +2,7 @@ package com.pouillos.mysuivimedical.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -227,31 +228,28 @@ public class AccueilActivity extends NavDrawerActivity implements BasicUtils, Re
         if (findDoctorIntent != null) {
             startActivityIfNeeded(findDoctorIntent,0);
         }
+        Log.i("synchroApps: ","debut pause1");
         try {
-            Thread.sleep(5000);
+
+            //Log.i("synchroDatas: ","assoc contact light etab light");
+            Thread.sleep(3000);
+
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        //lancer myPilulier
-        Intent myPilulierIntent = getPackageManager().getLaunchIntentForPackage("com.pouillos.mypilulier");
-        if (myPilulierIntent != null) {
-            startActivityIfNeeded(myPilulierIntent,0);
-        }
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        Log.i("synchroApps: ","fin pause1");
+
         //Remettre MySuiviMedical en Front
         Intent mySuiviMedicalIntent = getPackageManager().getLaunchIntentForPackage("com.pouillos.mysuivimedical");
         mySuiviMedicalIntent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivityIfNeeded(mySuiviMedicalIntent,0);
+        Log.i("synchroApps: ","debut pause2");
         try {
-            Thread.sleep(5000);
+            Thread.sleep(3000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
+        Log.i("synchroApps: ","fin pause2");
         synchroDatas(false);
 
     }

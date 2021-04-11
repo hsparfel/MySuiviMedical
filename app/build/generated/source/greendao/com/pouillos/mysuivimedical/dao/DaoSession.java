@@ -10,22 +10,15 @@ import org.greenrobot.greendao.internal.DaoConfig;
 
 import com.pouillos.mysuivimedical.entities.Analyse;
 import com.pouillos.mysuivimedical.entities.AssociationContactLightEtablissementLight;
-import com.pouillos.mysuivimedical.entities.AssociationFormeDose;
 import com.pouillos.mysuivimedical.entities.Contact;
 import com.pouillos.mysuivimedical.entities.ContactLight;
 import com.pouillos.mysuivimedical.entities.Departement;
-import com.pouillos.mysuivimedical.entities.Dose;
 import com.pouillos.mysuivimedical.entities.Etablissement;
 import com.pouillos.mysuivimedical.entities.EtablissementLight;
 import com.pouillos.mysuivimedical.entities.Examen;
-import com.pouillos.mysuivimedical.entities.FormePharmaceutique;
-import com.pouillos.mysuivimedical.entities.Medicament;
-import com.pouillos.mysuivimedical.entities.MedicamentLight;
 import com.pouillos.mysuivimedical.entities.PhotoAnalyse;
 import com.pouillos.mysuivimedical.entities.PhotoExamen;
 import com.pouillos.mysuivimedical.entities.PhotoOrdonnance;
-import com.pouillos.mysuivimedical.entities.Prescription;
-import com.pouillos.mysuivimedical.entities.Prise;
 import com.pouillos.mysuivimedical.entities.Profession;
 import com.pouillos.mysuivimedical.entities.Profil;
 import com.pouillos.mysuivimedical.entities.RdvAnalyse;
@@ -37,22 +30,15 @@ import com.pouillos.mysuivimedical.entities.TypeEtablissement;
 
 import com.pouillos.mysuivimedical.dao.AnalyseDao;
 import com.pouillos.mysuivimedical.dao.AssociationContactLightEtablissementLightDao;
-import com.pouillos.mysuivimedical.dao.AssociationFormeDoseDao;
 import com.pouillos.mysuivimedical.dao.ContactDao;
 import com.pouillos.mysuivimedical.dao.ContactLightDao;
 import com.pouillos.mysuivimedical.dao.DepartementDao;
-import com.pouillos.mysuivimedical.dao.DoseDao;
 import com.pouillos.mysuivimedical.dao.EtablissementDao;
 import com.pouillos.mysuivimedical.dao.EtablissementLightDao;
 import com.pouillos.mysuivimedical.dao.ExamenDao;
-import com.pouillos.mysuivimedical.dao.FormePharmaceutiqueDao;
-import com.pouillos.mysuivimedical.dao.MedicamentDao;
-import com.pouillos.mysuivimedical.dao.MedicamentLightDao;
 import com.pouillos.mysuivimedical.dao.PhotoAnalyseDao;
 import com.pouillos.mysuivimedical.dao.PhotoExamenDao;
 import com.pouillos.mysuivimedical.dao.PhotoOrdonnanceDao;
-import com.pouillos.mysuivimedical.dao.PrescriptionDao;
-import com.pouillos.mysuivimedical.dao.PriseDao;
 import com.pouillos.mysuivimedical.dao.ProfessionDao;
 import com.pouillos.mysuivimedical.dao.ProfilDao;
 import com.pouillos.mysuivimedical.dao.RdvAnalyseDao;
@@ -73,22 +59,15 @@ public class DaoSession extends AbstractDaoSession {
 
     private final DaoConfig analyseDaoConfig;
     private final DaoConfig associationContactLightEtablissementLightDaoConfig;
-    private final DaoConfig associationFormeDoseDaoConfig;
     private final DaoConfig contactDaoConfig;
     private final DaoConfig contactLightDaoConfig;
     private final DaoConfig departementDaoConfig;
-    private final DaoConfig doseDaoConfig;
     private final DaoConfig etablissementDaoConfig;
     private final DaoConfig etablissementLightDaoConfig;
     private final DaoConfig examenDaoConfig;
-    private final DaoConfig formePharmaceutiqueDaoConfig;
-    private final DaoConfig medicamentDaoConfig;
-    private final DaoConfig medicamentLightDaoConfig;
     private final DaoConfig photoAnalyseDaoConfig;
     private final DaoConfig photoExamenDaoConfig;
     private final DaoConfig photoOrdonnanceDaoConfig;
-    private final DaoConfig prescriptionDaoConfig;
-    private final DaoConfig priseDaoConfig;
     private final DaoConfig professionDaoConfig;
     private final DaoConfig profilDaoConfig;
     private final DaoConfig rdvAnalyseDaoConfig;
@@ -100,22 +79,15 @@ public class DaoSession extends AbstractDaoSession {
 
     private final AnalyseDao analyseDao;
     private final AssociationContactLightEtablissementLightDao associationContactLightEtablissementLightDao;
-    private final AssociationFormeDoseDao associationFormeDoseDao;
     private final ContactDao contactDao;
     private final ContactLightDao contactLightDao;
     private final DepartementDao departementDao;
-    private final DoseDao doseDao;
     private final EtablissementDao etablissementDao;
     private final EtablissementLightDao etablissementLightDao;
     private final ExamenDao examenDao;
-    private final FormePharmaceutiqueDao formePharmaceutiqueDao;
-    private final MedicamentDao medicamentDao;
-    private final MedicamentLightDao medicamentLightDao;
     private final PhotoAnalyseDao photoAnalyseDao;
     private final PhotoExamenDao photoExamenDao;
     private final PhotoOrdonnanceDao photoOrdonnanceDao;
-    private final PrescriptionDao prescriptionDao;
-    private final PriseDao priseDao;
     private final ProfessionDao professionDao;
     private final ProfilDao profilDao;
     private final RdvAnalyseDao rdvAnalyseDao;
@@ -135,9 +107,6 @@ public class DaoSession extends AbstractDaoSession {
         associationContactLightEtablissementLightDaoConfig = daoConfigMap.get(AssociationContactLightEtablissementLightDao.class).clone();
         associationContactLightEtablissementLightDaoConfig.initIdentityScope(type);
 
-        associationFormeDoseDaoConfig = daoConfigMap.get(AssociationFormeDoseDao.class).clone();
-        associationFormeDoseDaoConfig.initIdentityScope(type);
-
         contactDaoConfig = daoConfigMap.get(ContactDao.class).clone();
         contactDaoConfig.initIdentityScope(type);
 
@@ -146,9 +115,6 @@ public class DaoSession extends AbstractDaoSession {
 
         departementDaoConfig = daoConfigMap.get(DepartementDao.class).clone();
         departementDaoConfig.initIdentityScope(type);
-
-        doseDaoConfig = daoConfigMap.get(DoseDao.class).clone();
-        doseDaoConfig.initIdentityScope(type);
 
         etablissementDaoConfig = daoConfigMap.get(EtablissementDao.class).clone();
         etablissementDaoConfig.initIdentityScope(type);
@@ -159,15 +125,6 @@ public class DaoSession extends AbstractDaoSession {
         examenDaoConfig = daoConfigMap.get(ExamenDao.class).clone();
         examenDaoConfig.initIdentityScope(type);
 
-        formePharmaceutiqueDaoConfig = daoConfigMap.get(FormePharmaceutiqueDao.class).clone();
-        formePharmaceutiqueDaoConfig.initIdentityScope(type);
-
-        medicamentDaoConfig = daoConfigMap.get(MedicamentDao.class).clone();
-        medicamentDaoConfig.initIdentityScope(type);
-
-        medicamentLightDaoConfig = daoConfigMap.get(MedicamentLightDao.class).clone();
-        medicamentLightDaoConfig.initIdentityScope(type);
-
         photoAnalyseDaoConfig = daoConfigMap.get(PhotoAnalyseDao.class).clone();
         photoAnalyseDaoConfig.initIdentityScope(type);
 
@@ -176,12 +133,6 @@ public class DaoSession extends AbstractDaoSession {
 
         photoOrdonnanceDaoConfig = daoConfigMap.get(PhotoOrdonnanceDao.class).clone();
         photoOrdonnanceDaoConfig.initIdentityScope(type);
-
-        prescriptionDaoConfig = daoConfigMap.get(PrescriptionDao.class).clone();
-        prescriptionDaoConfig.initIdentityScope(type);
-
-        priseDaoConfig = daoConfigMap.get(PriseDao.class).clone();
-        priseDaoConfig.initIdentityScope(type);
 
         professionDaoConfig = daoConfigMap.get(ProfessionDao.class).clone();
         professionDaoConfig.initIdentityScope(type);
@@ -209,22 +160,15 @@ public class DaoSession extends AbstractDaoSession {
 
         analyseDao = new AnalyseDao(analyseDaoConfig, this);
         associationContactLightEtablissementLightDao = new AssociationContactLightEtablissementLightDao(associationContactLightEtablissementLightDaoConfig, this);
-        associationFormeDoseDao = new AssociationFormeDoseDao(associationFormeDoseDaoConfig, this);
         contactDao = new ContactDao(contactDaoConfig, this);
         contactLightDao = new ContactLightDao(contactLightDaoConfig, this);
         departementDao = new DepartementDao(departementDaoConfig, this);
-        doseDao = new DoseDao(doseDaoConfig, this);
         etablissementDao = new EtablissementDao(etablissementDaoConfig, this);
         etablissementLightDao = new EtablissementLightDao(etablissementLightDaoConfig, this);
         examenDao = new ExamenDao(examenDaoConfig, this);
-        formePharmaceutiqueDao = new FormePharmaceutiqueDao(formePharmaceutiqueDaoConfig, this);
-        medicamentDao = new MedicamentDao(medicamentDaoConfig, this);
-        medicamentLightDao = new MedicamentLightDao(medicamentLightDaoConfig, this);
         photoAnalyseDao = new PhotoAnalyseDao(photoAnalyseDaoConfig, this);
         photoExamenDao = new PhotoExamenDao(photoExamenDaoConfig, this);
         photoOrdonnanceDao = new PhotoOrdonnanceDao(photoOrdonnanceDaoConfig, this);
-        prescriptionDao = new PrescriptionDao(prescriptionDaoConfig, this);
-        priseDao = new PriseDao(priseDaoConfig, this);
         professionDao = new ProfessionDao(professionDaoConfig, this);
         profilDao = new ProfilDao(profilDaoConfig, this);
         rdvAnalyseDao = new RdvAnalyseDao(rdvAnalyseDaoConfig, this);
@@ -236,22 +180,15 @@ public class DaoSession extends AbstractDaoSession {
 
         registerDao(Analyse.class, analyseDao);
         registerDao(AssociationContactLightEtablissementLight.class, associationContactLightEtablissementLightDao);
-        registerDao(AssociationFormeDose.class, associationFormeDoseDao);
         registerDao(Contact.class, contactDao);
         registerDao(ContactLight.class, contactLightDao);
         registerDao(Departement.class, departementDao);
-        registerDao(Dose.class, doseDao);
         registerDao(Etablissement.class, etablissementDao);
         registerDao(EtablissementLight.class, etablissementLightDao);
         registerDao(Examen.class, examenDao);
-        registerDao(FormePharmaceutique.class, formePharmaceutiqueDao);
-        registerDao(Medicament.class, medicamentDao);
-        registerDao(MedicamentLight.class, medicamentLightDao);
         registerDao(PhotoAnalyse.class, photoAnalyseDao);
         registerDao(PhotoExamen.class, photoExamenDao);
         registerDao(PhotoOrdonnance.class, photoOrdonnanceDao);
-        registerDao(Prescription.class, prescriptionDao);
-        registerDao(Prise.class, priseDao);
         registerDao(Profession.class, professionDao);
         registerDao(Profil.class, profilDao);
         registerDao(RdvAnalyse.class, rdvAnalyseDao);
@@ -265,22 +202,15 @@ public class DaoSession extends AbstractDaoSession {
     public void clear() {
         analyseDaoConfig.clearIdentityScope();
         associationContactLightEtablissementLightDaoConfig.clearIdentityScope();
-        associationFormeDoseDaoConfig.clearIdentityScope();
         contactDaoConfig.clearIdentityScope();
         contactLightDaoConfig.clearIdentityScope();
         departementDaoConfig.clearIdentityScope();
-        doseDaoConfig.clearIdentityScope();
         etablissementDaoConfig.clearIdentityScope();
         etablissementLightDaoConfig.clearIdentityScope();
         examenDaoConfig.clearIdentityScope();
-        formePharmaceutiqueDaoConfig.clearIdentityScope();
-        medicamentDaoConfig.clearIdentityScope();
-        medicamentLightDaoConfig.clearIdentityScope();
         photoAnalyseDaoConfig.clearIdentityScope();
         photoExamenDaoConfig.clearIdentityScope();
         photoOrdonnanceDaoConfig.clearIdentityScope();
-        prescriptionDaoConfig.clearIdentityScope();
-        priseDaoConfig.clearIdentityScope();
         professionDaoConfig.clearIdentityScope();
         profilDaoConfig.clearIdentityScope();
         rdvAnalyseDaoConfig.clearIdentityScope();
@@ -299,10 +229,6 @@ public class DaoSession extends AbstractDaoSession {
         return associationContactLightEtablissementLightDao;
     }
 
-    public AssociationFormeDoseDao getAssociationFormeDoseDao() {
-        return associationFormeDoseDao;
-    }
-
     public ContactDao getContactDao() {
         return contactDao;
     }
@@ -313,10 +239,6 @@ public class DaoSession extends AbstractDaoSession {
 
     public DepartementDao getDepartementDao() {
         return departementDao;
-    }
-
-    public DoseDao getDoseDao() {
-        return doseDao;
     }
 
     public EtablissementDao getEtablissementDao() {
@@ -331,18 +253,6 @@ public class DaoSession extends AbstractDaoSession {
         return examenDao;
     }
 
-    public FormePharmaceutiqueDao getFormePharmaceutiqueDao() {
-        return formePharmaceutiqueDao;
-    }
-
-    public MedicamentDao getMedicamentDao() {
-        return medicamentDao;
-    }
-
-    public MedicamentLightDao getMedicamentLightDao() {
-        return medicamentLightDao;
-    }
-
     public PhotoAnalyseDao getPhotoAnalyseDao() {
         return photoAnalyseDao;
     }
@@ -353,14 +263,6 @@ public class DaoSession extends AbstractDaoSession {
 
     public PhotoOrdonnanceDao getPhotoOrdonnanceDao() {
         return photoOrdonnanceDao;
-    }
-
-    public PrescriptionDao getPrescriptionDao() {
-        return prescriptionDao;
-    }
-
-    public PriseDao getPriseDao() {
-        return priseDao;
     }
 
     public ProfessionDao getProfessionDao() {

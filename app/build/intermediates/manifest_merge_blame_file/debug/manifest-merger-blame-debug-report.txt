@@ -28,7 +28,7 @@
 16-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:10:19-57
 17
 18    <application
-18-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:12:5-81:19
+18-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:12:5-72:19
 19        android:name="com.pouillos.mysuivimedical.MyApp"
 19-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:13:9-57
 20        android:allowBackup="true"
@@ -167,32 +167,15 @@
 88-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:70:13-54
 89
 90        <provider
-90-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:72:9-80:20
-91            android:name="androidx.core.content.FileProvider"
-91-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:73:13-62
-92            android:authorities="com.pouillos.mysuivimedical.fileprovider"
-92-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:74:13-75
+90-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\TNH\.gradle\caches\transforms-2\files-2.1\e53e565f480f786b632a4e97f8ee4f77\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:25:9-29:43
+91            android:name="androidx.lifecycle.ProcessLifecycleOwnerInitializer"
+91-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\TNH\.gradle\caches\transforms-2\files-2.1\e53e565f480f786b632a4e97f8ee4f77\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:26:13-79
+92            android:authorities="com.pouillos.mysuivimedical.lifecycle-process"
+92-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\TNH\.gradle\caches\transforms-2\files-2.1\e53e565f480f786b632a4e97f8ee4f77\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:27:13-69
 93            android:exported="false"
-93-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:75:13-37
-94            android:grantUriPermissions="true" >
-94-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:76:13-47
-95            <meta-data
-95-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:77:13-79:53
-96                android:name="android.support.FILE_PROVIDER_PATHS"
-96-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:78:17-67
-97                android:resource="@xml/filepaths" />
-97-->C:\Users\TNH\AndroidStudioProjects\MySuiviMedical\app\src\main\AndroidManifest.xml:79:17-50
-98        </provider>
-99        <provider
-99-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\TNH\.gradle\caches\transforms-2\files-2.1\e53e565f480f786b632a4e97f8ee4f77\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:25:9-29:43
-100            android:name="androidx.lifecycle.ProcessLifecycleOwnerInitializer"
-100-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\TNH\.gradle\caches\transforms-2\files-2.1\e53e565f480f786b632a4e97f8ee4f77\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:26:13-79
-101            android:authorities="com.pouillos.mysuivimedical.lifecycle-process"
-101-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\TNH\.gradle\caches\transforms-2\files-2.1\e53e565f480f786b632a4e97f8ee4f77\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:27:13-69
-102            android:exported="false"
-102-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\TNH\.gradle\caches\transforms-2\files-2.1\e53e565f480f786b632a4e97f8ee4f77\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:28:13-37
-103            android:multiprocess="true" />
-103-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\TNH\.gradle\caches\transforms-2\files-2.1\e53e565f480f786b632a4e97f8ee4f77\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:29:13-40
-104    </application>
-105
-106</manifest>
+93-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\TNH\.gradle\caches\transforms-2\files-2.1\e53e565f480f786b632a4e97f8ee4f77\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:28:13-37
+94            android:multiprocess="true" />
+94-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\TNH\.gradle\caches\transforms-2\files-2.1\e53e565f480f786b632a4e97f8ee4f77\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:29:13-40
+95    </application>
+96
+97</manifest>

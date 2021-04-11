@@ -1743,7 +1743,6 @@ drawable material_ic_keyboard_arrow_previous_black_24dp
 drawable material_ic_keyboard_arrow_right_black_24dp
 drawable material_ic_menu_arrow_down_black_24dp
 drawable material_ic_menu_arrow_up_black_24dp
-drawable medicine_medical_pharmacy_health_prescription_pill_drug_icon_140910
 drawable mtrl_dialog_background
 drawable mtrl_dropdown_arrow
 drawable mtrl_ic_arrow_drop_down
@@ -1876,7 +1875,6 @@ id bottom_navigation_photo
 id bottom_navigation_profil
 id bottom_navigation_rdv
 id bounce
-id buttonDelete
 id buttonPanel
 id cache_measures
 id cancel_action
@@ -2440,8 +2438,6 @@ layout notification_template_part_chronometer
 layout notification_template_part_time
 layout number_picker_material
 layout progress_bar
-layout recycler_list_prescription
-layout recycler_list_prise
 layout recycler_list_rdv_analyse
 layout recycler_list_rdv_contact
 layout recycler_list_rdv_examen

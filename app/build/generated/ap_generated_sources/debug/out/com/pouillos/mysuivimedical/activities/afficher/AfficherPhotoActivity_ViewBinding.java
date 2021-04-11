@@ -21,15 +21,15 @@ import java.lang.Override;
 public class AfficherPhotoActivity_ViewBinding implements Unbinder {
   private AfficherPhotoActivity target;
 
-  private View view7f0800bd;
+  private View view7f0800bc;
 
-  private View view7f0800b7;
+  private View view7f0800b6;
 
-  private View view7f080075;
+  private View view7f080074;
 
-  private View view7f080070;
+  private View view7f08006f;
 
-  private View view7f080072;
+  private View view7f080071;
 
   @UiThread
   public AfficherPhotoActivity_ViewBinding(AfficherPhotoActivity target) {
@@ -45,7 +45,7 @@ public class AfficherPhotoActivity_ViewBinding implements Unbinder {
     target.listItem = Utils.findRequiredViewAsType(source, R.id.listItem, "field 'listItem'", TextInputLayout.class);
     view = Utils.findRequiredView(source, R.id.fabShare, "field 'fabShare' and method 'fabShareClick'");
     target.fabShare = Utils.castView(view, R.id.fabShare, "field 'fabShare'", FloatingActionButton.class);
-    view7f0800bd = view;
+    view7f0800bc = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -54,7 +54,7 @@ public class AfficherPhotoActivity_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.fabDelete, "field 'fabDelete' and method 'fabDeleteClick'");
     target.fabDelete = Utils.castView(view, R.id.fabDelete, "field 'fabDelete'", FloatingActionButton.class);
-    view7f0800b7 = view;
+    view7f0800b6 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -63,7 +63,7 @@ public class AfficherPhotoActivity_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.chipOrdonnance, "field 'chipOrdonnance' and method 'chipOrdonnanceClick'");
     target.chipOrdonnance = Utils.castView(view, R.id.chipOrdonnance, "field 'chipOrdonnance'", Chip.class);
-    view7f080075 = view;
+    view7f080074 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -72,7 +72,7 @@ public class AfficherPhotoActivity_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.chipAnalyse, "field 'chipAnalyse' and method 'chipAnalyseClick'");
     target.chipAnalyse = Utils.castView(view, R.id.chipAnalyse, "field 'chipAnalyse'", Chip.class);
-    view7f080070 = view;
+    view7f08006f = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -81,7 +81,7 @@ public class AfficherPhotoActivity_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.chipExamen, "field 'chipExamen' and method 'chipExamenClick'");
     target.chipExamen = Utils.castView(view, R.id.chipExamen, "field 'chipExamen'", Chip.class);
-    view7f080072 = view;
+    view7f080071 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -111,15 +111,15 @@ public class AfficherPhotoActivity_ViewBinding implements Unbinder {
     target.progressBar = null;
     target.imageView = null;
 
-    view7f0800bd.setOnClickListener(null);
-    view7f0800bd = null;
-    view7f0800b7.setOnClickListener(null);
-    view7f0800b7 = null;
-    view7f080075.setOnClickListener(null);
-    view7f080075 = null;
-    view7f080070.setOnClickListener(null);
-    view7f080070 = null;
-    view7f080072.setOnClickListener(null);
-    view7f080072 = null;
+    view7f0800bc.setOnClickListener(null);
+    view7f0800bc = null;
+    view7f0800b6.setOnClickListener(null);
+    view7f0800b6 = null;
+    view7f080074.setOnClickListener(null);
+    view7f080074 = null;
+    view7f08006f.setOnClickListener(null);
+    view7f08006f = null;
+    view7f080071.setOnClickListener(null);
+    view7f080071 = null;
   }
 }
