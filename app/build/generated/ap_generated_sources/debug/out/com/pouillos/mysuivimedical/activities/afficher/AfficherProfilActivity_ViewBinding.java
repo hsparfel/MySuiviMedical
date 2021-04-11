@@ -20,11 +20,11 @@ import java.lang.Override;
 public class AfficherProfilActivity_ViewBinding implements Unbinder {
   private AfficherProfilActivity target;
 
-  private View view7f0800b8;
+  private View view7f0800b7;
 
-  private View view7f0800b5;
+  private View view7f0800b4;
 
-  private View view7f0800ba;
+  private View view7f0800b9;
 
   @UiThread
   public AfficherProfilActivity_ViewBinding(AfficherProfilActivity target) {
@@ -46,7 +46,7 @@ public class AfficherProfilActivity_ViewBinding implements Unbinder {
     target.textPoids = Utils.findRequiredViewAsType(source, R.id.textPoids, "field 'textPoids'", TextInputEditText.class);
     view = Utils.findRequiredView(source, R.id.fabDelete, "field 'fabDelete' and method 'fabDeleteClick'");
     target.fabDelete = Utils.castView(view, R.id.fabDelete, "field 'fabDelete'", FloatingActionButton.class);
-    view7f0800b8 = view;
+    view7f0800b7 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -55,7 +55,7 @@ public class AfficherProfilActivity_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.fabAdd, "field 'fabAdd' and method 'fabAddClick'");
     target.fabAdd = Utils.castView(view, R.id.fabAdd, "field 'fabAdd'", FloatingActionButton.class);
-    view7f0800b5 = view;
+    view7f0800b4 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -64,7 +64,7 @@ public class AfficherProfilActivity_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.fabGraph, "field 'fabGraph' and method 'fabGraphClick'");
     target.fabGraph = Utils.castView(view, R.id.fabGraph, "field 'fabGraph'", FloatingActionButton.class);
-    view7f0800ba = view;
+    view7f0800b9 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -96,11 +96,11 @@ public class AfficherProfilActivity_ViewBinding implements Unbinder {
     target.toolbar = null;
     target.progressBar = null;
 
-    view7f0800b8.setOnClickListener(null);
-    view7f0800b8 = null;
-    view7f0800b5.setOnClickListener(null);
-    view7f0800b5 = null;
-    view7f0800ba.setOnClickListener(null);
-    view7f0800ba = null;
+    view7f0800b7.setOnClickListener(null);
+    view7f0800b7 = null;
+    view7f0800b4.setOnClickListener(null);
+    view7f0800b4 = null;
+    view7f0800b9.setOnClickListener(null);
+    view7f0800b9 = null;
   }
 }

@@ -17,11 +17,11 @@ import java.lang.Override;
 public class AfficherGraphiqueActivity_ViewBinding implements Unbinder {
   private AfficherGraphiqueActivity target;
 
+  private View view7f080076;
+
   private View view7f080077;
 
-  private View view7f080078;
-
-  private View view7f080075;
+  private View view7f080074;
 
   @UiThread
   public AfficherGraphiqueActivity_ViewBinding(AfficherGraphiqueActivity target) {
@@ -36,7 +36,7 @@ public class AfficherGraphiqueActivity_ViewBinding implements Unbinder {
     View view;
     view = Utils.findRequiredView(source, R.id.chipPoids, "field 'chipPoids' and method 'chipPoidsClick'");
     target.chipPoids = Utils.castView(view, R.id.chipPoids, "field 'chipPoids'", Chip.class);
-    view7f080077 = view;
+    view7f080076 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -45,7 +45,7 @@ public class AfficherGraphiqueActivity_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.chipTaille, "field 'chipTaille' and method 'chipTailleClick'");
     target.chipTaille = Utils.castView(view, R.id.chipTaille, "field 'chipTaille'", Chip.class);
-    view7f080078 = view;
+    view7f080077 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -54,7 +54,7 @@ public class AfficherGraphiqueActivity_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.chipImc, "field 'chipImc' and method 'chipImcClick'");
     target.chipImc = Utils.castView(view, R.id.chipImc, "field 'chipImc'", Chip.class);
-    view7f080075 = view;
+    view7f080074 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -78,11 +78,11 @@ public class AfficherGraphiqueActivity_ViewBinding implements Unbinder {
     target.progressBar = null;
     target.chart = null;
 
+    view7f080076.setOnClickListener(null);
+    view7f080076 = null;
     view7f080077.setOnClickListener(null);
     view7f080077 = null;
-    view7f080078.setOnClickListener(null);
-    view7f080078 = null;
-    view7f080075.setOnClickListener(null);
-    view7f080075 = null;
+    view7f080074.setOnClickListener(null);
+    view7f080074 = null;
   }
 }

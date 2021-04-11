@@ -35,6 +35,9 @@ import com.pouillos.mysuivimedical.activities.add.AddRdvContactActivity;
 import com.pouillos.mysuivimedical.activities.add.AddRdvExamenActivity;
 import com.pouillos.mysuivimedical.activities.photo.MakePhotoActivity;
 import com.pouillos.mysuivimedical.activities.utils.DateUtils;
+import com.pouillos.mysuivimedical.entities.Analyse;
+import com.pouillos.mysuivimedical.entities.Contact;
+import com.pouillos.mysuivimedical.entities.Examen;
 import com.pouillos.mysuivimedical.entities.RdvAnalyse;
 import com.pouillos.mysuivimedical.entities.RdvContact;
 import com.pouillos.mysuivimedical.entities.RdvExamen;
@@ -60,7 +63,14 @@ public class AfficherRdvActivity extends NavDrawerActivity implements BasicUtils
     RdvContact rdvContactSelected;
 
     @State
-    Date date;
+    Date dateEnCours;
+
+    //@State
+    //String noteEncours;
+
+
+    //@State
+    //Date date;
 
     TimePickerDialog picker;
 
@@ -149,31 +159,28 @@ public class AfficherRdvActivity extends NavDrawerActivity implements BasicUtils
         //runner.execute();
 
         setTitle("Mes Rdv");
-        traiterIntent();
+        //traiterIntent();
         selectedRdv.setOnItemClickListener(this);
+
+
 
         materialDatePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener() {
             @Override
             public void onPositiveButtonClick(Object selection) {
                 textDate.setText(materialDatePicker.getHeaderText());
-                date = new Date();
-                date.setTime((Long) selection);
-                layoutHeure.setEnabled(true);
+                //date = new Date();
+                int hour = dateEnCours.getHours();
+                int minute = dateEnCours.getMinutes();
+                dateEnCours.setTime((Long) selection);
+                majDate(dateEnCours,hour,minute);
+                //layoutHeure.setEnabled(true);
             }
         });
-
-
-
-
 
         materialTimePicker.addOnPositiveButtonClickListener(dialog -> {
             int newHour = materialTimePicker.getHour();
             int newMinute = materialTimePicker.getMinute();
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime(date);
-            calendar.set(Calendar.HOUR_OF_DAY, newHour);
-            calendar.set(Calendar.MINUTE, newMinute);
-            date = calendar.getTime();
+            majDate(dateEnCours,newHour,newMinute);
             textHeure.setText(ecrireHeure(newHour,newMinute));
         });
 
@@ -181,6 +188,13 @@ public class AfficherRdvActivity extends NavDrawerActivity implements BasicUtils
         bottomNavigationViewMenu.findItem(R.id.bottom_navigation_rdv).setChecked(true);
     }
 
+    public void majDate(Date jour,int hour,int minute) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(jour);
+        calendar.set(Calendar.HOUR_OF_DAY, hour);
+        calendar.set(Calendar.MINUTE, minute);
+        dateEnCours = calendar.getTime();
+    }
 
     @OnClick(R.id.chipContact)
     public void chipContactClick() {
@@ -253,7 +267,7 @@ public class AfficherRdvActivity extends NavDrawerActivity implements BasicUtils
         materialDatePicker.show(getSupportFragmentManager(),"DATE_PICKER");
     }
 
-    public void traiterIntent() {
+   /* public void traiterIntent() {
         Intent intent = getIntent();
         if (intent.hasExtra("rdvAnalyseId")) {
             Long rdvAnalyseId = intent.getLongExtra("rdvAnalyseId", 0);
@@ -261,6 +275,8 @@ public class AfficherRdvActivity extends NavDrawerActivity implements BasicUtils
             rdvAnalyseSelected = rdvAnalyseDao.load(rdvAnalyseId);
             selectedRdv.setText(rdvAnalyseSelected.toString());
             // rdvContactSelected = listRdvContactBD.get(position);
+            dateEnCours = rdvAnalyseSelected.getDate();
+            noteEncours = rdvAnalyseSelected.getDetail();
             enableFields(false);
             displayFabs();
             fillAllFields();
@@ -271,6 +287,8 @@ public class AfficherRdvActivity extends NavDrawerActivity implements BasicUtils
             rdvExamenSelected = rdvExamenDao.load(rdvExamenId);
             selectedRdv.setText(rdvExamenSelected.toString());
             // rdvContactSelected = listRdvContactBD.get(position);
+            dateEnCours = rdvExamenSelected.getDate();
+            noteEncours = rdvExamenSelected.getDetail();
             enableFields(false);
             displayFabs();
             fillAllFields();
@@ -281,12 +299,14 @@ public class AfficherRdvActivity extends NavDrawerActivity implements BasicUtils
             rdvContactSelected = rdvContactDao.load(rdvContactId);
             selectedRdv.setText(rdvContactSelected.toString());
             // rdvContactSelected = listRdvContactBD.get(position);
+            dateEnCours = rdvContactSelected.getDate();
+            noteEncours = rdvContactSelected.getDetail();
             enableFields(false);
             displayFabs();
             fillAllFields();
             displayAllFields(false);
         }
-    }
+    }*/
 
     public class AsyncTaskRunnerAnalyse extends AsyncTask<Void, Integer, Void> {
 
@@ -399,24 +419,24 @@ public class AfficherRdvActivity extends NavDrawerActivity implements BasicUtils
     @OnClick(R.id.fabSave)
     public void fabSaveClick() {
         //rdvAnalyseDao.delete(rdvAnalyseSelected);
-
+        //date = DateUtils.razHeure(date);
         if (booleanAnalyse) {
-            rdvAnalyseSelected.setDate(date);
-            rdvAnalyseSelected.setDateString(date.toString());
+            rdvAnalyseSelected.setDate(dateEnCours);
+            rdvAnalyseSelected.setDateString(dateEnCours.toString());
             if (textNote.getText() != null && !textNote.getText().toString().equalsIgnoreCase(rdvAnalyseSelected.getDetail())) {
                 rdvAnalyseSelected.setDetail(textNote.getText().toString());
             }
             rdvAnalyseDao.update(rdvAnalyseSelected);
         } else if (booleanExamen) {
-            rdvExamenSelected.setDate(date);
-            rdvExamenSelected.setDateString(date.toString());
+            rdvExamenSelected.setDate(dateEnCours);
+            rdvExamenSelected.setDateString(dateEnCours.toString());
             if (textNote.getText() != null && !textNote.getText().toString().equalsIgnoreCase(rdvExamenSelected.getDetail())) {
                 rdvExamenSelected.setDetail(textNote.getText().toString());
             }
             rdvExamenDao.update(rdvExamenSelected);
         } else if (booleanContact) {
-            rdvContactSelected.setDate(date);
-            rdvContactSelected.setDateString(date.toString());
+            rdvContactSelected.setDate(dateEnCours);
+            rdvContactSelected.setDateString(dateEnCours.toString());
             if (textNote.getText() != null && !textNote.getText().toString().equalsIgnoreCase(rdvContactSelected.getDetail())) {
                 rdvContactSelected.setDetail(textNote.getText().toString());
             }
@@ -504,10 +524,16 @@ public class AfficherRdvActivity extends NavDrawerActivity implements BasicUtils
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         if (booleanAnalyse) {
             rdvAnalyseSelected = (RdvAnalyse) listRdvAnalyse.get(position);
+            dateEnCours = rdvAnalyseSelected.getDate();
+            //noteEncours = rdvAnalyseSelected.getDetail();
         } else if (booleanExamen) {
             rdvExamenSelected = (RdvExamen) listRdvExamen.get(position);
+            dateEnCours = rdvExamenSelected.getDate();
+            //noteEncours = rdvExamenSelected.getDetail();
         } else if (booleanContact) {
             rdvContactSelected = (RdvContact) listRdvContact.get(position);
+            dateEnCours = rdvContactSelected.getDate();
+            //noteEncours = rdvContactSelected.getDetail();
         }
         enableFields(false);
         displayFabs();

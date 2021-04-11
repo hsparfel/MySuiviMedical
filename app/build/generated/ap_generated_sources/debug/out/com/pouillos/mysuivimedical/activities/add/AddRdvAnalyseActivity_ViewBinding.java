@@ -19,7 +19,7 @@ import java.lang.Override;
 public class AddRdvAnalyseActivity_ViewBinding implements Unbinder {
   private AddRdvAnalyseActivity target;
 
-  private View view7f0800bc;
+  private View view7f0800bb;
 
   @UiThread
   public AddRdvAnalyseActivity_ViewBinding(AddRdvAnalyseActivity target) {
@@ -41,7 +41,7 @@ public class AddRdvAnalyseActivity_ViewBinding implements Unbinder {
     target.textNote = Utils.findRequiredViewAsType(source, R.id.textNote, "field 'textNote'", TextInputEditText.class);
     view = Utils.findRequiredView(source, R.id.fabSave, "field 'fabSave' and method 'fabSaveClick'");
     target.fabSave = Utils.castView(view, R.id.fabSave, "field 'fabSave'", FloatingActionButton.class);
-    view7f0800bc = view;
+    view7f0800bb = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -69,7 +69,7 @@ public class AddRdvAnalyseActivity_ViewBinding implements Unbinder {
     target.fabSave = null;
     target.progressBar = null;
 
-    view7f0800bc.setOnClickListener(null);
-    view7f0800bc = null;
+    view7f0800bb.setOnClickListener(null);
+    view7f0800bb = null;
   }
 }

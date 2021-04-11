@@ -19,7 +19,7 @@ public class AfficherRdvActivity$$Icepick<T extends AfficherRdvActivity> extends
 
   public void restore(T target, Bundle state) {
     if (state == null) return;
-    target.date = H.getSerializable(state, "date");
+    target.dateEnCours = H.getSerializable(state, "dateEnCours");
     target.booleanContact = H.getBoolean(state, "booleanContact");
     target.booleanAnalyse = H.getBoolean(state, "booleanAnalyse");
     target.booleanExamen = H.getBoolean(state, "booleanExamen");
@@ -28,7 +28,7 @@ public class AfficherRdvActivity$$Icepick<T extends AfficherRdvActivity> extends
 
   public void save(T target, Bundle state) {
     super.save(target, state);
-    H.putSerializable(state, "date", target.date);
+    H.putSerializable(state, "dateEnCours", target.dateEnCours);
     H.putBoolean(state, "booleanContact", target.booleanContact);
     H.putBoolean(state, "booleanAnalyse", target.booleanAnalyse);
     H.putBoolean(state, "booleanExamen", target.booleanExamen);

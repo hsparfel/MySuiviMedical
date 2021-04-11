@@ -1,23 +1,11 @@
 [
     {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\build\\intermediates\\res\\merged\\debug\\drawable_big_hospital.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\src\\main\\res\\drawable\\big_hospital.png"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\build\\intermediates\\res\\merged\\debug\\drawable_outline_navigation_black_24dp.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\src\\main\\res\\drawable\\outline_navigation_black_24dp.png"
-    },
-    {
         "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\build\\intermediates\\res\\merged\\debug\\xml_filepaths.xml.flat",
         "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\src\\main\\res\\xml\\filepaths.xml"
     },
     {
         "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_afficher_photo.xml.flat",
         "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\src\\main\\res\\layout\\activity_afficher_photo.xml"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\build\\intermediates\\res\\merged\\debug\\drawable_outline_clear_black_24dp.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\src\\main\\res\\drawable\\outline_clear_black_24dp.png"
     },
     {
         "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\build\\intermediates\\res\\merged\\debug\\drawable_avatar_doctor.png.flat",
@@ -36,10 +24,6 @@
         "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\src\\main\\res\\layout\\recycler_list_rdv_examen.xml"
     },
     {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\build\\intermediates\\res\\merged\\debug\\drawable_email.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\src\\main\\res\\drawable\\email.png"
-    },
-    {
         "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\build\\intermediates\\res\\merged\\debug\\drawable_heart.png.flat",
         "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\src\\main\\res\\drawable\\heart.png"
     },
@@ -48,20 +32,8 @@
         "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\src\\main\\res\\drawable-v21\\outline_home_black_24dp.png"
     },
     {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\build\\intermediates\\res\\merged\\debug\\drawable_drug_icon.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\src\\main\\res\\drawable\\drug_icon.png"
-    },
-    {
         "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_add_rdv_analyse.xml.flat",
         "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\src\\main\\res\\layout\\activity_add_rdv_analyse.xml"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\build\\intermediates\\res\\merged\\debug\\drawable_outline_update_black_24dp.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\src\\main\\res\\drawable\\outline_update_black_24dp.png"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\build\\intermediates\\res\\merged\\debug\\drawable_id_card_icon_124180.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\src\\main\\res\\drawable\\id_card_icon_124180.png"
     },
     {
         "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_outline_event_black_24dp.png.flat",
@@ -74,10 +46,6 @@
     {
         "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\build\\intermediates\\res\\merged\\debug\\drawable_fatman_24.png.flat",
         "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\src\\main\\res\\drawable\\fatman_24.png"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\build\\intermediates\\res\\merged\\debug\\drawable_outline_emoji_people_black_48dp.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\src\\main\\res\\drawable\\outline_emoji_people_black_48dp.png"
     },
     {
         "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\build\\intermediates\\res\\merged\\debug\\drawable_comparer_24.png.flat",
@@ -96,24 +64,8 @@
         "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\src\\main\\res\\drawable\\outline_schedule_black_18dp.png"
     },
     {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\build\\intermediates\\res\\merged\\debug\\drawable_outline_today_black_24dp.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\src\\main\\res\\drawable\\outline_today_black_24dp.png"
-    },
-    {
         "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_add_rdv_contact.xml.flat",
         "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\src\\main\\res\\layout\\activity_add_rdv_contact.xml"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bookeddatecalendarmarkcrosssave_109769.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\src\\main\\res\\drawable\\bookeddatecalendarmarkcrosssave_109769.png"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\build\\intermediates\\res\\merged\\debug\\drawable_fax.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\src\\main\\res\\drawable\\fax.png"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\build\\intermediates\\res\\merged\\debug\\drawable_pill_114844.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\src\\main\\res\\drawable\\pill_114844.png"
     },
     {
         "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_medicine_medical_pharmacy_health_prescription_pill_drug_icon_140910.png.flat",
@@ -124,10 +76,6 @@
         "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\src\\main\\res\\layout\\activity_afficher_rdv.xml"
     },
     {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_outline_search_white_18dp.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\src\\main\\res\\drawable-v21\\outline_search_white_18dp.png"
-    },
-    {
         "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\build\\intermediates\\res\\merged\\debug\\layout_custom_marker_view.xml.flat",
         "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\src\\main\\res\\layout\\custom_marker_view.xml"
     },
@@ -136,16 +84,8 @@
         "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\src\\main\\res\\drawable\\icons8_graphique_24.png"
     },
     {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\build\\intermediates\\res\\merged\\debug\\drawable_account_convert.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\src\\main\\res\\drawable\\account_convert.png"
-    },
-    {
         "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bebe_24.png.flat",
         "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\src\\main\\res\\drawable\\bebe_24.png"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\build\\intermediates\\res\\merged\\debug\\drawable_book_contact.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\src\\main\\res\\drawable\\book_contact.png"
     },
     {
         "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_afficher_analyse.xml.flat",
@@ -156,36 +96,8 @@
         "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\src\\main\\res\\layout\\activity_add_analyse.xml"
     },
     {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\build\\intermediates\\res\\merged\\debug\\drawable_outline_timelapse_black_24dp.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\src\\main\\res\\drawable\\outline_timelapse_black_24dp.png"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\build\\intermediates\\res\\merged\\debug\\drawable_outline_person_add_black_24dp.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\src\\main\\res\\drawable\\outline_person_add_black_24dp.png"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\build\\intermediates\\res\\merged\\debug\\drawable_prescription.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\src\\main\\res\\drawable\\prescription.png"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\build\\intermediates\\res\\merged\\debug\\drawable_pill.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\src\\main\\res\\drawable\\pill.png"
-    },
-    {
         "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\build\\intermediates\\res\\merged\\debug\\drawable_outline_add_a_photo_black_24dp.png.flat",
         "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\src\\main\\res\\drawable\\outline_add_a_photo_black_24dp.png"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\build\\intermediates\\res\\merged\\debug\\drawable_woman_icon.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\src\\main\\res\\drawable\\woman_icon.png"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\build\\intermediates\\res\\merged\\debug\\drawable_outline_search_black_24dp.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\src\\main\\res\\drawable\\outline_search_black_24dp.png"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\build\\intermediates\\res\\merged\\debug\\drawable_eyedropper_plus.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\src\\main\\res\\drawable\\eyedropper_plus.png"
     },
     {
         "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_menu_share.xml.flat",
@@ -204,20 +116,12 @@
         "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\src\\main\\res\\layout\\activity_add_examen.xml"
     },
     {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi_icons8_main_pilule.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\src\\main\\res\\mipmap-xhdpi\\icons8_main_pilule.png"
-    },
-    {
         "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_outline_delete_black_24dp.png.flat",
         "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\src\\main\\res\\drawable-v21\\outline_delete_black_24dp.png"
     },
     {
         "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\build\\intermediates\\res\\merged\\debug\\drawable_homme_24.png.flat",
         "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\src\\main\\res\\drawable\\homme_24.png"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\build\\intermediates\\res\\merged\\debug\\drawable_man_icon.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\src\\main\\res\\drawable\\man_icon.png"
     },
     {
         "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_afficher_graphique.xml.flat",
@@ -228,24 +132,8 @@
         "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\src\\main\\res\\menu\\menu_activity_main.xml"
     },
     {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_baseline_alarm_off_black_18dp.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\src\\main\\res\\drawable-v24\\baseline_alarm_off_black_18dp.png"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\build\\intermediates\\res\\merged\\debug\\drawable_home_pill_notif.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\src\\main\\res\\drawable\\home_pill_notif.png"
-    },
-    {
         "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\build\\intermediates\\res\\merged\\debug\\layout_toolbar.xml.flat",
         "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\src\\main\\res\\layout\\toolbar.xml"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_outline_import_export_black_24dp.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\src\\main\\res\\drawable-v21\\outline_import_export_black_24dp.png"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\build\\intermediates\\res\\merged\\debug\\drawable_outline_trending_up_black_24dp.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\src\\main\\res\\drawable\\outline_trending_up_black_24dp.png"
     },
     {
         "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\build\\intermediates\\res\\merged\\debug\\layout_recycler_list_rdv_contact.xml.flat",
@@ -254,10 +142,6 @@
     {
         "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_menu_camera.xml.flat",
         "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\src\\main\\res\\drawable\\ic_menu_camera.xml"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\build\\intermediates\\res\\merged\\debug\\drawable_outline_cake_black_24dp.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\src\\main\\res\\drawable\\outline_cake_black_24dp.png"
     },
     {
         "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\build\\intermediates\\res\\merged\\debug\\menu_bottom_navigation_menu.xml.flat",
@@ -278,14 +162,6 @@
     {
         "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_afficher_profil.xml.flat",
         "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\src\\main\\res\\layout\\activity_afficher_profil.xml"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\build\\intermediates\\res\\merged\\debug\\drawable_outline_face_black_24dp.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\src\\main\\res\\drawable\\outline_face_black_24dp.png"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\build\\intermediates\\res\\merged\\debug\\drawable_outline_place_black_24dp.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\src\\main\\res\\drawable\\outline_place_black_24dp.png"
     },
     {
         "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\build\\intermediates\\res\\merged\\debug\\drawable_outline_replay_black_24dp.png.flat",
@@ -312,10 +188,6 @@
         "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\src\\main\\res\\drawable\\outline_add_black_24dp.png"
     },
     {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_icons8_main_pilule_18.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\src\\main\\res\\drawable-v24\\icons8_main_pilule_18.png"
-    },
-    {
         "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\build\\intermediates\\res\\merged\\debug\\layout_list_item.xml.flat",
         "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\src\\main\\res\\layout\\list_item.xml"
     },
@@ -328,20 +200,8 @@
         "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\src\\main\\res\\layout\\recycler_list_rdv_analyse.xml"
     },
     {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\build\\intermediates\\res\\merged\\debug\\drawable_outline_phone_black_24dp.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\src\\main\\res\\drawable\\outline_phone_black_24dp.png"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\build\\intermediates\\res\\merged\\debug\\drawable_metier.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\src\\main\\res\\drawable\\metier.png"
-    },
-    {
         "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_add_rdv_examen.xml.flat",
         "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\src\\main\\res\\layout\\activity_add_rdv_examen.xml"
-    },
-    {
-        "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\build\\intermediates\\res\\merged\\debug\\drawable_hospital.png.flat",
-        "source": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\src\\main\\res\\drawable\\hospital.png"
     },
     {
         "merged": "C:\\Users\\TNH\\AndroidStudioProjects\\MySuiviMedical\\app\\build\\intermediates\\res\\merged\\debug\\drawable_outline_speed_black_24dp.png.flat",
